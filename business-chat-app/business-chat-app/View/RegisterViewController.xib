@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="RegisterViewController" customClass="RegisterViewController" customModule="business_chat_app" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextfield" destination="w12-rY-d7Y" id="BFb-Xs-xDR"/>
+                <outlet property="passwordTextfield" destination="sfi-cm-a3f" id="8Ye-7w-j6k"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="cbI-7D-dQa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w12-rY-d7Y">
+                    <rect key="frame" x="56" y="139" width="264" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-uM-cbg">
+                    <rect key="frame" x="159" y="248" width="57" height="30"/>
+                    <state key="normal" title="Register"/>
+                    <connections>
+                        <action selector="registerButtonPressed:" destination="-1" eventType="touchUpInside" id="TUd-zJ-DHO"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sfi-cm-a3f">
+                    <rect key="frame" x="56" y="177" width="264" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h4h-tl-xPj">
+                    <rect key="frame" x="0.0" y="26" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem id="tk7-E5-2aW">
+                            <barButtonItem key="backBarButtonItem" title="Back" id="WNh-bS-sTC"/>
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="pKq-to-xv6"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sfi-cm-a3f" secondAttribute="trailing" constant="55" id="0Dz-ui-DQC"/>
+                <constraint firstItem="5Zc-uM-cbg" firstAttribute="top" secondItem="sfi-cm-a3f" secondAttribute="bottom" constant="41" id="7ih-zS-DSn"/>
+                <constraint firstItem="w12-rY-d7Y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="56" id="9fB-GG-e5B"/>
+                <constraint firstItem="5Zc-uM-cbg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="159" id="GXJ-gy-z28"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="w12-rY-d7Y" secondAttribute="trailing" constant="55" id="Jj2-GO-uFE"/>
+                <constraint firstItem="sfi-cm-a3f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="56" id="Otx-Qq-Rjm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Zc-uM-cbg" secondAttribute="trailing" constant="159" id="QiF-IB-ymd"/>
+                <constraint firstItem="sfi-cm-a3f" firstAttribute="top" secondItem="w12-rY-d7Y" secondAttribute="bottom" constant="8" id="U1W-vh-frQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5Zc-uM-cbg" secondAttribute="bottom" constant="389" id="clf-26-HIE"/>
+                <constraint firstItem="w12-rY-d7Y" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="119" id="eHI-Wr-5aa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+    </objects>
+</document>
