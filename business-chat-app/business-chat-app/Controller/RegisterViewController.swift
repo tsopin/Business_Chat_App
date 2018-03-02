@@ -34,6 +34,10 @@ class RegisterViewController: UIViewController {
             { print("Error")
             } else {
                 print("Success")
+                
+                let contactList:ContactListTableViewController = ContactListTableViewController()
+                
+                self.navigationController?.pushViewController(contactList, animated: true )
             }
         
         
