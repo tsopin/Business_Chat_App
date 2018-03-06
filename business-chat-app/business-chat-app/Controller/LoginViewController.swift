@@ -36,8 +36,13 @@ class LoginViewController: UIViewController {
             } else {
                 print("Log in Successfull!")
                 
+//
+//                let contactList:ContactListTableViewController = ContactListTableViewController()
+//
+//                self.navigationController?.pushViewController(contactList, animated: true )
                 
-                let contactList:ContactListTableViewController = ContactListTableViewController()
+                
+                let contactList:MainTabViewController = MainTabViewController()
                 
                 self.navigationController?.pushViewController(contactList, animated: true )
             }

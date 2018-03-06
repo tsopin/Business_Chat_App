@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactListTableViewController: UITableViewController {
+class GroupsTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()

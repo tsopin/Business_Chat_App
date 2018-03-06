@@ -10,16 +10,20 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
+    
+    @IBOutlet weak var regButton: UIButton!
     @IBOutlet weak var emailTextfield: UITextField!
     
     @IBOutlet weak var passwordTextfield: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        regButton.layer.cornerRadius = 5 
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,23 +31,38 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         
-        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) {
+        let email = emailTextfield.text!
+        let trimmedEmail = email.trimmingCharacters(in: .whitespaces)
+        
+        
+        let password = passwordTextfield.text!
+        let trimmedPassword = password.trimmingCharacters(in: .whitespaces)
+        
+        Auth.auth().createUser(withEmail: "\(trimmedEmail)", password: "\(trimmedPassword)") {
             (user, error) in
             
             if error != nil
             { print("Error")
+                print(password)
+                
             } else {
                 print("Success")
                 
-                let contactList:ContactListTableViewController = ContactListTableViewController()
+                let chatList:ChatTableViewController = ChatTableViewController()
                 
-                self.navigationController?.pushViewController(contactList, animated: true )
+                self.navigationController?.pushViewController(chatList, animated: true )
             }
+            
+            
+        }
+        
         
         
     }
-    
-
-
-}
+    @IBAction func cancelBtn(_ sender: Any) {
+        
+      self.dismiss(animated: true, completion: nil)
+        
+        
+    }
 }

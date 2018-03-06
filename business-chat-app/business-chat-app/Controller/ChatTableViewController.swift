@@ -7,89 +7,188 @@
 //
 
 import UIKit
+import Firebase
 
-class ChatTableViewController: UITableViewController {
-        
+class ChatTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    @IBOutlet weak var chatTableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var sendBtn: UIButton!
+    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
+    
+    
+    var messagesArray : [Message] = [Message]()
+    let now = NSDate()
+    let dateFormatter = DateFormatter()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //Delegate and datasource
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        
+        
+        //Delegate of the text field
+        
+        textField.delegate = self
+        
+        //Set the tapGesture
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+        
+        chatTableView.addGestureRecognizer(tapGesture)
+        
+        chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "customMessageIn")
+        
+        configureTableView()
+        getMessages()
+        chatTableView.separatorStyle = .none
+        
+        
     }
-
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        
+        UIView.animate(withDuration: 1) {
+            
+            self.heightConstraint.constant = 308
+            self.view.layoutIfNeeded()
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageIn", for: indexPath) as! CustomMessageIn
+        
+        cell.messageBody.text = messagesArray[indexPath.row].content
+        cell.senderName.text = messagesArray[indexPath.row].userName
+        cell.userPic.image = UIImage(named: "userPic")
+        cell.messageTime.text = messagesArray[indexPath.row].timeSent
+        
+//        if cell.senderName.text == Auth.auth().currentUser?.email as String! {
+//            cell.userPic.backgroundColor = UIColor.blue
+//            cell.messageBackground.backgroundColor = UIColor.blue
+//        } else {
+//            cell.userPic.backgroundColor = UIColor.brown
+//            cell.messageBackground.backgroundColor = UIColor.red
+//        }
+        
+        return cell
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.heightConstraint.constant = 50
+            self.view.layoutIfNeeded()
+            
+        }
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    
+    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return messagesArray.count
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//
+//    }
+    
+    @IBAction func sendButton(_ sender: Any) {
+        
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        let currentDate = dateFormatter.string(from: now as Date)
+        
+        textField.endEditing(true)
+        
+        
+        textField.isEnabled = false
+        sendBtn.isEnabled = false
+        
+        if textField.text == "" {
+            
+            print("Empty Message")
+            self.textField.isEnabled = true
+            self.sendBtn.isEnabled = true
+            
+            
+        } else {
+        
+        let messageDB = Database.database().reference().child("messages")
+        let messageDictionary = ["email": Auth.auth().currentUser?.email, "content": textField.text!, "timeSent" : currentDate, "userName": Auth.auth().currentUser?.email]
+        
+        messageDB.childByAutoId().setValue(messageDictionary) {
+            (error, reference) in
+            
+            if error != nil {
+                print(error!)
+            } else {
+                print("Message saved")
+                
+                self.textField.isEnabled = true
+                self.sendBtn.isEnabled = true
+                self.textField.text = ""
+            }
+        }
+        }
+       
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+     //RetrieveMessages method
+    func getMessages() {
+        
+        let messageDB = Database.database().reference().child("messages")
+        messageDB.observe(.childAdded) { (snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String,String>
+            
+            let content = snapshotValue["content"]!
+            let email = snapshotValue["email"]!
+            let timeSent = snapshotValue["timeSent"]!
+            let userName = snapshotValue["userName"]!
+            
+            let message = Message()
+            message.content = content
+            message.email = email
+            message.timeSent = timeSent
+            message.userName = userName
+            
+            self.messagesArray.append(message)
+            self.configureTableView()
+            self.chatTableView.reloadData()
+        }
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    @objc func tableViewTapped() {
+        chatTableView.endEditing(true)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    func configureTableView() {
+        chatTableView.rowHeight = UITableViewAutomaticDimension
+        chatTableView.estimatedRowHeight = 120.0
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
