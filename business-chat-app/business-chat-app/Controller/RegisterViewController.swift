@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         regButton.layer.cornerRadius = 5 
-        
+        self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view.
     }
     
@@ -56,7 +56,8 @@ class RegisterViewController: UIViewController {
             
         }
         
-        
+       emailTextfield.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
         
     }
     @IBAction func cancelBtn(_ sender: Any) {
@@ -64,5 +65,17 @@ class RegisterViewController: UIViewController {
       self.dismiss(animated: true, completion: nil)
         
         
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

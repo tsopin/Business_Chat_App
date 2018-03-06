@@ -24,8 +24,11 @@ class WelcomeViewController: UIViewController {
             if user != nil {
                  self.performSegue(withIdentifier: "goToMain", sender: self)
             }
+    
         }
+        self.hideKeyboardWhenTappedAround()
     }
+    
     
     
     override func didReceiveMemoryWarning() {
