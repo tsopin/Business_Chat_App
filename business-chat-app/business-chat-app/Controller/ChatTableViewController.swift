@@ -66,18 +66,23 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageIn", for: indexPath) as! CustomMessageIn
         
+        let outColor = UIColor(rgb: 0xe7b1c8)
+        let inColor = UIColor(rgb: 0xb7d9fb)
+        
         cell.messageBody.text = messagesArray[indexPath.row].content
         cell.senderName.text = messagesArray[indexPath.row].userName
         cell.userPic.image = UIImage(named: "userPic")
         cell.messageTime.text = messagesArray[indexPath.row].timeSent
         
-//        if cell.senderName.text == Auth.auth().currentUser?.email as String! {
+        if cell.senderName.text == Auth.auth().currentUser?.email as String! {
 //            cell.userPic.backgroundColor = UIColor.blue
-//            cell.messageBackground.backgroundColor = UIColor.blue
-//        } else {
+            cell.messageBackground.backgroundColor = outColor
+          
+            
+        } else {
 //            cell.userPic.backgroundColor = UIColor.brown
-//            cell.messageBackground.backgroundColor = UIColor.red
-//        }
+            cell.messageBackground.backgroundColor = inColor
+        }
         
         return cell
     }
@@ -181,6 +186,8 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.chatTableView.reloadData()
         }
         
+ 
+        
     }
     
     @objc func tableViewTapped() {
@@ -189,6 +196,27 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
+ 
+        print("HSET")
     }
     
+    
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
 }
