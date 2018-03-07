@@ -70,24 +70,7 @@ class SettingsViewController: UIViewController {
         actionSheets.addAction(cancel)
         
         self.present(actionSheets, animated: true, completion: nil)
-        
-        
-        
-        
-        
-        
-        
-        //        do {
-        //            try Auth.auth().signOut()
-        //
-        //            print("LogOut")
-        //
-        ////            self.performSegue(withIdentifier: "logOut", sender: self)
-        //        }
-        //        catch {
-        //            print("Error")
-        //        }
-        
+
         
         
     }

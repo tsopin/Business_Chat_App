@@ -16,16 +16,12 @@ class CustomMessageIn: UITableViewCell {
     @IBOutlet weak var messageTime: UILabel!
     
     @IBOutlet weak var messageBody: UILabel!
-    
-    @IBOutlet weak var messageBackground: UIImageView!
+
+    @IBOutlet weak var messageBackground: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
-        
-        
-        
+  
     }
-    
-    
+
 }
