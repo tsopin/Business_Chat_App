@@ -17,7 +17,7 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
-    
+    let customMessageOut = CustomMessageOut()
     
     var messagesArray : [Message] = [Message]()
     let now = NSDate()
@@ -43,54 +43,74 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
         chatTableView.addGestureRecognizer(tapGesture)
         
         chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "customMessageIn")
+        chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "customMessageOut")
         
         configureTableView()
         getMessages()
         chatTableView.separatorStyle = .none
-        
         
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.2) {
             
-            self.heightConstraint.constant = 308
+            self.heightConstraint.constant = 270
             self.view.layoutIfNeeded()
             
         }
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageIn", for: indexPath) as! CustomMessageIn
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
+        
+        
+        
         
         let outColor = UIColor(rgb: 0xe7b1c8)
         let inColor = UIColor(rgb: 0xb7d9fb)
         
-        cell.messageBody.text = messagesArray[indexPath.row].content
-        cell.senderName.text = messagesArray[indexPath.row].userName
-        cell.userPic.image = UIImage(named: "userPic")
-        cell.messageTime.text = messagesArray[indexPath.row].timeSent
+//        cell.messageBody.text = messagesArray[indexPath.row].content
+//        cell.senderName.text = messagesArray[indexPath.row].userName
+//        cell.userPic.image = UIImage(named: "userPic")
+//        cell.messageTime.text = messagesArray[indexPath.row].timeSent
         
-        if cell.senderName.text == Auth.auth().currentUser?.email as String! {
-//            cell.userPic.backgroundColor = UIColor.blue
+        
+        
+        
+        if customMessageOut.senderName.text == Auth.auth().currentUser?.email as String! {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageOut", for: indexPath) as! CustomMessageOut
+            //            cell.userPic.backgroundColor = UIColor.blue
+            
             cell.messageBackground.backgroundColor = outColor
-          
+            
+            cell.messageBody.text = messagesArray[indexPath.row].content
+            cell.senderName.text = messagesArray[indexPath.row].userName
+            cell.userPic.image = UIImage(named: "userPic")
+            cell.messageTime.text = messagesArray[indexPath.row].timeSent
+            return cell
             
         } else {
-//            cell.userPic.backgroundColor = UIColor.brown
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageIn", for: indexPath) as! CustomMessageIn
+            //            cell.userPic.backgroundColor = UIColor.brown
             cell.messageBackground.backgroundColor = inColor
+            
+            cell.messageBody.text = messagesArray[indexPath.row].content
+            cell.senderName.text = messagesArray[indexPath.row].userName
+            cell.userPic.image = UIImage(named: "userPic")
+            cell.messageTime.text = messagesArray[indexPath.row].timeSent
+            return cell
         }
         
-        return cell
+    
     }
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.2) {
             
             self.heightConstraint.constant = 50
             self.view.layoutIfNeeded()
@@ -107,19 +127,19 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
+    //    func numberOfSections(in tableView: UITableView) -> Int {
+    //        // #warning Incomplete implementation, return the number of sections
+    //        return 1
+    //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return messagesArray.count
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//
-//    }
+    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //
+    //    }
     
     @IBAction func sendButton(_ sender: Any) {
         
@@ -140,29 +160,29 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             
         } else {
-        
-        let messageDB = Database.database().reference().child("messages")
-        let messageDictionary = ["email": Auth.auth().currentUser?.email, "content": textField.text!, "timeSent" : currentDate, "userName": Auth.auth().currentUser?.email]
-        
-        messageDB.childByAutoId().setValue(messageDictionary) {
-            (error, reference) in
             
-            if error != nil {
-                print(error!)
-            } else {
-                print("Message saved")
+            let messageDB = Database.database().reference().child("messages")
+            let messageDictionary = ["email": Auth.auth().currentUser?.email, "content": textField.text!, "timeSent" : currentDate, "userName": Auth.auth().currentUser?.email]
+            
+            messageDB.childByAutoId().setValue(messageDictionary) {
+                (error, reference) in
                 
-                self.textField.isEnabled = true
-                self.sendBtn.isEnabled = true
-                self.textField.text = ""
+                if error != nil {
+                    print(error!)
+                } else {
+                    print("Message saved")
+                    
+                    self.textField.isEnabled = true
+                    self.sendBtn.isEnabled = true
+                    self.textField.text = ""
+                }
             }
         }
-        }
-       
+        
     }
     
     
-     //RetrieveMessages method
+    //RetrieveMessages method
     func getMessages() {
         
         let messageDB = Database.database().reference().child("messages")
@@ -186,7 +206,7 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.chatTableView.reloadData()
         }
         
- 
+            
         
     }
     
@@ -196,7 +216,7 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
- 
+        
         print("HSET")
     }
     

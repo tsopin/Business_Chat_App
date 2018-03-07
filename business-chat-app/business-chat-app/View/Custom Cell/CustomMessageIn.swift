@@ -21,11 +21,7 @@ class CustomMessageIn: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
-        
-        
-        
+  
     }
-    
-    
+
 }

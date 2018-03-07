@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customMessageOut" id="KGk-i7-Jjw" userLabel="CustomMessageOut" customClass="CustomMessageOut" customModule="business_chat_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPic" translatesAutoresizingMaskIntoConstraints="NO" id="Drq-j8-Gzr">
+                        <rect key="frame" x="265" y="14" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="iJK-Nn-gZB"/>
+                            <constraint firstAttribute="height" constant="50" id="o1P-zu-DJo"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92C-rT-v0O">
+                        <rect key="frame" x="10" y="10" width="250" height="59"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsQ-JG-g2C">
+                                <rect key="frame" x="176" y="5" width="69" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Message Body Message Body Message Body Message Body" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcR-Uh-Srx">
+                                <rect key="frame" x="5" y="25" width="240" height="29"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="messageTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-TN-eAU">
+                                <rect key="frame" x="5" y="5" width="74" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xsQ-JG-g2C" secondAttribute="trailing" constant="5" id="1pY-GZ-8t1"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="25" id="Ejw-2P-570"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="25" id="Eko-3e-RN3"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="centerX" secondItem="92C-rT-v0O" secondAttribute="centerX" id="Kbd-Da-FM6"/>
+                            <constraint firstItem="xsQ-JG-g2C" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="5" id="R2z-h0-oaW"/>
+                            <constraint firstItem="h0L-TN-eAU" firstAttribute="top" secondItem="xsQ-JG-g2C" secondAttribute="top" id="SYw-Te-rW6"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leading" constant="5" id="VDm-CY-2Vs"/>
+                            <constraint firstAttribute="trailing" secondItem="bcR-Uh-Srx" secondAttribute="trailing" constant="5" id="ZRJ-pW-dTT"/>
+                            <constraint firstAttribute="bottom" secondItem="h0L-TN-eAU" secondAttribute="bottom" constant="32" id="i3w-iz-YdN"/>
+                            <constraint firstAttribute="bottom" secondItem="bcR-Uh-Srx" secondAttribute="bottom" constant="5" id="xTi-by-PJp"/>
+                            <constraint firstItem="h0L-TN-eAU" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leading" constant="5" id="yN5-SW-jqS"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="14"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="92C-rT-v0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="E0V-3C-f05"/>
+                    <constraint firstItem="92C-rT-v0O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="FRC-QE-VOz"/>
+                    <constraint firstAttribute="bottom" secondItem="92C-rT-v0O" secondAttribute="bottom" constant="10" id="PZK-2H-0Jl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Drq-j8-Gzr" secondAttribute="trailing" constant="-11" id="iRW-lT-yLg"/>
+                    <constraint firstItem="Drq-j8-Gzr" firstAttribute="centerY" secondItem="92C-rT-v0O" secondAttribute="centerY" id="pr4-cQ-b66"/>
+                    <constraint firstItem="Drq-j8-Gzr" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="trailing" constant="5" id="xKK-ny-oLj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="messageBackground" destination="92C-rT-v0O" id="Nea-qu-Bya"/>
+                <outlet property="messageBody" destination="bcR-Uh-Srx" id="ESK-QI-Qu5"/>
+                <outlet property="messageTime" destination="h0L-TN-eAU" id="PrD-5S-Jjs"/>
+                <outlet property="senderName" destination="xsQ-JG-g2C" id="ee3-B1-ORY"/>
+                <outlet property="userName" destination="xsQ-JG-g2C" id="TtA-3c-CSp"/>
+                <outlet property="userPic" destination="Drq-j8-Gzr" id="kqb-QQ-psv"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="userPic" width="1600" height="1600"/>
+    </resources>
+</document>
