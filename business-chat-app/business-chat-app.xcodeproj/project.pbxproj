@@ -13,10 +13,10 @@
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
 		746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */; };
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
+		7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */; };
 		74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3B093204BB2F40056A026 /* MainTabViewController.swift */; };
 		74CB913E2049BBF70098E047 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB913C2049BBF70098E047 /* RegisterViewController.swift */; };
 		74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74CB913D2049BBF70098E047 /* RegisterViewController.xib */; };
-		74CB91452049BEB40098E047 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74CB91442049BEB40098E047 /* GoogleService-Info.plist */; };
 		74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74CB914A2049C6C30098E047 /* MainStoryboard.storyboard */; };
 		74CB914D2049C6F60098E047 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB914C2049C6F60098E047 /* WelcomeViewController.swift */; };
 		74CB91542049DB7D0098E047 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91522049DB7D0098E047 /* GroupsTableViewController.swift */; };
@@ -35,10 +35,10 @@
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
 		746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageOut.swift; sourceTree = "<group>"; };
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
+		7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		74B3B093204BB2F40056A026 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		74CB913C2049BBF70098E047 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		74CB913D2049BBF70098E047 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
-		74CB91442049BEB40098E047 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		74CB914A2049C6C30098E047 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		74CB914C2049C6F60098E047 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		74CB91522049DB7D0098E047 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -73,13 +73,6 @@
 				746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */,
 			);
 			path = "Custom Cell";
-			sourceTree = "<group>";
-		};
-		74960CE62049B4D00057EF17 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		74CB91402049BC020098E047 /* Controller */ = {
@@ -118,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				77AE6FEA20491C4F00918A93 /* business-chat-app */,
-				74960CE62049B4D00057EF17 /* Supporting Files */,
 				77AE6FE920491C4F00918A93 /* Products */,
 				F94DA60115FCE8B36F27D75C /* Pods */,
 				A7A343452042E7683F3DE822 /* Frameworks */,
@@ -142,7 +134,7 @@
 				77AE6FEB20491C4F00918A93 /* AppDelegate.swift */,
 				77AE6FF220491C4F00918A93 /* Assets.xcassets */,
 				77AE6FF720491C4F00918A93 /* Info.plist */,
-				74CB91442049BEB40098E047 /* GoogleService-Info.plist */,
+				7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */,
 			);
 			path = "business-chat-app";
 			sourceTree = "<group>";
@@ -230,9 +222,9 @@
 				746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */,
 				77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */,
 				74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */,
-				74CB91452049BEB40098E047 /* GoogleService-Info.plist in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
 				743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */,
+				7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
