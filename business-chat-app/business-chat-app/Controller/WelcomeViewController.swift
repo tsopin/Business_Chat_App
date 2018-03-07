@@ -37,12 +37,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        
-        
-        //        let registerView:RegisterViewController = RegisterViewController()
-        //
-        //        navigationController?.pushViewController(registerView, animated: true )
-        
+
         let registerView = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
         registerView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(registerView, animated: true, completion: nil)
@@ -57,15 +52,7 @@ class WelcomeViewController: UIViewController {
             } else {
                 print("Log in Successfull!")
                   self.performSegue(withIdentifier: "goToMain", sender: self)
-//
-//                let mainView = MainTabViewController(nibName: "MainTabViewController", bundle: nil)
-//                mainView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//                self.present(mainView, animated: true, completion: nil)
-//
-//
-//                //                let contactList:MainTabViewController = MainTabViewController()
-//                //
-//                //                self.navigationController?.pushViewController(contactList, animated: true )
+
             }
         }
         

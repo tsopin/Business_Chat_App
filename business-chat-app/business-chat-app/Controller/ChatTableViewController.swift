@@ -14,9 +14,9 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
-    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
+    let customMessageIn = CustomMessageIn()
     let customMessageOut = CustomMessageOut()
     
     var messagesArray : [Message] = [Message]()
@@ -24,31 +24,22 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
     let dateFormatter = DateFormatter()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Delegate and datasource
+
         chatTableView.delegate = self
         chatTableView.dataSource = self
-        
-        
-        //Delegate of the text field
-        
         textField.delegate = self
-        
-        //Set the tapGesture
-        
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-        
         chatTableView.addGestureRecognizer(tapGesture)
-        
-        chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "customMessageIn")
-        chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "customMessageOut")
+        chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
+        chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
         
         configureTableView()
         getMessages()
         chatTableView.separatorStyle = .none
-        
+ 
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -58,53 +49,40 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             self.heightConstraint.constant = 270
             self.view.layoutIfNeeded()
-            
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
         
-        
-        
-        
         let outColor = UIColor(rgb: 0xe7b1c8)
         let inColor = UIColor(rgb: 0xb7d9fb)
-        
-//        cell.messageBody.text = messagesArray[indexPath.row].content
-//        cell.senderName.text = messagesArray[indexPath.row].userName
-//        cell.userPic.image = UIImage(named: "userPic")
-//        cell.messageTime.text = messagesArray[indexPath.row].timeSent
+        let sender = messagesArray[indexPath.row].userName
+        let loggedUser = Auth.auth().currentUser?.email as String!
         
         
-        
-        
-        if customMessageOut.senderName.text == Auth.auth().currentUser?.email as String! {
+        if  sender == loggedUser {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageOut", for: indexPath) as! CustomMessageOut
-            //            cell.userPic.backgroundColor = UIColor.blue
+            let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
             cell.messageBackground.backgroundColor = outColor
-            
             cell.messageBody.text = messagesArray[indexPath.row].content
             cell.senderName.text = messagesArray[indexPath.row].userName
-            cell.userPic.image = UIImage(named: "userPic")
+            cell.userPic.image = UIImage(named: "meIcon")
             cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageIn", for: indexPath) as! CustomMessageIn
-            //            cell.userPic.backgroundColor = UIColor.brown
-            cell.messageBackground.backgroundColor = inColor
             
+              let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
+
+            cell.messageBackground.backgroundColor = inColor
             cell.messageBody.text = messagesArray[indexPath.row].content
             cell.senderName.text = messagesArray[indexPath.row].userName
-            cell.userPic.image = UIImage(named: "userPic")
+            cell.userPic.image = UIImage(named: "notMe")
             cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
+            
         }
-        
-    
     }
     
     
@@ -116,7 +94,6 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.view.layoutIfNeeded()
             
         }
-        
     }
     
     
@@ -124,37 +101,25 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    //    func numberOfSections(in tableView: UITableView) -> Int {
-    //        // #warning Incomplete implementation, return the number of sections
-    //        return 1
-    //    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return messagesArray.count
     }
-    
-    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    //
-    //    }
+
     
     @IBAction func sendButton(_ sender: Any) {
         
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         let currentDate = dateFormatter.string(from: now as Date)
-        
         textField.endEditing(true)
-        
-        
         textField.isEnabled = false
         sendBtn.isEnabled = false
         
         if textField.text == "" {
             
-            print("Empty Message")
+            print("Message is Empty")
             self.textField.isEnabled = true
             self.sendBtn.isEnabled = true
             
@@ -178,7 +143,6 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        
     }
     
     
@@ -205,22 +169,20 @@ class ChatTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.configureTableView()
             self.chatTableView.reloadData()
         }
-        
-            
-        
     }
+    
     
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
+    
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
         
-        print("HSET")
+        print("Cell set")
     }
-    
-    
+
 }
 
 extension UIColor {

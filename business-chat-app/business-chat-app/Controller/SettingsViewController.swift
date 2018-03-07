@@ -34,9 +34,6 @@ class SettingsViewController: UIViewController {
      */
     @IBAction func logOutBtn(_ sender: Any) {
         
-        
-        
-        
         let actionSheets = UIAlertController(title: "Log Out", message: "Are you sure you want to logout?" , preferredStyle: .actionSheet)
         
         let action1 = UIAlertAction(title: "Log Out", style: .destructive , handler: {
@@ -44,35 +41,22 @@ class SettingsViewController: UIViewController {
             
             do {
                 try Auth.auth().signOut()
-                
                 print("LogOut")
-                
-                //                        let welcomeView:WelcomeViewController = WelcomeViewController()
-                //
-                //                        self.navigationController?.pushViewController(welcomeView, animated: true )
                 self.dismiss(animated: true, completion: nil)
-                
             }
             catch {
                 print("Error")
             }
             
-            
         } )
         let cancel = UIAlertAction(title: "Cancel ", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             
-            
         } )
         
         actionSheets.addAction(action1)
-        
         actionSheets.addAction(cancel)
-        
         self.present(actionSheets, animated: true, completion: nil)
 
-        
-        
     }
-    
 }

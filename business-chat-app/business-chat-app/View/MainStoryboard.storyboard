@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llN-MK-QBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2300" y="582"/>
+            <point key="canvasLocation" x="2332" y="705"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="Ggr-gy-Des">
@@ -165,18 +165,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="OxZ-TI-6bv" userLabel="MessageCellIn" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="ZL3-Bl-QZv" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OxZ-TI-6bv" id="0kU-tO-d6J">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZL3-Bl-QZv" id="xqf-Ep-00z">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="1nx-SO-0yx" userLabel="MessageCellOut" customClass="CustomMessageOut" customModule="business_chat_app" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageOut" id="wYD-4N-fqc" customClass="CustomMessageOut" customModule="business_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1nx-SO-0yx" id="7Lb-p0-HyC">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wYD-4N-fqc" id="WMh-mo-S1c">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -237,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAq-Aj-0V6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3535.1999999999998" y="-1058.8669950738918"/>
+            <point key="canvasLocation" x="3028.5" y="-1265"/>
         </scene>
         <!--Groups-->
         <scene sceneID="QE0-gd-44V">
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lK-7o-ffF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3533.5999999999999" y="-271.92118226600985"/>
+            <point key="canvasLocation" x="3029" y="-251"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="juj-uq-Obx">
@@ -384,7 +384,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVv-4V-p2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2299" y="-1058"/>
+            <point key="canvasLocation" x="2332" y="-1265"/>
         </scene>
         <!--Groups-->
         <scene sceneID="MpH-ku-pMQ">

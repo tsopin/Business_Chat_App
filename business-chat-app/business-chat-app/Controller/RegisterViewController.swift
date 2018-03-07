@@ -52,8 +52,6 @@ class RegisterViewController: UIViewController {
                 
                 self.navigationController?.pushViewController(chatList, animated: true )
             }
-            
-            
         }
         
        emailTextfield.resignFirstResponder()
@@ -63,7 +61,6 @@ class RegisterViewController: UIViewController {
     @IBAction func cancelBtn(_ sender: Any) {
         
       self.dismiss(animated: true, completion: nil)
-        
         
     }
 }
