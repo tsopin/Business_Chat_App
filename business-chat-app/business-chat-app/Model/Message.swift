@@ -17,3 +17,16 @@ class Message {
     
 }
 
+
+class Contact {
+    
+    
+    var userName : String = ""
+    var email : String = ""
+//    var status : String?
+//    var user_id : Bool?
+//    var chat_id : Bool?
+
+    
+    
+}

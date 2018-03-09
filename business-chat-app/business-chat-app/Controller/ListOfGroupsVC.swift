@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupsTableViewController: UITableViewController {
+class ListOfGroupsVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()

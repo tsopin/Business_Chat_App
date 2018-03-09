@@ -84,7 +84,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="92C-rT-v0O" secondAttribute="trailing" constant="100" id="1yO-Bb-LJE"/>
-                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="92C-rT-v0O" secondAttribute="trailing" constant="150" id="Agx-Gy-eEe"/>
+                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="92C-rT-v0O" secondAttribute="trailing" constant="170" id="Agx-Gy-eEe"/>
                     <constraint firstItem="Drq-j8-Gzr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="XLo-tf-5Ty"/>
                     <constraint firstAttribute="bottom" secondItem="92C-rT-v0O" secondAttribute="bottom" constant="10" id="hyt-do-h3q"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jHY-NN-Twi"/>

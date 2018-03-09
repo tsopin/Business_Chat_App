@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ChatTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var textField: UITextField!

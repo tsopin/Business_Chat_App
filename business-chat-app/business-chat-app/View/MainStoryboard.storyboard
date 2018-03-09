@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Welcome View Controller-->
+        <!--Welcome ScreenVC-->
         <scene sceneID="oKR-PT-vHR">
             <objects>
-                <viewController id="U2B-v5-zHj" customClass="WelcomeViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U2B-v5-zHj" customClass="WelcomeScreenVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAC-Ri-Xjd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,7 +122,7 @@
                         <color key="selectedImageTintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="uSr-OP-sQK" kind="relationship" relationship="viewControllers" id="RiZ-6o-ppd"/>
+                        <segue destination="oEd-Tv-lCs" kind="relationship" relationship="viewControllers" id="25X-HJ-yNi"/>
                         <segue destination="xaW-fD-d7Y" kind="relationship" relationship="viewControllers" id="MEH-eL-QQV"/>
                         <segue destination="heA-2n-97G" kind="relationship" relationship="viewControllers" id="V0U-2U-dNv"/>
                     </connections>
@@ -134,7 +134,7 @@
         <!--Settings-->
         <scene sceneID="MGR-fT-Cjv">
             <objects>
-                <viewController id="Nfn-pk-Y95" customClass="SettingsViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nfn-pk-Y95" customClass="SettingsScreenVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YQx-pi-GEt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,16 +153,16 @@
             </objects>
             <point key="canvasLocation" x="2332" y="705"/>
         </scene>
-        <!--Contacts-->
+        <!--Personal Chat-->
         <scene sceneID="Ggr-gy-Des">
             <objects>
-                <viewController id="hmB-Dj-YAm" customClass="ChatTableViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hmB-Dj-YAm" userLabel="Personal Chat" customClass="PersonalChatTableVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tis-cA-V8I">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Rq-O03">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="ZL3-Bl-QZv" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -184,7 +184,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPR-ap-Ajk">
-                                <rect key="frame" x="0.0" y="591" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="679" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gj-kg-qjL">
                                         <rect key="frame" x="8" y="10" width="301" height="30"/>
@@ -227,7 +227,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uCw-K8-SbU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts" id="rmL-Md-67R"/>
+                    <navigationItem key="navigationItem" title="Contact Name" id="rmL-Md-67R"/>
                     <connections>
                         <outlet property="chatTableView" destination="B6u-Rq-O03" id="6Ci-S8-NJ9"/>
                         <outlet property="heightConstraint" destination="me3-u1-SAv" id="YM2-ER-Adl"/>
@@ -237,12 +237,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAq-Aj-0V6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3028.5" y="-1265"/>
+            <point key="canvasLocation" x="4294" y="-1265"/>
         </scene>
         <!--Groups-->
         <scene sceneID="QE0-gd-44V">
             <objects>
-                <viewController id="1IK-Nd-9Dp" customClass="GroupsTableViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1IK-Nd-9Dp" customClass="ListOfGroupsVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IQm-nS-y7K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -365,26 +365,46 @@
             </objects>
             <point key="canvasLocation" x="1451" y="582"/>
         </scene>
-        <!--Contacts-->
-        <scene sceneID="WUP-TY-j8r">
+        <!--Contact List VC-->
+        <scene sceneID="nCq-QA-jx8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uSr-OP-sQK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" image="User" selectedImage="User" id="PuJ-5l-3fv">
-                        <color key="badgeColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UAR-iO-Fsb">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <tableViewController id="8N6-aw-5dg" userLabel="Contact List VC" customClass="ListOfContactsTableVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0os-vy-upI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomContactCell" rowHeight="90" id="HNo-RR-X7z">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HNo-RR-X7z" id="OGN-Fq-pSw" customClass="CustomContactCell" customModule="business_chat_app" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.666666666666671"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hmB-Dj-YAm" kind="show" identifier="goToChat" id="9Cy-0u-1j2"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8N6-aw-5dg" id="QU0-C2-jA9"/>
+                            <outlet property="delegate" destination="8N6-aw-5dg" id="ND9-0Y-A8o"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Contacts" id="Auo-bL-Vp7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2fu-sb-rTC">
+                            <connections>
+                                <action selector="addContactButton:" destination="8N6-aw-5dg" id="chb-tN-798"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="hmB-Dj-YAm" kind="relationship" relationship="rootViewController" id="KAc-uJ-goD"/>
+                        <outlet property="contactListTableView" destination="0os-vy-upI" id="uF6-8C-89q"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JVv-4V-p2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUf-Eg-gcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2332" y="-1265"/>
+            <point key="canvasLocation" x="3445.5999999999999" y="-1265.0246305418721"/>
         </scene>
         <!--Groups-->
         <scene sceneID="MpH-ku-pMQ">
@@ -401,6 +421,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKS-67-v0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2332" y="-271"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="N0U-ML-vYK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oEd-Tv-lCs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contacts" image="User" selectedImage="User" id="ryx-Vy-NH5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vgw-nt-y2t">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8N6-aw-5dg" kind="relationship" relationship="rootViewController" id="D8B-FH-KXT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlj-4T-b04" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2478" y="-1265"/>
         </scene>
     </scenes>
     <resources>

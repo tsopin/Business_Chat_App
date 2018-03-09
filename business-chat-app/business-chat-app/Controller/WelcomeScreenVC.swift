@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class WelcomeViewController: UIViewController {
+class WelcomeScreenVC: UIViewController {
     
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -38,7 +38,7 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
 
-        let registerView = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        let registerView = RegisterScreenVC(nibName: "RegisterViewController", bundle: nil)
         registerView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(registerView, animated: true, completion: nil)
         

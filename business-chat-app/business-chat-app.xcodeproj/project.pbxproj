@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		743D497F204DDB92004A57E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsViewController.swift */; };
+		7404B0D62052DA24001DF785 /* ListOfContactsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0D52052DA24001DF785 /* ListOfContactsTableVC.swift */; };
+		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
+		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
+		743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */; };
 		743D4981204E1197004A57E8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4980204E1197004A57E8 /* Message.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
@@ -15,12 +18,12 @@
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
 		7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */; };
 		74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3B093204BB2F40056A026 /* MainTabViewController.swift */; };
-		74CB913E2049BBF70098E047 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB913C2049BBF70098E047 /* RegisterViewController.swift */; };
+		74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB913C2049BBF70098E047 /* RegisterScreenVC.swift */; };
 		74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74CB913D2049BBF70098E047 /* RegisterViewController.xib */; };
 		74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74CB914A2049C6C30098E047 /* MainStoryboard.storyboard */; };
-		74CB914D2049C6F60098E047 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB914C2049C6F60098E047 /* WelcomeViewController.swift */; };
-		74CB91542049DB7D0098E047 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91522049DB7D0098E047 /* GroupsTableViewController.swift */; };
-		74CB91582049DBBA0098E047 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91562049DBBA0098E047 /* ChatTableViewController.swift */; };
+		74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */; };
+		74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */; };
+		74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */; };
 		77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE6FEB20491C4F00918A93 /* AppDelegate.swift */; };
 		77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AE6FF220491C4F00918A93 /* Assets.xcassets */; };
 		77AE6FF620491C4F00918A93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77AE6FF420491C4F00918A93 /* LaunchScreen.storyboard */; };
@@ -29,7 +32,10 @@
 
 /* Begin PBXFileReference section */
 		35CEF5F8C3CA3ACC35B27A5E /* Pods_business_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_business_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		743D497E204DDB92004A57E8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7404B0D52052DA24001DF785 /* ListOfContactsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfContactsTableVC.swift; sourceTree = "<group>"; };
+		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
+		7404B0E12052EA38001DF785 /* CustomContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomContactCell.xib; sourceTree = "<group>"; };
+		743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
 		743D4980204E1197004A57E8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
@@ -37,12 +43,12 @@
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
 		7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		74B3B093204BB2F40056A026 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
-		74CB913C2049BBF70098E047 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		74CB913C2049BBF70098E047 /* RegisterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenVC.swift; sourceTree = "<group>"; };
 		74CB913D2049BBF70098E047 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		74CB914A2049C6C30098E047 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		74CB914C2049C6F60098E047 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		74CB91522049DB7D0098E047 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
-		74CB91562049DBBA0098E047 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
+		74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfGroupsVC.swift; sourceTree = "<group>"; };
+		74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalChatTableVC.swift; sourceTree = "<group>"; };
 		77AE6FE820491C4F00918A93 /* business-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "business-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AE6FEB20491C4F00918A93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AE6FF220491C4F00918A93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 				743D4983204E16DA004A57E8 /* CustomMessageIn.xib */,
 				746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */,
 				746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */,
+				7404B0E02052EA38001DF785 /* CustomContactCell.swift */,
+				7404B0E12052EA38001DF785 /* CustomContactCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -78,12 +86,13 @@
 		74CB91402049BC020098E047 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				74CB914C2049C6F60098E047 /* WelcomeViewController.swift */,
-				74CB913C2049BBF70098E047 /* RegisterViewController.swift */,
+				74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */,
+				74CB913C2049BBF70098E047 /* RegisterScreenVC.swift */,
 				74B3B093204BB2F40056A026 /* MainTabViewController.swift */,
-				74CB91562049DBBA0098E047 /* ChatTableViewController.swift */,
-				74CB91522049DB7D0098E047 /* GroupsTableViewController.swift */,
-				743D497E204DDB92004A57E8 /* SettingsViewController.swift */,
+				74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */,
+				7404B0D52052DA24001DF785 /* ListOfContactsTableVC.swift */,
+				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
+				743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -223,6 +232,7 @@
 				77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */,
 				74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
+				7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */,
 				743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */,
 				7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */,
 			);
@@ -297,16 +307,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74CB914D2049C6F60098E047 /* WelcomeViewController.swift in Sources */,
-				74CB913E2049BBF70098E047 /* RegisterViewController.swift in Sources */,
+				74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */,
+				74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */,
 				743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */,
-				743D497F204DDB92004A57E8 /* SettingsViewController.swift in Sources */,
-				74CB91542049DB7D0098E047 /* GroupsTableViewController.swift in Sources */,
+				743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */,
+				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
+				7404B0D62052DA24001DF785 /* ListOfContactsTableVC.swift in Sources */,
 				77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */,
 				743D4981204E1197004A57E8 /* Message.swift in Sources */,
 				746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */,
+				7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */,
 				74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */,
-				74CB91582049DBBA0098E047 /* ChatTableViewController.swift in Sources */,
+				74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

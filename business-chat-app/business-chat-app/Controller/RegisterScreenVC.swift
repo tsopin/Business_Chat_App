@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RegisterViewController: UIViewController {
+class RegisterScreenVC: UIViewController {
     
     @IBOutlet weak var regButton: UIButton!
     @IBOutlet weak var emailTextfield: UITextField!
@@ -48,7 +48,7 @@ class RegisterViewController: UIViewController {
             } else {
                 print("Success")
                 
-                let chatList:ChatTableViewController = ChatTableViewController()
+                let chatList:PersonalChatTableVC = PersonalChatTableVC()
                 
                 self.navigationController?.pushViewController(chatList, animated: true )
             }
