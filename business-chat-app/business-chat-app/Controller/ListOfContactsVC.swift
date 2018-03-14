@@ -56,8 +56,6 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         let contact = contactsArray[indexPath.row]
         
         cell.configeureCell(userName: contact.userName, userEmail: contact.email)
-
-        
         return cell
     }
     

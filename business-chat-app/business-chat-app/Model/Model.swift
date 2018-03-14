@@ -7,14 +7,14 @@
 ////
 //
 ////class Message {
-////    
-//// 
+////
+////
 ////    var email : String = ""
 ////    var content : String = ""
 ////    var userName : String = ""
 ////    var timeSent : String = ""
 ////    var userEmail : String = ""
-////    
+////
 ////}
 //
 //
@@ -26,9 +26,9 @@
 //    var isOnline : Bool?
 //    var userId : String = ""
 //    
-////    var chat_id : Bool?
+//
 //
 //    
 //    
 //}
-
+//

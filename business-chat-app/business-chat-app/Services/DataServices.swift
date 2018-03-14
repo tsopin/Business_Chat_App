@@ -18,7 +18,7 @@ class DataServices {
     
     private var _REF_DATABASE = DATABASE
     private var _REF_USERS = DATABASE.child("users")
-//    private var _REF_CHATS = DATABASE
+    private var _REF_CHATS = DATABASE.child("chats")
 
     var REF_DATABASE: DatabaseReference {
         return _REF_DATABASE
@@ -26,10 +26,17 @@ class DataServices {
     var REF_USERS: DatabaseReference {
         return _REF_USERS
     }
+    var REF_CHATS: DatabaseReference {
+        return _REF_CHATS
+    }
     
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).updateChildValues(userData)
     }
+//    func createChat(chatId: String, members: [String]) {
+//        REF_CHATS.childByAutoId().updateChildValues(userData)
+//    }
+    
     
     func getAllUsers(handler: @escaping (_ groupsArray: [User]) -> ()) {
         
@@ -62,6 +69,7 @@ class DataServices {
             
             var idArray = [String]()
             
+            
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
             for user in userSnapshot {
@@ -77,58 +85,46 @@ class DataServices {
         }
     }
     
+ 
+    
     func addContact(forUsersIds ids: [String], handler: @escaping (_ contactAdded: Bool) -> ()) {
         
-        REF_USERS.child((Auth.auth().currentUser?.uid)!).updateChildValues(["contactList": ids])
+        var newContacts = [String:Bool]()
+        
+        for user in ids {
+            
+            newContacts[user] = true
+        }
+        
+        REF_USERS.child(currentUser!).child("contactList").updateChildValues(newContacts)
+        
+        handler(true)
+        
+    }
+    
+    func addChat(forChatName chatName: String, forMemberIds memberIds: [String], handler: @escaping (_ chatCreated: Bool) -> ()) {
+        
+        var newMembers = [String:Bool]()
+        
+        for member in memberIds {
+            
+            newMembers[member] = true
+        }
+        
+        
+        REF_CHATS.child(currentUser!).child("members").setValue(newMembers)
+        REF_CHATS.child(currentUser!).child("chatName").setValue(chatName)
+        
         handler(true)
         
     }
     
     func getMyContacts(handler: @escaping (_ groupsArray: [User]) -> ()) {
-        
-//        var contactListArray = [User]()
-//        REF_USERS.observeSingleEvent(of: .value) { (contactSnapshot) in
-//            guard let contactSnapshot = contactSnapshot.children.allObjects as? [DataSnapshot] else {return}
-//
-//            for contact in contactSnapshot {
-//                let contactArray = contact.childSnapshot(forPath: "contactList").value as! [String]
-//                if contactArray.contains(currentUser!) {
-//
-//                    let userName = contact.childSnapshot(forPath: "userName").value as! String
-//                    let email = contact.childSnapshot(forPath: "email").value as! String
-//
-//
-//                    let contact = User(userName: userName, email: email)
-//
-//                    contactListArray.append(contact)
-//                }
-//            }
-//            handler(contactListArray)
-//        }
-        
+  
         
     }
     
-//    func getAllFeedUsers(handler: @escaping (_ users: [User])-> ()) {
-//        var usersArray = [User]()
-//        REF_USERS.observeSingleEvent(of: .value) { (allUsersSnapshot) in
-//            guard let allUsersSnapshot = allUsersSnapshot.children.allObjects as? [DataSnapshot] else {return}
-//            
-//            for user in allUsersSnapshot {
-//                
-//                let userName = user.childSnapshot(forPath: "userName").value as! String
-//                let email = user.childSnapshot(forPath: "email").value as! String
-//                let contactList = user.childSnapshot(forPath: "contactList").value as! [String]
-//                let users = User(userName: userName, email: email)
-//                usersArray.append(users)
-//            }
-//            
-//            handler(usersArray)
-//            
-//            
-//        }
-//        
-//    }
+
     
     
 }

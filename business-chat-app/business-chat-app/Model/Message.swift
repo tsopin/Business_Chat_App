@@ -6,18 +6,8 @@
 //  Copyright © 2018 Brogrammers. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-//class Message {
-//
-//
-//    var email : String = ""
-//    var content : String = ""
-//    var userName : String = ""
-//    var timeSent : String = ""
-//    var userEmail : String = ""
-//
-//}
 class Message {
     
     private var _content: String

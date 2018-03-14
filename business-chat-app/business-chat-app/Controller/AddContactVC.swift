@@ -17,59 +17,50 @@ class AddContactVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-let currentUser = (Auth.auth().currentUser?.uid)! 
+    let currentUserId = (Auth.auth().currentUser?.uid)!
+    let currentUserEmail = (Auth.auth().currentUser?.email)!
+    var usersArray = [User]()
+    var chosenUserArray = [String]()
+    var chatsArray = [String]()
     
     @IBAction func doneBtn(_ sender: Any) {
         
-
-            DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-                var userIds = idsArray
-                userIds.append(self.currentUser)
-
-                DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
-
-                    if contactCreated {
-//                        self.dismiss(animated: true, completion: nil)
-
-                    }else {
-                        print("Contact Adding Error")
-                    }
-                })
-            })
-
-   
+        
+        DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+            var userIds = idsArray
+            userIds.append(self.currentUserId)
             
-//            DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-//                var userIds = idsArray
-//                userIds.append((Auth.auth().currentUser?.uid)!)
-//
-//                DataServices.instance.createChat(withChatName: "self.titleTextfield.text!", forUsersIds: userIds, handler: { (chatCreated) in
-//                    if chatCreated {
-//                        self.dismiss(animated: true, completion: nil)
-//
-//                    }else {
-//                        print("Group Creation Error")
-//                    }
-//                })
-//            })
-//
+            DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
+                
+                if contactCreated {
+                    self.presentStoryboard()
+                }else {
+                    print("Contact Adding Error")
+                }
+            })
+        })
         
-        
-        
-        
-        
+        DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+            var userIds = idsArray
+            userIds.append((Auth.auth().currentUser?.uid)!)
+            
+            DataServices.instance.addChat(forChatName: self.currentUserEmail, forMemberIds: userIds, handler: { (chatCreated) in
+                if chatCreated {
+                    
+                    
+                }else {
+                    print("Chat Creation Error")
+                }
+            })
+        })
     }
     
-    
-//    @IBAction func closeBtn(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
-    
-    var usersArray = [User]()
-    var chosenUserArray = [String]()
+//        @IBAction func closeBtn(_ sender: Any) {
+//            self.dismiss(animated: true, completion: nil)
+//        }
     
     
+   
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,16 +75,18 @@ let currentUser = (Auth.auth().currentUser?.uid)!
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-        print(currentUser)
     }
     
-
+    func presentStoryboard() {
+        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
+        self.present(vc, animated: true, completion: nil)
+        print("GoGoGo")
+    }
     
     
 }
@@ -108,16 +101,15 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? UserCell else {return UITableViewCell() }
         
-//        let profileImage = UIImage(named: "notMe")
-//        if chosenUserArray.contains(usersArray[indexPath.row]) {
-//
-//
-//            cell.cronfigureCell(email: usersArray[indexPath.row], isSelected: true)
-//        }else{
+        //        let profileImage = UIImage(named: "notMe")
+        //        if chosenUserArray.contains(usersArray[indexPath.row]) {
+        //
+        //
+        //            cell.cronfigureCell(email: usersArray[indexPath.row], isSelected: true)
+        //        }else{
         let user = usersArray[indexPath.row]
         cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
-            
-//        }
+        
         return cell
     }
     
@@ -136,29 +128,16 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
             if chosenUserArray.count >= 1 {
                 
             } else {
-       
+                
                 doneButton.isEnabled = false
             }
         }
-        
-        
-        
     }
-    
-    
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return usersArray.count
-        
-        
-        
-        
-        
     }
-    
 }
 
 extension AddContactVC: UITextFieldDelegate {
