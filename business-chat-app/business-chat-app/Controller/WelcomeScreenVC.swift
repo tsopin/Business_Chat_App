@@ -19,13 +19,7 @@ class WelcomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInBtn.layer.cornerRadius = 5
-        
-        Auth.auth().addStateDidChangeListener() { auth, user in
-            if user != nil {
-                 self.performSegue(withIdentifier: "goToMain", sender: self)
-            }
-    
-        }
+        presentStoryboard()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -37,25 +31,53 @@ class WelcomeScreenVC: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-
+        
+        register()
+        
+    }
+    
+    @IBAction func signInBtn(_ sender: Any) {
+        
+        signIn()
+        
+    }
+    
+    
+    func register() {
+        
         let registerView = RegisterScreenVC(nibName: "RegisterViewController", bundle: nil)
         registerView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(registerView, animated: true, completion: nil)
         
     }
     
-    @IBAction func signInBtn(_ sender: Any) {
+    func signIn() {
         
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print(error!)
             } else {
                 print("Log in Successfull!")
-                  self.performSegue(withIdentifier: "goToMain", sender: self)
-
+                self.performSegue(withIdentifier: "goToMain", sender: self)
+                
             }
+        }
+    }
+    
+    func presentStoryboard() {
+        
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            if user != nil {
+                
+                let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
+                self.present(vc, animated: true, completion: nil)
+                print("GoGoGo")
+                
+            }
+            
         }
         
     }
-
+    
 }
