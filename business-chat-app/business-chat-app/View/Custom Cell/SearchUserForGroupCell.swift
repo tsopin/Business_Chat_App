@@ -1,34 +1,33 @@
 //
-//  UserCell.swift
+//  SearchUserForGroupCell.swift
 //  business-chat-app
 //
-//  Created by Timofei Sopin on 2018-03-13.
+//  Created by Timofei Sopin on 2018-03-15.
 //  Copyright © 2018 Brogrammers. All rights reserved.
 //
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class SearchUserForGroupCell: UITableViewCell {
     
-    @IBOutlet weak var chekImage: UIImageView!
-    
+    @IBOutlet weak var email: UILabel!
     @IBOutlet weak var userName: UILabel!
+
+    @IBOutlet weak var isSelectedImage: UIImageView!
+    var showing = false
     
-    @IBOutlet weak var emailLabel: UILabel!
-    
-  var showing = false
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         if selected {
             
             if showing == false {
-                chekImage.isHidden = false
+                isSelectedImage.isHidden = false
                 showing = true
                 
             } else {
-                self.chekImage.isHidden = true
+                self.isSelectedImage.isHidden = true
                 showing = false
             }
             
@@ -36,15 +35,15 @@ class UserCell: UITableViewCell {
     }
     
     func cronfigureCell(email: String, userName: String, isSelected: Bool) {
-    
-        self.emailLabel.text = email
+        
+        self.email.text = email
         self.userName.text = userName
         
         if isSelected {
-            self.chekImage.isHidden = false
+            self.isSelectedImage.isHidden = false
             
         } else {
-            self.chekImage.isHidden = true
+            self.isSelectedImage.isHidden = true
         }
         
         
@@ -53,5 +52,11 @@ class UserCell: UITableViewCell {
     
     
     
-}
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
 
+    
+}
