@@ -26,7 +26,7 @@ class AddContactVC: UIViewController {
     @IBAction func doneBtn(_ sender: Any) {
         
         
-        DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
             userIds.append(self.currentUserId)
             
@@ -40,11 +40,11 @@ class AddContactVC: UIViewController {
             })
         })
         
-        DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
-            userIds.append((Auth.auth().currentUser?.uid)!)
+            userIds.append(self.currentUserId)
             
-            DataServices.instance.addChat(forChatName: self.currentUserEmail, forMemberIds: userIds, handler: { (chatCreated) in
+            DataServices.instance.addChat(forChatName: self.currentUserEmail, forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     
                     
@@ -99,7 +99,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? UserCell else {return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
         
         //        let profileImage = UIImage(named: "notMe")
         //        if chosenUserArray.contains(usersArray[indexPath.row]) {
@@ -117,7 +117,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? UserCell else {return}
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserForContactCell else {return}
         
         if !chosenUserArray.contains(cell.emailLabel.text!) {
             chosenUserArray.append(cell.emailLabel.text!)

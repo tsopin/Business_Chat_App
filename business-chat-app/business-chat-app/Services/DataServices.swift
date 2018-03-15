@@ -62,7 +62,7 @@ class DataServices {
         
         
     }
-    func getIds(forUsernames usernames: [String], handler: @escaping (_ uidArray: [String]) -> ()) {
+    func getUsersIds(forUsernames usernames: [String], handler: @escaping (_ uidArray: [String]) -> ()) {
         
         
         REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
@@ -84,25 +84,77 @@ class DataServices {
             handler(idArray)
         }
     }
+    func getChatsIds(forMemberIds memberId: [String], handler: @escaping (_ uidArray: [String]) -> ()) {
+        
+        
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            
+            var idArray = [String]()
+            
+            
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for chat in userSnapshot {
+                
+                let chatName = chat.childSnapshot(forPath: "chatName").value as! String
+                if memberId.contains(chatName) {
+                    idArray.append(chat.key)
+                }
+                
+            }
+            
+            handler(idArray)
+        }
+    }
     
+    func getUserInfo(forSearchQuery query: String, handler: @escaping (_ emailArray: [User]) -> ()) {
+        
+        var userArray = [User]()
+        
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for user in userSnapshot {
+                let email = user.childSnapshot(forPath: "email").value as! String
+                let userName = user.childSnapshot(forPath: "username").value as! String
+                
+                if email.contains(query) == true && email != Auth.auth().currentUser?.email {
+                    let user = User(userName: userName, email: email)
+                    userArray.append(user)
+                    
+                }
+                
+            }
+            handler(userArray)
+            
+        }
+        
+        
+    }
  
     
     func addContact(forUsersIds ids: [String], handler: @escaping (_ contactAdded: Bool) -> ()) {
         
         var newContacts = [String:Bool]()
+        var activeChats = [String:Bool]()
+        activeChats[currentUser!] = true
         
         for user in ids {
             
             newContacts[user] = true
         }
+        REF_USERS.child(currentUser!).updateChildValues(["contactList" : newContacts,
+                                                         "activeChats" : activeChats
+                                                                                    ])
         
-        REF_USERS.child(currentUser!).child("contactList").updateChildValues(newContacts)
+//        REF_USERS.child(currentUser!).child("contactList").updateChildValues(newContacts)
+//        REF_USERS.child(currentUser!).child("activeChats").updateChildValues(activeChats)
         
         handler(true)
         
     }
     
-    func addChat(forChatName chatName: String, forMemberIds memberIds: [String], handler: @escaping (_ chatCreated: Bool) -> ()) {
+    func addChat(forChatName chatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
         
         var newMembers = [String:Bool]()
         
@@ -111,9 +163,15 @@ class DataServices {
             newMembers[member] = true
         }
         
+        REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
+                                                "members" : newMembers,
+                                                "chatName" : chatName])
         
-        REF_CHATS.child(currentUser!).child("members").setValue(newMembers)
-        REF_CHATS.child(currentUser!).child("chatName").setValue(chatName)
+        
+//        REF_CHATS.child(currentUser!).child("isGroupChat").setValue(isGroupChat)
+//        REF_CHATS.child(currentUser!).child("members").setValue(newMembers)
+//        REF_CHATS.child(currentUser!).child("chatName").setValue(chatName)
+        
         
         handler(true)
         
