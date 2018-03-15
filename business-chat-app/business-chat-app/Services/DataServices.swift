@@ -191,7 +191,7 @@ class DataServices {
             for group in groupSnapshot {
                 let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
                 let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
-                if  isGroupArray == true {
+                if  isGroupArray == true && memberArray.keys.contains(currentUser!) {
                     
                     let groupName = group.childSnapshot(forPath: "chatName").value as! String
                     
