@@ -184,10 +184,32 @@ class DataServices {
     }
     func getMyGroups(handler: @escaping (_ groupsArray: [Group]) -> ()) {
         
+        var groupsArray = [Group]()
+        REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for group in groupSnapshot {
+                let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
+                let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
+                if  isGroupArray == true {
+                    
+                    let groupName = group.childSnapshot(forPath: "chatName").value as! String
+                    
+                    let group = Group(name: groupName, members: memberArray, memberCount: memberArray.count)
+                    
+                    groupsArray.append(group)
+                }
+            }
+            handler(groupsArray)
+        }
+        
+        
+    }
+        
         
     }
     
     
     
-}
+
 

@@ -12,7 +12,7 @@ class Group {
     
     private var _groupName: String
     private var _memberCount: Int
-    private var _members: [String]
+    private var _members: [String:Bool]
     
     var groupName: String {
         return _groupName
@@ -21,11 +21,11 @@ class Group {
     var memberCount: Int {
         return _memberCount
     }
-    var members: [String] {
+    var members: [String:Bool] {
         return _members
     }
     
-    init(name: String, members: [String], memberCount: Int ) {
+    init(name: String, members: [String:Bool], memberCount: Int ) {
         self._groupName = name
         self._members = members
         self._memberCount = memberCount
