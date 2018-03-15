@@ -18,13 +18,14 @@ class AddGroupVC: UIViewController {
     
     let currentUserId = Auth.auth().currentUser?.uid
     let currentUserEmail = (Auth.auth().currentUser?.email)!
-    
+    let dataServices = DataServices()
     var userArray = [User]()
     var chosenUserArray = [String]()
+    var Array = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        doneButton.isHidden = true
+        doneBtn.isEnabled = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,6 @@ class AddGroupVC: UIViewController {
         tableView.dataSource = self
         searchUserTextfield.delegate = self
         searchUserTextfield.addTarget(self, action: #selector(textViewDidChangeSelection), for: .editingChanged)
-//        print(currentUser)
     }
     
     @objc func textViewDidChangeSelection(_ textView: UITextView) {
@@ -50,21 +50,6 @@ class AddGroupVC: UIViewController {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         
-        
-//        DataServices.instance.getIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-//            var userIds = idsArray
-//            userIds.append(self.currentUserId!)
-//
-//            DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
-//
-//                if contactCreated {
-////                    self.presentStoryboard()
-//                }else {
-//                    print("Contact Adding Error")
-//                }
-//            })
-//        })
-        
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
             userIds.append(self.currentUserId!)
@@ -79,7 +64,10 @@ class AddGroupVC: UIViewController {
                 }
             })
         })
+        dataServices.addChatsToUser()
+        presentStoryboard()
     }
+    
 }
 
 
@@ -120,24 +108,16 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
                 self.doneBtn.isEnabled = false
             }
         }
-        
-        
-        
+    
     }
-    
-    
-    
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return userArray.count
-        
-        
-        
-        
-        
+   
     }
+    
+    
     func presentStoryboard() {
         let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
