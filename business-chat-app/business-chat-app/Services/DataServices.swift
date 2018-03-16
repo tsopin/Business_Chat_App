@@ -46,11 +46,15 @@ class DataServices {
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
             for user in userSnapshot {
+                
                 guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
                 guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
                 let user = User(userName: userName, email: email)
                 
-                usersArray.append(user)
+                if email != currentEmail{
+                    usersArray.append(user)
+                }
+    
             }
             handler(usersArray)
         }
@@ -217,20 +221,20 @@ class DataServices {
         handler(true)
     }
     
-    func createPersonalChat(forChatName chatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
+    func createPersonalChat(forChatName chatName: String, forMemberIds memberIds: [String:String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
         
-        var newMembers = [String:Bool]()
+        var newMembers = Array(memberIds.values)
+         var goArray = [String:Bool]()
         
-        for member in memberIds {
-            
-            newMembers[member] = true
+        for i in newMembers {
+            goArray[i] = true
         }
-        for member in newMembers {
-            
+//        for member in newMembers {
+        
             REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
-                                                "members" : newMembers,
+                                                "members" : goArray,
                                                 "chatName" : chatName])
-        }
+        
 
         
 

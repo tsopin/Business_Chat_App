@@ -28,8 +28,8 @@ class AddContactVC: UIViewController {
         
         
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            var userIds = idsArray
-            userIds.append(self.currentUserId)
+            let userIds = idsArray
+//            userIds.append(self.currentUserId)
             
             DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
@@ -42,10 +42,21 @@ class AddContactVC: UIViewController {
         })
         
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            var userIds = idsArray
-            userIds.append(self.currentUserId)
+            let userIds = idsArray
+            var newIds = [String:String]()
             
-            DataServices.instance.createPersonalChat(forChatName: self.currentUserEmail, forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
+            for i in idsArray{
+                newIds[i] = self.currentUserId
+            }
+            
+//            userIds = userIds.filter{$0 != "Hello"}
+//            userIds.append(self.currentUserId)
+            
+            
+            
+            for eachMember in idsArray {
+            
+            DataServices.instance.createPersonalChat(forChatName: self.currentUserEmail, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     self.dataServices.addPersonalChatsToUser()
                     
@@ -53,6 +64,7 @@ class AddContactVC: UIViewController {
                     print("Chat Creation Error")
                 }
             })
+        }
         })
         
     }
