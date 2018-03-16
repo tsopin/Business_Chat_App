@@ -14,12 +14,7 @@ class ListOfGroupsVC: UIViewController {
     @IBOutlet weak var groupsTableView: UITableView!
     
     var groupsArray = [Group]()
-    
-    
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         groupsTableView.delegate = self

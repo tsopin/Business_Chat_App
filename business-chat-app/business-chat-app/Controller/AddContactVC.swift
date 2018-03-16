@@ -22,6 +22,7 @@ class AddContactVC: UIViewController {
     var usersArray = [User]()
     var chosenUserArray = [String]()
     var chatsArray = [String]()
+    let dataServices = DataServices()
     
     @IBAction func doneBtn(_ sender: Any) {
         
@@ -44,15 +45,16 @@ class AddContactVC: UIViewController {
             var userIds = idsArray
             userIds.append(self.currentUserId)
             
-            DataServices.instance.addChat(forChatName: self.currentUserEmail, forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
+            DataServices.instance.createPersonalChat(forChatName: self.currentUserEmail, forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
-                    
+                    self.dataServices.addPersonalChatsToUser()
                     
                 }else {
                     print("Chat Creation Error")
                 }
             })
         })
+        
     }
     
 //        @IBAction func closeBtn(_ sender: Any) {
@@ -79,6 +81,7 @@ class AddContactVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        hideKeyboardWhenTappedAround()
     }
     
     func presentStoryboard() {

@@ -138,7 +138,67 @@
                     <view key="view" contentMode="scaleToFill" id="YQx-pi-GEt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-hA-BBO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="132"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pg2-sl-iTN">
+                                        <rect key="frame" x="10" y="10" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="In7-Md-EsC"/>
+                                            <constraint firstAttribute="width" constant="120" id="wzT-Wi-2nQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HOu-cD-aMB">
+                                        <rect key="frame" x="140" y="10" width="215" height="112"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-Pw-ZpI">
+                                                <rect key="frame" x="0.0" y="0.0" width="215" height="37.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmh-Zm-QL4">
+                                                <rect key="frame" x="0.0" y="37.5" width="215" height="37"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Fw-GD-hTf">
+                                                <rect key="frame" x="0.0" y="74.5" width="215" height="37.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.5568627451" green="0.17254901959999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="pg2-sl-iTN" firstAttribute="top" secondItem="Vgh-hA-BBO" secondAttribute="top" constant="10" id="I6t-mN-P5H"/>
+                                    <constraint firstItem="pg2-sl-iTN" firstAttribute="leading" secondItem="Vgh-hA-BBO" secondAttribute="leading" constant="10" id="QRA-jY-bOT"/>
+                                    <constraint firstItem="HOu-cD-aMB" firstAttribute="leading" secondItem="pg2-sl-iTN" secondAttribute="trailing" constant="10" id="WpF-wc-vnl"/>
+                                    <constraint firstItem="HOu-cD-aMB" firstAttribute="top" secondItem="Vgh-hA-BBO" secondAttribute="top" constant="10" id="d1t-rs-4Xf"/>
+                                    <constraint firstAttribute="bottom" secondItem="HOu-cD-aMB" secondAttribute="bottom" constant="10" id="orb-Dv-TVe"/>
+                                    <constraint firstAttribute="trailing" secondItem="HOu-cD-aMB" secondAttribute="trailing" constant="20" id="p4u-8c-dIh"/>
+                                    <constraint firstAttribute="height" constant="132" id="t5Y-gk-uwn"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AD7-Xd-tNc">
+                                <rect key="frame" x="0.0" y="196" width="375" height="422"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vgh-hA-BBO" firstAttribute="trailing" secondItem="0ks-IR-euS" secondAttribute="trailing" id="3l7-Lj-r1f"/>
+                            <constraint firstItem="AD7-Xd-tNc" firstAttribute="leading" secondItem="0ks-IR-euS" secondAttribute="leading" id="FLH-ow-eWS"/>
+                            <constraint firstItem="Vgh-hA-BBO" firstAttribute="top" secondItem="0ks-IR-euS" secondAttribute="top" id="Fp9-0O-XDq"/>
+                            <constraint firstItem="Vgh-hA-BBO" firstAttribute="leading" secondItem="0ks-IR-euS" secondAttribute="leading" id="MIf-6r-hWi"/>
+                            <constraint firstItem="AD7-Xd-tNc" firstAttribute="bottom" secondItem="0ks-IR-euS" secondAttribute="bottom" id="O7g-Rv-rx4"/>
+                            <constraint firstItem="AD7-Xd-tNc" firstAttribute="trailing" secondItem="0ks-IR-euS" secondAttribute="trailing" id="lEt-da-EKP"/>
+                            <constraint firstItem="AD7-Xd-tNc" firstAttribute="top" secondItem="Vgh-hA-BBO" secondAttribute="bottom" id="vLm-F0-sbX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0ks-IR-euS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="QVs-Yp-aR6">
@@ -148,10 +208,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="zmh-Zm-QL4" id="rvx-su-CFb"/>
+                        <outlet property="userIdTextField" destination="7Fw-GD-hTf" id="sqc-Po-Qe6"/>
+                        <outlet property="userNameTextField" destination="gm7-Pw-ZpI" id="CoJ-c5-m3d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llN-MK-QBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2332" y="705"/>
+            <point key="canvasLocation" x="2332" y="704.79760119940033"/>
         </scene>
         <!--Groups-->
         <scene sceneID="Yrv-2l-f6z">
@@ -288,7 +353,7 @@
                                             <constraint firstAttribute="height" constant="350" id="v3d-lR-qDY"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userForGroupCell" rowHeight="70" id="0Se-sV-fOg" customClass="SearchUserForGroupCell" customModule="business_chat_app" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="userForGroupCell" rowHeight="70" id="0Se-sV-fOg" customClass="SearchUserForGroupCell" customModule="business_chat_app" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="335" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Se-sV-fOg" id="v1j-Pc-Eof">
@@ -709,6 +774,7 @@
         <image name="Settings" width="26" height="26"/>
         <image name="User" width="20" height="22"/>
         <image name="isSelected" width="512" height="512"/>
+        <image name="meIcon" width="256" height="256"/>
         <image name="send" width="512" height="512"/>
     </resources>
 </document>
