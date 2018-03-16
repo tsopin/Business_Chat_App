@@ -223,10 +223,14 @@ class DataServices {
     
     func createPersonalChat(forChatName chatName: String, forMemberIds memberIds: [String:String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
         
-        var newMembers = Array(memberIds.values)
+        let newMembers = Array(memberIds.keys)
+        let meMe = Array(memberIds.values)
+        let newArray = newMembers + meMe
+        
+        
          var goArray = [String:Bool]()
         
-        for i in newMembers {
+        for i in newArray {
             goArray[i] = true
         }
 //        for member in newMembers {
