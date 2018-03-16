@@ -148,7 +148,27 @@ class DataServices {
         }
     }
     
-    // Get username and email
+    // Get user info by uid
+    func getUserInfoById(forUid uid: String, handler: @escaping (_ usersDataArray: [User]) -> ()) {
+//        
+//        var userArray = [User]()
+//        
+//        REF_USERS.observe(.value) { (userSnapshot) in
+//            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+//            
+//            for user in userSnapshot {
+//                if user.ke  {
+//                    let email = user.childSnapshot(forPath: "email").value as! String
+//                    
+//                }
+//                
+//            handler(userArray)
+//        }
+//        }
+        
+    }
+    
+    // Get users by email
     func getUserInfo(forSearchQuery query: String, handler: @escaping (_ usersDataArray: [User]) -> ()) {
         
         var userArray = [User]()
@@ -278,10 +298,33 @@ class DataServices {
     }
     
     
-    func getMyContacts(handler: @escaping (_ contactsArray: [User]) -> ()) {
+    func getMyContacts(handler: @escaping (_ contactsArray: [Group]) -> ()) {
+        
+        var groupsArray = [Group]()
+        REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for group in groupSnapshot {
+                let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
+                let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
+                if  isGroupArray == false && memberArray.keys.contains(currentUserId!) {
+                    
+                    let groupName = group.childSnapshot(forPath: "chatName").value as! String
+                    
+                    let group = Group(name: groupName, members: memberArray, memberCount: memberArray.count)
+                    
+                    groupsArray.append(group)
+                }
+            }
+            handler(groupsArray)
+        }
         
         
     }
+    
+    
+    
+    
     func getMyGroups(handler: @escaping (_ groupsArray: [Group]) -> ()) {
         
         var groupsArray = [Group]()

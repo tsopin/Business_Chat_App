@@ -1,5 +1,5 @@
 //
-//  ContactListTableViewController.swift
+//  ListOfGroupsVC.swift
 //  business-chat-app
 //
 //  Created by Timofei Sopin on 2018-03-02.
@@ -31,9 +31,6 @@ class ListOfGroupsVC: UIViewController {
             
         }
     }
-    
-    
-    
 }
 
 extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {

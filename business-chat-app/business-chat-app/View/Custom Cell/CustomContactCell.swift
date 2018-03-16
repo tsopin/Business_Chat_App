@@ -14,18 +14,15 @@ class CustomContactCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
     
-    
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
+//    func configeureCell(userName: String) {
+//        self.userName.text = userName
+////        self.userEmail.text = userEmail
+//
 //    }
-    func configeureCell(userName: String, userEmail: String) {
-        self.userName.text = userName
-        self.userEmail.text = userEmail
-      
-    }
-
+//    func configeureCell(userName: String, numberOfMembers: Int) {
+//        self.userName.text = userName
+//        self.userEmail.text = "\(numberOfMembers) participants"
+//    }
 
     
 }

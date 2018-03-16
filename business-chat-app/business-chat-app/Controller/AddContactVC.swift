@@ -42,7 +42,7 @@ class AddContactVC: UIViewController {
         })
         
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            let userIds = idsArray
+//            let userIds = idsArray
             var newIds = [String:String]()
             
             for i in idsArray{
@@ -56,7 +56,9 @@ class AddContactVC: UIViewController {
             
             for eachMember in idsArray {
             
-            DataServices.instance.createPersonalChat(forChatName: self.currentUserEmail, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
+                let name = self.chosenUserArray[0]
+                
+            DataServices.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     self.dataServices.addPersonalChatsToUser()
                     

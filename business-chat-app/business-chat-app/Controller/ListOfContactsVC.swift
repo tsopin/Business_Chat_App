@@ -15,7 +15,7 @@ class ListOfContactsVC: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     
     
-    var contactsArray = [User]()
+    var contactsArray = [Group]()
     var choosenContactArray =  [String]()
     
     override func viewDidLoad() {
@@ -26,7 +26,9 @@ class ListOfContactsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataServices.instance.REF_USERS.observe(.value) { (snapshot) in
+        
+        
+        DataServices.instance.REF_CHATS.observe(.value) { (snapshot) in
             DataServices.instance.getMyContacts { (returnedUsersArray) in
                 self.contactsArray = returnedUsersArray
                 self.contactsTableView.reloadData()
@@ -51,11 +53,18 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! CustomContactCell
+        guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? GroupCell else {return UITableViewCell()}
         
-        let contact = contactsArray[indexPath.row]
+            let group = contactsArray[indexPath.row]
+            let userName = group.groupName
+            let numberOfMembers = group.memberCount
         
-        cell.configeureCell(userName: contact.userName, userEmail: contact.email)
+        
+        
+            cell.numberOfMembers.text = "\(numberOfMembers)"
+            cell.groupName.text = userName
+        
+        
         return cell
     }
     
@@ -246,4 +255,5 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
 //        }
 //
 //}
+
 
