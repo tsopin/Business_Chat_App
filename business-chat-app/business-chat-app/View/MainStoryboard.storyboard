@@ -465,11 +465,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="hmB-Dj-YAm" userLabel="Personal Chat" customClass="PersonalChatTableVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tis-cA-V8I">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Rq-O03">
-                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="ZL3-Bl-QZv" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -491,7 +491,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPR-ap-Ajk">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gj-kg-qjL">
                                         <rect key="frame" x="8" y="10" width="301" height="30"/>
@@ -536,7 +536,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Contact Name" id="rmL-Md-67R"/>
                     <connections>
-                        <outlet property="chatTableView" destination="B6u-Rq-O03" id="6Ci-S8-NJ9"/>
+                        <outlet property="chatTableView" destination="B6u-Rq-O03" id="Ivx-Vk-33A"/>
                         <outlet property="heightConstraint" destination="me3-u1-SAv" id="YM2-ER-Adl"/>
                         <outlet property="sendBtn" destination="oTB-Om-yum" id="sZr-ec-6FY"/>
                         <outlet property="textField" destination="1Gj-kg-qjL" id="spY-hx-D6k"/>
@@ -593,6 +593,7 @@
                                         <connections>
                                             <outlet property="groupName" destination="qYW-h0-TyQ" id="gjy-KZ-45x"/>
                                             <outlet property="numberOfMembers" destination="O1A-fJ-HiG" id="rVu-4T-SNA"/>
+                                            <segue destination="hmB-Dj-YAm" kind="show" id="hpL-xy-wab"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
