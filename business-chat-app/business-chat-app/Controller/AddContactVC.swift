@@ -22,13 +22,14 @@ class AddContactVC: UIViewController {
     var usersArray = [User]()
     var chosenUserArray = [String]()
     var chatsArray = [String]()
+    let dataServices = DataServices()
     
     @IBAction func doneBtn(_ sender: Any) {
         
         
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            var userIds = idsArray
-            userIds.append(self.currentUserId)
+            let userIds = idsArray
+//            userIds.append(self.currentUserId)
             
             DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
@@ -41,18 +42,33 @@ class AddContactVC: UIViewController {
         })
         
         DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            var userIds = idsArray
-            userIds.append(self.currentUserId)
+//            let userIds = idsArray
+            var newIds = [String:String]()
             
-            DataServices.instance.addChat(forChatName: self.currentUserEmail, forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
+            for i in idsArray{
+                newIds[i] = self.currentUserId
+            }
+            
+//            userIds = userIds.filter{$0 != "Hello"}
+//            userIds.append(self.currentUserId)
+            
+            
+            
+            for eachMember in idsArray {
+            
+                let name = self.chosenUserArray[0]
+                
+            DataServices.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
-                    
+                    self.dataServices.addPersonalChatsToUser()
                     
                 }else {
                     print("Chat Creation Error")
                 }
             })
+        }
         })
+        
     }
     
 //        @IBAction func closeBtn(_ sender: Any) {
@@ -79,6 +95,7 @@ class AddContactVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        hideKeyboardWhenTappedAround()
     }
     
     func presentStoryboard() {

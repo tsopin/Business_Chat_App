@@ -88,29 +88,6 @@ class RegisterScreenVC: UIViewController {
             DataServices.instance.createDBUser(uid: user.uid, userData: userData)
             userCreationComplete(true, nil)
         }
-        
-            
-//            {
-//            (user, error) in
-//
-//            if error != nil
-//            { print("Error")
-//
-//            } else {
-//                print("Success")
-//                self.presentStoryboard()
-//
-//                usersDB.childByAutoId().setValue(usersDictionary) {
-//                    (error, reference) in
-//
-//                    if error != nil {
-//                        print(error!)
-//                    } else {
-//                        print("User saved")
-//                    }
-//                }
-//            }
-//        }
     }
 }
 

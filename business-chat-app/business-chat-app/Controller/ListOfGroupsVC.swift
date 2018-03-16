@@ -1,5 +1,5 @@
 //
-//  ContactListTableViewController.swift
+//  ListOfGroupsVC.swift
 //  business-chat-app
 //
 //  Created by Timofei Sopin on 2018-03-02.
@@ -14,12 +14,7 @@ class ListOfGroupsVC: UIViewController {
     @IBOutlet weak var groupsTableView: UITableView!
     
     var groupsArray = [Group]()
-    
-    
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         groupsTableView.delegate = self
@@ -36,9 +31,6 @@ class ListOfGroupsVC: UIViewController {
             
         }
     }
-    
-    
-    
 }
 
 extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {

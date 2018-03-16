@@ -29,6 +29,7 @@ class AddGroupVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         tableView.delegate = self
         tableView.dataSource = self
         searchUserTextfield.delegate = self
@@ -54,17 +55,15 @@ class AddGroupVC: UIViewController {
             var userIds = idsArray
             userIds.append(self.currentUserId!)
             
-            DataServices.instance.addChat(forChatName: self.groupNameTextfield.text!, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
+            DataServices.instance.createGroupChat(forChatName: self.groupNameTextfield.text!, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
                 if chatCreated {
                     
-                    self.presentStoryboard()
-                    
+                    self.dataServices.addGroupChatsToUser()
                 }else {
                     print("Chat Creation Error")
                 }
             })
         })
-        dataServices.addChatsToUser()
         presentStoryboard()
     }
     
