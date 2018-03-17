@@ -11,6 +11,7 @@ import Firebase
 
 class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet weak var textInputView: UIView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
@@ -36,20 +37,22 @@ class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDat
         chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
         chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
         
+        self.hideKeyboardWhenTappedAround()
         configureTableView()
         getMessages()
         chatTableView.separatorStyle = .none
+        textInputView.bindToKeyboard()
  
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         
-        UIView.animate(withDuration: 0.2) {
-            
-            self.heightConstraint.constant = 270
-            self.view.layoutIfNeeded()
-        }
+//        UIView.animate(withDuration: 0.1) {
+//
+//            self.heightConstraint.constant = 325
+//            self.view.layoutIfNeeded()
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
@@ -90,7 +93,7 @@ class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         UIView.animate(withDuration: 0.2) {
             
-            self.heightConstraint.constant = 50
+            self.heightConstraint.constant = 60
             self.view.layoutIfNeeded()
             
         }
@@ -159,12 +162,7 @@ class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             let timeSent = snapshotValue["timeSent"]!
             let userName = snapshotValue["userName"]!
             
-            let message = Message(content: content, timeSent: timeSent, senderName: userName, email: email)
-//            message.content = content
-//            message.email = email
-//            message.timeSent = timeSent
-//            message.userName = userName
-            
+            let message = Message(content: content, timeSent: timeSent, senderName: userName, email: email)            
             self.messagesArray.append(message)
             self.configureTableView()
             self.chatTableView.reloadData()
@@ -185,23 +183,7 @@ class PersonalChatTableVC: UIViewController, UITableViewDelegate, UITableViewDat
 
 }
 
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(rgb: Int) {
-        self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
-        )
-    }
-}
+
 
 
 

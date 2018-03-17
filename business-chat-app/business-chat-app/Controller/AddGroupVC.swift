@@ -41,7 +41,7 @@ class AddGroupVC: UIViewController {
             userArray = []
             tableView.reloadData()
         } else {
-            DataServices.instance.getUserInfo(forSearchQuery: searchUserTextfield.text!, handler: { (returnedEmailArray) in
+            DataServices.instance.getUserInfoByEmail(forSearchQuery: searchUserTextfield.text!, handler: { (returnedEmailArray) in
                 self.userArray = returnedEmailArray
                 self.tableView.reloadData()
             })

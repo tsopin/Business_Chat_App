@@ -14,6 +14,7 @@
 		743D4981204E1197004A57E8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4980204E1197004A57E8 /* Model.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
+		74470986205C88E2000D719F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74470985205C88E2000D719F /* Extensions.swift */; };
 		746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */; };
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
 		748407FE205492D000CF244F /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748407FD205492D000CF244F /* AddContactVC.swift */; };
@@ -50,6 +51,7 @@
 		743D4980204E1197004A57E8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
+		74470985205C88E2000D719F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageOut.swift; sourceTree = "<group>"; };
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
 		748407FD205492D000CF244F /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 				74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */,
 			);
 			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		74470984205C88B5000D719F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				74470985205C88E2000D719F /* Extensions.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		74CB91402049BC020098E047 /* Controller */ = {
@@ -177,6 +187,7 @@
 		77AE6FEA20491C4F00918A93 /* business-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				74470984205C88B5000D719F /* Supporting Files */,
 				74F8523D20583D2300FE86D3 /* Services */,
 				74CB915A2049E88A0098E047 /* Model */,
 				74CB91412049BC190098E047 /* View */,
@@ -351,6 +362,7 @@
 				74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */,
 				74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */,
 				74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */,
+				74470986205C88E2000D719F /* Extensions.swift in Sources */,
 				749F057520589CF00022D977 /* Chat.swift in Sources */,
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
 				74B8C3A3205AC00A00951EEB /* Group.swift in Sources */,
