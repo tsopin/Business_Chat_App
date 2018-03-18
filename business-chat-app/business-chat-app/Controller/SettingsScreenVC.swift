@@ -33,7 +33,7 @@ class SettingsScreenVC: UIViewController {
         super.viewWillAppear(animated)
         userIdTextField.text = currentUserId
         emailTextField.text = currentEmail
-        DataServices.instance.getmyInfo(handler: { (myName) in
+        Services.instance.getmyInfo(handler: { (myName) in
             self.userNameTextField.text = myName
         })
     }

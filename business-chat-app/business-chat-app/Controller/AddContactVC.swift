@@ -22,27 +22,13 @@ class AddContactVC: UIViewController {
     var usersArray = [User]()
     var chosenUserArray = [String]()
     var chatsArray = [String]()
-    let dataServices = DataServices()
+    let dataServices = Services()
     
     @IBAction func doneBtn(_ sender: Any) {
         
-        
-        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-            let userIds = idsArray
-//            userIds.append(self.currentUserId)
+        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             
-            DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
-                
-                if contactCreated {
-                    self.presentStoryboard()
-                }else {
-                    print("Contact Adding Error")
-                }
-            })
-        })
-        
-        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-//            let userIds = idsArray
+            let userIds = idsArray
             var newIds = [String:String]()
             
             for i in idsArray{
@@ -51,14 +37,24 @@ class AddContactVC: UIViewController {
             
 //            userIds = userIds.filter{$0 != "Hello"}
 //            userIds.append(self.currentUserId)
+           
             
-            
-            
-            for eachMember in idsArray {
-            
-                let name = self.chosenUserArray[0]
+            Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
-            DataServices.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
+                if contactCreated {
+                    self.presentStoryboard()
+                }else {
+                    print("Contact Adding Error")
+                }
+            })
+            
+            
+            for _ in idsArray {
+            
+//                let name = self.chosenUserArray[0]
+                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
+                
+            Services.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     self.dataServices.addPersonalChatsToUser()
                     
@@ -83,8 +79,8 @@ class AddContactVC: UIViewController {
         super.viewWillAppear(animated)
         doneButton.isEnabled = false
         
-        DataServices.instance.REF_USERS.observe(.value) { (snapshot) in
-            DataServices.instance.getAllUsers{ (returnedUsersArray) in
+        Services.instance.REF_USERS.observe(.value) { (snapshot) in
+            Services.instance.getAllUsers{ (returnedUsersArray) in
                 self.usersArray = returnedUsersArray
                 self.tableView.reloadData()
             }
@@ -97,14 +93,6 @@ class AddContactVC: UIViewController {
         tableView.dataSource = self
         hideKeyboardWhenTappedAround()
     }
-    
-    func presentStoryboard() {
-        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-        self.present(vc, animated: true, completion: nil)
-        print("GoGoGo")
-    }
-    
     
 }
 

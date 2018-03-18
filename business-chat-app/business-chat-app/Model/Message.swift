@@ -12,7 +12,7 @@ class Message {
     
     private var _content: String
     private var _timeSent: String
-    private var _senderName: String
+    private var _senderId: String
     
     
     var content : String {
@@ -21,15 +21,15 @@ class Message {
     var timeSent : String {
         return _timeSent
     }
-    var userName : String {
-        return _senderName
+    var senderId : String {
+        return _senderId
     }
 
     
-    init(content: String, timeSent: String, senderName: String, email: String) {
+    init(content: String, timeSent: String, senderId: String) {
         self._content = content
         self._timeSent = timeSent
-        self._senderName = senderName
+        self._senderId = senderId
 
     }
     
