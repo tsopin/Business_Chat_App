@@ -11,7 +11,7 @@ import UIKit
 class Chat {
     
     private var _chatName: String
-    private var _memberCount: Int
+    private var _memberCount: String
     private var _members: [String:Bool]
     private var _chatKey: String
     
@@ -19,7 +19,7 @@ class Chat {
         return _chatName
     }
     
-    var memberCount: Int {
+    var memberCount: String {
         return _memberCount
     }
     var members: [String:Bool] {
@@ -29,7 +29,7 @@ class Chat {
         return _chatKey
     }
     
-    init(name: String, members: [String:Bool], chatKey: String, memberCount: Int ) {
+    init(name: String, members: [String:Bool], chatKey: String, memberCount: String ) {
         self._chatName = name
         self._members = members
         self._chatKey = chatKey

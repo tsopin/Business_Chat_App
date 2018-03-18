@@ -16,6 +16,7 @@
 		74470986205C88E2000D719F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74470985205C88E2000D719F /* Extensions.swift */; };
 		746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */; };
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
+		747E62F1205F042F004DD81B /* PersonalChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E62F0205F042F004DD81B /* PersonalChatCell.swift */; };
 		748407FE205492D000CF244F /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748407FD205492D000CF244F /* AddContactVC.swift */; };
 		7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */; };
 		748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748BEF16205DFBB00032EE3C /* GroupChatVC.swift */; };
@@ -52,6 +53,7 @@
 		74470985205C88E2000D719F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageOut.swift; sourceTree = "<group>"; };
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
+		747E62F0205F042F004DD81B /* PersonalChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalChatCell.swift; sourceTree = "<group>"; };
 		748407FD205492D000CF244F /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
 		7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		748BEF16205DFBB00032EE3C /* GroupChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatVC.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				7404B0E12052EA38001DF785 /* CustomContactCell.xib */,
 				74F852462058487E00FE86D3 /* SearchUserForContactCell.swift */,
 				74B8C3A4205AC0F000951EEB /* GroupCell.swift */,
+				747E62F0205F042F004DD81B /* PersonalChatCell.swift */,
 				74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */,
 			);
 			path = "Custom Cell";
@@ -124,11 +127,11 @@
 				74B3B093204BB2F40056A026 /* MainTabViewController.swift */,
 				748407FD205492D000CF244F /* AddContactVC.swift */,
 				74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */,
+				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */,
 				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
-				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				748407FE205492D000CF244F /* AddContactVC.swift in Sources */,
 				74F8524520583E7200FE86D3 /* User.swift in Sources */,
 				77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */,
+				747E62F1205F042F004DD81B /* PersonalChatCell.swift in Sources */,
 				74F8524120583D7D00FE86D3 /* DataServices.swift in Sources */,
 				74B8C3A7205AC15900951EEB /* AddGroupVC.swift in Sources */,
 				746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */,

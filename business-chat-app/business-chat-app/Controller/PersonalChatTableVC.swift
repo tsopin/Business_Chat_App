@@ -11,6 +11,7 @@ import Firebase
 
 class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var textInputView: UIView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
@@ -23,9 +24,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let dateFormatter = DateFormatter()
     let now = NSDate()
-    
+    var ololo = String()
     var chat: Chat?
     var chatMessages = [Message]()
+    var userNames = [String]()
     func initData(forChat chat: Chat){
         self.chat = chat
         
@@ -34,12 +36,14 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        contactNameLabel.text = chat?.chatName
         
-//        Services.instance.getEmailsFor(chat: group!) { (returnedEmails) in
-//            self.membersLbl.text = returnedEmails.joined(separator: ", ")
-//            
-//        }
+        
+        Services.instance.getUserEmail(byUserId: (chat?.chatName)!) { (userEmail) in
+            self.contactNameLabel.text = userEmail
+            
+        }
+        
+        
         Services.instance.REF_CHATS.observe(.value) { (snapshot) in
             Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
                 self.chatMessages = returnedChatMessages
@@ -68,7 +72,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
-        textInputView.bindToKeyboard()
+        mainView.bindToKeyboard()
         
         
     }
@@ -89,19 +93,13 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let inColor = UIColor(rgb: 0xb7d9fb)
         let sender = chatMessages[indexPath.row].senderId
     
-        
-        
+      
         if  sender == currentUserId {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
-            
-//            cell.messageBackground.backgroundColor = outColor
-//            cell.messageBody.text = messagesArray[indexPath.row].content
-//            cell.senderName.text = messagesArray[indexPath.row].senderId
             cell.userPic.image = UIImage(named: "meIcon")
-//            cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
             
         } else {
@@ -109,12 +107,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
             
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
-            
-//            cell.messageBackground.backgroundColor = inColor
-//            cell.messageBody.text = messagesArray[indexPath.row].content
-//            cell.senderName.text = messagesArray[indexPath.row].senderId
             cell.userPic.image = UIImage(named: "notMe")
-//            cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
             
         }
@@ -132,14 +125,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return chatMessages.count
     }
     
@@ -166,28 +152,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
     }
-    
-    
-    //RetrieveMessages method
-//    func getMessages() {
-//
-//        let messageDB = Database.database().reference().child("messages_Test")
-//        messageDB.observe(.childAdded) { (snapshot) in
-//
-//            let snapshotValue = snapshot.value as! Dictionary<String,String>
-//
-//            let content = snapshotValue["content"]!
-//            let timeSent = snapshotValue["timeSent"]!
-//            let senderId = snapshotValue["senderId"]!
-//
-//            let message = Message(content: content, timeSent: timeSent, senderId: senderId)
-//            self.messagesArray.append(message)
-//            self.configureTableView()
-//            self.chatTableView.reloadData()
-//        }
-//    }
-    
-    
+ 
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
@@ -195,8 +160,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
-        
-//        print("Cell set")
     }
     
 }

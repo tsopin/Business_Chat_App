@@ -98,12 +98,12 @@ class AddContactVC: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    func presentStoryboard() {
-        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-        self.present(vc, animated: true, completion: nil)
-        print("GoGoGo")
-    }
+//    func presentStoryboard() {
+//        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
+//        self.present(vc, animated: true, completion: nil)
+//        print("GoGoGo")
+//    }
     
     
 }

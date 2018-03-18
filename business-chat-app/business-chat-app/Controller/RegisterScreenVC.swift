@@ -40,8 +40,8 @@ class RegisterScreenVC: UIViewController {
             
             userRegister(userCreationComplete: { (success, loginError) in
                 if success {
-//                    self.dismiss(animated: true, completion: nil)
-                } else {
+                    self.presentStoryboard()
+                    } else {
                     print(String(describing: loginError?.localizedDescription))
                 }})
             
@@ -60,12 +60,12 @@ class RegisterScreenVC: UIViewController {
     }
     
     
-    func presentStoryboard() {
-        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-        self.present(vc, animated: true, completion: nil)
-        print("GoGoGo")
-    }
+//    func presentStoryboard() {
+//        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
+//        self.present(vc, animated: true, completion: nil)
+//        print("GoGoGo")
+//    }
     
     func userRegister(userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
         let userName = usernameTextfield.text!

@@ -636,6 +636,7 @@
                         <outlet property="chatTableView" destination="B6u-Rq-O03" id="Ivx-Vk-33A"/>
                         <outlet property="contactNameLabel" destination="MwJ-FB-YYt" id="GUj-gV-VSg"/>
                         <outlet property="heightConstraint" destination="wVZ-nR-Wv8" id="L1E-YP-ne1"/>
+                        <outlet property="mainView" destination="tis-cA-V8I" id="sU2-C6-pX3"/>
                         <outlet property="sendBtn" destination="oTB-Om-yum" id="sZr-ec-6FY"/>
                         <outlet property="textField" destination="1Gj-kg-qjL" id="spY-hx-D6k"/>
                         <outlet property="textInputView" destination="lPR-ap-Ajk" id="pOi-v9-l7V"/>
@@ -657,7 +658,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactCell" rowHeight="102" id="KBi-sa-GW7" customClass="GroupCell" customModule="business_chat_app" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personalChatCell" rowHeight="102" id="KBi-sa-GW7" customClass="PersonalChatCell" customModule="business_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KBi-sa-GW7" id="nTX-dD-lbX">
@@ -668,13 +669,19 @@
                                                     <rect key="frame" x="20" y="10" width="335" height="81.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-h0-TyQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="41"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI1-aN-Iq3">
+                                                            <rect key="frame" x="0.0" y="27" width="335" height="27.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1A-fJ-HiG">
-                                                            <rect key="frame" x="0.0" y="41" width="335" height="40.5"/>
+                                                            <rect key="frame" x="0.0" y="54.5" width="335" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -690,8 +697,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="groupName" destination="qYW-h0-TyQ" id="gjy-KZ-45x"/>
-                                            <outlet property="numberOfMembers" destination="O1A-fJ-HiG" id="rVu-4T-SNA"/>
+                                            <outlet property="contactEmail" destination="HI1-aN-Iq3" id="jeI-Ev-AMb"/>
+                                            <outlet property="contactName" destination="qYW-h0-TyQ" id="ryZ-Xf-mMn"/>
+                                            <outlet property="lastMessage" destination="O1A-fJ-HiG" id="HER-jt-Plt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
