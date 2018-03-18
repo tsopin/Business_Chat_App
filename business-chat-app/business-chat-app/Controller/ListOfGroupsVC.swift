@@ -23,6 +23,7 @@ class ListOfGroupsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         Services.instance.REF_CHATS.observe(.value) { (snapshot) in
             Services.instance.getMyGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
