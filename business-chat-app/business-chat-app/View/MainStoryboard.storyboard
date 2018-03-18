@@ -567,7 +567,7 @@
                     </view>
                     <connections>
                         <outlet property="chatTableView" destination="Da6-I8-Rd1" id="cpJ-fa-oeO"/>
-                        <outlet property="contactNameLabel" destination="0yC-uZ-3tM" id="nSU-Se-72u"/>
+                        <outlet property="groupNameLabel" destination="0yC-uZ-3tM" id="nSU-Se-72u"/>
                         <outlet property="heightConstraint" destination="iaj-br-jl6" id="s5v-lB-4xu"/>
                         <outlet property="mainView" destination="Mhr-Ch-8Z8" id="3Bk-E1-Cqp"/>
                         <outlet property="sendBtn" destination="yVv-Nm-J3h" id="Bcg-dq-PKB"/>
