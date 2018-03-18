@@ -85,7 +85,7 @@ class RegisterScreenVC: UIViewController {
             }
             
             let userData = ["username": userName, "email": email]
-            DataServices.instance.createDBUser(uid: user.uid, userData: userData)
+            Services.instance.createDBUser(uid: user.uid, userData: userData)
             userCreationComplete(true, nil)
         }
     }

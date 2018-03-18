@@ -13,7 +13,7 @@ class ListOfGroupsVC: UIViewController {
 
     @IBOutlet weak var groupsTableView: UITableView!
     
-    var groupsArray = [Group]()
+    var groupsArray = [Chat]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class ListOfGroupsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataServices.instance.REF_CHATS.observe(.value) { (snapshot) in
-            DataServices.instance.getMyGroups { (returnedGroupsArray) in
+        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+            Services.instance.getMyGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
                 self.groupsTableView.reloadData()
             }
@@ -49,10 +49,16 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
         
         let group = groupsArray[indexPath.row]
         
-        cell.configeureCell(groupName: group.groupName, numberOfMembers: group.memberCount )
+        cell.configeureCell(groupName: group.chatName, numberOfMembers: group.memberCount )
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let groupChatVC = storyboard?.instantiateViewController(withIdentifier: "groupChatVC") as? PersonalChatVC else {return}
+        groupChatVC.initData(forChat: groupsArray[indexPath.row])
+        present(groupChatVC, animated: true, completion: nil)
     }
     
     

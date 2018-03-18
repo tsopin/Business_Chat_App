@@ -22,16 +22,16 @@ class AddContactVC: UIViewController {
     var usersArray = [User]()
     var chosenUserArray = [String]()
     var chatsArray = [String]()
-    let dataServices = DataServices()
+    let dataServices = Services()
     
     @IBAction func doneBtn(_ sender: Any) {
         
         
-        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             let userIds = idsArray
 //            userIds.append(self.currentUserId)
             
-            DataServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
+            Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
                 if contactCreated {
                     self.presentStoryboard()
@@ -41,7 +41,7 @@ class AddContactVC: UIViewController {
             })
         })
         
-        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
 //            let userIds = idsArray
             var newIds = [String:String]()
             
@@ -58,7 +58,7 @@ class AddContactVC: UIViewController {
             
                 let name = self.chosenUserArray[0]
                 
-            DataServices.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
+            Services.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     self.dataServices.addPersonalChatsToUser()
                     
@@ -83,8 +83,8 @@ class AddContactVC: UIViewController {
         super.viewWillAppear(animated)
         doneButton.isEnabled = false
         
-        DataServices.instance.REF_USERS.observe(.value) { (snapshot) in
-            DataServices.instance.getAllUsers{ (returnedUsersArray) in
+        Services.instance.REF_USERS.observe(.value) { (snapshot) in
+            Services.instance.getAllUsers{ (returnedUsersArray) in
                 self.usersArray = returnedUsersArray
                 self.tableView.reloadData()
             }

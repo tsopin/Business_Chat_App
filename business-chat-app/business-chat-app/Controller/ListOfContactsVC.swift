@@ -15,7 +15,7 @@ class ListOfContactsVC: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     
     
-    var contactsArray = [Group]()
+    var contactsArray = [Chat]()
     var choosenContactArray =  [String]()
     
     override func viewDidLoad() {
@@ -28,17 +28,14 @@ class ListOfContactsVC: UIViewController {
         super.viewDidAppear(animated)
         
         
-        DataServices.instance.REF_CHATS.observe(.value) { (snapshot) in
-            DataServices.instance.getMyContacts { (returnedUsersArray) in
+        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+            Services.instance.getMyContacts { (returnedUsersArray) in
                 self.contactsArray = returnedUsersArray
                 self.contactsTableView.reloadData()
             }
             
         }
     }
-    
-    
-    
 }
 
 extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
@@ -56,10 +53,8 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? GroupCell else {return UITableViewCell()}
         
             let group = contactsArray[indexPath.row]
-            let userName = group.groupName
+            let userName = group.chatName
             let numberOfMembers = group.memberCount
-        
-        
         
             cell.numberOfMembers.text = "\(numberOfMembers)"
             cell.groupName.text = userName
@@ -67,7 +62,11 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
+        personalChatVC.initData(forChat: contactsArray[indexPath.row])
+        present(personalChatVC, animated: true, completion: nil)
+    }
     
 }
 
