@@ -59,7 +59,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             cell.numberOfMembers.text = "\(numberOfMembers)"
             cell.groupName.text = userName
         
-        
+//        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

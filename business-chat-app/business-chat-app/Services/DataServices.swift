@@ -171,7 +171,7 @@ class Services {
                     
                     let groupName = group.childSnapshot(forPath: "chatName").value as! String
                     let groupKey = group.key                     
-                    let group = Chat(name: groupName, members: memberArray, groupKey: groupKey, memberCount: memberArray.count)
+                    let group = Chat(name: groupName, members: memberArray, chatKey: groupKey, memberCount: memberArray.count)
                     
                     chatsArray.append(group)
                 }
@@ -195,7 +195,7 @@ class Services {
                     
                     let groupName = group.childSnapshot(forPath: "chatName").value as! String
                     
-                    let group = Chat(name: groupName, members: memberArray, groupKey: group.key, memberCount: memberArray.count)
+                    let group = Chat(name: groupName, members: memberArray, chatKey: group.key, memberCount: memberArray.count)
                     
                     groupsArray.append(group)
                 }

@@ -31,28 +31,28 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
+//    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         contactNameLabel.text = chat?.chatName
         
-        //        Services.instance.getEmailsFor(chat: group!) { (returnedEmails) in
-        //            self.membersLbl.text = returnedEmails.joined(separator: ", ")
-        //
-        //        }
+//        Services.instance.getEmailsFor(chat: group!) { (returnedEmails) in
+//            self.membersLbl.text = returnedEmails.joined(separator: ", ")
+//            
+//        }
         Services.instance.REF_CHATS.observe(.value) { (snapshot) in
             Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
                 self.chatMessages = returnedChatMessages
                 self.chatTableView.reloadData()
-                
-                //                if self.groupMessages.count > 0 {
-                //                    self.chatTableView.scrollToRow(at: IndexPath(row: self.groupMessages.count - 1, section: 0) , at: .none, animated: true)
-                //                }
+
+                if self.chatMessages.count > 0 {
+                    self.chatTableView.scrollToRow(at: IndexPath(row: self.chatMessages.count - 1, section: 0) , at: .none, animated: true)
+                }
             })
         }
         
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,14 +60,14 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chatTableView.dataSource = self
         textField.delegate = self
         
-        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-        //        chatTableView.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+//        chatTableView.addGestureRecognizer(tapGesture)
         chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
         chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
         
         self.hideKeyboardWhenTappedAround()
         configureTableView()
-        //        chatTableView.separatorStyle = .none
+        chatTableView.separatorStyle = .none
         textInputView.bindToKeyboard()
         
         
@@ -88,7 +88,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let outColor = UIColor(rgb: 0xe7b1c8)
         let inColor = UIColor(rgb: 0xb7d9fb)
         let sender = chatMessages[indexPath.row].senderId
-        
+    
         
         
         if  sender == currentUserId {
@@ -97,11 +97,11 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
             
-            //            cell.messageBackground.backgroundColor = outColor
-            //            cell.messageBody.text = messagesArray[indexPath.row].content
-            //            cell.senderName.text = messagesArray[indexPath.row].senderId
-            //            cell.userPic.image = UIImage(named: "meIcon")
-            //            cell.messageTime.text = messagesArray[indexPath.row].timeSent
+//            cell.messageBackground.backgroundColor = outColor
+//            cell.messageBody.text = messagesArray[indexPath.row].content
+//            cell.senderName.text = messagesArray[indexPath.row].senderId
+            cell.userPic.image = UIImage(named: "meIcon")
+//            cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
             
         } else {
@@ -110,11 +110,11 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
             
-            //            cell.messageBackground.backgroundColor = inColor
-            //            cell.messageBody.text = messagesArray[indexPath.row].content
-            //            cell.senderName.text = messagesArray[indexPath.row].senderId
-            //            cell.userPic.image = UIImage(named: "notMe")
-            //            cell.messageTime.text = messagesArray[indexPath.row].timeSent
+//            cell.messageBackground.backgroundColor = inColor
+//            cell.messageBody.text = messagesArray[indexPath.row].content
+//            cell.senderName.text = messagesArray[indexPath.row].senderId
+            cell.userPic.image = UIImage(named: "notMe")
+//            cell.messageTime.text = messagesArray[indexPath.row].timeSent
             return cell
             
         }
@@ -164,28 +164,28 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             })
             
         }
-        
+
     }
     
     
     //RetrieveMessages method
-    //    func getMessages() {
-    //
-    //        let messageDB = Database.database().reference().child("messages_Test")
-    //        messageDB.observe(.childAdded) { (snapshot) in
-    //
-    //            let snapshotValue = snapshot.value as! Dictionary<String,String>
-    //
-    //            let content = snapshotValue["content"]!
-    //            let timeSent = snapshotValue["timeSent"]!
-    //            let senderId = snapshotValue["senderId"]!
-    //
-    //            let message = Message(content: content, timeSent: timeSent, senderId: senderId)
-    //            self.messagesArray.append(message)
-    //            self.configureTableView()
-    //            self.chatTableView.reloadData()
-    //        }
-    //    }
+//    func getMessages() {
+//
+//        let messageDB = Database.database().reference().child("messages_Test")
+//        messageDB.observe(.childAdded) { (snapshot) in
+//
+//            let snapshotValue = snapshot.value as! Dictionary<String,String>
+//
+//            let content = snapshotValue["content"]!
+//            let timeSent = snapshotValue["timeSent"]!
+//            let senderId = snapshotValue["senderId"]!
+//
+//            let message = Message(content: content, timeSent: timeSent, senderId: senderId)
+//            self.messagesArray.append(message)
+//            self.configureTableView()
+//            self.chatTableView.reloadData()
+//        }
+//    }
     
     
     @objc func tableViewTapped() {
@@ -196,7 +196,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
         
-        //        print("Cell set")
+//        print("Cell set")
     }
     
 }

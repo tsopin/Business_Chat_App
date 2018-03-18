@@ -11,7 +11,6 @@
 		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
 		743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */; };
-		743D4981204E1197004A57E8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4980204E1197004A57E8 /* Model.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
 		74470986205C88E2000D719F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74470985205C88E2000D719F /* Extensions.swift */; };
@@ -19,9 +18,9 @@
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
 		748407FE205492D000CF244F /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748407FD205492D000CF244F /* AddContactVC.swift */; };
 		7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */; };
+		748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748BEF16205DFBB00032EE3C /* GroupChatVC.swift */; };
 		749F057520589CF00022D977 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F057420589CF00022D977 /* Chat.swift */; };
 		74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3B093204BB2F40056A026 /* MainTabViewController.swift */; };
-		74B8C3A3205AC00A00951EEB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3A2205AC00A00951EEB /* Group.swift */; };
 		74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3A4205AC0F000951EEB /* GroupCell.swift */; };
 		74B8C3A7205AC15900951EEB /* AddGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3A6205AC15900951EEB /* AddGroupVC.swift */; };
 		74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */; };
@@ -48,7 +47,6 @@
 		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
 		7404B0E12052EA38001DF785 /* CustomContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomContactCell.xib; sourceTree = "<group>"; };
 		743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
-		743D4980204E1197004A57E8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
 		74470985205C88E2000D719F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -56,9 +54,9 @@
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
 		748407FD205492D000CF244F /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
 		7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		748BEF16205DFBB00032EE3C /* GroupChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatVC.swift; sourceTree = "<group>"; };
 		749F057420589CF00022D977 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		74B3B093204BB2F40056A026 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
-		74B8C3A2205AC00A00951EEB /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		74B8C3A4205AC0F000951EEB /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		74B8C3A6205AC15900951EEB /* AddGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupVC.swift; sourceTree = "<group>"; };
 		74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserForGroupCell.swift; sourceTree = "<group>"; };
@@ -130,6 +128,7 @@
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */,
 				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
+				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,11 +147,9 @@
 		74CB915A2049E88A0098E047 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				743D4980204E1197004A57E8 /* Model.swift */,
 				74F8524220583E6600FE86D3 /* Message.swift */,
 				74F8524420583E7200FE86D3 /* User.swift */,
 				749F057420589CF00022D977 /* Chat.swift */,
-				74B8C3A2205AC00A00951EEB /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,7 +362,6 @@
 				74470986205C88E2000D719F /* Extensions.swift in Sources */,
 				749F057520589CF00022D977 /* Chat.swift in Sources */,
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
-				74B8C3A3205AC00A00951EEB /* Group.swift in Sources */,
 				743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */,
 				743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */,
 				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
@@ -373,7 +369,6 @@
 				748407FE205492D000CF244F /* AddContactVC.swift in Sources */,
 				74F8524520583E7200FE86D3 /* User.swift in Sources */,
 				77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */,
-				743D4981204E1197004A57E8 /* Model.swift in Sources */,
 				74F8524120583D7D00FE86D3 /* DataServices.swift in Sources */,
 				74B8C3A7205AC15900951EEB /* AddGroupVC.swift in Sources */,
 				746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */,
@@ -383,6 +378,7 @@
 				74F8524320583E6600FE86D3 /* Message.swift in Sources */,
 				74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */,
 				74F8523F20583D3A00FE86D3 /* AuthService.swift in Sources */,
+				748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
