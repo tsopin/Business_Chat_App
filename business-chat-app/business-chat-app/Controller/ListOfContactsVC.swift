@@ -57,8 +57,6 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                    
-                    
                     cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: "time of the last message will be here soon")
                 }
             }

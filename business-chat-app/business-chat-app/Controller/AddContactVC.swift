@@ -26,10 +26,18 @@ class AddContactVC: UIViewController {
     
     @IBAction func doneBtn(_ sender: Any) {
         
-        
         Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+            
             let userIds = idsArray
+            var newIds = [String:String]()
+            
+            for i in idsArray{
+                newIds[i] = self.currentUserId
+            }
+            
+//            userIds = userIds.filter{$0 != "Hello"}
 //            userIds.append(self.currentUserId)
+           
             
             Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
@@ -39,24 +47,12 @@ class AddContactVC: UIViewController {
                     print("Contact Adding Error")
                 }
             })
-        })
-        
-        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
-//            let userIds = idsArray
-            var newIds = [String:String]()
-            
-            for i in idsArray{
-                newIds[i] = self.currentUserId
-            }
-            
-//            userIds = userIds.filter{$0 != "Hello"}
-//            userIds.append(self.currentUserId)
             
             
+            for _ in idsArray {
             
-            for eachMember in idsArray {
-            
-                let name = self.chosenUserArray[0]
+//                let name = self.chosenUserArray[0]
+                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
                 
             Services.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
@@ -97,14 +93,6 @@ class AddContactVC: UIViewController {
         tableView.dataSource = self
         hideKeyboardWhenTappedAround()
     }
-    
-//    func presentStoryboard() {
-//        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-//        self.present(vc, animated: true, completion: nil)
-//        print("GoGoGo")
-//    }
-    
     
 }
 

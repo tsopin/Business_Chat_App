@@ -61,7 +61,7 @@ class Services {
     }
     
     // Update personal chats in database
-    func updateChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
+    func updatePersonalChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
         
         REF_USERS.child(currentUserId!).updateChildValues(["activePersonalChats" : chatIds])
         handler(true)
@@ -114,7 +114,7 @@ class Services {
         
         Services.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
             
-            Services.instance.updateChat( forPersonalChat: idsArray, handler: { (chatCreated) in
+            Services.instance.updatePersonalChat( forPersonalChat: idsArray, handler: { (chatCreated) in
                 if chatCreated {
                     
                     print("Chat added")
@@ -266,7 +266,6 @@ class Services {
             for user in userSnapshot {
 
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
-//                let userName = user.childSnapshot(forPath: "username").value as! String
 
                 if user.key == userId {
                     returnedUserEmail = userEmail
@@ -288,7 +287,6 @@ class Services {
             
             for user in userSnapshot {
                 
-//                let userEmail = user.childSnapshot(forPath: "email").value as! String
                     let userName = user.childSnapshot(forPath: "username").value as! String
                 
                 if user.key == userId {
@@ -404,48 +402,7 @@ class Services {
         }
     }
     
-    
-//    func getEmailsFor(chat: Chat, handler: @escaping (_ emailArray: [String]) -> ()) {
-//
-//        var emailArray = [String]()
-//        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
-//            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-//
-//            for user in userSnapshot {
-//                if chat.members.keys.contains(user.key) {
-//                    let email = user.childSnapshot(forPath: "email").value as! String
-//                    emailArray.append(email)
-//                }
-//
-//
-//            }
-//
-//            handler(emailArray)
-//        }
-//
-//
-//    }
-    
-    // Get user info by uid
-    
-//    func getUserInfoById(forUid uid: String, handler: @escaping (_ usersDataArray: [User]) -> ()) {
-//
-//                var userArray = [User]()
-//
-//                REF_USERS.observe(.value) { (userSnapshot) in
-//                    guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-//
-//                    for user in userSnapshot {
-//                        if user.key  {
-//                            let email = user.childSnapshot(forPath: "email").value as! String
-//
-//                        }
-//
-//                    handler(userArray)
-//                }
-//                }
-//
-//    }
+
     
 }
 

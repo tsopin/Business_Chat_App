@@ -24,10 +24,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let dateFormatter = DateFormatter()
     let now = NSDate()
-    var ololo = String()
     var chat: Chat?
     var chatMessages = [Message]()
-    var userNames = [String]()
+    
     func initData(forChat chat: Chat){
         self.chat = chat
         
@@ -39,6 +38,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         Services.instance.getUserEmail(byUserId: (chat?.chatName)!) { (userEmail) in
+            
             self.contactNameLabel.text = userEmail
             
         }
@@ -60,6 +60,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         chatTableView.delegate = self
         chatTableView.dataSource = self
         textField.delegate = self
@@ -72,7 +75,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
-        mainView.bindToKeyboard()
+//        mainView.bindToKeyboard()
         
         
     }
@@ -93,12 +96,13 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let inColor = UIColor(rgb: 0xb7d9fb)
         let sender = chatMessages[indexPath.row].senderId
     
-      
+        
+        
         if  sender == currentUserId {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
+            cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
             cell.userPic.image = UIImage(named: "meIcon")
             return cell
             
@@ -161,7 +165,23 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
     }
+//
     
+    @objc func keyboardWillShow(notification : NSNotification) {
+        
+        let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
+        
+        self.heightConstraint.constant = keyboardSize.height + 60
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+
+        })
+    }
+    
+    @objc func keyboardWillHide(notification : NSNotification) {
+        self.heightConstraint.constant = 0
+
+    }
+ 
 }
 
 

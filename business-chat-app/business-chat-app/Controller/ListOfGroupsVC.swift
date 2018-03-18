@@ -56,7 +56,7 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let groupChatVC = storyboard?.instantiateViewController(withIdentifier: "groupChatVC") as? PersonalChatVC else {return}
+        guard let groupChatVC = storyboard?.instantiateViewController(withIdentifier: "groupChatVC") as? GroupChatVC else {return}
         groupChatVC.initData(forChat: groupsArray[indexPath.row])
         present(groupChatVC, animated: true, completion: nil)
     }
