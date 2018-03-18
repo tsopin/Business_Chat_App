@@ -16,9 +16,9 @@ class AddGroupVC: UIViewController {
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var searchUserTextfield: UITextField!
     
-    let currentUserId = Auth.auth().currentUser?.uid
-    let currentUserEmail = (Auth.auth().currentUser?.email)!
-    let dataServices = DataServices()
+//    let currentUserId = Auth.auth().currentUser?.uid
+//    let currentUserEmail = (Auth.auth().currentUser?.email)!
+    let dataServices = Services()
     var userArray = [User]()
     var chosenUserArray = [String]()
     var Array = [String]()
@@ -41,7 +41,7 @@ class AddGroupVC: UIViewController {
             userArray = []
             tableView.reloadData()
         } else {
-            DataServices.instance.getUserInfoByEmail(forSearchQuery: searchUserTextfield.text!, handler: { (returnedEmailArray) in
+            Services.instance.getUserInfoByEmail(forSearchQuery: searchUserTextfield.text!, handler: { (returnedEmailArray) in
                 self.userArray = returnedEmailArray
                 self.tableView.reloadData()
             })
@@ -51,11 +51,11 @@ class AddGroupVC: UIViewController {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         
-        DataServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
-            userIds.append(self.currentUserId!)
+            userIds.append(currentUserId!)
             
-            DataServices.instance.createGroupChat(forChatName: self.groupNameTextfield.text!, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
+            Services.instance.createGroupChat(forChatName: self.groupNameTextfield.text!, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
                 if chatCreated {
                     
                     self.dataServices.addGroupChatsToUser()
@@ -117,12 +117,12 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     }
     
     
-    func presentStoryboard() {
-        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-        self.present(vc, animated: true, completion: nil)
-        print("GoGoGo")
-    }
+//    func presentStoryboard() {
+//        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
+//        self.present(vc, animated: true, completion: nil)
+//        print("GoGoGo")
+//    }
     
 }
 

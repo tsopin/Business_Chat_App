@@ -26,10 +26,12 @@ class CustomMessageOut: UITableViewCell {
         // Initialization code
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+    func configeureCell(senderName: String, messageTime: String, messageBody: String, messageBackground: UIColor ) {
+        self.senderName.text = senderName
+        self.messageTime.text = messageTime
+        self.messageBody.text = messageBody
+        self.messageBackground.backgroundColor = messageBackground
+        
+    }
     
 }

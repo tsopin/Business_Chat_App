@@ -11,12 +11,13 @@ import Firebase
 
 class ListOfContactsVC: UIViewController {
     
-
+    
     @IBOutlet weak var contactsTableView: UITableView!
     
     
-    var contactsArray = [Group]()
+    var contactsArray = [Chat]()
     var choosenContactArray =  [String]()
+    var chatMessages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +29,13 @@ class ListOfContactsVC: UIViewController {
         super.viewDidAppear(animated)
         
         
-        DataServices.instance.REF_CHATS.observe(.value) { (snapshot) in
-            DataServices.instance.getMyContacts { (returnedUsersArray) in
+        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+            Services.instance.getMyContacts { (returnedUsersArray) in
                 self.contactsArray = returnedUsersArray
                 self.contactsTableView.reloadData()
             }
-            
         }
     }
-    
-    
-    
 }
 
 extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
@@ -53,21 +50,28 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? GroupCell else {return UITableViewCell()}
+        guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "personalChatCell", for: indexPath) as? PersonalChatCell else {return UITableViewCell()}
+ 
         
-            let group = contactsArray[indexPath.row]
-            let userName = group.groupName
-            let numberOfMembers = group.memberCount
-        
-        
-        
-            cell.numberOfMembers.text = "\(numberOfMembers)"
-            cell.groupName.text = userName
+        let contact = contactsArray[indexPath.row]
+        Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
+            Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
+                Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
+                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: "time of the last message will be here soon")
+                }
+            }
+        }
         
         
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
+        personalChatVC.initData(forChat: contactsArray[indexPath.row])
+        present(personalChatVC, animated: true, completion: nil)
+    }
     
 }
 

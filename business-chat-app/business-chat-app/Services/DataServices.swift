@@ -1,5 +1,5 @@
 //
-//  DataService.swift
+//  Services.swift
 //  business-chat-app
 //
 //  Created by Timofei Sopin on 2018-03-13.
@@ -14,8 +14,10 @@ let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
 
-class DataServices {
-    static let instance = DataServices()
+
+
+class Services {
+    static let instance = Services()
     
     
     private var _REF_DATABASE = DATABASE
@@ -59,7 +61,7 @@ class DataServices {
     }
     
     // Update personal chats in database
-    func updateChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
+    func updatePersonalChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
         
         REF_USERS.child(currentUserId!).updateChildValues(["activePersonalChats" : chatIds])
         handler(true)
@@ -110,9 +112,9 @@ class DataServices {
     //  Update user's active personal chats with choosen chats
     func addPersonalChatsToUser()  {
         
-        DataServices.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
+        Services.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
             
-            DataServices.instance.updateChat( forPersonalChat: idsArray, handler: { (chatCreated) in
+            Services.instance.updatePersonalChat( forPersonalChat: idsArray, handler: { (chatCreated) in
                 if chatCreated {
                     
                     print("Chat added")
@@ -126,9 +128,9 @@ class DataServices {
     
     //  Update user's active group chats with choosen chats
     func addGroupChatsToUser() {
-        DataServices.instance.getMyGroupIds(withMe: currentUserId!, handler: { (groupIdsArray) in
+        Services.instance.getMyGroupIds(withMe: currentUserId!, handler: { (groupIdsArray) in
             
-            DataServices.instance.updateGroupChat(forGroupChats: groupIdsArray, handler: { (userUpdated) in
+            Services.instance.updateGroupChat(forGroupChats: groupIdsArray, handler: { (userUpdated) in
                 if userUpdated {
                     
                     print("Group Chat added")
@@ -138,41 +140,55 @@ class DataServices {
                 }
             })
         })
+    }
+    
+    // Upload message to Database
+    
+    func sendMessage(withContent content: String, withTimeSent timeSent: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
+        
+        
+        REF_CHATS.child(chatId!).child("messages").childByAutoId().updateChildValues(["content" : content,
+                                                                                      "senderId" : senderId,
+                                                                                      "timeSent": timeSent ])
+        sendComplete(true)
         
     }
     
     //    MARK: Getting users, chat, contacts
     
-    //    Get my personal chats
-    
-    func getMyContacts(handler: @escaping (_ contactsArray: [Group]) -> ()) {
+    //    Get my all personal chats
+    func getMyContacts(handler: @escaping (_ contactsArray: [Chat]) -> ()) {
         
-        var groupsArray = [Group]()
+        var chatsArray = [Chat]()
         REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
             for group in groupSnapshot {
+                var chatNamesAray = [String]()
+                var chatName = String()
                 let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
                 let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
                 if  isGroupArray == false && memberArray.keys.contains(currentUserId!) {
                     
-                    let groupName = group.childSnapshot(forPath: "chatName").value as! String
+//                    let groupName = group.childSnapshot(forPath: "chatName").value as! String
+                    chatNamesAray = Array(memberArray.keys)
+                    chatNamesAray = chatNamesAray.filter { $0 != currentUserId }
+                    chatName = chatNamesAray[0]
+                    let groupKey = group.key                     
+                    let group = Chat(name: chatName, members: memberArray, chatKey: groupKey, memberCount: "\(memberArray.count)")
                     
-                    let group = Group(name: groupName, members: memberArray, memberCount: memberArray.count)
-                    
-                    groupsArray.append(group)
+                    chatsArray.append(group)
                 }
             }
-            handler(groupsArray)
+            handler(chatsArray)
         }
-        
         
     }
     
     //    Get my group chats
-    func getMyGroups(handler: @escaping (_ groupsArray: [Group]) -> ()) {
+    func getMyGroups(handler: @escaping (_ groupsArray: [Chat]) -> ()) {
         
-        var groupsArray = [Group]()
+        var groupsArray = [Chat]()
         REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
@@ -183,7 +199,7 @@ class DataServices {
                     
                     let groupName = group.childSnapshot(forPath: "chatName").value as! String
                     
-                    let group = Group(name: groupName, members: memberArray, memberCount: memberArray.count)
+                    let group = Chat(name: groupName, members: memberArray, chatKey: group.key, memberCount: "\(memberArray.count)")
                     
                     groupsArray.append(group)
                 }
@@ -230,7 +246,6 @@ class DataServices {
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
                 let userName = user.childSnapshot(forPath: "username").value as! String
                 
-                
                 if userEmail == currentEmail! {
                     myName = userName
                     print(myName)
@@ -240,7 +255,49 @@ class DataServices {
             
         }
     }
+    //Get Info for user ID
+    func getUserEmail(byUserId userId: String, handler: @escaping (_ myName: String) -> ()) {
+
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+
+            var returnedUserEmail = String()
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+
+            for user in userSnapshot {
+
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+
+                if user.key == userId {
+                    returnedUserEmail = userEmail
+                    print(returnedUserEmail)
+                }
+                handler(returnedUserEmail)
+            }
+
+        }
+    }
     
+    //Get Info for user ID
+    func getUserName(byUserId userId: String, handler: @escaping (_ myName: String) -> ()) {
+        
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            
+            var returnedUserName = String()
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for user in userSnapshot {
+                
+                    let userName = user.childSnapshot(forPath: "username").value as! String
+                
+                if user.key == userId {
+                    returnedUserName = userName
+                    print(returnedUserName)
+                }
+                handler(returnedUserName)
+            }
+            
+        }
+    }
     //Get users ID's by Email
     func getUsersIds(forUsernames usernames: [String], handler: @escaping (_ usersIdsArray: [String]) -> ()) {
         
@@ -324,25 +381,28 @@ class DataServices {
         }
     }
     
-    // Get user info by uid
-    func getUserInfoById(forUid uid: String, handler: @escaping (_ usersDataArray: [User]) -> ()) {
-        //
-        //        var userArray = [User]()
-        //
-        //        REF_USERS.observe(.value) { (userSnapshot) in
-        //            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-        //
-        //            for user in userSnapshot {
-        //                if user.ke  {
-        //                    let email = user.childSnapshot(forPath: "email").value as! String
-        //
-        //                }
-        //
-        //            handler(userArray)
-        //        }
-        //        }
+    
+    func getAllMessagesFor(desiredChat: Chat, handler: @escaping (_ messagesArray: [Message]) -> ()) {
         
+        var groupMessageArray = [Message]()
+        REF_CHATS.child(desiredChat.key).child("messages").observeSingleEvent(of: .value) { (groupMessageSnapshot) in
+            guard let groupMessageSnapshot = groupMessageSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for groupMessage in groupMessageSnapshot {
+                
+                let content = groupMessage.childSnapshot(forPath: "content").value as! String
+                let senderId = groupMessage.childSnapshot(forPath: "senderId").value as! String
+                let timeSent = groupMessage.childSnapshot(forPath: "timeSent").value as! String
+                let groupMessage = Message(content: content, timeSent: timeSent, senderId: senderId)
+                
+                groupMessageArray.append(groupMessage)
+                
+            }
+            handler(groupMessageArray)
+        }
     }
+    
+
     
 }
 

@@ -19,10 +19,12 @@ class WelcomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInBtn.layer.cornerRadius = 5
-        presentStoryboard()
-        self.hideKeyboardWhenTappedAround()
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            if user != nil {
+                self.presentStoryboard()}
+            self.hideKeyboardWhenTappedAround()
+        }
     }
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -62,22 +64,5 @@ class WelcomeScreenVC: UIViewController {
                 
             }
         }
-    }
-    
-    func presentStoryboard() {
-        
-        Auth.auth().addStateDidChangeListener() { auth, user in
-            if user != nil {
-                
-                let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-                self.present(vc, animated: true, completion: nil)
-                print("GoGoGo")
-                
-            }
-            
-        }
-        
-    }
-    
+    }    
 }

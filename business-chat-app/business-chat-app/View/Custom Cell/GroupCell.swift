@@ -16,7 +16,7 @@ class GroupCell: UITableViewCell {
     
     
     
-    func configeureCell(groupName: String, numberOfMembers: Int) {
+    func configeureCell(groupName: String, numberOfMembers: String) {
         self.groupName.text = groupName
         self.numberOfMembers.text = "\(numberOfMembers) participants"
     }

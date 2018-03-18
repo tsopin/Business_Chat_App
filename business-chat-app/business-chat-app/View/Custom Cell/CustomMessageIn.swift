@@ -24,4 +24,12 @@ class CustomMessageIn: UITableViewCell {
   
     }
 
+    func configeureCell(senderName: String, messageTime: String, messageBody: String, messageBackground: UIColor ) {
+        self.senderName.text = senderName
+        self.messageTime.text = messageTime
+        self.messageBody.text = messageBody
+        self.messageBackground.backgroundColor = messageBackground
+        
+    }
+    
 }
