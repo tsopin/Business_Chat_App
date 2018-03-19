@@ -9,11 +9,15 @@
 import UIKit
 
 class MainTabViewController: UITabBarController {
+	
+	let colours = Colours()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		
+		// set gradient to tab bar using UIView extension and Colours class
+		self.tabBar.setGradient(colours.colourMainBlue.cgColor, colours.colourMainPurple.cgColor)
+		self.tabBar.unselectedItemTintColor = colours.colourLightestBlue
     }
 
     override func didReceiveMemoryWarning() {

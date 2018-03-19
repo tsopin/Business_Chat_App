@@ -34,6 +34,11 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 		})
     }
 	
+	
+	
+	
+	
+	
 	// Textfield methods
 	
 	// Add "Save" button to navigation bar when editing begins
