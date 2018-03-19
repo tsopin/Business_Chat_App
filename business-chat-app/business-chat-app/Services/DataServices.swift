@@ -21,7 +21,7 @@ class Services {
     
     
     private var _REF_DATABASE = DATABASE
-    private var _REF_USERS = DATABASE.child("users")
+    private var _REF_USERS = DATABASE.child("users_test")
     private var _REF_CHATS = DATABASE.child("chats")
     
     var REF_DATABASE: DatabaseReference {
@@ -248,7 +248,7 @@ class Services {
                 
                 if userEmail == currentEmail! {
                     myName = userName
-                    print(myName)
+					print("this is: \(myName)")
                 }
                 handler(myName)
             }

@@ -14,9 +14,7 @@ class SettingsTableTableViewController: UITableViewController {
 	
 	@IBOutlet weak var userNameTextField: UILabel!
 	@IBOutlet weak var emailTextField: UILabel!
-	
-	
-	
+
 	let currentUserId = Auth.auth().currentUser?.uid
 	let currentEmail = Auth.auth().currentUser?.email
 	var currentUserName = String()
@@ -30,6 +28,7 @@ class SettingsTableTableViewController: UITableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		emailTextField.text = currentEmail
+		
 		Services.instance.getmyInfo(handler: { (myName) in
 			self.userNameTextField.text = myName
 		})
