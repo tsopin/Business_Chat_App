@@ -17,7 +17,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contactNameLabel: UILabel!
+
 	
 	let colours = Colours()
     
@@ -41,7 +41,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         Services.instance.getUserEmail(byUserId: (chat?.chatName)!) { (userEmail) in
             
-            self.contactNameLabel.text = userEmail
+            self.self.navigationController?.title = userEmail
             
         }
         
@@ -93,18 +93,15 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
-        
-		let outColor: UIColor = colours.colourMainBlue
-		let inColor: UIColor = colours.colourMainPurple
+		
         let sender = chatMessages[indexPath.row].senderId
-    
-        
+
         
         if  sender == currentUserId {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-			cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
+			cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue)
             cell.userPic.image = UIImage(named: "userpic_placeholder_small")
             return cell
             
@@ -112,7 +109,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
             
-            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
+            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainPurple)
             cell.userPic.image = UIImage(named: "userpic_placeholder_small")
             return cell
             
@@ -134,10 +131,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatMessages.count
     }
-    
-    @IBAction func backBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+	
     
     @IBAction func sendButton(_ sender: Any) {
         
@@ -162,10 +156,11 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
+	
     
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
-        chatTableView.estimatedRowHeight = 120.0
+        chatTableView.estimatedRowHeight = 140.0
     }
 //
     

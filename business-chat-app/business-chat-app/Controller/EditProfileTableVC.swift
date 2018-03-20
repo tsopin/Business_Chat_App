@@ -16,6 +16,8 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 	@IBOutlet weak var usernameTextField: UITextField!
 	@IBOutlet weak var userEmailLabel: UILabel!
 	
+	let colours = Colours()
+	
 	let currentEmail = Auth.auth().currentUser?.email
 	let currentUserId = Auth.auth().currentUser?.uid
 	var userName = String()
@@ -27,6 +29,8 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 		// make rounded profile image
 		profileImageView.layer.masksToBounds = true
 		profileImageView.layer.cornerRadius = 60
+		self.navigationController?.navigationItem.backBarButtonItem?.tintColor = colours.colourMainBlue
+		//self.navigationItem.backBarButtonItem?.tintColor = colours.colourMainBlue
 		
 		usernameTextField.delegate = self
 		
@@ -73,7 +77,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view methods
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // currently two, but could be more
@@ -84,6 +88,13 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
         // #warning number of rows in sections should be updated if there are more user details added
 		return section == 0 ? 1 : 2
     }
+	
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let headerView = UITableViewHeaderFooterView()
+		headerView.textLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
+		headerView.textLabel?.textColor = colours.colourMainBlue
+		return headerView
+	}
 
 
 
