@@ -348,7 +348,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="profilePicture" destination="XWd-fM-BWv" id="cfT-ot-USf"/>
+                        <outlet property="profileImageView" destination="XWd-fM-BWv" id="obo-0b-Xn8"/>
                         <outlet property="userEmailLabel" destination="u03-uc-xmZ" id="HCu-uS-B1F"/>
                         <outlet property="usernameTextField" destination="V0m-I2-qi8" id="eC4-Oi-s28"/>
                     </connections>
