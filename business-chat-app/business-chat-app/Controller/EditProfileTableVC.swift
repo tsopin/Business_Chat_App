@@ -24,6 +24,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		profilePicture.layer.cornerRadius = 10
 		usernameTextField.delegate = self
 		
 		self.hideKeyboardWhenTappedAround()

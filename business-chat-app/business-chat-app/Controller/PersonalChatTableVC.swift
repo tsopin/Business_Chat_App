@@ -18,6 +18,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var contactNameLabel: UILabel!
+	
+	let colours = Colours()
     
     let customMessageIn = CustomMessageIn()
     let customMessageOut = CustomMessageOut()
@@ -92,8 +94,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
         
-        let outColor = UIColor(rgb: 0xe7b1c8)
-        let inColor = UIColor(rgb: 0xb7d9fb)
+		let outColor: UIColor = colours.colourMainBlue
+		let inColor: UIColor = colours.colourMainPurple
         let sender = chatMessages[indexPath.row].senderId
     
         
@@ -102,8 +104,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-            cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
-            cell.userPic.image = UIImage(named: "meIcon")
+			cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
+            cell.userPic.image = UIImage(named: "userpic_placeholder_small")
             return cell
             
         } else {
@@ -111,7 +113,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
             
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
-            cell.userPic.image = UIImage(named: "notMe")
+            cell.userPic.image = UIImage(named: "userpic_placeholder_small")
             return cell
             
         }
