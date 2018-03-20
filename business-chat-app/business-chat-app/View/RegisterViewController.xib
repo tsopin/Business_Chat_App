@@ -68,7 +68,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-uM-cbg">
                             <rect key="frame" x="0.0" y="0.0" width="354" height="44"/>
-                            <color key="backgroundColor" red="0.092317648909999994" green="0.20611962449999999" blue="0.39915532570000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="D8j-ek-YGI"/>
                             </constraints>
@@ -110,7 +110,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="Uhh-WB-Bgg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="7oJ-aU-Dnx"/>
                 <constraint firstItem="8TC-4l-04u" firstAttribute="top" secondItem="BUr-kx-6J9" secondAttribute="bottom" constant="27" id="7pJ-wS-8wX"/>

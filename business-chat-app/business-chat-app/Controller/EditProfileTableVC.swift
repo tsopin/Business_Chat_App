@@ -12,7 +12,7 @@ import Firebase
 class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 	
 	
-	@IBOutlet weak var profilePicture: UIImageView!
+	@IBOutlet weak var profileImageView: UIImageView!
 	@IBOutlet weak var usernameTextField: UITextField!
 	@IBOutlet weak var userEmailLabel: UILabel!
 	
@@ -24,7 +24,10 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		profilePicture.layer.cornerRadius = 10
+		// make rounded profile image
+		profileImageView.layer.masksToBounds = true
+		profileImageView.layer.cornerRadius = 60
+		
 		usernameTextField.delegate = self
 		
 		self.hideKeyboardWhenTappedAround()

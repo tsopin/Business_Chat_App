@@ -12,6 +12,7 @@ import Firebase
 class SettingsTableTableViewController: UITableViewController {
 	
 	
+	@IBOutlet weak var profileImageView: UIImageView!
 	@IBOutlet weak var userNameTextField: UILabel!
 	@IBOutlet weak var emailTextField: UILabel!
 
@@ -27,6 +28,11 @@ class SettingsTableTableViewController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		
+		// make rounded profile image
+		profileImageView.layer.masksToBounds = true
+		profileImageView.layer.cornerRadius = 60
+		
 		emailTextField.text = currentEmail
 		
 		Services.instance.getmyInfo(handler: { (myName) in

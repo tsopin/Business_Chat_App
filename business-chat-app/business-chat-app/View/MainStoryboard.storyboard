@@ -226,6 +226,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="zmh-Zm-QL4" id="DS0-gR-fhG"/>
+                        <outlet property="profileImageView" destination="pg2-sl-iTN" id="qyw-o9-rTe"/>
                         <outlet property="userNameTextField" destination="gm7-Pw-ZpI" id="jya-5Q-lk0"/>
                     </connections>
                 </tableViewController>
@@ -858,7 +859,7 @@
             </objects>
             <point key="canvasLocation" x="4017" y="-1138"/>
         </scene>
-        <!--Contacts-->
+        <!--Chats-->
         <scene sceneID="MLV-EJ-rRM">
             <objects>
                 <viewController storyboardIdentifier="contactListStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9i9-QP-TKe" customClass="ListOfContactsVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -938,7 +939,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RCW-pL-ZNT"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts" largeTitleDisplayMode="always" id="rlV-5N-70b">
+                    <navigationItem key="navigationItem" title="Chats" largeTitleDisplayMode="always" id="rlV-5N-70b">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xsn-RT-D5N">
                             <color key="tintColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -1051,11 +1052,11 @@
             </objects>
             <point key="canvasLocation" x="4017" y="-1797"/>
         </scene>
-        <!--Contacts-->
+        <!--Chats-->
         <scene sceneID="Itr-aP-PzW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GeM-WC-pbL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" image="User" id="AQC-a8-A8u"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="User" id="AQC-a8-A8u"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="An8-hm-9iy">
