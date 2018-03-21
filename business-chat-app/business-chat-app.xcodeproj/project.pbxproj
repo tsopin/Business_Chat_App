@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		137B4C97205F633000DABA6F /* SettingsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B4C96205F633000DABA6F /* SettingsTableTableViewController.swift */; };
+		137B4C99205F71A000DABA6F /* EditProfileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B4C98205F71A000DABA6F /* EditProfileTableVC.swift */; };
+		137B4CA420602F7900DABA6F /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B4CA320602F7900DABA6F /* Colours.swift */; };
 		7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */; };
 		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
-		743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
 		74470986205C88E2000D719F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74470985205C88E2000D719F /* Extensions.swift */; };
@@ -43,11 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		137B4C96205F633000DABA6F /* SettingsTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableTableViewController.swift; path = "business-chat-app/Controller/SettingsTableTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		137B4C98205F71A000DABA6F /* EditProfileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileTableVC.swift; path = "business-chat-app/Controller/EditProfileTableVC.swift"; sourceTree = SOURCE_ROOT; };
+		137B4CA320602F7900DABA6F /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		35CEF5F8C3CA3ACC35B27A5E /* Pods_business_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_business_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfContactsVC.swift; sourceTree = "<group>"; };
 		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
 		7404B0E12052EA38001DF785 /* CustomContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomContactCell.xib; sourceTree = "<group>"; };
-		743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
 		74470985205C88E2000D719F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				74470985205C88E2000D719F /* Extensions.swift */,
+				137B4CA320602F7900DABA6F /* Colours.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -130,8 +135,9 @@
 				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
-				743D497E204DDB92004A57E8 /* SettingsScreenVC.swift */,
 				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
+				137B4C98205F71A000DABA6F /* EditProfileTableVC.swift */,
+				137B4C96205F633000DABA6F /* SettingsTableTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -362,14 +368,16 @@
 				74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */,
 				74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */,
 				74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */,
+				137B4CA420602F7900DABA6F /* Colours.swift in Sources */,
 				74470986205C88E2000D719F /* Extensions.swift in Sources */,
 				749F057520589CF00022D977 /* Chat.swift in Sources */,
+				137B4C99205F71A000DABA6F /* EditProfileTableVC.swift in Sources */,
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
 				743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */,
-				743D497F204DDB92004A57E8 /* SettingsScreenVC.swift in Sources */,
 				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
 				7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */,
 				748407FE205492D000CF244F /* AddContactVC.swift in Sources */,
+				137B4C97205F633000DABA6F /* SettingsTableTableViewController.swift in Sources */,
 				74F8524520583E7200FE86D3 /* User.swift in Sources */,
 				77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */,
 				747E62F1205F042F004DD81B /* PersonalChatCell.swift in Sources */,

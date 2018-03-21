@@ -27,6 +27,13 @@ extension UIView {
         }, completion: nil)
         
     }
+	
+	func setGradient(_ topColour: CGColor, _ bottomColour: CGColor) {
+			let gradientLayer = CAGradientLayer()
+			gradientLayer.frame = self.bounds
+			gradientLayer.colors = [topColour, bottomColour]
+			self.layer.insertSublayer(gradientLayer, at: 0)
+	}
     
 }
 
@@ -65,3 +72,4 @@ extension UIColor {
         )
     }
 }
+

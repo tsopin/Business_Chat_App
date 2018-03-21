@@ -16,11 +16,14 @@ class RegisterScreenVC: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var passwordConfirmTextfield: UITextField!
+	
+	let colours = Colours()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.view.setGradient(colours.colourMainBlue.cgColor, colours.colourMainPurple.cgColor)
         regButton.layer.cornerRadius = 5 
         self.hideKeyboardWhenTappedAround() 
     

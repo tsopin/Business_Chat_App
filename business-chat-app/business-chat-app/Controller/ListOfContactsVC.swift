@@ -57,7 +57,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: "time of the last message will be here soon")
+                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: "timestamp")
                 }
             }
         }
@@ -65,12 +65,22 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showPersonalChat" {
+			let indexPath = contactsTableView.indexPathForSelectedRow
+			guard let personalChatVC = segue.destination as? PersonalChatVC else {return}
+			personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
+		}
+	}
+	
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
-        personalChatVC.initData(forChat: contactsArray[indexPath.row])
-        present(personalChatVC, animated: true, completion: nil)
+		
+//		guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
+//		personalChatVC.initData(forChat: contactsArray[indexPath.row])
+		// present(personalChatVC, animated: true, completion: nil)
+		// performSegue(withIdentifier: "showPersonalChat", sender: self)
     }
     
 }

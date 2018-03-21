@@ -19,6 +19,7 @@ class WelcomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInBtn.layer.cornerRadius = 5
+		
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.presentStoryboard()}
