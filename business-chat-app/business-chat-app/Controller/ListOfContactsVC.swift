@@ -9,9 +9,9 @@
 import UIKit
 import Firebase
 
+
 class ListOfContactsVC: UIViewController {
-    
-    
+  
     @IBOutlet weak var contactsTableView: UITableView!
     
     
@@ -55,9 +55,17 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         
         let contact = contactsArray[indexPath.row]
         Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
+            
+            let amount = returnedMessage.count - 1
+            
+            let numberOfMessages = returnedMessage[amount].timeSent
+            
+            let date = self.getDateFromInterval(timestamp: Double(numberOfMessages))
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: "timestamp")
+
+                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date!)
+
                 }
             }
         }

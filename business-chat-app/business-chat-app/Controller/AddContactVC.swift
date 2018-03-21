@@ -35,9 +35,8 @@ class AddContactVC: UIViewController {
                 newIds[i] = self.currentUserId
             }
             
-//            userIds = userIds.filter{$0 != "Hello"}
-//            userIds.append(self.currentUserId)
-           
+            
+            
             
             Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
@@ -49,30 +48,26 @@ class AddContactVC: UIViewController {
             })
             
             
-            for _ in idsArray {
             
-//                let name = self.chosenUserArray[0]
-                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
-                
-            Services.instance.createPersonalChat(forChatName: name, forMemberIds: newIds, forGroupChat: false, handler: { (chatCreated) in
+            //                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
+            
+            Services.instance.createPersonalChat(forChatName: "defaultPersonalChat", forMemberIds: newIds, isGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
+                    
                     self.dataServices.addPersonalChatsToUser()
                     
-                }else {
+                } else {
                     print("Chat Creation Error")
                 }
             })
-        }
         })
         
     }
     
-//        @IBAction func closeBtn(_ sender: Any) {
-//            self.dismiss(animated: true, completion: nil)
-//        }
     
     
-   
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,12 +101,6 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
         
-        //        let profileImage = UIImage(named: "notMe")
-        //        if chosenUserArray.contains(usersArray[indexPath.row]) {
-        //
-        //
-        //            cell.cronfigureCell(email: usersArray[indexPath.row], isSelected: true)
-        //        }else{
         let user = usersArray[indexPath.row]
         cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
         
@@ -148,3 +137,4 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
 extension AddContactVC: UITextFieldDelegate {
     
 }
+

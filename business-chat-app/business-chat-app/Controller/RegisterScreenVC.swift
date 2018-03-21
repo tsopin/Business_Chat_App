@@ -45,6 +45,7 @@ class RegisterScreenVC: UIViewController {
                 if success {
                     self.presentStoryboard()
                     } else {
+                    
                     print(String(describing: loginError?.localizedDescription))
                 }})
             
@@ -61,35 +62,26 @@ class RegisterScreenVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
-    
-    
-//    func presentStoryboard() {
-//        let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabViewController") as UIViewController
-//        self.present(vc, animated: true, completion: nil)
-//        print("GoGoGo")
-//    }
+
     
     func userRegister(userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
         let userName = usernameTextfield.text!
         let password = passwordTextfield.text!
         let email = emailTextfield.text!
-//        let usersDB = Database.database().reference().child("users")
-        
-//        let idDb = Database.database().reference().child("users").child("contactList")
-//        let userId = idDb.childByAutoId().key
 
-//        let usersDictionary = ["email": email, "username": userName ] as [String : Any]
        
         Auth.auth().createUser(withEmail: "\(email)", password: "\(password)") { (user, error) in
-            guard let user = user else {
-                userCreationComplete(false, error)
-                return
+            if let error = error {
+                self.alert(message: (error.localizedDescription))
+    
+            } else {
+            
+                let userData = ["username": userName, "email": email]
+                Services.instance.createDBUser(uid: (user?.uid)!, userData: userData)
+                userCreationComplete(true, nil)
+
             }
             
-            let userData = ["username": userName, "email": email]
-            Services.instance.createDBUser(uid: user.uid, userData: userData)
-            userCreationComplete(true, nil)
         }
     }
 }
