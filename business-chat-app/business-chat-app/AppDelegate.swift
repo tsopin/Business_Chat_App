@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
 //        presentStoryboard()
+		
+		
+		// set colour for navigation bar buttons in entire app
+		let navigationBarAppearance = UINavigationBar.appearance()
+		navigationBarAppearance.tintColor = UIColor(rgb: 0x084887)
+		
+		
         return true
     }
     
