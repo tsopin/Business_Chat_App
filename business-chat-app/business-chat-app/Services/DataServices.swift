@@ -23,7 +23,7 @@ class Services {
     
     
     private var _REF_DATABASE = DATABASE
-    private var _REF_USERS = DATABASE.child("users")
+    private var _REF_USERS = DATABASE.child("users_test")
     private var _REF_CHATS = DATABASE.child("chats")
     private var _REF_MESSAGES = DATABASE.child("messages")
     
@@ -252,7 +252,9 @@ class Services {
                 
                 if userEmail == currentEmail! {
                     myName = userName
+
                     print("this is: \(myName)")
+
                 }
                 handler(myName)
             }
