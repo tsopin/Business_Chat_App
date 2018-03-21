@@ -11,7 +11,7 @@ import Firebase
 
 
 class ListOfContactsVC: UIViewController {
-  
+    
     @IBOutlet weak var contactsTableView: UITableView!
     
     
@@ -51,44 +51,60 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "personalChatCell", for: indexPath) as? PersonalChatCell else {return UITableViewCell()}
- 
+        
         
         let contact = contactsArray[indexPath.row]
         Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
             
             let amount = returnedMessage.count - 1
             
-            let numberOfMessages = returnedMessage[amount].timeSent
             
-            let date = self.getDateFromInterval(timestamp: Double(numberOfMessages))
+            
+            var date = String()
+            
+            var dateToGo = String()
+            
+            if returnedMessage.indices.contains(amount) {
+                
+                dateToGo = returnedMessage[amount].timeSent
+                date = self.getDateFromInterval(timestamp: Double(dateToGo))!
+                
+            } else {
+                
+                date = "No messages yet"
+            }
+            
+            
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-
-                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date!)
-
+                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date)
                 }
             }
+            
+            
+            
+            
         }
         
         
         return cell
     }
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "showPersonalChat" {
-			let indexPath = contactsTableView.indexPathForSelectedRow
-			guard let personalChatVC = segue.destination as? PersonalChatVC else {return}
-			personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
-		}
-	}
-	
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPersonalChat" {
+            let indexPath = contactsTableView.indexPathForSelectedRow
+            guard let personalChatVC = segue.destination as? PersonalChatVC else {return}
+            personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-//		guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
-//		personalChatVC.initData(forChat: contactsArray[indexPath.row])
-		// present(personalChatVC, animated: true, completion: nil)
-		// performSegue(withIdentifier: "showPersonalChat", sender: self)
+        
+        //		guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
+        //		personalChatVC.initData(forChat: contactsArray[indexPath.row])
+        // present(personalChatVC, animated: true, completion: nil)
+        // performSegue(withIdentifier: "showPersonalChat", sender: self)
     }
     
 }
