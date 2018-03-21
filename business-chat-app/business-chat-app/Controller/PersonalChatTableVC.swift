@@ -32,7 +32,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-//    
+    //
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,7 +48,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
                 self.chatMessages = returnedChatMessages
                 self.chatTableView.reloadData()
-
+                
                 if self.chatMessages.count > 0 {
                     self.chatTableView.scrollToRow(at: IndexPath(row: self.chatMessages.count - 1, section: 0) , at: .none, animated: true)
                 }
@@ -56,7 +56,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,15 +67,15 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chatTableView.dataSource = self
         textField.delegate = self
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-//        chatTableView.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+        //        chatTableView.addGestureRecognizer(tapGesture)
         chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
         chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
         
         self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
-//        mainView.bindToKeyboard()
+        //        mainView.bindToKeyboard()
         
         
     }
@@ -95,7 +95,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let outColor = UIColor(rgb: 0xe7b1c8)
         let inColor = UIColor(rgb: 0xb7d9fb)
         let sender = chatMessages[indexPath.row].senderId
-    
+        
         
         
         if  sender == currentUserId {
@@ -154,9 +154,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             })
             
         }
-
+        
     }
- 
+    
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
@@ -165,7 +165,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
     }
-//
+    //
     
     @objc func keyboardWillShow(notification : NSNotification) {
         
@@ -173,15 +173,15 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.heightConstraint.constant = keyboardSize.height + 60
         UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
-
+            
         })
     }
     
     @objc func keyboardWillHide(notification : NSNotification) {
         self.heightConstraint.constant = 0
-
+        
     }
- 
+    
 }
 
 

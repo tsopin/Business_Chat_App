@@ -76,7 +76,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
-        mainView.bindToKeyboard()
+//        mainView.bindToKeyboard()
         
         
     }
