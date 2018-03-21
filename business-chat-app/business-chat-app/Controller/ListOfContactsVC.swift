@@ -63,7 +63,9 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             let date = self.getDateFromInterval(timestamp: Double(numberOfMessages))
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
+
                     cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date!)
+
                 }
             }
         }
