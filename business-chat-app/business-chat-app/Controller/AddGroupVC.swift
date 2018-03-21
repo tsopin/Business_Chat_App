@@ -11,7 +11,7 @@ import Firebase
 
 class AddGroupVC: UIViewController {
     @IBOutlet weak var groupNameTextfield: UITextField!
-    @IBOutlet weak var invitedUsers: UILabel!
+   // @IBOutlet weak var invitedUsers: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var searchUserTextfield: UITextField!
@@ -96,14 +96,14 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         
         if !chosenUserArray.contains(cell.email.text!) {
             chosenUserArray.append(cell.email.text!)
-            invitedUsers.text = chosenUserArray.joined(separator: ", ")
+            // invitedUsers.text = chosenUserArray.joined(separator: ", ")
             doneBtn.isEnabled = true
         } else {
             chosenUserArray = chosenUserArray.filter({ $0 != cell.email.text! })
             if chosenUserArray.count >= 1 {
-                invitedUsers.text = chosenUserArray.joined(separator: ", ")
+                // invitedUsers.text = chosenUserArray.joined(separator: ", ")
             } else {
-                invitedUsers.text = "Add people to your Group"
+                // invitedUsers.text = "Add people to your Group"
                 self.doneBtn.isEnabled = false
             }
         }

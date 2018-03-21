@@ -30,13 +30,13 @@ class AddContactVC: UIViewController {
             
             let userIds = idsArray
             var newIds = [String:String]()
-
+            
             for i in idsArray{
                 newIds[i] = self.currentUserId
             }
             
-
-           
+            
+            
             
             Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
@@ -48,10 +48,10 @@ class AddContactVC: UIViewController {
             })
             
             
-
-//                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
             
-                Services.instance.createPersonalChat(forChatName: "defaultPersonalChat", forMemberIds: newIds, isGroupChat: false, handler: { (chatCreated) in
+            //                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
+            
+            Services.instance.createPersonalChat(forChatName: "defaultPersonalChat", forMemberIds: newIds, isGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     
                     self.dataServices.addPersonalChatsToUser()
@@ -64,10 +64,10 @@ class AddContactVC: UIViewController {
         
     }
     
-
     
     
-   
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +100,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
-
+        
         let user = usersArray[indexPath.row]
         cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
         
@@ -137,3 +137,4 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
 extension AddContactVC: UITextFieldDelegate {
     
 }
+

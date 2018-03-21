@@ -76,7 +76,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
-//        mainView.bindToKeyboard()
+        mainView.bindToKeyboard()
         
         
     }
@@ -111,7 +111,9 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
             
-            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
+            let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+            
+            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
             cell.userPic.image = UIImage(named: "notMe")
             return cell
             
@@ -139,13 +141,13 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     @IBAction func sendButton(_ sender: Any) {
-        
-        dateFormatter.dateFormat = "MMM d, h:mm a"
-        let currentDate = dateFormatter.string(from: now as Date)
+//
+//        dateFormatter.dateFormat = "MMM d, h:mm a"
+//        let currentDate = dateFormatter.string(from: now as Date)
         
         if textField.text != "" {
             sendBtn.isEnabled = false
-            Services.instance.sendMessage(withContent: textField.text!, withTimeSent: currentDate, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
+            Services.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
                 if complete {
                     self.textField.isEnabled = true
                     self.sendBtn.isEnabled = true

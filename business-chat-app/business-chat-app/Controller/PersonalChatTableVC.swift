@@ -17,7 +17,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contactNameLabel: UILabel!
+//    @IBOutlet weak var contactNameLabel: UILabel!
     
     let customMessageIn = CustomMessageIn()
     let customMessageOut = CustomMessageOut()
@@ -37,14 +37,15 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewWillAppear(animated)
         
         
-        Services.instance.getUserEmail(byUserId: (chat?.chatName)!) { (userEmail) in
+        Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
             
-            self.contactNameLabel.text = userEmail
+           self.navigationItem.title = userName
+//            self.contactNameLabel.text = userEmail
             
         }
         
         
-        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+        Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in
             Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
                 self.chatMessages = returnedChatMessages
                 self.chatTableView.reloadData()
@@ -102,15 +103,19 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-            cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
+            let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+            
+            
+            cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
             cell.userPic.image = UIImage(named: "meIcon")
             return cell
             
         } else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
+            let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
             
-            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
+            cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
             cell.userPic.image = UIImage(named: "notMe")
             return cell
             
@@ -133,18 +138,18 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return chatMessages.count
     }
     
-    @IBAction func backBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func backBtn(_ sender: Any) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func sendButton(_ sender: Any) {
-        
-        dateFormatter.dateFormat = "MMM d, h:mm a"
-        let currentDate = dateFormatter.string(from: now as Date)
+//
+//        dateFormatter.dateFormat = "MMM d, h:mm a"
+//        let currentDate = dateFormatter.string(from: now as Date)
         
         if textField.text != "" {
             sendBtn.isEnabled = false
-            Services.instance.sendMessage(withContent: textField.text!, withTimeSent: currentDate, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
+            Services.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
                 if complete {
                     self.textField.isEnabled = true
                     self.sendBtn.isEnabled = true

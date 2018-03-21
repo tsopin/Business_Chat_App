@@ -19,11 +19,15 @@ class WelcomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInBtn.layer.cornerRadius = 5
+		
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
-                self.presentStoryboard()}
-            self.hideKeyboardWhenTappedAround()
+                self.presentStoryboard()
+                
+            }
+            
         }
+        self.hideKeyboardWhenTappedAround()
     }
     
     
@@ -57,7 +61,7 @@ class WelcomeScreenVC: UIViewController {
         
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
-                print(error!)
+                self.alert(message: (error?.localizedDescription)!)
             } else {
                 print("Log in Successfull!")
                 self.performSegue(withIdentifier: "goToMain", sender: self)
