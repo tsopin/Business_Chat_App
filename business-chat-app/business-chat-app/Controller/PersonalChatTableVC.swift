@@ -17,13 +17,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-
 //    @IBOutlet weak var contactNameLabel: UILabel!
-
-
-	
-	let colours = Colours()
-
     
     let customMessageIn = CustomMessageIn()
     let customMessageOut = CustomMessageOut()
@@ -45,10 +39,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
             
-
            self.navigationItem.title = userName
 //            self.contactNameLabel.text = userEmail
-
+            
+        }
         
         
         Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in
@@ -98,21 +92,22 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
-		
+        
+        let outColor = UIColor(rgb: 0xe7b1c8)
+        let inColor = UIColor(rgb: 0xb7d9fb)
         let sender = chatMessages[indexPath.row].senderId
-
+        
+        
         
         if  sender == currentUserId {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-
             let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
             
             
             cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor)
-            cell.userPic.image = UIImage(named: "userpic_placeholder_small")
-
+            cell.userPic.image = UIImage(named: "meIcon")
             return cell
             
         } else {
@@ -120,11 +115,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
             let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
             
-
             cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor)
-            cell.userPic.image = UIImage(named: "userpic_placeholder_small")
-
-
+            cell.userPic.image = UIImage(named: "notMe")
             return cell
             
         }
@@ -145,13 +137,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatMessages.count
     }
-
     
 //    @IBAction func backBtn(_ sender: Any) {
 //        self.dismiss(animated: true, completion: nil)
 //    }
-
-    
     
     @IBAction func sendButton(_ sender: Any) {
 //
@@ -176,11 +165,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
-	
     
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
-        chatTableView.estimatedRowHeight = 140.0
+        chatTableView.estimatedRowHeight = 120.0
     }
     //
     

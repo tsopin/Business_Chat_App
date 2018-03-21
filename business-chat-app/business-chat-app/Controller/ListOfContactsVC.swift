@@ -77,13 +77,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-<<<<<<< HEAD
                     cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date)
-=======
-
-                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date!)
-
->>>>>>> 4d283da4d5d23240534c291aba69b56553262511
                 }
             }
             
