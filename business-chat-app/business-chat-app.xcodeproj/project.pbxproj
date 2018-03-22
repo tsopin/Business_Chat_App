@@ -10,6 +10,9 @@
 		1363906520631CD500746F5A /* EditProfileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1363906320631CD500746F5A /* EditProfileTableVC.swift */; };
 		1363906620631CD500746F5A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1363906420631CD500746F5A /* LoginViewController.swift */; };
 		137B603D20633BFD008FEC57 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B603C20633BFD008FEC57 /* UserProfileVC.swift */; };
+		137B603F20642155008FEC57 /* GroupInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B603E20642155008FEC57 /* GroupInfoVC.swift */; };
+		137B604320642F6C008FEC57 /* GroupNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137B604220642F6C008FEC57 /* GroupNameCell.swift */; };
+		13B5669520643270006A230F /* GroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B5669420643270006A230F /* GroupMemberCell.swift */; };
 		7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */; };
 		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
@@ -50,6 +53,9 @@
 		1363906320631CD500746F5A /* EditProfileTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableVC.swift; path = "business-chat-app/Controller/EditProfileTableVC.swift"; sourceTree = SOURCE_ROOT; };
 		1363906420631CD500746F5A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "business-chat-app/Controller/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
 		137B603C20633BFD008FEC57 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		137B603E20642155008FEC57 /* GroupInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupInfoVC.swift; path = "business-chat-app/Controller/GroupInfoVC.swift"; sourceTree = SOURCE_ROOT; };
+		137B604220642F6C008FEC57 /* GroupNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNameCell.swift; sourceTree = "<group>"; };
+		13B5669420643270006A230F /* GroupMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMemberCell.swift; sourceTree = "<group>"; };
 		35CEF5F8C3CA3ACC35B27A5E /* Pods_business_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_business_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfContactsVC.swift; sourceTree = "<group>"; };
 		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 				74B8C3A4205AC0F000951EEB /* GroupCell.swift */,
 				747E62F0205F042F004DD81B /* PersonalChatCell.swift */,
 				74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */,
+				137B604220642F6C008FEC57 /* GroupNameCell.swift */,
+				13B5669420643270006A230F /* GroupMemberCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -148,6 +156,7 @@
 				748407FD205492D000CF244F /* AddContactVC.swift */,
 				74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */,
 				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
+				137B603E20642155008FEC57 /* GroupInfoVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
 				1363906320631CD500746F5A /* EditProfileTableVC.swift */,
@@ -383,6 +392,7 @@
 			files = (
 				1363906620631CD500746F5A /* LoginViewController.swift in Sources */,
 				74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */,
+				13B5669520643270006A230F /* GroupMemberCell.swift in Sources */,
 				74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */,
 				74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */,
 				1363906520631CD500746F5A /* EditProfileTableVC.swift in Sources */,
@@ -403,11 +413,13 @@
 				7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */,
 				74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */,
 				74F852472058487E00FE86D3 /* SearchUserForContactCell.swift in Sources */,
+				137B603F20642155008FEC57 /* GroupInfoVC.swift in Sources */,
 				74F8524320583E6600FE86D3 /* Message.swift in Sources */,
 				137B603D20633BFD008FEC57 /* UserProfileVC.swift in Sources */,
 				74F178D02062FCFC00397873 /* Colours.swift in Sources */,
 				74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */,
 				74F8523F20583D3A00FE86D3 /* AuthService.swift in Sources */,
+				137B604320642F6C008FEC57 /* GroupNameCell.swift in Sources */,
 				748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

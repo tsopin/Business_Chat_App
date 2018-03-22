@@ -36,15 +36,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     //
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
-            
-            self.title = userName
-            //            self.contactNameLabel.text = userEmail
-            
-        }
-        
+
         
         Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in
             Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
@@ -56,14 +48,12 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 }
             })
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		self.title = chat?.chatName
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(showGroupInfo))
 
         
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -82,9 +72,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         configureTableView()
         chatTableView.separatorStyle = .none
         // mainView.bindToKeyboard()
-        
-        
-        
+		
     }
     
     //    func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -190,10 +178,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 	
 	// MARK: -- Navigation --
 	
-	@objc func showGroupInfo() {
-		print("show info pressed")
-	}
-	
+
     
 }
 
