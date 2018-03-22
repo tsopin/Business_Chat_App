@@ -16,11 +16,13 @@ class PersonalChatCell: UITableViewCell {
     
     @IBOutlet weak var lastMessage: UILabel!
     
+    @IBOutlet weak var statusImage: UIImageView!
     
-    func configeureCell(contactName: String, contactEmail: String, lastMessage: String) {
+    func configeureCell(contactName: String, contactEmail: String, lastMessage: String, statusImage: UIImage) {
         self.contactName.text = contactName
         self.contactEmail.text = contactEmail
         self.lastMessage.text = lastMessage
+        self.statusImage.image = statusImage
     }
     
     

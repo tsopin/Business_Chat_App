@@ -15,7 +15,8 @@ class SettingsTableTableViewController: UITableViewController {
 	@IBOutlet weak var profileImageView: UIImageView!
 	@IBOutlet weak var userNameTextField: UILabel!
 	@IBOutlet weak var emailTextField: UILabel!
-
+    @IBOutlet weak var dndSwitchOutlet: UISwitch!
+    
 	let currentUserId = Auth.auth().currentUser?.uid
 	let currentEmail = Auth.auth().currentUser?.email
 	var currentUserName = String()
@@ -24,6 +25,7 @@ class SettingsTableTableViewController: UITableViewController {
 		super.viewDidLoad()
 		self.hideKeyboardWhenTappedAround()
 //        print(currentDate)
+        
 	}
 	
 	
@@ -41,7 +43,39 @@ class SettingsTableTableViewController: UITableViewController {
 		})
 	}
 	
-	
+    @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
+        
+        if (dndSwitchOutlet.isOn) {
+            Auth.auth().addStateDidChangeListener() { auth, user in
+                if user != nil {
+                    Services.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
+                        if online == true {
+                            print("status set to DND")
+                        }
+                        
+                    })
+                    
+                }
+                
+            }
+            
+        } else {
+            Auth.auth().addStateDidChangeListener() { auth, user in
+                if user != nil {
+                    Services.instance.updateUserStatus(withStatus: "online", handler: { (online) in
+                        if online == true {
+                            print("status set to Online")
+                        }
+                        
+                    })
+                    
+                }
+                
+            }
+            
+        }
+    }
+    
 	
 	
 	// Log out
@@ -57,6 +91,17 @@ class SettingsTableTableViewController: UITableViewController {
 				try Auth.auth().signOut()
 				print("LogOut")
 				self.dismiss(animated: true, completion: nil)
+                Auth.auth().addStateDidChangeListener() { auth, user in
+                    if user != nil {
+                        Services.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+                            if online == true {
+                                print("status set to Offile")
+                            }
+                        })
+                        
+                    }
+                    
+                }
 			}
 			catch {
 				print("Error")
@@ -88,7 +133,7 @@ class SettingsTableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
 	
 
