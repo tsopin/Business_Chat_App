@@ -13,10 +13,6 @@ let DATABASE = Database.database().reference()
 let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
-let date = Date()
-let currentDate = date.timeIntervalSinceReferenceDate
-let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
-
 
 class Services {
     static let instance = Services()
@@ -151,7 +147,7 @@ class Services {
     func sendMessage(withContent content: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
         
         
-        REF_MESSAGES.child(chatId!).child(messageId).updateChildValues(["content" : content,
+        REF_MESSAGES.child(chatId!).child(messageId).setValue(["content" : content,
                                                                        "senderId" : senderId,
                                                                        "timeSent": timeSent ])
         sendComplete(true)

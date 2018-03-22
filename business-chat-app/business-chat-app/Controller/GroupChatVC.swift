@@ -137,10 +137,10 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 	
     
     @IBAction func sendButton(_ sender: Any) {
-//
-//        dateFormatter.dateFormat = "MMM d, h:mm a"
-//        let currentDate = dateFormatter.string(from: now as Date)
-        
+
+        let date = Date()
+        let currentDate = date.timeIntervalSinceReferenceDate
+        let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
         if textField.text != "" {
             sendBtn.isEnabled = false
             Services.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
