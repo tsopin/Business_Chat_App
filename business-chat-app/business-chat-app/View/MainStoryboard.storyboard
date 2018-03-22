@@ -565,10 +565,10 @@
             </objects>
             <point key="canvasLocation" x="4017" y="-484"/>
         </scene>
-        <!--Group name-->
+        <!--Group chat-->
         <scene sceneID="3om-Vu-TrB">
             <objects>
-                <viewController storyboardIdentifier="groupChatVC" title="Group name" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seJ-0M-QqI" customClass="GroupChatVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="groupChatVC" title="Group chat" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seJ-0M-QqI" customClass="GroupChatVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y5C-AV-QPG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1046,10 +1046,10 @@
             </objects>
             <point key="canvasLocation" x="1452" y="553"/>
         </scene>
-        <!--User-->
+        <!--User info-->
         <scene sceneID="bSn-Zy-eDN">
             <objects>
-                <tableViewController title="User" id="efe-t0-yS5" customClass="UserProfileVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="User info" id="efe-t0-yS5" customClass="UserProfileVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vhg-mK-bME">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1164,7 +1164,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fus-R7-II5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4826" y="-1138"/>
+            <point key="canvasLocation" x="4839" y="-1138"/>
         </scene>
     </scenes>
     <resources>
