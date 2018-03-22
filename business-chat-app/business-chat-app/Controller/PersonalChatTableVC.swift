@@ -143,10 +143,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    }
     
     @IBAction func sendButton(_ sender: Any) {
-//
-//        dateFormatter.dateFormat = "MMM d, h:mm a"
-//        let currentDate = dateFormatter.string(from: now as Date)
-        
+ 
+        let date = Date()
+        let currentDate = date.timeIntervalSinceReferenceDate
+        let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
         if textField.text != "" {
             sendBtn.isEnabled = false
             Services.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
@@ -154,7 +154,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.textField.isEnabled = true
                     self.sendBtn.isEnabled = true
                     self.textField.text = ""
-                    print("Message saved")
+                    print("Message saved \(currentDate)")
                 }
             })
             

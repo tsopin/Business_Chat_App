@@ -23,6 +23,7 @@ class SettingsTableTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.hideKeyboardWhenTappedAround()
+//        print(currentDate)
 	}
 	
 	
