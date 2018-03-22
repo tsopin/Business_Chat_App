@@ -64,7 +64,7 @@ class AddGroupVC: UIViewController {
                 }
             })
         })
-        presentStoryboard()
+        navigationController?.popViewController(animated: true)
     }
     
 }

@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92C-rT-v0O">
-                        <rect key="frame" x="94" y="40" width="210" height="89"/>
+                        <rect key="frame" x="154" y="40" width="150" height="89"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsQ-JG-g2C">
                                 <rect key="frame" x="8" y="8" width="48" height="17"/>
@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Message body" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcR-Uh-Srx">
-                                <rect key="frame" x="8" y="27" width="194" height="54"/>
+                                <rect key="frame" x="8" y="27" width="134" height="54"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                         <color key="backgroundColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="bcR-Uh-Srx" secondAttribute="bottom" id="E9w-tA-HYI"/>
-                            <constraint firstAttribute="width" constant="210" id="IvJ-Eo-cWE"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="IvJ-Eo-cWE"/>
                             <constraint firstItem="xsQ-JG-g2C" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="topMargin" id="bXq-Tp-Jqr"/>
                             <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="xsQ-JG-g2C" secondAttribute="bottom" constant="2" id="fEO-FH-bwy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bcR-Uh-Srx" secondAttribute="trailing" id="jDd-jI-MIQ"/>
@@ -83,6 +83,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="29" id="4Ge-z1-tOd"/>
+                    <constraint firstItem="92C-rT-v0O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="4uC-gu-FzX"/>
                     <constraint firstItem="ZCn-rD-eoo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="HA9-Yc-VkZ"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MUU-zj-kws"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="PU0-Xe-9gl"/>

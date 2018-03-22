@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1363906520631CD500746F5A /* EditProfileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1363906320631CD500746F5A /* EditProfileTableVC.swift */; };
+		1363906620631CD500746F5A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1363906420631CD500746F5A /* LoginViewController.swift */; };
 		7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */; };
 		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1363906320631CD500746F5A /* EditProfileTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableVC.swift; path = "business-chat-app/Controller/EditProfileTableVC.swift"; sourceTree = SOURCE_ROOT; };
+		1363906420631CD500746F5A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "business-chat-app/Controller/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
 		35CEF5F8C3CA3ACC35B27A5E /* Pods_business_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_business_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfContactsVC.swift; sourceTree = "<group>"; };
 		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		74CB91402049BC020098E047 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1363906420631CD500746F5A /* LoginViewController.swift */,
 				74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */,
 				74CB913C2049BBF70098E047 /* RegisterScreenVC.swift */,
 				74B3B093204BB2F40056A026 /* MainTabViewController.swift */,
@@ -133,6 +138,7 @@
 				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
+				1363906320631CD500746F5A /* EditProfileTableVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsTableTableViewController.swift */,
 				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
 			);
@@ -362,9 +368,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1363906620631CD500746F5A /* LoginViewController.swift in Sources */,
 				74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */,
 				74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */,
 				74CB913E2049BBF70098E047 /* RegisterScreenVC.swift in Sources */,
+				1363906520631CD500746F5A /* EditProfileTableVC.swift in Sources */,
 				74470986205C88E2000D719F /* Extensions.swift in Sources */,
 				749F057520589CF00022D977 /* Chat.swift in Sources */,
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
