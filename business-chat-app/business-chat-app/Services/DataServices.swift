@@ -14,6 +14,7 @@ let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
 
+
 class Services {
     static let instance = Services()
     
@@ -23,16 +24,25 @@ class Services {
     private var _REF_CHATS = DATABASE.child("chats")
     private var _REF_MESSAGES = DATABASE.child("messages")
     
+    
     var REF_DATABASE: DatabaseReference {
+        
+        _REF_DATABASE.keepSynced(true)
         return _REF_DATABASE
     }
     var REF_USERS: DatabaseReference {
+       
+        _REF_USERS.keepSynced(true)
         return _REF_USERS
     }
     var REF_CHATS: DatabaseReference {
+       
+        _REF_CHATS.keepSynced(true)
         return _REF_CHATS
     }
     var REF_MESSAGES: DatabaseReference {
+   
+        _REF_MESSAGES.keepSynced(true)
         return _REF_MESSAGES
     }
     
@@ -148,8 +158,8 @@ class Services {
         
         
         REF_MESSAGES.child(chatId!).child(messageId).setValue(["content" : content,
-                                                                       "senderId" : senderId,
-                                                                       "timeSent": timeSent ])
+                                                               "senderId" : senderId,
+                                                               "timeSent": timeSent ])
         sendComplete(true)
         
     }
@@ -399,12 +409,9 @@ class Services {
                 groupMessageArray.append(groupMessage)
                 
             }
-            handler(groupMessageArray)
+                handler(groupMessageArray)
         }
     }
-    
-    
-    
 }
 
 
