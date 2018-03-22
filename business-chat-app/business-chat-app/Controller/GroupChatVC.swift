@@ -20,15 +20,9 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     let customMessageIn = CustomMessageIn()
     let customMessageOut = CustomMessageOut()
-<<<<<<< HEAD
     
     let colours = Colours()
     
-=======
-	
-	let colours = Colours()
-	
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
     let dateFormatter = DateFormatter()
     let now = NSDate()
     var chat: Chat?
@@ -43,7 +37,6 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-<<<<<<< HEAD
         
         Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
             
@@ -51,13 +44,6 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             //            self.contactNameLabel.text = userEmail
             
         }
-=======
-//        Services.instance.getUserEmail(byUserId: (chat?.chatName)!) { (userEmail) in
-//
-//            self.contactNameLabel.text = userEmail
-//
-//        }
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
         
         
         Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in
@@ -75,11 +61,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
         self.title = chat?.chatName
-=======
-		self.title = chat?.chatName
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
         
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -93,15 +75,11 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
         chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
         
-		self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround()
         configureTableView()
         chatTableView.separatorStyle = .none
         // mainView.bindToKeyboard()
-<<<<<<< HEAD
         
-=======
-		
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
         
         
     }
@@ -126,15 +104,10 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
             
-<<<<<<< HEAD
             let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
             
             cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue)
             //            cell.userPic.image = UIImage(named: "meIcon")
-=======
-            cell.configeureCell(senderName: currentEmail!, messageTime: chatMessages[indexPath.row].timeSent, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue)
-            // cell.userPic.image = UIImage(named: "meIcon")
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
             return cell
             
         } else {
@@ -152,7 +125,6 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-<<<<<<< HEAD
         
         UIView.animate(withDuration: 0.2) {
             
@@ -162,26 +134,11 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
     }
     
-=======
-
-        UIView.animate(withDuration: 0.2) {
-
-            self.heightConstraint.constant = 60
-            self.view.layoutIfNeeded()
-
-        }
-    }
-	
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatMessages.count
     }
-<<<<<<< HEAD
     
-=======
-	
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
     
     @IBAction func sendButton(_ sender: Any) {
         
@@ -206,13 +163,8 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @objc func tableViewTapped() {
         chatTableView.endEditing(true)
     }
-<<<<<<< HEAD
     
     
-=======
-	
-	
->>>>>>> 407858655133f7b000a2ab6f2001fa436f19c79e
     func configureTableView() {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 120.0
