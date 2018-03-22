@@ -62,6 +62,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
         
         NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -196,6 +197,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 			}
 		}
 	}
+	
 	
 	
 	

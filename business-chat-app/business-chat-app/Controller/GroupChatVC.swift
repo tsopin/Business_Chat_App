@@ -61,7 +61,10 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = chat?.chatName
+
+		self.title = chat?.chatName
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(showGroupInfo))
+
         
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -184,6 +187,13 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.heightConstraint.constant = 0
         
     }
+	
+	// MARK: -- Navigation --
+	
+	@objc func showGroupInfo() {
+		print("show info pressed")
+	}
+	
     
 }
 
