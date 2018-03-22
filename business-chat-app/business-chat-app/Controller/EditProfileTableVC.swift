@@ -29,8 +29,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 		// make rounded profile image
 		profileImageView.layer.masksToBounds = true
 		profileImageView.layer.cornerRadius = 60
-		self.navigationController?.navigationItem.backBarButtonItem?.tintColor = colours.colourMainBlue
-		//self.navigationItem.backBarButtonItem?.tintColor = colours.colourMainBlue
 		
 		usernameTextField.delegate = self
 		
@@ -96,16 +94,5 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate {
 		return headerView
 	}
 
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

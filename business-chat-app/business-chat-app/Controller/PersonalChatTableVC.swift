@@ -185,6 +185,20 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.heightConstraint.constant = 0
         
     }
+	
+	// MARK: -- Navigation --
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showUserProfile" {
+			let userProfileVC = segue.destination as! UserProfileVC
+			if let chatName = chat?.chatName {
+				userProfileVC.chatName = chatName
+			}
+		}
+	}
+	
+	
+	
     
 }
 
