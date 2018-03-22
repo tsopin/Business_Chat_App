@@ -77,12 +77,29 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             
             Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
                 Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                    cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date)
+                    Services.instance.getUserStatus(byUserId: contact.chatName) { (userStatus) in
+                        
+                        var statusImage = UIImage()
+                        
+                        if userStatus == "online" {
+                            statusImage = UIImage(named: "status_online")!
+                        }
+                        else if userStatus == "offline" {
+                            statusImage = UIImage(named: "status_offline")!
+                        }
+                        else if userStatus == "dnd" {
+                            statusImage = UIImage(named: "status_dnd")!
+                        }
+                        else if userStatus == "away" {
+                            statusImage = UIImage(named: "status_away")!
+                        }
+                        
+                        cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date, statusImage: statusImage)
+                        
+                    }
                 }
             }
         }
-        
-        
         return cell
     }
     

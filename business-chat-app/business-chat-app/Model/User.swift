@@ -12,6 +12,7 @@ class User {
     
     private var _userName: String
     private var _email: String
+    private var _status: String
 //    private var _activeChats: [String]
     //    private var _contactList: [String]
     
@@ -21,6 +22,9 @@ class User {
     var email: String {
         return _email
     }
+    var status: String {
+        return _status
+    }
 //    var activeChat: [String] {
 //        return _activeChats
 //    }
@@ -28,9 +32,10 @@ class User {
     //        return _contactList
     //    }
     
-    init(userName: String, email: String) {
+    init(userName: String, email: String, status: String) {
         self._userName = userName
         self._email = email
+        self._status = status
 //        self._activeChats = activeChat
         //        self._contactList = contactList
         
