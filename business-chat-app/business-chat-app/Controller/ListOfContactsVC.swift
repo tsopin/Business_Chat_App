@@ -97,15 +97,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
         }
     }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //		guard let personalChatVC = storyboard?.instantiateViewController(withIdentifier: "personalChatVC") as? PersonalChatVC else {return}
-        //		personalChatVC.initData(forChat: contactsArray[indexPath.row])
-        // present(personalChatVC, animated: true, completion: nil)
-        // performSegue(withIdentifier: "showPersonalChat", sender: self)
-    }
+	
     
 }
 
