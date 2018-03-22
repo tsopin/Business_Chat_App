@@ -19,16 +19,19 @@ class WelcomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInBtn.layer.cornerRadius = 5
+//        Services.instance.lastSeen()
 		
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.presentStoryboard()
-                
             }
-            
         }
         self.hideKeyboardWhenTappedAround()
     }
+    
+    
+ 
+    
     
     
     override func didReceiveMemoryWarning() {

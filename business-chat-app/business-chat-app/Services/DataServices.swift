@@ -14,6 +14,7 @@ let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
 
+
 class Services {
     static let instance = Services()
     
@@ -22,20 +23,35 @@ class Services {
     private var _REF_USERS = DATABASE.child("users")
     private var _REF_CHATS = DATABASE.child("chats")
     private var _REF_MESSAGES = DATABASE.child("messages")
+    private var _REF_STATUS = DATABASE.child(".info/connected")
+    
     
     var REF_DATABASE: DatabaseReference {
+        
+        _REF_DATABASE.keepSynced(true)
         return _REF_DATABASE
     }
     var REF_USERS: DatabaseReference {
+       
+        _REF_USERS.keepSynced(true)
         return _REF_USERS
     }
     var REF_CHATS: DatabaseReference {
+       
+        _REF_CHATS.keepSynced(true)
         return _REF_CHATS
     }
     var REF_MESSAGES: DatabaseReference {
+   
+        _REF_MESSAGES.keepSynced(true)
         return _REF_MESSAGES
     }
-    
+    var REF_STATUS: DatabaseReference {
+
+        _REF_STATUS.keepSynced(true)
+        return _REF_STATUS
+    }
+
     
     //MARK: Add and update data to Database
     
@@ -62,6 +78,21 @@ class Services {
         
     }
     
+    
+    func myStatus() {
+
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if snapshot.value as? Bool ?? false {
+                print("Connected")
+            } else {
+                print("Not connected")
+            }
+        })
+
+
+    }
+    
     // Update personal chats in database
     func updatePersonalChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
         
@@ -72,6 +103,11 @@ class Services {
     func updateGroupChat(forGroupChats activeGroupChatsIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
         
         REF_USERS.child(currentUserId!).updateChildValues(["activeGroupChats" : activeGroupChatsIds])
+        handler(true)
+    }
+    func updateUserStatus(withStatus userStatus: String, handler: @escaping (_ chatUpdated: Bool) -> ()) {
+        
+        REF_USERS.child(currentUserId!).updateChildValues(["status" : userStatus])
         handler(true)
     }
     
@@ -148,8 +184,8 @@ class Services {
         
         
         REF_MESSAGES.child(chatId!).child(messageId).setValue(["content" : content,
-                                                                       "senderId" : senderId,
-                                                                       "timeSent": timeSent ])
+                                                               "senderId" : senderId,
+                                                               "timeSent": timeSent ])
         sendComplete(true)
         
     }
@@ -220,7 +256,12 @@ class Services {
                 
                 guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
                 guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
-                let user = User(userName: userName, email: email)
+                guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
+                
+                
+                
+                
+                let user = User(userName: userName, email: email, status: status )
                 
                 if email != currentEmail{
                     usersArray.append(user)
@@ -276,6 +317,29 @@ class Services {
             
         }
     }
+    
+    //Get Info for user ID
+    func getUserStatus(byUserId userId: String, handler: @escaping (_ userEmail: String) -> ()) {
+        
+        REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
+            
+            var returnedStatus = String()
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for user in userSnapshot {
+                
+                let userStatus = user.childSnapshot(forPath: "status").value as! String
+                
+                if user.key == userId {
+                    returnedStatus = userStatus
+                    print("Returned \(userStatus)")
+                }
+                handler(returnedStatus)
+            }
+            
+        })
+    }
+
     
     //Get Info for user ID
     func getUserName(byUserId userId: String, handler: @escaping (_ userName: String) -> ()) {
@@ -372,9 +436,9 @@ class Services {
             for user in userSnapshot {
                 let email = user.childSnapshot(forPath: "email").value as! String
                 let userName = user.childSnapshot(forPath: "username").value as! String
-                
+                let status = user.childSnapshot(forPath: "status").value as! String
                 if email.contains(query) == true && email != Auth.auth().currentUser?.email {
-                    let user = User(userName: userName, email: email)
+                    let user = User(userName: userName, email: email, status: status)
                     userArray.append(user)
                 }
             }
@@ -382,11 +446,33 @@ class Services {
         }
     }
     
+//    func lastSeen() {
+//        
+//        // since I can connect from multiple devices, we store each connection instance separately
+//        // any time that connectionsRef's value is null (i.e. has no children) I am offline
+////        let myConnectionsRef = REF_USERS.child(currentUserId!).child("connections")
+////        reference(withPath: "users/morgan/connections")
+//        
+//        // stores the timestamp of my last disconnect (the last time I was seen online)
+//        let lastOnlineRef = REF_USERS.child(currentUserId!).child("lastOnline")
+//        
+//        let connectedRef = Database.database().reference(withPath: ".info/connected")
+//        
+//        connectedRef.observe(.value, with: { snapshot in
+//            // only handle connection established (or I've reconnected after a loss of connection)
+//            guard let connected = snapshot.value as? Bool, connected else { return }
+//  
+//            // when I disconnect, update the last time I was seen online
+//            lastOnlineRef.onDisconnectSetValue(ServerValue.timestamp())
+//        })
+//        
+//        
+//    }
     
     func getAllMessagesFor(desiredChat: Chat, handler: @escaping (_ messagesArray: [Message]) -> ()) {
         
         var groupMessageArray = [Message]()
-        REF_MESSAGES.child(desiredChat.key).observeSingleEvent(of: .value) { (groupMessageSnapshot) in
+        REF_MESSAGES.child(desiredChat.key).observe(DataEventType.value, with: { (groupMessageSnapshot) in
             guard let groupMessageSnapshot = groupMessageSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
             for groupMessage in groupMessageSnapshot {
@@ -399,12 +485,9 @@ class Services {
                 groupMessageArray.append(groupMessage)
                 
             }
-            handler(groupMessageArray)
-        }
+                handler(groupMessageArray)
+        })
     }
-    
-    
-    
 }
 
 
