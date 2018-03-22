@@ -746,7 +746,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uCw-K8-SbU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact Name" id="rmL-Md-67R"/>
+                    <navigationItem key="navigationItem" title="Contact Name" id="rmL-Md-67R">
+                        <barButtonItem key="rightBarButtonItem" title="Info" id="DdX-cj-NSL">
+                            <connections>
+                                <segue destination="efe-t0-yS5" kind="show" identifier="showUserProfile" id="i4g-76-5Ia"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="chatTableView" destination="B6u-Rq-O03" id="Ivx-Vk-33A"/>
                         <outlet property="heightConstraint" destination="wVZ-nR-Wv8" id="L1E-YP-ne1"/>
@@ -1039,6 +1045,126 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2I8-tW-NGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="553"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="bSn-Zy-eDN">
+            <objects>
+                <tableViewController title="User" id="efe-t0-yS5" customClass="UserProfileVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vhg-mK-bME">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection headerTitle="Photo" id="lUL-sY-IVc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="egz-9J-4LG">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="egz-9J-4LG" id="fto-rK-kZ4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pl_blue" translatesAutoresizingMaskIntoConstraints="NO" id="nwP-QE-4NQ">
+                                                    <rect key="frame" x="16" y="10" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="1F3-Qs-EBw"/>
+                                                        <constraint firstAttribute="height" constant="120" id="d57-mg-Csl"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="leading" secondItem="fto-rK-kZ4" secondAttribute="leading" constant="16" id="Nlm-HF-XOw"/>
+                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="centerY" secondItem="fto-rK-kZ4" secondAttribute="centerY" id="StE-YE-PHX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Your details" id="5k0-1z-vXZ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="C3V-tz-7Up" userLabel="usernameCell">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3V-tz-7Up" id="vmB-WN-FZs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="NfE-Sp-owW" userLabel="Username stack">
+                                                    <rect key="frame" x="16" y="8" width="343" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBc-hD-suY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="54.5" height="16.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                                            <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iP8-wm-tQi" userLabel="usernameLabel">
+                                                            <rect key="frame" x="0.0" y="16.5" width="77" height="27.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                            <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="NfE-Sp-owW" secondAttribute="trailing" constant="16" id="2u1-4z-46J"/>
+                                                <constraint firstItem="NfE-Sp-owW" firstAttribute="top" secondItem="vmB-WN-FZs" secondAttribute="top" constant="8" id="Qyg-gT-f9Y"/>
+                                                <constraint firstAttribute="bottom" secondItem="NfE-Sp-owW" secondAttribute="bottom" constant="8" id="efv-85-uDg"/>
+                                                <constraint firstItem="NfE-Sp-owW" firstAttribute="leading" secondItem="vmB-WN-FZs" secondAttribute="leading" constant="16" id="voy-qP-Kfp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Apw-cN-jHR" userLabel="emailCell">
+                                        <rect key="frame" x="0.0" y="256" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Apw-cN-jHR" id="aaU-kD-ii8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-gV-0yA" userLabel="Email stack">
+                                                    <rect key="frame" x="16" y="8" width="343" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0r-Bp-Hku">
+                                                            <rect key="frame" x="0.0" y="0.0" width="29.5" height="16.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                                            <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOi-q9-55g" userLabel="emailLabel">
+                                                            <rect key="frame" x="0.0" y="16.5" width="42" height="27.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                            <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="x7f-gV-0yA" secondAttribute="bottom" constant="8" id="0eL-mW-nwW"/>
+                                                <constraint firstItem="x7f-gV-0yA" firstAttribute="top" secondItem="aaU-kD-ii8" secondAttribute="top" constant="8" id="1Xw-96-7Ke"/>
+                                                <constraint firstAttribute="trailing" secondItem="x7f-gV-0yA" secondAttribute="trailing" constant="16" id="NnX-FL-r8T"/>
+                                                <constraint firstItem="x7f-gV-0yA" firstAttribute="leading" secondItem="aaU-kD-ii8" secondAttribute="leading" constant="16" id="Sna-yo-xGm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="efe-t0-yS5" id="J6B-2t-9zh"/>
+                            <outlet property="delegate" destination="efe-t0-yS5" id="a1f-QI-X5p"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="profileImageView" destination="nwP-QE-4NQ" id="VJf-fd-do0"/>
+                        <outlet property="userEmailLabel" destination="bOi-q9-55g" id="UbZ-Nb-gLk"/>
+                        <outlet property="usernameLabel" destination="iP8-wm-tQi" id="4ut-Zj-xLC"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fus-R7-II5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4826" y="-1138"/>
         </scene>
     </scenes>
     <resources>
