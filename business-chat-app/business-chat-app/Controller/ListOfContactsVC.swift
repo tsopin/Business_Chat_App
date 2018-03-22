@@ -80,10 +80,6 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
                     cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date)
                 }
             }
-            
-            
-            
-            
         }
         
         
@@ -97,8 +93,6 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
         }
     }
-	
-    
 }
 
 
