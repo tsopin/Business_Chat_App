@@ -37,7 +37,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
 		// Set up the Search Controller
 		searchController.searchResultsUpdater = self
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Search by email and select members"
+		searchController.searchBar.placeholder = "Find by email and select"
 		navigationItem.searchController = searchController
 		definesPresentationContext = true
 		

@@ -796,13 +796,28 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ii8-9U-XBK" userLabel="Chat cell stack">
                                                     <rect key="frame" x="15" y="15" width="319" height="70"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="Bz4-EE-WXZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="LZU-w9-3Kc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="42"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="Bz4-EE-WXZ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="r9N-di-cPU"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status_online" translatesAutoresizingMaskIntoConstraints="NO" id="F1R-xu-wPK" userLabel="status_image">
+                                                                    <rect key="frame" x="30" y="32" width="10" height="10"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="10" id="IIY-ta-EVq"/>
+                                                                        <constraint firstAttribute="height" constant="10" id="aWz-k3-YaY"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="r9N-di-cPU"/>
-                                                                <constraint firstAttribute="width" constant="40" id="swA-v8-1iD"/>
+                                                                <constraint firstItem="F1R-xu-wPK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LZU-w9-3Kc" secondAttribute="leading" constant="30" id="DgO-bp-fba"/>
+                                                                <constraint firstAttribute="width" constant="40" id="lQG-mU-12t"/>
                                                             </constraints>
-                                                        </imageView>
+                                                        </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GiT-Z2-UiP" userLabel="Message stack">
                                                             <rect key="frame" x="50" y="0.0" width="269" height="60.5"/>
                                                             <subviews>
@@ -868,7 +883,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKV-7A-hjj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3233" y="-1255"/>
+            <point key="canvasLocation" x="3232.8000000000002" y="-1255.3223388305848"/>
         </scene>
         <!--Add contact-->
         <scene sceneID="cP3-bS-CTa">
@@ -1182,6 +1197,7 @@
         <image name="login_background" width="375" height="812"/>
         <image name="login_screen_icon" width="69" height="69"/>
         <image name="profile_pl_blue" width="120" height="120"/>
+        <image name="status_online" width="10" height="10"/>
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
