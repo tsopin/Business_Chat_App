@@ -330,7 +330,8 @@ class Services {
             for chat in userSnapshot {
                 
                 let chatId = chat.childSnapshot(forPath: "members").value as! [String:Bool]
-                if chatId.contains(where: { $0.value }) {
+//                if chatId.contains(where: { $0.value })
+                if chatId.keys.contains(currentUserId!) {
                     chatIdsArray[chat.key] = true
                 }
             }
