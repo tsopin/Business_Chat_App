@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import SDWebImage
 
 class ListOfContactsVC: UIViewController {
     
@@ -27,12 +27,12 @@ class ListOfContactsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         Services.instance.REF_CHATS.observe(.value) { (snapshot) in
-            Services.instance.getMyContacts { (returnedUsersArray) in
+            Services.instance.getMyPersonalChats { (returnedUsersArray) in
                 self.contactsArray = returnedUsersArray
-                DispatchQueue.main.async {
-                    self.contactsTableView.reloadData()
-                }
-                
+                                DispatchQueue.main.async {
+                self.contactsTableView.reloadData()
+                                }
+            
             }
         }
     }
@@ -63,9 +63,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
             
             let amount = returnedMessage.count - 1
-            
-            
-            
+
             var date = String()
             
             var dateToGo = String()
@@ -80,32 +78,37 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
                 date = "No messages yet"
             }
             
-//            Services.instance.getUserImage(byUserId: contact.chatName, handler: { (returnedImage) in
-                Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
-                    Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                        Services.instance.getUserStatus(byUserId: contact.chatName) { (userStatus) in
-                            
-                            var statusImage = UIImage()
-                            
-                            if userStatus == "online" {
-                                statusImage = UIImage(named: "status_online")!
-                            }
-                            else if userStatus == "offline" {
-                                statusImage = UIImage(named: "status_offline")!
-                            }
-                            else if userStatus == "dnd" {
-                                statusImage = UIImage(named: "status_dnd")!
-                            }
-                            else if userStatus == "away" {
-                                statusImage = UIImage(named: "status_away")!
-                            }
-                            
-                            
-                            cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date, statusImage: statusImage)
-                        }
-                    }
+            Services.instance.getUserData(byUserId: contact.chatName) { (userData) in
+                
+//                var userImage = UIImage()
+                
+                var statusImage = UIImage()
+                
+                var userStatus = String()
+                
+                userStatus = userData.2
+                
+                if userStatus == "online" {
+                    statusImage = UIImage(named: "status_online")!
                 }
-//            })
+                else if userStatus == "offline" {
+                    statusImage = UIImage(named: "status_offline")!
+                }
+                else if userStatus == "dnd" {
+                    statusImage = UIImage(named: "status_dnd")!
+                }
+                else if userStatus == "away" {
+                    statusImage = UIImage(named: "status_away")!
+                }
+                
+                Services.instance.getUserImage(byUserId: contact.chatName, handler: { (userImageUrl) in
+                    cell.userpicImage.sd_setImage(with: userImageUrl, completed: nil)
+                })
+                
+                
+                cell.configeureCell(contactName: userData.1, contactEmail: userData.0, lastMessage: date, statusImage: statusImage)
+            }
+            
         }
         return cell
         

@@ -44,20 +44,13 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
             
             let newUrl = returnedImage.absoluteString
             self.profileImageView.loadImageUsingCacheWithUrlString(newUrl)
-
-            
+        
         })
     }
 	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-  
-      
     }
-	
-
-	
 	
 	// Textfield methods
 	
@@ -109,7 +102,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
         
                 Services.instance.uploadUserImage(withImage: image, completion: { (imageUrl) in
         
-//                    Services.instance.createDBUser(uid: self.currentUserId!, userData: ["_avatarURL" : imageUrl])
+                    Services.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true])
                 
                 })
         
