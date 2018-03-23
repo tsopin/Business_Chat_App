@@ -42,6 +42,7 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
 		groupName = textField.text!
 	}
 
+
 	
 	// Save chat details
 	
@@ -62,8 +63,7 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
 			userProfileVC.userId = userId
 		}
 	}
-	
-	
+
 
 }
 
@@ -107,14 +107,8 @@ extension GroupInfoVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return indexPath.section == 0 ? 44 : 70
 	}
-	
 
 	
 }
-
-
-
-
-
 
 

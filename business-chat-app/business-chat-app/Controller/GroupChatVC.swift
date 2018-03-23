@@ -183,6 +183,11 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
 	
 	// MARK: -- Navigation --
+
+    deinit{
+        
+    }
+
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showGroupInfo" {
@@ -191,6 +196,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 		}
 	}
 	
+
 
     
 }

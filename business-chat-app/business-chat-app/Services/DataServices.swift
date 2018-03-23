@@ -9,7 +9,9 @@
 import Foundation
 import Firebase
 
+
 let DATABASE = Database.database().reference()
+let STORAGE = Storage.storage().reference()
 let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
@@ -24,12 +26,18 @@ class Services {
     private var _REF_CHATS = DATABASE.child("chats")
     private var _REF_MESSAGES = DATABASE.child("messages")
     private var _REF_STATUS = DATABASE.child(".info/connected")
+    private var _REF_STORAGE_USER_IMAGES = STORAGE.child("userImages")
     
     
     var REF_DATABASE: DatabaseReference {
         
         _REF_DATABASE.keepSynced(true)
         return _REF_DATABASE
+    }
+    var REF_STORAGE_USER_IMAGES: StorageReference {
+        
+//        _REF_STORAGE.keepSynced(true)
+        return _REF_STORAGE_USER_IMAGES
     }
     var REF_USERS: DatabaseReference {
        
@@ -82,7 +90,7 @@ class Services {
     func myStatus() {
 
         let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
+        connectedRef.observe(.value, with: {  snapshot in
             if snapshot.value as? Bool ?? false {
                 print("Connected")
             } else {
@@ -261,7 +269,7 @@ class Services {
                 
                 
                 
-                let user = User(userName: userName, email: email, status: status )
+                let user = User(userName: userName, email: email, status: status)
                 
                 if email != currentEmail{
                     usersArray.append(user)
@@ -339,7 +347,33 @@ class Services {
             
         })
     }
+    
+    //Get Info for user ID
+    func getUserImage(byUserId userId: String, handler: @escaping (_ userImage: URL) -> ()) {
+        
+   
+        REF_STORAGE_USER_IMAGES.child(userId).downloadURL { (url, error) in
+            //using a guard statement to unwrap the url and check for error
+            guard let imageURL = url, error == nil else {
+                
+                return
+            }
+//            guard let data = NSData(contentsOf: imageURL) else {
+//                //same thing here, handle failed data download
+//                return
+//            }
+            let image = imageURL
+            
+            handler(image)
+        }
 
+    }
+
+    
+    func checkUserImage() {
+    
+    }
+    
     
     //Get Info for user ID
     func getUserName(byUserId userId: String, handler: @escaping (_ userName: String) -> ()) {
@@ -446,28 +480,26 @@ class Services {
         }
     }
     
-//    func lastSeen() {
-//        
-//        // since I can connect from multiple devices, we store each connection instance separately
-//        // any time that connectionsRef's value is null (i.e. has no children) I am offline
-////        let myConnectionsRef = REF_USERS.child(currentUserId!).child("connections")
-////        reference(withPath: "users/morgan/connections")
-//        
-//        // stores the timestamp of my last disconnect (the last time I was seen online)
-//        let lastOnlineRef = REF_USERS.child(currentUserId!).child("lastOnline")
-//        
-//        let connectedRef = Database.database().reference(withPath: ".info/connected")
-//        
-//        connectedRef.observe(.value, with: { snapshot in
-//            // only handle connection established (or I've reconnected after a loss of connection)
-//            guard let connected = snapshot.value as? Bool, connected else { return }
-//  
-//            // when I disconnect, update the last time I was seen online
-//            lastOnlineRef.onDisconnectSetValue(ServerValue.timestamp())
-//        })
-//        
-//        
-//    }
+    
+    //    MARK: Upload to Storage
+     func uploadUserImage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
+        //        let imageName = UUID().uuidString
+        
+        if let uploadData = UIImageJPEGRepresentation(image, 0.6) {
+            REF_STORAGE_USER_IMAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                
+                if error != nil {
+                    print("Failed to upload image:", error!)
+                    return
+                }
+                
+                if let imageUrl = metadata?.downloadURL()?.absoluteString {
+                    completion(imageUrl)
+                }
+                
+            })
+        }
+    }
     
     func getAllMessagesFor(desiredChat: Chat, handler: @escaping (_ messagesArray: [Message]) -> ()) {
         

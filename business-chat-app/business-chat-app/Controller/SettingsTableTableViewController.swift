@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class SettingsTableTableViewController: UITableViewController {
 	
 	
@@ -41,6 +42,13 @@ class SettingsTableTableViewController: UITableViewController {
 		Services.instance.getmyInfo(handler: { (myName) in
 			self.userNameTextField.text = myName
 		})
+        Services.instance.getUserImage(byUserId: currentUserId!, handler: { (returnedImage) in
+            
+            let newUrl = returnedImage.absoluteString
+            self.profileImageView.loadImageUsingCacheWithUrlString(newUrl)
+            
+            
+        })
 	}
 	
     @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
@@ -135,6 +143,9 @@ class SettingsTableTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 2
     }
-	
+    deinit{
+        
+    }
 
 }
+

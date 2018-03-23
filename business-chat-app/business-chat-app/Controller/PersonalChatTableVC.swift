@@ -200,7 +200,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 	
 	
 	
-	
+    deinit{
+        
+    }
     
 }
 

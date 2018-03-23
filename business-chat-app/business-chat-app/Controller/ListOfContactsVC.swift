@@ -24,17 +24,23 @@ class ListOfContactsVC: UIViewController {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+            Services.instance.getMyContacts { (returnedUsersArray) in
+                self.contactsArray = returnedUsersArray
+                DispatchQueue.main.async {
+                    self.contactsTableView.reloadData()
+                }
+                
+            }
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         
-        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
-            Services.instance.getMyContacts { (returnedUsersArray) in
-                self.contactsArray = returnedUsersArray
-                self.contactsTableView.reloadData()
-            }
-        }
     }
 }
 
@@ -74,33 +80,35 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
                 date = "No messages yet"
             }
             
-            
-            Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
-                Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
-                    Services.instance.getUserStatus(byUserId: contact.chatName) { (userStatus) in
-                        
-                        var statusImage = UIImage()
-                        
-                        if userStatus == "online" {
-                            statusImage = UIImage(named: "status_online")!
+//            Services.instance.getUserImage(byUserId: contact.chatName, handler: { (returnedImage) in
+                Services.instance.getUserName(byUserId: contact.chatName) { (userName) in
+                    Services.instance.getUserEmail(byUserId: contact.chatName) { (userEmail) in
+                        Services.instance.getUserStatus(byUserId: contact.chatName) { (userStatus) in
+                            
+                            var statusImage = UIImage()
+                            
+                            if userStatus == "online" {
+                                statusImage = UIImage(named: "status_online")!
+                            }
+                            else if userStatus == "offline" {
+                                statusImage = UIImage(named: "status_offline")!
+                            }
+                            else if userStatus == "dnd" {
+                                statusImage = UIImage(named: "status_dnd")!
+                            }
+                            else if userStatus == "away" {
+                                statusImage = UIImage(named: "status_away")!
+                            }
+                            
+                            
+                            cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date, statusImage: statusImage)
                         }
-                        else if userStatus == "offline" {
-                            statusImage = UIImage(named: "status_offline")!
-                        }
-                        else if userStatus == "dnd" {
-                            statusImage = UIImage(named: "status_dnd")!
-                        }
-                        else if userStatus == "away" {
-                            statusImage = UIImage(named: "status_away")!
-                        }
-                        
-                        cell.configeureCell(contactName: userName, contactEmail: userEmail, lastMessage: date, statusImage: statusImage)
-                        
                     }
                 }
-            }
+//            })
         }
         return cell
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

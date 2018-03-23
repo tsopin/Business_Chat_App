@@ -71,5 +71,10 @@ class WelcomeScreenVC: UIViewController {
                 
             }
         }
-    }    
+ 
+    }
+    deinit{
+        
+    }
 }
+
