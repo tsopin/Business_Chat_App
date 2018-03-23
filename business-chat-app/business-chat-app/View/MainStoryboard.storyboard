@@ -215,12 +215,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do Not Disturb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-Ok-RbY">
-                                                    <rect key="frame" x="16" y="7" width="154" height="31"/>
+                                                    <rect key="frame" x="16" y="7" width="119" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="UMs-uO-BwD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n4t-CM-lDQ">
@@ -228,6 +228,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="51k-Gu-Zdf"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.56078431370000004" green="0.1764705882" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <connections>
                                                         <action selector="doNotDisturbSwitch:" destination="nxO-zv-oiS" eventType="valueChanged" id="OJb-XX-6cq"/>
                                                     </connections>
@@ -391,20 +392,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFY-Cl-odL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3090" y="553"/>
+            <point key="canvasLocation" x="3030" y="553"/>
         </scene>
         <!--Groups-->
         <scene sceneID="Yrv-2l-f6z">
             <objects>
                 <viewController id="uL3-eF-tlo" customClass="ListOfGroupsVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jAP-PN-KaB">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JqC-T4-d7D">
-                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -419,13 +418,13 @@
                                                     <rect key="frame" x="20" y="10" width="335" height="39.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGZ-3K-8OJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="19.666666666666668"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MY7-Pj-pFO">
-                                                            <rect key="frame" x="0.0" y="19.666666666666668" width="335" height="20.000000000000004"/>
+                                                            <rect key="frame" x="0.0" y="20" width="335" height="19.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                             <color key="textColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
@@ -479,13 +478,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="d8E-8s-fQ8" customClass="AddGroupVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3nf-7F-A4K">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6G2-fq-3Xk">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="638"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zI-Vd-BxJ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -619,13 +616,11 @@
             <objects>
                 <viewController storyboardIdentifier="groupChatVC" title="Group chat" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seJ-0M-QqI" customClass="GroupChatVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y5C-AV-QPG">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhr-Ch-8Z8">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
-
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P0A-gu-8Su">
                                         <rect key="frame" x="8" y="15" width="299" height="30"/>
@@ -664,9 +659,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-I8-Rd1">
-
-                                <rect key="frame" x="0.0" y="116" width="375" height="491"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="578"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="MDZ-Md-2Yc" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -707,7 +700,7 @@
                     <navigationItem key="navigationItem" title="Group chat" id="fTw-Wx-FVf">
                         <barButtonItem key="rightBarButtonItem" title="Info" id="6og-ge-6N6">
                             <connections>
-                                <segue destination="mQX-8b-c5L" kind="show" identifier="showGroupInfo" id="Qw4-gD-P5W"/>
+                                <segue destination="mQX-8b-c5L" kind="show" identifier="showGroupInfo" id="XNI-fw-4IF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -729,20 +722,20 @@
             <objects>
                 <viewController title="Group name" id="mQX-8b-c5L" customClass="GroupInfoVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eUs-Qn-dM1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gPu-fY-CJh">
-                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groupNameCell" rowHeight="44" id="VGN-Z9-yY9" customClass="GroupNameCell" customModule="business_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VGN-Z9-yY9" id="r8b-U9-dc1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter group name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="dob-3e-ZMD">
@@ -769,10 +762,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="groupMemberCell" rowHeight="70" id="DZ7-tD-Ovd" customClass="GroupMemberCell" customModule="business_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="99.333333333333343" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DZ7-tD-Ovd" id="LUn-XV-xdK">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ms-WO-VCI">
@@ -789,13 +782,13 @@
                                                             <rect key="frame" x="50" y="0.0" width="269" height="44"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYp-xG-9hZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="269" height="23.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="269" height="23.333333333333332"/>
                                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                                                     <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggK-BH-fdf">
-                                                                    <rect key="frame" x="0.0" y="23.5" width="269" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="23.333333333333336" width="269" height="20.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                                     <color key="textColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
@@ -815,9 +808,11 @@
                                             <outlet property="userEmailLabel" destination="ggK-BH-fdf" id="Tbv-Oh-ZZH"/>
                                             <outlet property="userImageView" destination="AEQ-jp-X9r" id="4TW-mk-djO"/>
                                             <outlet property="usernameLabel" destination="ZYp-xG-9hZ" id="f1n-hz-xcW"/>
+                                            <segue destination="efe-t0-yS5" kind="show" identifier="showGroupMemberProfile" id="XSQ-oC-MWz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="mQX-8b-c5L" id="J8U-u4-lZC"/>
                                     <outlet property="delegate" destination="mQX-8b-c5L" id="Pso-nw-2Qc"/>
@@ -833,6 +828,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7P9-Ev-cuZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="Js7-7T-UVp">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="nrK-3Y-E6w">
+                            <connections>
+                                <action selector="saveGroupInfo:" destination="mQX-8b-c5L" id="sE2-g7-BFu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupInfoTableView" destination="gPu-fY-CJh" id="A0g-sC-AHR"/>
+                        <outlet property="saveButton" destination="nrK-3Y-E6w" id="UcC-Qp-ZnQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyn-xV-GSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -843,13 +849,11 @@
             <objects>
                 <viewController storyboardIdentifier="personalChatVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hmB-Dj-YAm" userLabel="Personal Chat" customClass="PersonalChatVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tis-cA-V8I">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Rq-O03">
-                                <rect key="frame" x="0.0" y="116" width="375" height="496"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="583"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="ZL3-Bl-QZv" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -871,9 +875,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPR-ap-Ajk">
-
-                                <rect key="frame" x="0.0" y="612" width="375" height="60"/>
-
+                                <rect key="frame" x="0.0" y="723" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gj-kg-qjL">
                                         <rect key="frame" x="8" y="15" width="299" height="30"/>
@@ -949,13 +951,11 @@
             <objects>
                 <viewController storyboardIdentifier="contactListStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9i9-QP-TKe" customClass="ListOfContactsVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bf2-Mh-L9d">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gml-1o-7Ug">
-                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -1064,13 +1064,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="JVZ-jR-cjH" customClass="AddContactVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8rC-uh-Hcg">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oS7-hl-K2z">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
-
+                                <rect key="frame" x="0.0" y="140" width="375" height="638"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -1167,10 +1165,8 @@
                     <tabBarItem key="tabBarItem" title="Chats" image="User" id="AQC-a8-A8u"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="An8-hm-9iy">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
-
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
@@ -1197,10 +1193,8 @@
                     <tabBarItem key="tabBarItem" title="Groups" image="Groups" selectedImage="Groups" id="B1b-aE-9ez"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="PWr-T7-3wc">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
-
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
@@ -1253,9 +1247,7 @@
             <objects>
                 <tableViewController id="efe-t0-yS5" customClass="UserProfileVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vhg-mK-bME">
-
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -1284,7 +1276,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your details" id="5k0-1z-vXZ">
+                            <tableViewSection headerTitle="Personal details" id="5k0-1z-vXZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="C3V-tz-7Up" userLabel="usernameCell">
                                         <rect key="frame" x="0.0" y="196" width="375" height="60"/>
@@ -1382,5 +1374,8 @@
         <image name="profile_pl_blue" width="120" height="120"/>
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XSQ-oC-MWz"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
