@@ -74,7 +74,9 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
         })
         navigationController?.popViewController(animated: true)
     }
-    
+    deinit{
+        
+    }
 }
 
 
@@ -149,4 +151,5 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
 	
     
 }
+
 

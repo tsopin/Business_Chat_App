@@ -32,6 +32,10 @@ class ListOfGroupsVC: UIViewController {
             
         }
     }
+    
+    deinit{
+        
+    }
 }
 
 extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
@@ -65,7 +69,8 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
 		}
 	}
 	
-	
+   
     
     
 }
+

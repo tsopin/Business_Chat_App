@@ -88,8 +88,11 @@ class AddContactVC: UIViewController {
         tableView.dataSource = self
         hideKeyboardWhenTappedAround()
     }
-    
+    deinit{
+        
+    }
 }
+
 
 extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     

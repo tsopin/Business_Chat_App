@@ -24,7 +24,9 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    deinit{
+        
+    }
 
 }
 
@@ -59,6 +61,7 @@ extension GroupInfoVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return indexPath.section == 0 ? 44 : 70
 	}
-
+    
 	
 }
+

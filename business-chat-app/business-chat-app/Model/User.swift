@@ -13,7 +13,7 @@ class User {
     private var _userName: String
     private var _email: String
     private var _status: String
-//    private var _activeChats: [String]
+//    private var _avatarURL: String
     //    private var _contactList: [String]
     
     var userName: String {
@@ -25,6 +25,9 @@ class User {
     var status: String {
         return _status
     }
+//    var avatarUrl: String {
+//        return _avatarURL
+//    }
 //    var activeChat: [String] {
 //        return _activeChats
 //    }
@@ -36,6 +39,7 @@ class User {
         self._userName = userName
         self._email = email
         self._status = status
+//        self._avatarURL = avatarUrl
 //        self._activeChats = activeChat
         //        self._contactList = contactList
         

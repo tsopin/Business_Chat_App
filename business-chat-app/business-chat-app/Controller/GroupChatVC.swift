@@ -177,7 +177,9 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
 	
 	// MARK: -- Navigation --
-	
+    deinit{
+        
+    }
 
     
 }
