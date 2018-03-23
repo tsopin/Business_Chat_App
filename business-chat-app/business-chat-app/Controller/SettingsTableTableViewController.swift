@@ -47,7 +47,6 @@ class SettingsTableTableViewController: UITableViewController {
             let newUrl = returnedImage.absoluteString
             self.profileImageView.loadImageUsingCacheWithUrlString(newUrl)
             
-            
         })
 	}
 	

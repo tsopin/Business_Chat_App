@@ -26,6 +26,9 @@ class PersonalChatCell: UITableViewCell {
         
         let placeHolder = UIImage(named: "userpic_placeholder_small" )
         
+        userpicImage.layer.masksToBounds = true
+        userpicImage.layer.cornerRadius = 20
+        
         self.contactName.text = contactName
         self.contactEmail.text = contactEmail
         self.lastMessage.text = lastMessage

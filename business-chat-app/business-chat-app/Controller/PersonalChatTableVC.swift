@@ -38,13 +38,17 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
-            
-           self.title = userName
-//            self.contactNameLabel.text = userEmail
-            
+        Services.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
+            self.title = userData.1
+           
         }
+        
+//        Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
+//
+//           self.title = userName
+////            self.contactNameLabel.text = userEmail
+//
+//        }
         
         
         Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in

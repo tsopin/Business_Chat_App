@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 
 let DATABASE = Database.database().reference()
@@ -201,7 +202,7 @@ class Services {
     //    MARK: Getting users, chat, contacts
     
     //    Get my all personal chats
-    func getMyContacts(handler: @escaping (_ contactsArray: [Chat]) -> ()) {
+    func getMyPersonalChats(handler: @escaping (_ contactsArray: [Chat]) -> ()) {
         
         var chatsArray = [Chat]()
         REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
@@ -214,7 +215,7 @@ class Services {
                 let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
                 if  isGroupArray == false && memberArray.keys.contains(currentUserId!) {
                     
-                    //                    let groupName = group.childSnapshot(forPath: "chatName").value as! String
+                    //let groupName = group.childSnapshot(forPath: "chatName").value as! String
                     chatNamesAray = Array(memberArray.keys)
                     chatNamesAray = chatNamesAray.filter { $0 != currentUserId }
                     chatName = chatNamesAray[0]
@@ -265,7 +266,7 @@ class Services {
                 guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
                 guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
                 guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
-                
+//                guard let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as? String else {return}
                 
                 
                 
@@ -305,97 +306,53 @@ class Services {
         }
     }
     //Get Info for user ID
-    func getUserEmail(byUserId userId: String, handler: @escaping (_ userEmail: String) -> ()) {
+    func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String,String,String)) -> ()) {
         
-        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+        REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
             
-            var returnedUserEmail = String()
+            var returnedEmail = String()
+            var returnedUsername = String()
+            var returnedStatus = String()
+            
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
             
             for user in userSnapshot {
                 
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
+                let userName = user.childSnapshot(forPath: "username").value as! String
+                let status = user.childSnapshot(forPath: "status").value as! String
+//                let userPic = user.childSnapshot(forPath: "avatar").value as! Bool
                 
                 if user.key == userId {
-                    returnedUserEmail = userEmail
-                    print("Returned \(returnedUserEmail)")
+                    
+                    returnedEmail = userEmail
+                    returnedUsername = userName
+                    returnedStatus = status
+                    
                 }
-                handler(returnedUserEmail)
-            }
-            
-        }
-    }
-    
-    //Get Info for user ID
-    func getUserStatus(byUserId userId: String, handler: @escaping (_ userEmail: String) -> ()) {
-        
-        REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
-            
-            var returnedStatus = String()
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-            
-            for user in userSnapshot {
-                
-                let userStatus = user.childSnapshot(forPath: "status").value as! String
-                
-                if user.key == userId {
-                    returnedStatus = userStatus
-                    print("Returned \(userStatus)")
-                }
-                handler(returnedStatus)
+                handler((returnedEmail, returnedUsername, returnedStatus))
             }
             
         })
     }
     
     //Get Info for user ID
-    func getUserImage(byUserId userId: String, handler: @escaping (_ userImage: URL) -> ()) {
+    func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
         
    
         REF_STORAGE_USER_IMAGES.child(userId).downloadURL { (url, error) in
             //using a guard statement to unwrap the url and check for error
             guard let imageURL = url, error == nil else {
-                
-                return
-            }
-//            guard let data = NSData(contentsOf: imageURL) else {
-//                //same thing here, handle failed data download
-//                return
-//            }
-            let image = imageURL
-            
-            handler(image)
-        }
-
-    }
-
-    
-    func checkUserImage() {
-    
-    }
-    
-    
-    //Get Info for user ID
-    func getUserName(byUserId userId: String, handler: @escaping (_ userName: String) -> ()) {
-        
-        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
-            
-            var returnedUserName = String()
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-            
-            for user in userSnapshot {
-                
-                let userName = user.childSnapshot(forPath: "username").value as! String
-                
-                if user.key == userId {
-                    returnedUserName = userName
-                    print(returnedUserName)
+                if error != nil {
+                    print("FILE NOT EXIST")
                 }
-                handler(returnedUserName)
-            }
+                return}
             
+            handler(imageURL)
         }
+
     }
+
     //Get users ID's by Email
     func getUsersIds(forUsernames usernames: [String], handler: @escaping (_ usersIdsArray: [String]) -> ()) {
         
@@ -428,7 +385,6 @@ class Services {
             for chat in userSnapshot {
                 
                 let chatId = chat.childSnapshot(forPath: "members").value as! [String:Bool]
-//                if chatId.contains(where: { $0.value })
                 if chatId.keys.contains(currentUserId!) {
                     chatIdsArray[chat.key] = true
                 }
@@ -471,6 +427,8 @@ class Services {
                 let email = user.childSnapshot(forPath: "email").value as! String
                 let userName = user.childSnapshot(forPath: "username").value as! String
                 let status = user.childSnapshot(forPath: "status").value as! String
+//                let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as! String
+                
                 if email.contains(query) == true && email != Auth.auth().currentUser?.email {
                     let user = User(userName: userName, email: email, status: status)
                     userArray.append(user)
@@ -485,7 +443,7 @@ class Services {
      func uploadUserImage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
         //        let imageName = UUID().uuidString
         
-        if let uploadData = UIImageJPEGRepresentation(image, 0.6) {
+        if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
             REF_STORAGE_USER_IMAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 
                 if error != nil {
