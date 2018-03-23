@@ -21,7 +21,7 @@ class Services {
     
     private var _REF_DATABASE = DATABASE
     private var _REF_USERS = DATABASE.child("users")
-    private var _REF_CHATS = DATABASE.child("chats")
+    private var _REF_CHATS = DATABASE.child("chats-test")
     private var _REF_MESSAGES = DATABASE.child("messages")
     private var _REF_STATUS = DATABASE.child(".info/connected")
     
