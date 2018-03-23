@@ -49,7 +49,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             })
         }
 		
-		// Check chat name and set title
+		// Check chat name and set title (in case it was changed)
 		Services.instance.REF_CHATS.child((chat?.key)!).observeSingleEvent(of: .value) { (snapshot) in
 			let value = snapshot.value as? NSDictionary
 			let chatName = value!["chatName"] as? String ?? ""

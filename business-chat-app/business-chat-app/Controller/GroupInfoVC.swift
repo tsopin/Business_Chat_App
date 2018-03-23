@@ -11,6 +11,7 @@ import UIKit
 class GroupInfoVC: UIViewController, UITextFieldDelegate {
 	
 	@IBOutlet weak var saveButton: UIBarButtonItem!
+	@IBOutlet weak var groupInfoTableView: UITableView!
 	
 	var chat: Chat?
 	var memberIds: [String] = []
@@ -23,6 +24,7 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.title = chat?.chatName
+		self.hideKeyboardWhenTappedAround()
 		saveButton.isEnabled = false
 		
 		for member in (chat?.members)! {
@@ -48,6 +50,17 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
 		let chatKey = chat?.key
 		Services.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
 		navigationController?.popViewController(animated: true)
+	}
+	
+	// MARK: -- Navigation --
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showGroupMemberProfile" {
+			let indexPath = groupInfoTableView.indexPathForSelectedRow
+			let userId = memberIds[(indexPath?.row)!]
+			let userProfileVC = segue.destination as! UserProfileVC
+			userProfileVC.userId = userId
+		}
 	}
 	
 	

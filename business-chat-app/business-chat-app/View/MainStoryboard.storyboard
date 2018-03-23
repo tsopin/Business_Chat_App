@@ -808,6 +808,7 @@
                                             <outlet property="userEmailLabel" destination="ggK-BH-fdf" id="Tbv-Oh-ZZH"/>
                                             <outlet property="userImageView" destination="AEQ-jp-X9r" id="4TW-mk-djO"/>
                                             <outlet property="usernameLabel" destination="ZYp-xG-9hZ" id="f1n-hz-xcW"/>
+                                            <segue destination="efe-t0-yS5" kind="show" identifier="showGroupMemberProfile" id="XSQ-oC-MWz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -827,7 +828,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7P9-Ev-cuZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Js7-7T-UVp">
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="Js7-7T-UVp">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="nrK-3Y-E6w">
                             <connections>
                                 <action selector="saveGroupInfo:" destination="mQX-8b-c5L" id="sE2-g7-BFu"/>
@@ -835,6 +836,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="groupInfoTableView" destination="gPu-fY-CJh" id="A0g-sC-AHR"/>
                         <outlet property="saveButton" destination="nrK-3Y-E6w" id="UcC-Qp-ZnQ"/>
                     </connections>
                 </viewController>
@@ -1274,7 +1276,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your details" id="5k0-1z-vXZ">
+                            <tableViewSection headerTitle="Personal details" id="5k0-1z-vXZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="C3V-tz-7Up" userLabel="usernameCell">
                                         <rect key="frame" x="0.0" y="196" width="375" height="60"/>
@@ -1372,5 +1374,8 @@
         <image name="profile_pl_blue" width="120" height="120"/>
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XSQ-oC-MWz"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
