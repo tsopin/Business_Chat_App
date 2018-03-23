@@ -48,12 +48,18 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 }
             })
         }
+		
+		// Check chat name and set title (in case it was changed)
+		Services.instance.REF_CHATS.child((chat?.key)!).observeSingleEvent(of: .value) { (snapshot) in
+			let value = snapshot.value as? NSDictionary
+			let chatName = value!["chatName"] as? String ?? ""
+			self.title = chatName
+		}
+		
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-		self.title = chat?.chatName
 
         
         NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -177,9 +183,20 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
 	
 	// MARK: -- Navigation --
+
     deinit{
         
     }
+
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showGroupInfo" {
+			let groupInfoVC = segue.destination as! GroupInfoVC
+			groupInfoVC.initData(forChat: chat!)
+		}
+	}
+	
+
 
     
 }

@@ -15,17 +15,32 @@ class UserProfileVC: UITableViewController {
 	@IBOutlet weak var userEmailLabel: UILabel!
 	
 	var chatName = ""
+	var userId = ""
 	
 	override func viewWillAppear(_ animated: Bool) {
 		
-		Services.instance.getUserName(byUserId: chatName) { (username) in
-			self.title = username
-			self.usernameLabel.text = username
+		// get user by chatName (if from Chat) or by userId if from Group
+		if chatName != "" {
+			Services.instance.getUserName(byUserId: chatName) { (username) in
+				self.title = username
+				self.usernameLabel.text = username
+			}
+
+			Services.instance.getUserEmail(byUserId: chatName) { (email) in
+				self.userEmailLabel.text = email
+			}
+		} else {
+			Services.instance.getUserName(byUserId: userId) { (username) in
+				self.title = username
+				self.usernameLabel.text = username
+			}
+			Services.instance.getUserEmail(byUserId: userId) { (email) in
+				self.userEmailLabel.text = email
+			}
 		}
 		
-		Services.instance.getUserEmail(byUserId: chatName) { (email) in
-			self.userEmailLabel.text = email
-		}
+		
+		
 	}
 
 	

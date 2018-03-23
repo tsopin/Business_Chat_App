@@ -215,12 +215,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do Not Disturb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-Ok-RbY">
-                                                    <rect key="frame" x="16" y="7" width="154" height="31"/>
+                                                    <rect key="frame" x="16" y="7" width="119" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="UMs-uO-BwD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n4t-CM-lDQ">
@@ -228,6 +228,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="51k-Gu-Zdf"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.56078431370000004" green="0.1764705882" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <connections>
                                                         <action selector="doNotDisturbSwitch:" destination="nxO-zv-oiS" eventType="valueChanged" id="OJb-XX-6cq"/>
                                                     </connections>
@@ -403,7 +404,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFY-Cl-odL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3088.8000000000002" y="552.70935960591135"/>
+
+            <point key="canvasLocation" x="3030" y="553"/>
+
         </scene>
         <!--Groups-->
         <scene sceneID="Yrv-2l-f6z">
@@ -711,7 +714,7 @@
                     <navigationItem key="navigationItem" title="Group chat" id="fTw-Wx-FVf">
                         <barButtonItem key="rightBarButtonItem" title="Info" id="6og-ge-6N6">
                             <connections>
-                                <segue destination="mQX-8b-c5L" kind="show" identifier="showGroupInfo" id="Qw4-gD-P5W"/>
+                                <segue destination="mQX-8b-c5L" kind="show" identifier="showGroupInfo" id="XNI-fw-4IF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -737,7 +740,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gPu-fY-CJh">
-                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
+
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -819,9 +824,11 @@
                                             <outlet property="userEmailLabel" destination="ggK-BH-fdf" id="Tbv-Oh-ZZH"/>
                                             <outlet property="userImageView" destination="AEQ-jp-X9r" id="4TW-mk-djO"/>
                                             <outlet property="usernameLabel" destination="ZYp-xG-9hZ" id="f1n-hz-xcW"/>
+                                            <segue destination="efe-t0-yS5" kind="show" identifier="showGroupMemberProfile" id="XSQ-oC-MWz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="mQX-8b-c5L" id="J8U-u4-lZC"/>
                                     <outlet property="delegate" destination="mQX-8b-c5L" id="Pso-nw-2Qc"/>
@@ -837,6 +844,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7P9-Ev-cuZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="Js7-7T-UVp">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="nrK-3Y-E6w">
+                            <connections>
+                                <action selector="saveGroupInfo:" destination="mQX-8b-c5L" id="sE2-g7-BFu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupInfoTableView" destination="gPu-fY-CJh" id="A0g-sC-AHR"/>
+                        <outlet property="saveButton" destination="nrK-3Y-E6w" id="UcC-Qp-ZnQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyn-xV-GSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1275,7 +1293,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your details" id="5k0-1z-vXZ">
+                            <tableViewSection headerTitle="Personal details" id="5k0-1z-vXZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="C3V-tz-7Up" userLabel="usernameCell">
                                         <rect key="frame" x="0.0" y="196" width="375" height="60"/>
@@ -1373,5 +1391,8 @@
         <image name="status_dnd" width="45" height="45"/>
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XSQ-oC-MWz"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
