@@ -29,15 +29,7 @@ class AddContactVC: UIViewController {
         Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             
             let userIds = idsArray
-            var newIds = [String:String]()
-            
-            for i in idsArray{
-                newIds[i] = self.currentUserId
-            }
-            
-            
-            
-            
+     
             Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
                 if contactCreated {
@@ -46,15 +38,11 @@ class AddContactVC: UIViewController {
                     print("Contact Adding Error")
                 }
             })
-            
-            
-            
-            //                let name = "\(self.chosenUserArray[0]) + \(self.currentUserEmail)"
-            
-            Services.instance.createPersonalChat(forChatName: "defaultPersonalChat", forMemberIds: newIds, isGroupChat: false, handler: { (chatCreated) in
+ 
+            Services.instance.createChat(forChatName: "defaultPersonalChat", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     
-                    self.dataServices.addPersonalChatsToUser()
+                    Services.instance.addChatToUser(isGroup: false)
                     
                 } else {
                     print("Chat Creation Error")
@@ -63,13 +51,7 @@ class AddContactVC: UIViewController {
         })
         
     }
-    
-    
-    
-    
-    
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         doneButton.isEnabled = false

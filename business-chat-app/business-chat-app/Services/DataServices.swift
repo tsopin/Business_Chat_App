@@ -10,17 +10,14 @@ import Foundation
 import Firebase
 import FirebaseStorage
 
-
 let DATABASE = Database.database().reference()
 let STORAGE = Storage.storage().reference()
 let currentUserId = Auth.auth().currentUser?.uid
 let currentEmail = Auth.auth().currentUser?.email
 let currentUserName = Auth.auth().currentUser?.uid
 
-
 class Services {
     static let instance = Services()
-    
     
     private var _REF_DATABASE = DATABASE
     private var _REF_USERS = DATABASE.child("users")
@@ -29,7 +26,6 @@ class Services {
     private var _REF_STATUS = DATABASE.child(".info/connected")
     private var _REF_STORAGE_USER_IMAGES = STORAGE.child("userImages")
     
-    
     var REF_DATABASE: DatabaseReference {
         
         _REF_DATABASE.keepSynced(true)
@@ -37,30 +33,29 @@ class Services {
     }
     var REF_STORAGE_USER_IMAGES: StorageReference {
         
-//        _REF_STORAGE.keepSynced(true)
+        //        _REF_STORAGE.keepSynced(true)
         return _REF_STORAGE_USER_IMAGES
     }
     var REF_USERS: DatabaseReference {
-       
+        
         _REF_USERS.keepSynced(true)
         return _REF_USERS
     }
     var REF_CHATS: DatabaseReference {
-       
+        
         _REF_CHATS.keepSynced(true)
         return _REF_CHATS
     }
     var REF_MESSAGES: DatabaseReference {
-   
+        
         _REF_MESSAGES.keepSynced(true)
         return _REF_MESSAGES
     }
     var REF_STATUS: DatabaseReference {
-
+        
         _REF_STATUS.keepSynced(true)
         return _REF_STATUS
     }
-
     
     //MARK: Add and update data to Database
     
@@ -80,16 +75,14 @@ class Services {
             
             newContacts[user] = true
         }
+        
         REF_USERS.child(currentUserId!).updateChildValues(["contactList" : newContacts])
-        //
-        
         handler(true)
-        
     }
     
-    
+    // Get connection status
     func myStatus() {
-
+        
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: {  snapshot in
             if snapshot.value as? Bool ?? false {
@@ -98,22 +91,8 @@ class Services {
                 print("Not connected")
             }
         })
-
-
     }
     
-    // Update personal chats in database
-    func updatePersonalChat(forPersonalChat chatIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
-        
-        REF_USERS.child(currentUserId!).updateChildValues(["activePersonalChats" : chatIds])
-        handler(true)
-    }
-    // Update group chats in database
-    func updateGroupChat(forGroupChats activeGroupChatsIds: [String:Bool], handler: @escaping (_ chatUpdated: Bool) -> ()) {
-        
-        REF_USERS.child(currentUserId!).updateChildValues(["activeGroupChats" : activeGroupChatsIds])
-        handler(true)
-    }
     func updateUserStatus(withStatus userStatus: String, handler: @escaping (_ chatUpdated: Bool) -> ()) {
         
         REF_USERS.child(currentUserId!).updateChildValues(["status" : userStatus])
@@ -121,70 +100,48 @@ class Services {
     }
     
     // Create a new group chat
-    func createGroupChat(forChatName chatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
+    func createChat(forChatName chatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
         
         var newMembers = [String:Bool]()
         
-        for member in memberIds {
+        switch isGroupChat{
             
-            newMembers[member] = true
-        }
-        
-        REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
-                                            "members" : newMembers,
-                                            "chatName" : chatName])
-        handler(true)
-    }
-    // Create a new group chat
-    func createPersonalChat(forChatName chatName: String, forMemberIds memberIds: [String:String], isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
-        
-        
-        for i in memberIds {
+        case true:
+            for member in memberIds {
+                newMembers[member] = true
+            }
             
-            var goArray = [String:Bool]()
-            
-            goArray[i.key] = true
-            goArray[i.value] = true
             REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
-                                                "members" : goArray,
+                                                "members" : newMembers,
                                                 "chatName" : chatName])
+            handler(true)
             
+        case false:
+            for memberId in memberIds {
+                
+                REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
+                                                    "members" : [memberId:true, currentUserId!:true],
+                                                    "chatName" : chatName])
+            }
+            handler(true)
         }
-        
-        handler(true)
     }
     
     //  Update user's active personal chats with choosen chats
-    func addPersonalChatsToUser()  {
+    func addChatToUser(isGroup: Bool)  {
         
-        Services.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
+        switch isGroup{
             
-            Services.instance.updatePersonalChat( forPersonalChat: idsArray, handler: { (chatCreated) in
-                if chatCreated {
-                    
-                    print("Chat added")
-                    
-                }else {
-                    print("Chat addition Error")
-                }
+        case true:
+            Services.instance.getMyGroupIds(withMe: currentUserId!, handler: { (groupIdsArray) in
+                self.REF_USERS.child(currentUserId!).updateChildValues(["activeGroupChats" : groupIdsArray])
             })
-        })
-    }
-    
-    //  Update user's active group chats with choosen chats
-    func addGroupChatsToUser() {
-        Services.instance.getMyGroupIds(withMe: currentUserId!, handler: { (groupIdsArray) in
-            
-            Services.instance.updateGroupChat(forGroupChats: groupIdsArray, handler: { (userUpdated) in
-                if userUpdated {
-                    
-                    print("Group Chat added")
-                    
-                }else {
-                    print("Chat addition Error")
-                }
+        
+        case false:
+            Services.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
+                self.REF_USERS.child(currentUserId!).updateChildValues(["activePersonalChats" : idsArray])
             })
-        })
+        }
     }
     
     // Upload message to Database
@@ -196,7 +153,6 @@ class Services {
                                                                "senderId" : senderId,
                                                                "timeSent": timeSent ])
         sendComplete(true)
-        
     }
     
     //    MARK: Getting users, chat, contacts
@@ -219,7 +175,7 @@ class Services {
                     chatNamesAray = Array(memberArray.keys)
                     chatNamesAray = chatNamesAray.filter { $0 != currentUserId }
                     chatName = chatNamesAray[0]
-                    let groupKey = group.key                     
+                    let groupKey = group.key
                     let group = Chat(name: chatName, members: memberArray, chatKey: groupKey, memberCount: "\(memberArray.count)")
                     
                     chatsArray.append(group)
@@ -227,7 +183,6 @@ class Services {
             }
             handler(chatsArray)
         }
-        
     }
     
     //    Get my group chats
@@ -251,9 +206,8 @@ class Services {
             }
             handler(groupsArray)
         }
-        
-        
     }
+    
     //    Get all registred users from database
     func getAllUsers(handler: @escaping (_ allUsersArray: [User]) -> ()) {
         
@@ -266,16 +220,12 @@ class Services {
                 guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
                 guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
                 guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
-//                guard let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as? String else {return}
-                
-                
                 
                 let user = User(userName: userName, email: email, status: status)
                 
                 if email != currentEmail{
                     usersArray.append(user)
                 }
-                
             }
             handler(usersArray)
         }
@@ -302,9 +252,9 @@ class Services {
                 }
                 handler(myName)
             }
-            
         }
     }
+    
     //Get Info for user ID
     func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String,String,String)) -> ()) {
         
@@ -321,38 +271,35 @@ class Services {
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
                 let userName = user.childSnapshot(forPath: "username").value as! String
                 let status = user.childSnapshot(forPath: "status").value as! String
-//                let userPic = user.childSnapshot(forPath: "avatar").value as! Bool
+                // let userPic = user.childSnapshot(forPath: "avatar").value as! Bool
                 
                 if user.key == userId {
                     
                     returnedEmail = userEmail
                     returnedUsername = userName
                     returnedStatus = status
-                    
                 }
                 handler((returnedEmail, returnedUsername, returnedStatus))
             }
-            
         })
     }
     
     //Get Info for user ID
     func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
         
-   
+        
         REF_STORAGE_USER_IMAGES.child(userId).downloadURL { (url, error) in
             //using a guard statement to unwrap the url and check for error
             guard let imageURL = url, error == nil else {
                 if error != nil {
-                    print("FILE NOT EXIST")
+//                    print("FILE NOT EXIST")
                 }
                 return}
             
             handler(imageURL)
         }
-
     }
-
+    
     //Get users ID's by Email
     func getUsersIds(forUsernames usernames: [String], handler: @escaping (_ usersIdsArray: [String]) -> ()) {
         
@@ -375,7 +322,6 @@ class Services {
     //Get personal chats ID's by members ID's
     func getMyPersonalChatsIds(withMe myId: String, handler: @escaping (_ uidArray: [String:Bool]) -> ()) {
         
-        
         REF_CHATS.observeSingleEvent(of: .value) { (userSnapshot) in
             
             var chatIdsArray = [String:Bool]()
@@ -395,7 +341,6 @@ class Services {
     
     //Get group chats ID's by members ID's
     func getMyGroupIds(withMe myId: String, handler: @escaping (_ uidArray: [String:Bool]) -> ()) {
-        
         
         REF_CHATS.observeSingleEvent(of: .value) { (userSnapshot) in
             
@@ -427,7 +372,7 @@ class Services {
                 let email = user.childSnapshot(forPath: "email").value as! String
                 let userName = user.childSnapshot(forPath: "username").value as! String
                 let status = user.childSnapshot(forPath: "status").value as! String
-//                let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as! String
+                //                let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as! String
                 
                 if email.contains(query) == true && email != Auth.auth().currentUser?.email {
                     let user = User(userName: userName, email: email, status: status)
@@ -438,10 +383,8 @@ class Services {
         }
     }
     
-    
     //    MARK: Upload to Storage
-     func uploadUserImage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
-        //        let imageName = UUID().uuidString
+    func uploadUserImage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
         
         if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
             REF_STORAGE_USER_IMAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -454,7 +397,6 @@ class Services {
                 if let imageUrl = metadata?.downloadURL()?.absoluteString {
                     completion(imageUrl)
                 }
-                
             })
         }
     }
@@ -473,9 +415,8 @@ class Services {
                 let groupMessage = Message(content: content, timeSent: timeSent, senderId: senderId)
                 
                 groupMessageArray.append(groupMessage)
-                
             }
-                handler(groupMessageArray)
+            handler(groupMessageArray)
         })
     }
 }
