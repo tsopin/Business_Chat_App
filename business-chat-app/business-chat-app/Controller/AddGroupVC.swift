@@ -19,7 +19,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
     
 //    let currentUserId = Auth.auth().currentUser?.uid
 //    let currentUserEmail = (Auth.auth().currentUser?.email)!
-    let dataServices = Services()
+//    let dataServices = Services()
     var userArray = [User]()
     var chosenUserArray = [String]()
     var Array = [String]()
@@ -60,13 +60,11 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
         Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
             userIds.append(currentUserId!)
-			
-			
-            
-		Services.instance.createGroupChat(forChatName: groupName, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
+
+		Services.instance.createChat(forChatName: groupName, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
                 if chatCreated {
                     
-                    self.dataServices.addGroupChatsToUser()
+                    Services.instance.addChatToUser(isGroup: true)
                 }else {
                     print("Chat Creation Error")
                 }
