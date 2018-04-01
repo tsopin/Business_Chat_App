@@ -26,8 +26,8 @@ class ListOfContactsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
-            Services.instance.getMyPersonalChats { (returnedUsersArray) in
+        ChatServices.instance.REF_CHATS.observe(.value) { (snapshot) in
+            ChatServices.instance.getMyPersonalChats { (returnedUsersArray) in
                 self.contactsArray = returnedUsersArray
                                 DispatchQueue.main.async {
                 self.contactsTableView.reloadData()
@@ -60,7 +60,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         
         
         let contact = contactsArray[indexPath.row]
-        Services.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
+        MessageServices.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
             
             let amount = returnedMessage.count - 1
 
@@ -78,7 +78,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
                 date = "No messages yet"
             }
             
-            Services.instance.getUserData(byUserId: contact.chatName) { (userData) in
+            UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
                 
 //                var userImage = UIImage()
                 

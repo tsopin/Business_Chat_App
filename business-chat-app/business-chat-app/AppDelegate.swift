@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Services.instance.myStatus()
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
-                Services.instance.updateUserStatus(withStatus: "online", handler: { (online) in
+                UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
                     if online == true {
                         print("status set to Online")
                     }
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
-                Services.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+                UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
                     if online == true {
                         print("status set to Offile")
                     }
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
-                Services.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+                UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
                     if online == true {
                         print("status set to offline")
                     }
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
-                Services.instance.updateUserStatus(withStatus: "online", handler: { (online) in
+                UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
                     if online == true {
                         print("status set to Online")
                     }

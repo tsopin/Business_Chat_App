@@ -24,13 +24,12 @@ class ListOfGroupsVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
-            Services.instance.getMyGroups { (returnedGroupsArray) in
+//        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
+            ChatServices.instance.getMyGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
                 self.groupsTableView.reloadData()
             }
-            
-        }
+//        }
     }
     
     deinit{

@@ -26,11 +26,11 @@ class AddContactVC: UIViewController {
     
     @IBAction func doneBtn(_ sender: Any) {
         
-        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        UserServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             
             let userIds = idsArray
      
-            Services.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
+            UserServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
                 
                 if contactCreated {
                     self.presentStoryboard()
@@ -39,10 +39,10 @@ class AddContactVC: UIViewController {
                 }
             })
  
-            Services.instance.createChat(forChatName: "defaultPersonalChat", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
+            ChatServices.instance.createChat(forChatName: "defaultPersonalChat", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
                 if chatCreated {
                     
-                    Services.instance.addChatToUser(isGroup: false)
+                    UserServices.instance.addChatToUser(isGroup: false)
                     
                 } else {
                     print("Chat Creation Error")
@@ -56,8 +56,8 @@ class AddContactVC: UIViewController {
         super.viewWillAppear(animated)
         doneButton.isEnabled = false
         
-        Services.instance.REF_USERS.observe(.value) { (snapshot) in
-            Services.instance.getAllUsers{ (returnedUsersArray) in
+        UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
+            UserServices.instance.getAllUsers{ (returnedUsersArray) in
                 self.usersArray = returnedUsersArray
                 self.tableView.reloadData()
             }

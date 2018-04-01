@@ -57,14 +57,14 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
 			groupName = "New group"
 		}
         
-        Services.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
+        UserServices.instance.getUsersIds(forUsernames: chosenUserArray, handler: { (idsArray) in
             var userIds = idsArray
             userIds.append(currentUserId!)
 
-		Services.instance.createChat(forChatName: groupName, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
+		ChatServices.instance.createChat(forChatName: groupName, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
                 if chatCreated {
                     
-                    Services.instance.addChatToUser(isGroup: true)
+                    UserServices.instance.addChatToUser(isGroup: true)
                 }else {
                     print("Chat Creation Error")
                 }
@@ -133,7 +133,7 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
 				userArray = []
 				tableView.reloadData()
 			} else {
-				Services.instance.getUserInfoByEmail(forSearchQuery: self.searchController.searchBar.text!, handler: { (returnedEmailArray) in
+				UserServices.instance.getUserInfoByEmail(forSearchQuery: self.searchController.searchBar.text!, handler: { (returnedEmailArray) in
 					self.userArray = returnedEmailArray
 					self.tableView.reloadData()
 				})

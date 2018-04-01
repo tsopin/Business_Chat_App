@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class SettingsTableTableViewController: UITableViewController {
+class SettingsVC: UITableViewController {
 	
 	
 	@IBOutlet weak var profileImageView: UIImageView!
@@ -39,7 +39,7 @@ class SettingsTableTableViewController: UITableViewController {
 		
 		emailTextField.text = currentEmail
 		
-		Services.instance.getmyInfo(handler: { (myName) in
+		UserServices.instance.getmyInfo(handler: { (myName) in
 			self.userNameTextField.text = myName
 		})
         Services.instance.getUserImage(byUserId: currentUserId!, handler: { (returnedImage) in
@@ -55,7 +55,7 @@ class SettingsTableTableViewController: UITableViewController {
         if (dndSwitchOutlet.isOn) {
             Auth.auth().addStateDidChangeListener() { auth, user in
                 if user != nil {
-                    Services.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
+                    UserServices.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
                         if online == true {
                             print("status set to DND")
                         }
@@ -69,7 +69,7 @@ class SettingsTableTableViewController: UITableViewController {
         } else {
             Auth.auth().addStateDidChangeListener() { auth, user in
                 if user != nil {
-                    Services.instance.updateUserStatus(withStatus: "online", handler: { (online) in
+                    UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
                         if online == true {
                             print("status set to Online")
                         }
@@ -100,7 +100,7 @@ class SettingsTableTableViewController: UITableViewController {
 				self.dismiss(animated: true, completion: nil)
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
-                        Services.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+                        UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
                             if online == true {
                                 print("status set to Offile")
                             }
