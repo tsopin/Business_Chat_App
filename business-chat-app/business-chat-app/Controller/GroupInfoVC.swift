@@ -49,7 +49,7 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
     @IBAction func saveGroupInfo(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
         let chatKey = chat?.key
-        Services.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
+        ChatServices.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
         navigationController?.popViewController(animated: true)
     }
     
@@ -94,7 +94,7 @@ extension GroupInfoVC: UITableViewDelegate, UITableViewDataSource {
             
                 let cell = tableView.dequeueReusableCell(withIdentifier: "groupMemberCell") as! GroupMemberCell
             
-            Services.instance.getUserData(byUserId: memberIds[indexPath.row], handler: { (userData) in
+            UserServices.instance.getUserData(byUserId: memberIds[indexPath.row], handler: { (userData) in
                 cell.usernameLabel.text = userData.1
                 cell.userEmailLabel.text = userData.0
             })

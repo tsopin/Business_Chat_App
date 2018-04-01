@@ -38,7 +38,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        Services.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
+        UserServices.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
             self.title = userData.1
            
         }
@@ -51,8 +51,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        }
         
         
-        Services.instance.REF_MESSAGES.observe(.value) { (snapshot) in
-            Services.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
+        MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
+            MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
                 self.chatMessages = returnedChatMessages
                 self.chatTableView.reloadData()
                 
@@ -153,7 +153,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
         if textField.text != "" {
             sendBtn.isEnabled = false
-            Services.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
+            MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
                 if complete {
                     self.textField.isEnabled = true
                     self.sendBtn.isEnabled = true

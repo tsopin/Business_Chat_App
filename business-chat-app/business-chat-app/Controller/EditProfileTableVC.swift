@@ -37,7 +37,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
 		self.hideKeyboardWhenTappedAround()
 		
 		userEmailLabel.text = currentEmail
-		Services.instance.getmyInfo(handler: { (myName) in
+		UserServices.instance.getmyInfo(handler: { (myName) in
 			self.usernameTextField.text = myName
 		})
         Services.instance.getUserImage(byUserId: currentUserId!, handler: { (returnedImage) in
@@ -102,7 +102,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
         
                 Services.instance.uploadUserImage(withImage: image, completion: { (imageUrl) in
         
-                    Services.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true])
+                    UserServices.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true])
                 
                 })
         
@@ -126,7 +126,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
 		if usernameTextField.text != "" {
 			print(usernameTextField.text!)
 			userName = usernameTextField.text!
-			Services.instance.createDBUser(uid: currentUserId!, userData: ["username" : userName])
+			UserServices.instance.createDBUser(uid: currentUserId!, userData: ["username" : userName])
 			navigationController?.popViewController(animated: true)
 		} else {
 			print("empty username!")

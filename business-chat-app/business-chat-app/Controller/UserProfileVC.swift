@@ -22,7 +22,7 @@ class UserProfileVC: UITableViewController {
 		// get user by chatName (if from Chat) or by userId if from Group
 //        if chatName != "" {
         
-            Services.instance.getUserData(byUserId: chatName, handler: { (userData) in
+            UserServices.instance.getUserData(byUserId: chatName, handler: { (userData) in
                 self.usernameLabel.text = userData.1
                 self.userEmailLabel.text = userData.0
             

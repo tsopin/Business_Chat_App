@@ -77,7 +77,7 @@ class RegisterScreenVC: UIViewController {
             } else {
             
                 let userData = ["username": userName, "email": email]
-                Services.instance.createDBUser(uid: (user?.uid)!, userData: userData)
+                UserServices.instance.createDBUser(uid: (user?.uid)!, userData: userData)
                 userCreationComplete(true, nil)
 
             }
