@@ -80,33 +80,24 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
             
             UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
                 
-//                var userImage = UIImage()
+              var statusImage = UIImage()
+              let contactEmail = userData.0
+              let contactName = userData.1
+              let imageUrl = userData.3
+              let contactStatus = userData.2
                 
-                var statusImage = UIImage()
-                
-                var userStatus = String()
-                
-                userStatus = userData.2
-                
-                if userStatus == "online" {
-                    statusImage = UIImage(named: "status_online")!
-                }
-                else if userStatus == "offline" {
-                    statusImage = UIImage(named: "status_offline")!
-                }
-                else if userStatus == "dnd" {
-                    statusImage = UIImage(named: "status_dnd")!
-                }
-                else if userStatus == "away" {
-                    statusImage = UIImage(named: "status_away")!
-                }
-                
-                Services.instance.getUserImage(byUserId: contact.chatName, handler: { (userImageUrl) in
-                    cell.userpicImage.sd_setImage(with: userImageUrl, completed: nil)
-                })
-                
-                
-                cell.configeureCell(contactName: userData.1, contactEmail: userData.0, lastMessage: date, statusImage: statusImage)
+        
+              
+              switch contactStatus {
+              case "online":
+                statusImage = UIImage(named: "status_online")!
+              case "dnd":
+                statusImage = UIImage(named: "status_dnd")!
+              default:
+                statusImage = UIImage(named: "status_offline")!
+              }
+              
+              cell.configeureCell(contactName: contactName, contactEmail: contactEmail, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
             }
             
         }

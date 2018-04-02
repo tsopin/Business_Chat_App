@@ -64,8 +64,8 @@ class ChatServices {
       for group in groupSnapshot {
         var chatNamesAray = [String]()
         var chatName = String()
-        let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
-        let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
+       guard let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as? Bool else {return}
+       guard let memberArray = group.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
         if  isGroupArray == false && memberArray.keys.contains(currentUserId!) {
           
           //let groupName = group.childSnapshot(forPath: "chatName").value as! String
@@ -90,11 +90,12 @@ class ChatServices {
       guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
       for group in groupSnapshot {
-        let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as! Bool
-        let memberArray = group.childSnapshot(forPath: "members").value as! [String:Bool]
+       guard let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as? Bool else {return}
+        guard let memberArray = group.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
+        
         if  isGroupArray == true && memberArray.keys.contains(currentUserId!) {
           
-          let groupName = group.childSnapshot(forPath: "chatName").value as! String
+         guard let groupName = group.childSnapshot(forPath: "chatName").value as? String else {return}
           
           let group = Chat(name: groupName, members: memberArray, chatKey: group.key, memberCount: "\(memberArray.count)")
           
@@ -115,7 +116,7 @@ class ChatServices {
       
       for chat in userSnapshot {
         
-        let chatId = chat.childSnapshot(forPath: "members").value as! [String:Bool]
+       guard let chatId = chat.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
         if chatId.keys.contains(currentUserId!) {
           chatIdsArray[chat.key] = true
         }
@@ -135,8 +136,8 @@ class ChatServices {
       
       for chat in userSnapshot {
         
-        let isGroup = chat.childSnapshot(forPath: "isGroupChat").value as! Bool
-        let chatId = chat.childSnapshot(forPath: "members").value as! [String:Bool]
+        guard let isGroup = chat.childSnapshot(forPath: "isGroupChat").value as? Bool else {return}
+        guard let chatId = chat.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
         if chatId.contains(where: { $0.value }) && isGroup == true {
           chatIdsArray[chat.key] = true
         }

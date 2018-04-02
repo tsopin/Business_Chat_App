@@ -17,12 +17,12 @@ class UserServices {
   private var _REF_USERS = DATABASE.child("users")
   
   var REF_DATABASE: DatabaseReference {
-    _REF_DATABASE.keepSynced(true)
+    //    _REF_DATABASE.keepSynced(true)
     return _REF_DATABASE
   }
   
   var REF_USERS: DatabaseReference {
-    _REF_USERS.keepSynced(true)
+    //    _REF_USERS.keepSynced(true)
     return _REF_USERS
   }
   
@@ -95,53 +95,40 @@ class UserServices {
   
   //    MARK: Getting data for particular entries
   
-  //Get Info for current user
-  func getmyInfo(handler: @escaping (_ myName: String) -> ()) {
-    
-    REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
-      
-      var myName = String()
-      guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-      
-      for user in userSnapshot {
-        
-        let userEmail = user.childSnapshot(forPath: "email").value as! String
-        let userName = user.childSnapshot(forPath: "username").value as! String
-        
-        if userEmail == currentEmail! {
-          myName = userName
-          print("this is: \(myName)")
-        }
-        handler(myName)
-      }
-    }
-  }
   
   //Get Info for user ID
-  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String,String,String)) -> ()) {
+  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String,String,String, String)) -> ()) {
     
     REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
       
       var returnedEmail = String()
       var returnedUsername = String()
       var returnedStatus = String()
+      var returnedImageUrl = String()
       
       guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
       for user in userSnapshot {
         
-        let userEmail = user.childSnapshot(forPath: "email").value as! String
-        let userName = user.childSnapshot(forPath: "username").value as! String
-        let status = user.childSnapshot(forPath: "status").value as! String
-        // let userPic = user.childSnapshot(forPath: "avatar").value as! Bool
+        guard let userEmail = user.childSnapshot(forPath: "email").value as? String else {return}
+        guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
+        guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
+        guard let isUserPicExist = user.childSnapshot(forPath: "avatar").value as? Bool else {return}
         
         if user.key == userId {
           
           returnedEmail = userEmail
           returnedUsername = userName
           returnedStatus = status
+          
+          if isUserPicExist == true {
+            let userPicUrl = user.childSnapshot(forPath: "avatarURL").value as! String
+            returnedImageUrl = userPicUrl
+          } else {
+            returnedImageUrl = "NoImage"
+          }
         }
-        handler((returnedEmail, returnedUsername, returnedStatus))
+        handler((returnedEmail, returnedUsername, returnedStatus, returnedImageUrl))
       }
     })
   }
@@ -164,6 +151,7 @@ class UserServices {
       handler(idArray)
     }
   }
+  
   // Search users by email
   func getUserInfoByEmail(forSearchQuery query: String, handler: @escaping (_ usersDataArray: [User]) -> ()) {
     
@@ -173,10 +161,10 @@ class UserServices {
       guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
       for user in userSnapshot {
-        let email = user.childSnapshot(forPath: "email").value as! String
-        let userName = user.childSnapshot(forPath: "username").value as! String
-        let status = user.childSnapshot(forPath: "status").value as! String
-        //                let userPicUrl = user.childSnapshot(forPath: "avatarUrl").value as! String
+        
+        guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
+        guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
+        guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
         
         if email.contains(query) == true && email != Auth.auth().currentUser?.email {
           let user = User(userName: userName, email: email, status: status)
