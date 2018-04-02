@@ -22,24 +22,20 @@ class UserProfileVC: UITableViewController {
 		// get user by chatName (if from Chat) or by userId if from Group
 //        if chatName != "" {
         
-            UserServices.instance.getUserData(byUserId: chatName, handler: { (userData) in
-                self.usernameLabel.text = userData.1
-                self.userEmailLabel.text = userData.0
-            
-//        } else {
-//            Services.instance.getUserName(byUserId: userId) { (username) in
-//                self.title = username
-//                self.usernameLabel.text = username
-//            }
-//            Services.instance.getUserEmail(byUserId: userId) { (email) in
-//                self.userEmailLabel.text = email
-//            }
-//        }
-		})
+    UserServices.instance.getUserData(byUserId: chatName) { (userData) in
+      self.usernameLabel.text = userData.1
+      self.userEmailLabel.text = userData.0
+//      let placeHolder = UIImage(named: "userpic_placeholder_small" )
+      if userData.3 == "NoImage" {
+        self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
+      } else {
+        self.profileImageView.kf.setImage(with: URL(string: userData.3))
+      }
+    
+		}
 	
 	}
 
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		// make rounded profile image

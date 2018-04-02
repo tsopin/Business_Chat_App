@@ -24,8 +24,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   var userName = String()
   
   
-  
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     // make rounded profile image
@@ -43,13 +41,15 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     UserServices.instance.getUserData(byUserId: currentUserId!) { (userData) in
       self.usernameTextField.text = userData.1
       self.userEmailLabel.text = userData.0
-      let placeHolder = UIImage(named: "userpic_placeholder_small" )
+//      let placeHolder = UIImage(named: "userpic_placeholder_small")
+      
       if userData.3 == "NoImage" {
-        self.profileImageView.image = placeHolder
+        self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
       } else {
         self.profileImageView.kf.setImage(with: URL(string: userData.3))
       }
-    }}
+    }
+  }
   
   // Textfield methods
   
@@ -58,47 +58,42 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(saveDetails))
   }
   
+  @IBAction func deletePhotoButton(_ sender: Any) {
+    
+    let userData = ["avatar":false, "avatarURL":nil]
+    
+    UserServices.instance.createDBUser(uid: self.currentUserId!, userData: userData as Any as! Dictionary<String, Any>)
+    
+  }
   
   
   @IBAction func chooseImage(_ sender: UIButton) {
-    
-    
-    
-    
+
     let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-    
-    
-    
+
     actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
       self.imagePickerContorller.sourceType = .camera
       self.present(self.imagePickerContorller, animated: true, completion: nil)
     }))
-    
     
     actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
       self.imagePickerContorller.sourceType = .photoLibrary
       self.present(self.imagePickerContorller, animated: true, completion: nil)
     }))
     
-    
     actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
     
-    
-    
+
     self.present(actionSheet, animated: true, completion: nil)
     
     print("CHOCHO")
-    
-    
-    
+
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     profileImageView.image = image
-    
-    
-    
+
     Services.instance.uploadUserImage(withImage: image, completion: { (imageUrl) in
       
       UserServices.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true, "avatarURL" : imageUrl])

@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import LetterAvatarKit
 
 class PersonalChatCell: UITableViewCell {
   
@@ -24,9 +25,9 @@ class PersonalChatCell: UITableViewCell {
   
   func configeureCell(contactName: String, contactEmail: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
     
-    let placeHolder = UIImage(named: "userpic_placeholder_small" )
+//    let placeHolder = UIImage(named: "userpic_placeholder_small" )
     if imageUrl == "NoImage" {
-      userpicImage.image = placeHolder
+      userpicImage.image = UIImage.makeLetterAvatar(withUsername: contactName)
     } else {
       userpicImage.kf.setImage(with: URL(string: imageUrl))
     }

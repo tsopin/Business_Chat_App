@@ -42,12 +42,16 @@ class SettingsVC: UITableViewController {
     UserServices.instance.getUserData(byUserId: currentUserId!) { (userData) in
       self.userNameTextField.text = userData.1
       self.emailTextField.text = userData.0
-      let placeHolder = UIImage(named: "userpic_placeholder_small" )
+//      let placeHolder = UIImage(named: "userpic_placeholder_small" )
+      
       if userData.3 == "NoImage" {
-        self.profileImageView.image = placeHolder
         
+        self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
+
       } else {
+        
         self.profileImageView.kf.setImage(with: URL(string: userData.3))
+        
       }
     }
 		
