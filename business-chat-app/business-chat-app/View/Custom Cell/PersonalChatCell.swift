@@ -8,33 +8,38 @@
 
 import UIKit
 import Kingfisher
+import LetterAvatarKit
 
 class PersonalChatCell: UITableViewCell {
-
-    @IBOutlet weak var contactName: UILabel!
+  
+  @IBOutlet weak var contactName: UILabel!
+  
+  @IBOutlet weak var contactEmail: UILabel!
+  
+  @IBOutlet weak var lastMessage: UILabel!
+  
+  @IBOutlet weak var statusImage: UIImageView!
+  
+  @IBOutlet weak var userpicImage: UIImageView!
+  
+  
+  func configeureCell(contactName: String, contactEmail: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
     
-    @IBOutlet weak var contactEmail: UILabel!
-    
-    @IBOutlet weak var lastMessage: UILabel!
-    
-    @IBOutlet weak var statusImage: UIImageView!
-    
-    @IBOutlet weak var userpicImage: UIImageView!
-    
-    
-    func configeureCell(contactName: String, contactEmail: String, lastMessage: String, statusImage: UIImage) {
-        
-        let placeHolder = UIImage(named: "userpic_placeholder_small" )
-        
-        userpicImage.layer.masksToBounds = true
-        userpicImage.layer.cornerRadius = 20
-        
-        self.contactName.text = contactName
-        self.contactEmail.text = contactEmail
-        self.lastMessage.text = lastMessage
-        self.statusImage.image = statusImage
-        self.userpicImage.image = placeHolder
+//    let placeHolder = UIImage(named: "userpic_placeholder_small" )
+    if imageUrl == "NoImage" {
+      userpicImage.image = UIImage.makeLetterAvatar(withUsername: contactName)
+    } else {
+      userpicImage.kf.setImage(with: URL(string: imageUrl))
     }
     
+    userpicImage.layer.masksToBounds = true
+    userpicImage.layer.cornerRadius = 20
     
+    self.contactName.text = contactName
+    self.contactEmail.text = contactEmail
+    self.lastMessage.text = lastMessage
+    self.statusImage.image = statusImage
+  }
+  
+  
 }

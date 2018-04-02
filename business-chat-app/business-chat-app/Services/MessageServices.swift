@@ -41,9 +41,10 @@ class MessageServices {
       
       for groupMessage in groupMessageSnapshot {
         
-        let content = groupMessage.childSnapshot(forPath: "content").value as! String
-        let senderId = groupMessage.childSnapshot(forPath: "senderId").value as! String
-        let timeSent = groupMessage.childSnapshot(forPath: "timeSent").value as! String
+        guard let content = groupMessage.childSnapshot(forPath: "content").value as? String else {return}
+        guard let senderId = groupMessage.childSnapshot(forPath: "senderId").value as? String else {return}
+        guard let timeSent = groupMessage.childSnapshot(forPath: "timeSent").value as? String else {return}
+        
         let groupMessage = Message(content: content, timeSent: timeSent, senderId: senderId)
         groupMessageArray.append(groupMessage)
         

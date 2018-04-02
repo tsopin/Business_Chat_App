@@ -19,10 +19,10 @@ let currentUserName = Auth.auth().currentUser?.uid
 class Services {
   
   static let instance = Services()
-
+  
   private var _REF_STATUS = DATABASE.child(".info/connected")
   private var _REF_STORAGE_USER_IMAGES = STORAGE.child("userImages")
-
+  
   var REF_STORAGE_USER_IMAGES: StorageReference {
     return _REF_STORAGE_USER_IMAGES
   }
@@ -44,7 +44,6 @@ class Services {
       }
     })
   }
-  
   
   //Get Info for user ID
   func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
@@ -80,7 +79,6 @@ class Services {
       })
     }
   }
-  
 }
 
 

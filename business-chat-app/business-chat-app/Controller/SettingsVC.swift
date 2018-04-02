@@ -37,17 +37,33 @@ class SettingsVC: UITableViewController {
 		profileImageView.layer.masksToBounds = true
 		profileImageView.layer.cornerRadius = 60
 		
-		emailTextField.text = currentEmail
+//    emailTextField.text = currentEmail
+    
+    UserServices.instance.getUserData(byUserId: currentUserId!) { (userData) in
+      self.userNameTextField.text = userData.1
+      self.emailTextField.text = userData.0
+//      let placeHolder = UIImage(named: "userpic_placeholder_small" )
+      
+      if userData.3 == "NoImage" {
+        
+        self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
+
+      } else {
+        
+        self.profileImageView.kf.setImage(with: URL(string: userData.3))
+        
+      }
+    }
 		
-		UserServices.instance.getmyInfo(handler: { (myName) in
-			self.userNameTextField.text = myName
-		})
-        Services.instance.getUserImage(byUserId: currentUserId!, handler: { (returnedImage) in
-            
-            let newUrl = returnedImage.absoluteString
-            self.profileImageView.loadImageUsingCacheWithUrlString(newUrl)
-            
-        })
+//    UserServices.instance.getmyInfo(handler: { (myName) in
+//      self.userNameTextField.text = myName
+//    })
+//        Services.instance.getUserImage(byUserId: currentUserId!, handler: { (returnedImage) in
+//
+//            let newUrl = returnedImage.absoluteString
+//            self.profileImageView.loadImageUsingCacheWithUrlString(newUrl)
+//
+//        })
 	}
 	
     @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
