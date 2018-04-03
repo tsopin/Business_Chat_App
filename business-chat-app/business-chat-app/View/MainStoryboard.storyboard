@@ -1313,24 +1313,24 @@
                         <sections>
                             <tableViewSection headerTitle="Photo" id="lUL-sY-IVc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="egz-9J-4LG">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="220" id="egz-9J-4LG">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="egz-9J-4LG" id="fto-rK-kZ4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pl_blue" translatesAutoresizingMaskIntoConstraints="NO" id="nwP-QE-4NQ">
-                                                    <rect key="frame" x="16" y="10" width="120" height="120"/>
+                                                    <rect key="frame" x="82" y="5" width="210" height="210"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="1F3-Qs-EBw"/>
-                                                        <constraint firstAttribute="height" constant="120" id="d57-mg-Csl"/>
+                                                        <constraint firstAttribute="width" constant="210" id="K52-tF-sAm"/>
+                                                        <constraint firstAttribute="height" constant="210" id="z53-j5-mDZ"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="leading" secondItem="fto-rK-kZ4" secondAttribute="leading" constant="16" id="Nlm-HF-XOw"/>
-                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="centerY" secondItem="fto-rK-kZ4" secondAttribute="centerY" id="StE-YE-PHX"/>
+                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="centerX" secondItem="fto-rK-kZ4" secondAttribute="centerX" id="9Jt-tw-DFj"/>
+                                                <constraint firstItem="nwP-QE-4NQ" firstAttribute="centerY" secondItem="fto-rK-kZ4" secondAttribute="centerY" id="dRQ-4I-xY0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1339,7 +1339,7 @@
                             <tableViewSection headerTitle="Personal details" id="5k0-1z-vXZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="C3V-tz-7Up" userLabel="usernameCell">
-                                        <rect key="frame" x="0.0" y="196" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="276" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3V-tz-7Up" id="vmB-WN-FZs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -1372,7 +1372,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Apw-cN-jHR" userLabel="emailCell">
-                                        <rect key="frame" x="0.0" y="256" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="336" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Apw-cN-jHR" id="aaU-kD-ii8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>

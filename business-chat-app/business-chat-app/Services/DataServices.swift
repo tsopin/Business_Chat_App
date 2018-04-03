@@ -84,10 +84,10 @@ class Services {
   }
   
   //    MARK: Upload to Storage
-  func uploadPhotoMessage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
+  func uploadPhotoMessage(withImage image: UIImage, withChatKey chatKey: String, withMessageId messageId: String, completion: @escaping (_ imageUrl: String) -> ()) {
     
     if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
-      REF_STORAGE_PHOTO_MESSAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+      REF_STORAGE_PHOTO_MESSAGES.child(chatKey).child(messageId).putData(uploadData, metadata: nil, completion: { (metadata, error) in
         
         if error != nil {
           print("Failed to upload image:", error!)
