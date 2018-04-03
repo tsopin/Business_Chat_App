@@ -80,17 +80,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         // mainView.bindToKeyboard()
 		
     }
-    
-    //    func textFieldDidBeginEditing(_ textField: UITextField) {
-    
-    
-    //        UIView.animate(withDuration: 0.1) {
-    //
-    //            self.heightConstraint.constant = 325
-    //            self.view.layoutIfNeeded()
-    //        }
-    //    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
         
         let sender = chatMessages[indexPath.row].senderId

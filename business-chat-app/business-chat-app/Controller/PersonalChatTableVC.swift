@@ -37,21 +37,12 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   //
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    configureTableView()
 
     UserServices.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
       self.title = userData.1
       
     }
-    
-    //        Services.instance.getUserName(byUserId: (chat?.chatName)!) { (userName) in
-    //
-    //           self.title = userName
-    ////            self.contactNameLabel.text = userEmail
-    //
-    //        }
-    
-    
+
     MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         self.chatMessages = returnedChatMessages
@@ -66,7 +57,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    imagePickerContorller.delegate = self
+    configureTableView()
+    
     
     NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -74,6 +66,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     chatTableView.delegate = self
     chatTableView.dataSource = self
     textField.delegate = self
+    imagePickerContorller.delegate = self
     
     chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
     chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
@@ -102,7 +95,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let sender = chatMessages[indexPath.row].senderId
     let isMedia = chatMessages[indexPath.row].isMultimedia
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
-    
+    let content = chatMessages[indexPath.row].content
     
     if  sender == currentUserId {
       
@@ -119,7 +112,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: outColor!)
+      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!)
       return cell
       
     } else {
@@ -175,15 +168,13 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
           print("Message saved \(currentDate)")
         }
       })
-      
     }
-    
   }
   
   @IBAction func photoMessageButton(_ sender: Any) {
     
     
-    let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+    let actionSheet = UIAlertController(title: "Select source of Image", message: "", preferredStyle: .actionSheet)
     
     actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
       self.imagePickerContorller.sourceType = .camera
@@ -210,7 +201,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let currentDate = date.timeIntervalSinceReferenceDate
     let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
     
-    Services.instance.uploadPhotoMessage(withImage: image, completion: { (imageUrl) in
+    Services.instance.uploadPhotoMessage(withImage: image, withChatKey: (self.chat?.key)!, withMessageId: messageUID, completion: { (imageUrl) in
       
       MessageServices.instance.sendPhotoMessage(isMulti: true, withMediaUrl: imageUrl, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId!, withChatId: self.chat?.key, sendComplete: { (complete) in
         self.textField.isEnabled = true
