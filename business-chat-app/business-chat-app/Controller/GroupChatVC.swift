@@ -144,7 +144,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
         if textField.text != "" {
             sendBtn.isEnabled = false
-            MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, sendComplete: { (complete) in
+          MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
                 if complete {
                     self.textField.isEnabled = true
                     self.sendBtn.isEnabled = true

@@ -90,7 +90,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
 
   }
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
+  @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     profileImageView.image = image
 

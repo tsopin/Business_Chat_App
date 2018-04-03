@@ -23,9 +23,19 @@ class MessageServices {
   }
   
   // Upload message to Database
-  func sendMessage(withContent content: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
+  func sendMessage(withContent content: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, isMultimedia: Bool, sendComplete: @escaping (_ status: Bool) -> ()) {
     
     REF_MESSAGES.child(chatId!).child(messageId).setValue(["content" : content,
+                                                           "senderId" : senderId,
+                                                           "timeSent": timeSent,
+                                                           "isMultimedia" : isMultimedia])
+    sendComplete(true)
+  }
+  
+  func sendPhotoMessage(isMulti: Bool, withMediaUrl mediaUrl: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
+    
+    REF_MESSAGES.child(chatId!).child(messageId).setValue(["isMultimedia" : isMulti,
+                                                           "mediaURL" : mediaUrl,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent ])
     sendComplete(true)
@@ -35,17 +45,30 @@ class MessageServices {
   func getAllMessagesFor(desiredChat: Chat, handler: @escaping (_ messagesArray: [Message]) -> ()) {
     
     var groupMessageArray = [Message]()
+    var returnedMediaUrl = String()
+    var returnedContent = String()
     
     REF_MESSAGES.child(desiredChat.key).observe(DataEventType.value, with: { (groupMessageSnapshot) in
       guard let groupMessageSnapshot = groupMessageSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
       for groupMessage in groupMessageSnapshot {
         
-        guard let content = groupMessage.childSnapshot(forPath: "content").value as? String else {return}
+        
         guard let senderId = groupMessage.childSnapshot(forPath: "senderId").value as? String else {return}
         guard let timeSent = groupMessage.childSnapshot(forPath: "timeSent").value as? String else {return}
+        guard let isMultimediaMessage = groupMessage.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
         
-        let groupMessage = Message(content: content, timeSent: timeSent, senderId: senderId)
+        if isMultimediaMessage == true {
+          let mediaUrl = groupMessage.childSnapshot(forPath: "mediaURL").value as! String
+          returnedMediaUrl = mediaUrl
+          print("GOT MEDIA URL \(returnedMediaUrl)")
+        } else {
+          guard let content = groupMessage.childSnapshot(forPath: "content").value as? String else {return}
+          returnedMediaUrl = "NoMediaUrl"
+          returnedContent = content
+        }
+        
+        let groupMessage = Message(content: returnedContent, timeSent: timeSent, senderId: senderId, isMultimedia: isMultimediaMessage, mediaUrl: returnedMediaUrl)
         groupMessageArray.append(groupMessage)
         
       }

@@ -22,11 +22,14 @@ class Services {
   
   private var _REF_STATUS = DATABASE.child(".info/connected")
   private var _REF_STORAGE_USER_IMAGES = STORAGE.child("userImages")
+  private var _REF_STORAGE_PHOTO_MESSAGES = STORAGE.child("photoMessages")
   
   var REF_STORAGE_USER_IMAGES: StorageReference {
     return _REF_STORAGE_USER_IMAGES
   }
-  
+  var REF_STORAGE_PHOTO_MESSAGES: StorageReference {
+    return _REF_STORAGE_PHOTO_MESSAGES
+  }
   var REF_STATUS: DatabaseReference {
     _REF_STATUS.keepSynced(true)
     return _REF_STATUS
@@ -67,6 +70,24 @@ class Services {
     
     if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
       REF_STORAGE_USER_IMAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+        
+        if error != nil {
+          print("Failed to upload image:", error!)
+          return
+        }
+        
+        if let imageUrl = metadata?.downloadURL()?.absoluteString {
+          completion(imageUrl)
+        }
+      })
+    }
+  }
+  
+  //    MARK: Upload to Storage
+  func uploadPhotoMessage(withImage image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
+    
+    if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
+      REF_STORAGE_PHOTO_MESSAGES.child(currentUserId!).putData(uploadData, metadata: nil, completion: { (metadata, error) in
         
         if error != nil {
           print("Failed to upload image:", error!)
