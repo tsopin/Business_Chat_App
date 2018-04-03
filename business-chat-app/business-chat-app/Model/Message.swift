@@ -13,8 +13,9 @@ class Message {
     private var _content: String
     private var _timeSent: String
     private var _senderId: String
-    
-    
+    private var _isMultimedia: Bool
+    private var _mediaUrl: String
+  
     var content : String {
         return _content
     }
@@ -24,13 +25,21 @@ class Message {
     var senderId : String {
         return _senderId
     }
+    var isMultimedia : Bool {
+    return _isMultimedia
+    }
+    var mediaUrl : String {
+    return _mediaUrl
+    }
+
 
     
-    init(content: String, timeSent: String, senderId: String) {
+  init(content: String, timeSent: String, senderId: String, isMultimedia: Bool, mediaUrl: String ) {
         self._content = content
         self._timeSent = timeSent
         self._senderId = senderId
-
+        self._isMultimedia = isMultimedia
+        self._mediaUrl = mediaUrl
     }
     
     

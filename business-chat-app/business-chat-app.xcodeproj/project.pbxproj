@@ -23,6 +23,10 @@
 		744E619520706A490092A2C7 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E619420706A490092A2C7 /* UserServices.swift */; };
 		744E619720706A610092A2C7 /* ChatServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E619620706A610092A2C7 /* ChatServices.swift */; };
 		744E619920706A740092A2C7 /* MessageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E619820706A740092A2C7 /* MessageServices.swift */; };
+		7461CD482072FF6600DB4D88 /* MultimediaMessageOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CD462072FF6600DB4D88 /* MultimediaMessageOut.swift */; };
+		7461CD492072FF6600DB4D88 /* MultimediaMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7461CD472072FF6600DB4D88 /* MultimediaMessageOut.xib */; };
+		7461CD4C2073027B00DB4D88 /* MultimediaMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CD4A2073027B00DB4D88 /* MultimediaMessageIn.swift */; };
+		7461CD4D2073027B00DB4D88 /* MultimediaMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7461CD4B2073027B00DB4D88 /* MultimediaMessageIn.xib */; };
 		746E2079204F5F0D00D8B858 /* CustomMessageOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */; };
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
 		747E62F1205F042F004DD81B /* PersonalChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E62F0205F042F004DD81B /* PersonalChatCell.swift */; };
@@ -70,6 +74,10 @@
 		744E619420706A490092A2C7 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		744E619620706A610092A2C7 /* ChatServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServices.swift; sourceTree = "<group>"; };
 		744E619820706A740092A2C7 /* MessageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServices.swift; sourceTree = "<group>"; };
+		7461CD462072FF6600DB4D88 /* MultimediaMessageOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaMessageOut.swift; sourceTree = "<group>"; };
+		7461CD472072FF6600DB4D88 /* MultimediaMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultimediaMessageOut.xib; sourceTree = "<group>"; };
+		7461CD4A2073027B00DB4D88 /* MultimediaMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaMessageIn.swift; sourceTree = "<group>"; };
+		7461CD4B2073027B00DB4D88 /* MultimediaMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultimediaMessageIn.xib; sourceTree = "<group>"; };
 		746E2077204F5F0D00D8B858 /* CustomMessageOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageOut.swift; sourceTree = "<group>"; };
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
 		747E62F0205F042F004DD81B /* PersonalChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalChatCell.swift; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 				74B8C3AA205ACEEE00951EEB /* SearchUserForGroupCell.swift */,
 				137B604220642F6C008FEC57 /* GroupNameCell.swift */,
 				13B5669420643270006A230F /* GroupMemberCell.swift */,
+				7461CD462072FF6600DB4D88 /* MultimediaMessageOut.swift */,
+				7461CD472072FF6600DB4D88 /* MultimediaMessageOut.xib */,
+				7461CD4A2073027B00DB4D88 /* MultimediaMessageIn.swift */,
+				7461CD4B2073027B00DB4D88 /* MultimediaMessageIn.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -321,8 +333,10 @@
 			files = (
 				77AE6FF620491C4F00918A93 /* LaunchScreen.storyboard in Resources */,
 				746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */,
+				7461CD492072FF6600DB4D88 /* MultimediaMessageOut.xib in Resources */,
 				77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */,
 				74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */,
+				7461CD4D2073027B00DB4D88 /* MultimediaMessageIn.xib in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
 				7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */,
 				743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */,
@@ -416,6 +430,7 @@
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
 				743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */,
 				743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */,
+				7461CD4C2073027B00DB4D88 /* MultimediaMessageIn.swift in Sources */,
 				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
 				7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */,
 				748407FE205492D000CF244F /* AddContactVC.swift in Sources */,
@@ -431,6 +446,7 @@
 				7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */,
 				74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */,
 				74F852472058487E00FE86D3 /* SearchUserForContactCell.swift in Sources */,
+				7461CD482072FF6600DB4D88 /* MultimediaMessageOut.swift in Sources */,
 				137B603F20642155008FEC57 /* GroupInfoVC.swift in Sources */,
 				74F8524320583E6600FE86D3 /* Message.swift in Sources */,
 				137B603D20633BFD008FEC57 /* UserProfileVC.swift in Sources */,
