@@ -48,8 +48,11 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveGroupInfo(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
-        let chatKey = chat?.key
-        ChatServices.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
+//        let chatKey = chat?.key
+//        ChatServices.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
+      ChatServices.instance.createChat(forChatName: groupName, forMemberIds: memberIds, forGroupChat: true) { (complete) in
+        
+      }
         navigationController?.popViewController(animated: true)
     }
     
