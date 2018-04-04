@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import CryptoSwift
 
 class ChatServices {
   
@@ -27,11 +28,14 @@ class ChatServices {
   func createChat(forChatName chatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
     
     var newMembers = [String:Bool]()
+    var md5ChatId = String()
     
     switch isGroupChat{
       
     case true:
+     
       for member in memberIds {
+        
         newMembers[member] = true
       }
       
@@ -41,10 +45,16 @@ class ChatServices {
       handler(true)
       
     case false:
+      
       for memberId in memberIds {
         
-        REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
-                                            "members" : [memberId:true, currentUserId!:true],
+        var memberAndCurrentUser: [String] = [memberId, currentUserId!]
+        memberAndCurrentUser = memberAndCurrentUser.sorted()
+        
+        md5ChatId = memberAndCurrentUser.joined().md5()
+        
+        REF_CHATS.child(md5ChatId).setValue(["isGroupChat" : isGroupChat,
+                                            "members" : [memberId:true, currentUserId! : true],
                                             "chatName" : chatName])
       }
       handler(true)
