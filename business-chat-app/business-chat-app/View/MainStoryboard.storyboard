@@ -14,7 +14,7 @@
         <!--Welcome ScreenVC-->
         <scene sceneID="oKR-PT-vHR">
             <objects>
-                <viewController id="U2B-v5-zHj" customClass="WelcomeScreenVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeScreenVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U2B-v5-zHj" customClass="WelcomeScreenVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAC-Ri-Xjd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,17 +110,16 @@
                         <outlet property="emailTextField" destination="IAa-Ox-BQa" id="8NS-ov-XIQ"/>
                         <outlet property="passwordTextField" destination="7sv-Xd-yHL" id="Rln-XG-XDn"/>
                         <outlet property="signInBtn" destination="dgN-9G-37D" id="ePN-tF-WFp"/>
-                        <segue destination="lP9-Ti-3Vy" kind="show" identifier="goToMain" id="CkK-Hh-CNf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNj-hF-gwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="607.20000000000005" y="-276.35467980295567"/>
         </scene>
-        <!--Groups-->
+        <!--MainTabVC-->
         <scene sceneID="x04-hM-Jpu">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabViewController" title="Groups" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lP9-Ti-3Vy" customClass="MainTabViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabVC" title="Groups" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lP9-Ti-3Vy" userLabel="MainTabVC" customClass="MainTabViewController" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TMD-eF-gSQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

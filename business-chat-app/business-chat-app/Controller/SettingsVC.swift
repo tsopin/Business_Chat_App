@@ -25,10 +25,7 @@ class SettingsVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.hideKeyboardWhenTappedAround()
-    //        print(currentDate)
-    
   }
-  
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -62,11 +59,8 @@ class SettingsVC: UITableViewController {
             if online == true {
               print("status set to DND")
             }
-            
           })
-          
         }
-        
       }
       
     } else {
@@ -76,13 +70,9 @@ class SettingsVC: UITableViewController {
             if online == true {
               print("status set to Online")
             }
-            
           })
-          
         }
-        
       }
-      
     }
   }
   
@@ -97,6 +87,12 @@ class SettingsVC: UITableViewController {
       
       do {
         try Auth.auth().signOut()
+        
+        let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeScreenVC") as! WelcomeScreenVC
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.rootViewController = welcomeVC
+        
+        
         print("LogOut")
         self.dismiss(animated: true, completion: nil)
         UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (isStatusUpdated) in
@@ -104,28 +100,20 @@ class SettingsVC: UITableViewController {
             print("status set to Offile")
           }
         })
-//        Auth.auth().addStateDidChangeListener() { auth, user in
-//          if user != nil {
-//
-//
-//          }
-      
-        }
-      
+      }
+        
       catch {
         print("Error")
       }
       
-    } )
+    })
     let cancel = UIAlertAction(title: "Cancel ", style: .cancel, handler: {
       (alert: UIAlertAction!) -> Void in
-      
-    } )
+    })
     
     actionSheets.addAction(action1)
     actionSheets.addAction(cancel)
     self.present(actionSheets, animated: true, completion: nil)
-    
   }
   
   override func didReceiveMemoryWarning() {

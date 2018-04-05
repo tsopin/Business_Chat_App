@@ -16,6 +16,8 @@
 		7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */; };
 		7404B0E22052EA38001DF785 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404B0E02052EA38001DF785 /* CustomContactCell.swift */; };
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
+		7404F605207543E50076C3D8 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F604207543E50076C3D8 /* NotificationServices.swift */; };
+		7404F60820754CFA0076C3D8 /* FirebaseMessagingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */; };
 		743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsVC.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
@@ -67,6 +69,9 @@
 		7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfContactsVC.swift; sourceTree = "<group>"; };
 		7404B0E02052EA38001DF785 /* CustomContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
 		7404B0E12052EA38001DF785 /* CustomContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomContactCell.xib; sourceTree = "<group>"; };
+		7404F604207543E50076C3D8 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
+		7404F606207547000076C3D8 /* business-chat-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "business-chat-app.entitlements"; sourceTree = "<group>"; };
+		7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingServices.swift; sourceTree = "<group>"; };
 		743D497E204DDB92004A57E8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
@@ -213,6 +218,8 @@
 				744E619820706A740092A2C7 /* MessageServices.swift */,
 				744E619620706A610092A2C7 /* ChatServices.swift */,
 				744E619420706A490092A2C7 /* UserServices.swift */,
+				7404F604207543E50076C3D8 /* NotificationServices.swift */,
+				7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 		77AE6FEA20491C4F00918A93 /* business-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				7404F606207547000076C3D8 /* business-chat-app.entitlements */,
 				74470984205C88B5000D719F /* Supporting Files */,
 				74F8523D20583D2300FE86D3 /* Services */,
 				74CB915A2049E88A0098E047 /* Model */,
@@ -305,6 +313,14 @@
 					77AE6FE720491C4F00918A93 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -434,6 +450,7 @@
 				743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */,
 				7461CD4C2073027B00DB4D88 /* MultimediaMessageIn.swift in Sources */,
 				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
+				7404F60820754CFA0076C3D8 /* FirebaseMessagingServices.swift in Sources */,
 				7404B0D62052DA24001DF785 /* ListOfContactsVC.swift in Sources */,
 				748407FE205492D000CF244F /* AddContactVC.swift in Sources */,
 				74F8524520583E7200FE86D3 /* User.swift in Sources */,
@@ -457,6 +474,7 @@
 				74F8523F20583D3A00FE86D3 /* AuthService.swift in Sources */,
 				137B604320642F6C008FEC57 /* GroupNameCell.swift in Sources */,
 				748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */,
+				7404F605207543E50076C3D8 /* NotificationServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,8 +608,9 @@
 			baseConfigurationReference = C1F2C9B5BD2F35B4665BA1E8 /* Pods-business-chat-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "business-chat-app/business-chat-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BULHRS882;
+				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
@@ -606,8 +625,9 @@
 			baseConfigurationReference = F48D78BC5E0D745189ED9639 /* Pods-business-chat-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "business-chat-app/business-chat-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BULHRS882;
+				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";

@@ -44,35 +44,35 @@ class MessageServices {
   // Get all messages from Database
   func getAllMessagesFor(desiredChat: Chat, handler: @escaping (_ messagesArray: [Message]) -> ()) {
     
-    var groupMessageArray = [Message]()
+    var messageArray = [Message]()
     var returnedMediaUrl = String()
     var returnedContent = String()
     
-    REF_MESSAGES.child(desiredChat.key).observe(DataEventType.value, with: { (groupMessageSnapshot) in
-      guard let groupMessageSnapshot = groupMessageSnapshot.children.allObjects as? [DataSnapshot] else {return}
+    REF_MESSAGES.child(desiredChat.key).observe(DataEventType.value, with: { (messageSnapshot) in
+      guard let messageSnapshot = messageSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
-      for groupMessage in groupMessageSnapshot {
+      for message in messageSnapshot {
         
         
-        guard let senderId = groupMessage.childSnapshot(forPath: "senderId").value as? String else {return}
-        guard let timeSent = groupMessage.childSnapshot(forPath: "timeSent").value as? String else {return}
-        guard let isMultimediaMessage = groupMessage.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
+        guard let senderId = message.childSnapshot(forPath: "senderId").value as? String else {return}
+        guard let timeSent = message.childSnapshot(forPath: "timeSent").value as? String else {return}
+        guard let isMultimediaMessage = message.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
         
         if isMultimediaMessage == true {
-          let mediaUrl = groupMessage.childSnapshot(forPath: "mediaURL").value as! String
+          let mediaUrl = message.childSnapshot(forPath: "mediaURL").value as! String
           returnedMediaUrl = mediaUrl
           print("GOT MEDIA URL \(returnedMediaUrl)")
         } else {
-          guard let content = groupMessage.childSnapshot(forPath: "content").value as? String else {return}
+          guard let content = message.childSnapshot(forPath: "content").value as? String else {return}
           returnedMediaUrl = "NoMediaUrl"
           returnedContent = content
         }
         
-        let groupMessage = Message(content: returnedContent, timeSent: timeSent, senderId: senderId, isMultimedia: isMultimediaMessage, mediaUrl: returnedMediaUrl)
-        groupMessageArray.append(groupMessage)
+        let message = Message(content: returnedContent, timeSent: timeSent, senderId: senderId, isMultimedia: isMultimediaMessage, mediaUrl: returnedMediaUrl)
+        messageArray.append(message)
         
       }
-      handler(groupMessageArray)
+      handler(messageArray)
     })
   }
 }

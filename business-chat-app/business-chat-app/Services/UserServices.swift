@@ -174,4 +174,14 @@ class UserServices {
       handler(userArray)
     }
   }
+  
+  func saveTokens() {
+    
+    let appDelegage = UIApplication.shared.delegate as! AppDelegate
+    let tokens = appDelegage.tokensDict
+    
+    REF_USERS.child(currentUserId!).updateChildValues(["tokens" : tokens])
+    
+    appDelegage.tokensDict.removeAll()
+  }
 }

@@ -59,6 +59,7 @@ class ChatServices {
       }
       handler(true)
     }
+//    FirebaseMessagingServices.shared.subscribe(to: .newMessage)
   }
   
   
