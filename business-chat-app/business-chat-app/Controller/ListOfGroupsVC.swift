@@ -19,6 +19,7 @@ class ListOfGroupsVC: UIViewController {
         super.viewDidLoad()
         groupsTableView.delegate = self
         groupsTableView.dataSource = self
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,7 +56,6 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.configeureCell(groupName: group.chatName, numberOfMembers: group.memberCount )
         
-        
         return cell
     }
 	
@@ -68,6 +68,17 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
 		}
 	}
 	
+  override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    if editing{
+      self.groupsTableView.setEditing(true, animated: animated)
+    } else {
+      self.groupsTableView.setEditing(false, animated: animated)
+    }
+  }
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    //    method for chats deleting
+  }
    
     
     

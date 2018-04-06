@@ -17,12 +17,12 @@ class UserServices {
   private var _REF_USERS = DATABASE.child("users")
   
   var REF_DATABASE: DatabaseReference {
-    //    _REF_DATABASE.keepSynced(true)
+        _REF_DATABASE.keepSynced(true)
     return _REF_DATABASE
   }
   
   var REF_USERS: DatabaseReference {
-    //    _REF_USERS.keepSynced(true)
+        _REF_USERS.keepSynced(true)
     return _REF_USERS
   }
   
@@ -182,6 +182,6 @@ class UserServices {
     
     REF_USERS.child(currentUserId!).updateChildValues(["tokens" : tokens])
     
-    appDelegage.tokensDict.removeAll()
+//    appDelegage.tokensDict.removeAll()
   }
 }

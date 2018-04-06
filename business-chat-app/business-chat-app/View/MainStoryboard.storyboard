@@ -909,7 +909,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="multimediaMessageOut" id="XSe-ai-1Iz" customClass="MultimediaMessageOut" customModule="business_chat_app" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MultimediaMessageOut" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MultimediaMessageOut" id="XSe-ai-1Iz" customClass="MultimediaMessageOut" customModule="business_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XSe-ai-1Iz" id="3pt-VK-yDb">
@@ -1002,7 +1002,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAq-Aj-0V6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016.8000000000002" y="-1138.3808095952024"/>
+            <point key="canvasLocation" x="4016.8000000000002" y="-1138.6699507389162"/>
         </scene>
         <!--Chats-->
         <scene sceneID="MLV-EJ-rRM">
@@ -1435,7 +1435,7 @@
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XSQ-oC-MWz"/>
+        <segue reference="i4g-76-5Ia"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

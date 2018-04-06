@@ -37,12 +37,12 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   //
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+    
     UserServices.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
       self.title = userData.1
       
     }
-
+    
     MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         self.chatMessages = returnedChatMessages
@@ -224,7 +224,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func configureTableView() {
     chatTableView.rowHeight = UITableViewAutomaticDimension
-    chatTableView.estimatedRowHeight = 250.0
+    chatTableView.estimatedRowHeight = 263.0
   }
   //
   
@@ -253,9 +253,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
     }
   }
-  
-  
-  
+
   deinit{
     
   }

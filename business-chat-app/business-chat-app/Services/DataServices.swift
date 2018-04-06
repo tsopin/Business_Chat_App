@@ -35,22 +35,26 @@ class Services {
     return _REF_STATUS
   }
   
-  // Get connection status
-  func myStatus() {
-    
-    let connectedRef = Database.database().reference(withPath: ".info/connected")
-    connectedRef.observe(.value, with: {  snapshot in
-      if snapshot.value as? Bool ?? false {
-        print("Connected")
-      } else {
-        print("Not connected")
-      }
-    })
-  }
+//  // Get connection status
+//  func myStatus()-> Bool {
+//    
+//    var connection = Bool()
+//    
+//    let connectedRef = Database.database().reference(withPath: ".info/connected")
+//    connectedRef.observe(.value, with: {  snapshot in
+//      if snapshot.value as? Bool ?? false {
+//        print("Connected")
+//        connection = true
+//      } else {
+//        print("Not connected")
+//        connection = false
+//      }
+//    })
+//    return connection
+//  }
   
   //Get Info for user ID
   func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
-    
     
     REF_STORAGE_USER_IMAGES.child(userId).downloadURL { (url, error) in
       //using a guard statement to unwrap the url and check for error

@@ -29,7 +29,13 @@ class CustomMessageIn: UITableViewCell {
         self.messageTime.text = messageTime
         self.messageBody.text = messageBody
         self.messageBackground.backgroundColor = messageBackground
-        
     }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    self.senderName.text = nil
+    self.messageTime.text = nil
+    self.messageBody.text = nil
+  }
     
 }

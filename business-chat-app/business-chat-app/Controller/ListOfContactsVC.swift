@@ -22,6 +22,7 @@ class ListOfContactsVC: UIViewController {
     super.viewDidLoad()
     contactsTableView.delegate = self
     contactsTableView.dataSource = self
+    navigationItem.leftBarButtonItem = editButtonItem
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +94,18 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
       }
     }
     return cell
+  }
+  override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    if editing{
+      self.contactsTableView.setEditing(true, animated: animated)
+    } else {
+      self.contactsTableView.setEditing(false, animated: animated)
+    }
+  }
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//    method for chats deleting
+//    contactsTableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
