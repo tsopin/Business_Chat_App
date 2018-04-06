@@ -37,7 +37,7 @@ class MessageServices {
     REF_MESSAGES.child(chatId!).child(messageId).setValue(["isMultimedia" : isMulti,
                                                            "content" : mediaUrl,
                                                            "senderId" : senderId,
-                                                           "timeSent": timeSent ])
+                                                           "timeSent": timeSent])
     sendComplete(true)
   }
   
@@ -48,12 +48,11 @@ class MessageServices {
     var returnedMediaUrl = String()
     var returnedContent = String()
     
-    REF_MESSAGES.child(desiredChat.key).observe(DataEventType.value, with: { (messageSnapshot) in
+    REF_MESSAGES.child(desiredChat.key).observeSingleEvent(of: .value, with: { (messageSnapshot) in
       guard let messageSnapshot = messageSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
       for message in messageSnapshot {
-        
-        
+      
         guard let senderId = message.childSnapshot(forPath: "senderId").value as? String else {return}
         guard let timeSent = message.childSnapshot(forPath: "timeSent").value as? String else {return}
         guard let isMultimediaMessage = message.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
