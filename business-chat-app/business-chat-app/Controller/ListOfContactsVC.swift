@@ -108,6 +108,24 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
 //    contactsTableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
+  //TODO: 
+  // Show user profile from List of contacts
+//  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//    let info = UIContextualAction(style: UIContextualAction.Style.normal, title: "User Info") { (action, view, _) in
+//      print("ShowUserInfo")
+//
+//    }
+//    let delete = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete Chat") { (action, view, _) in
+//      print("Delete")
+//    }
+//    let config = UISwipeActionsConfiguration(actions: [delete, info])
+//    config.performsFirstActionWithFullSwipe = false
+//    return config
+//  }
+  
+  
+  
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showPersonalChat" {
       let indexPath = contactsTableView.indexPathForSelectedRow

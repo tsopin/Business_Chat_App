@@ -43,7 +43,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       
     }
     
-    MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         self.chatMessages = returnedChatMessages
         self.chatTableView.reloadData()
@@ -53,7 +52,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
       })
     }
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,8 +68,11 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
     chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
+    
     chatTableView.register(UINib(nibName: "MultimediaMessageIn", bundle: nil), forCellReuseIdentifier: "multimediaMessageIn")
     chatTableView.register(UINib(nibName: "MultimediaMessageOut", bundle: nil), forCellReuseIdentifier: "multimediaMessageOut")
+    
+//    chatTableView.register(UINib(nibName: "WebCellOut", bundle: nil), forCellReuseIdentifier: "webOut")
     
     self.hideKeyboardWhenTappedAround()
     chatTableView.separatorStyle = .none
@@ -96,6 +97,16 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let isMedia = chatMessages[indexPath.row].isMultimedia
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
     let content = chatMessages[indexPath.row].content
+//    var url: String? = ""
+//
+//    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+//    let matches = detector.matches(in: content, options: [], range: NSRange(location: 0, length: content.utf16.count))
+//
+//    for match in matches {
+//      guard let range = Range(match.range, in: content) else { continue }
+//      url = String(content[range])
+////      print(url)
+//    }
     
     if  sender == currentUserId {
       
@@ -108,6 +119,13 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
         
       }
+//        else if url != nil {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "webOut", for: indexPath) as! WebCellOut
+//        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+//
+//        cell.configeureCell(mediaUrl: content, messageTime: date!, senderName: sender)
+//        return cell
+//      }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))

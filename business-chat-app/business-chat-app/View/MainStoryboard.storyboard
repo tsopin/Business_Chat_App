@@ -744,7 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4W1-cS-Oqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016.8000000000002" y="166.99507389162562"/>
+            <point key="canvasLocation" x="4017" y="788"/>
         </scene>
         <!--Group name-->
         <scene sceneID="ysj-vv-SWK">
@@ -917,6 +917,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="webOut" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="webOut" id="rNe-Nw-5AG" customClass="WebCellOut" customModule="business_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="204" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rNe-Nw-5AG" id="sTw-Hj-Smm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPR-ap-Ajk">
@@ -1002,7 +1010,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAq-Aj-0V6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016.8000000000002" y="-1138.6699507389162"/>
+            <point key="canvasLocation" x="4017" y="-1483"/>
         </scene>
         <!--Chats-->
         <scene sceneID="MLV-EJ-rRM">
@@ -1215,7 +1223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kM-X1-FXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4017" y="-1797"/>
+            <point key="canvasLocation" x="4017" y="-2508"/>
         </scene>
         <!--Chats-->
         <scene sceneID="Itr-aP-PzW">

@@ -18,6 +18,8 @@
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
 		7404F605207543E50076C3D8 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F604207543E50076C3D8 /* NotificationServices.swift */; };
 		7404F60820754CFA0076C3D8 /* FirebaseMessagingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */; };
+		741052482078047B00E9A4E2 /* WebCellOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741052462078047B00E9A4E2 /* WebCellOut.swift */; };
+		741052492078047B00E9A4E2 /* WebCellOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741052472078047B00E9A4E2 /* WebCellOut.xib */; };
 		743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsVC.swift */; };
 		743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D4982204E16DA004A57E8 /* CustomMessageIn.swift */; };
 		743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743D4983204E16DA004A57E8 /* CustomMessageIn.xib */; };
@@ -72,6 +74,8 @@
 		7404F604207543E50076C3D8 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		7404F606207547000076C3D8 /* business-chat-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "business-chat-app.entitlements"; sourceTree = "<group>"; };
 		7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingServices.swift; sourceTree = "<group>"; };
+		741052462078047B00E9A4E2 /* WebCellOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCellOut.swift; sourceTree = "<group>"; };
+		741052472078047B00E9A4E2 /* WebCellOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebCellOut.xib; sourceTree = "<group>"; };
 		743D497E204DDB92004A57E8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		743D4982204E16DA004A57E8 /* CustomMessageIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageIn.swift; sourceTree = "<group>"; };
 		743D4983204E16DA004A57E8 /* CustomMessageIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageIn.xib; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 				7461CD472072FF6600DB4D88 /* MultimediaMessageOut.xib */,
 				7461CD4A2073027B00DB4D88 /* MultimediaMessageIn.swift */,
 				7461CD4B2073027B00DB4D88 /* MultimediaMessageIn.xib */,
+				741052462078047B00E9A4E2 /* WebCellOut.swift */,
+				741052472078047B00E9A4E2 /* WebCellOut.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */,
 				7461CD492072FF6600DB4D88 /* MultimediaMessageOut.xib in Resources */,
 				77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */,
+				741052492078047B00E9A4E2 /* WebCellOut.xib in Resources */,
 				74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */,
 				7461CD4D2073027B00DB4D88 /* MultimediaMessageIn.xib in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
@@ -448,6 +455,7 @@
 				74B8C3AB205ACEEE00951EEB /* SearchUserForGroupCell.swift in Sources */,
 				743D4984204E16DA004A57E8 /* CustomMessageIn.swift in Sources */,
 				743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */,
+				741052482078047B00E9A4E2 /* WebCellOut.swift in Sources */,
 				7461CD4C2073027B00DB4D88 /* MultimediaMessageIn.swift in Sources */,
 				74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */,
 				7404F60820754CFA0076C3D8 /* FirebaseMessagingServices.swift in Sources */,

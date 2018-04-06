@@ -35,7 +35,7 @@ class MessageServices {
   func sendPhotoMessage(isMulti: Bool, withMediaUrl mediaUrl: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
     
     REF_MESSAGES.child(chatId!).child(messageId).setValue(["isMultimedia" : isMulti,
-                                                           "mediaURL" : mediaUrl,
+                                                           "content" : mediaUrl,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent ])
     sendComplete(true)
@@ -59,7 +59,7 @@ class MessageServices {
         guard let isMultimediaMessage = message.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
         
         if isMultimediaMessage == true {
-          let mediaUrl = message.childSnapshot(forPath: "mediaURL").value as! String
+          let mediaUrl = message.childSnapshot(forPath: "content").value as! String
           returnedMediaUrl = mediaUrl
           print("GOT MEDIA URL \(returnedMediaUrl)")
         } else {
