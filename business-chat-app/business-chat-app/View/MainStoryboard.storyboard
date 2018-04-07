@@ -237,6 +237,43 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="offNotifications" id="LS3-np-7BX">
+                                        <rect key="frame" x="0.0" y="184" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LS3-np-7BX" id="zsi-Wk-NSq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disable Push Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPF-wy-Pb8">
+                                                    <rect key="frame" x="16" y="7" width="201.33333333333334" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="tm6-Pz-QtC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G2M-QZ-piG">
+                                                    <rect key="frame" x="312" y="7" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="xnD-Pk-Gdc"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.56078431370000004" green="0.1764705882" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <connections>
+                                                        <action selector="notificationsSwitch:" destination="nxO-zv-oiS" eventType="valueChanged" id="Bv5-Zg-yui"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BPF-wy-Pb8" firstAttribute="leading" secondItem="zsi-Wk-NSq" secondAttribute="leadingMargin" id="0WK-C0-D3R"/>
+                                                <constraint firstItem="BPF-wy-Pb8" firstAttribute="top" secondItem="zsi-Wk-NSq" secondAttribute="top" constant="7" id="Ewj-FM-f8Q"/>
+                                                <constraint firstItem="G2M-QZ-piG" firstAttribute="top" secondItem="zsi-Wk-NSq" secondAttribute="top" constant="7" id="KLO-NI-RJM"/>
+                                                <constraint firstAttribute="bottom" secondItem="G2M-QZ-piG" secondAttribute="bottom" constant="6" id="htt-Xq-vhl"/>
+                                                <constraint firstAttribute="bottom" secondItem="BPF-wy-Pb8" secondAttribute="bottom" constant="6" id="mUU-lM-UNG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="G2M-QZ-piG" secondAttribute="trailing" constant="-2" id="vnH-Um-ooG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -256,6 +293,7 @@
                     <connections>
                         <outlet property="dndSwitchOutlet" destination="n4t-CM-lDQ" id="rCa-Ef-Vxf"/>
                         <outlet property="emailTextField" destination="zmh-Zm-QL4" id="DS0-gR-fhG"/>
+                        <outlet property="notificationsSwitchOutlet" destination="G2M-QZ-piG" id="JK8-JA-Wy9"/>
                         <outlet property="profileImageView" destination="pg2-sl-iTN" id="qyw-o9-rTe"/>
                         <outlet property="userNameTextField" destination="gm7-Pw-ZpI" id="jya-5Q-lk0"/>
                     </connections>

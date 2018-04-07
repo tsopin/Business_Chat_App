@@ -17,6 +17,7 @@ class SettingsVC: UITableViewController {
   @IBOutlet weak var userNameTextField: UILabel!
   @IBOutlet weak var emailTextField: UILabel!
   @IBOutlet weak var dndSwitchOutlet: UISwitch!
+  @IBOutlet weak var notificationsSwitchOutlet: UISwitch!
   
   let currentUserId = Auth.auth().currentUser?.uid
   let currentEmail = Auth.auth().currentUser?.email
@@ -50,6 +51,15 @@ class SettingsVC: UITableViewController {
     }
   }
   
+  @IBAction func notificationsSwitch(_ sender: Any) {
+    if notificationsSwitchOutlet.isOn {
+      UIApplication.shared.unregisterForRemoteNotifications()
+      
+    } else {
+      UIApplication.shared.registerForRemoteNotifications()
+    }
+  }
+  
   @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
     
     if (dndSwitchOutlet.isOn) {
@@ -57,6 +67,9 @@ class SettingsVC: UITableViewController {
         if user != nil {
           UserServices.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
             if online == true {
+              self.notificationsSwitchOutlet.isOn = true
+              self.notificationsSwitchOutlet.isEnabled = false
+              UIApplication.shared.unregisterForRemoteNotifications()
               print("status set to DND")
             }
           })
@@ -68,6 +81,9 @@ class SettingsVC: UITableViewController {
         if user != nil {
           UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
             if online == true {
+              self.notificationsSwitchOutlet.isOn = false
+              self.notificationsSwitchOutlet.isEnabled = true
+              UIApplication.shared.registerForRemoteNotifications()
               print("status set to Online")
             }
           })
@@ -130,7 +146,7 @@ class SettingsVC: UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 2
+    return 3
   }
   deinit{
     
