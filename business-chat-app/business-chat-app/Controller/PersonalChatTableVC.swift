@@ -11,7 +11,11 @@ import Firebase
 
 class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-  @IBOutlet var mainView: UIView!
+  
+  @IBOutlet weak var lastSeenTime: UILabel!
+  @IBOutlet weak var lastSeenLabel: UILabel!
+  @IBOutlet weak var tabPhoto: UIImageView!
+  @IBOutlet weak var mainView: UIView!
   @IBOutlet weak var textInputView: UIView!
   @IBOutlet weak var chatTableView: UITableView!
   @IBOutlet weak var textField: UITextField!
@@ -39,7 +43,39 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     super.viewWillAppear(animated)
     
     UserServices.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
-      self.title = userData.1
+      
+      let tabImage = userData.3
+      let tabName = userData.1
+      let lastSeen = userData.4
+      let status = userData.2
+      
+      switch status {
+      case "online":
+        self.lastSeenLabel.text = "Online"
+        self.lastSeenTime.isHidden = true
+      case "away":
+        self.lastSeenLabel.text = "Away"
+        self.lastSeenTime.isHidden = true
+      case "dnd":
+        self.lastSeenLabel.text = "Do Not Disturb"
+        self.lastSeenTime.isHidden = true
+      default:
+        let date = self.getDateFromInterval(timestamp: Double(lastSeen))
+        self.lastSeenLabel.text = "Last Seen:"
+        self.lastSeenTime.text = date
+      }
+
+      self.title = tabName
+      
+      if tabImage == "NoImage" {
+        self.tabPhoto.image = UIImage.makeLetterAvatar(withUsername: tabName)
+      } else {
+        self.tabPhoto.kf.setImage(with: URL(string: tabImage))
+      }
+      
+      self.tabPhoto.layer.masksToBounds = true
+      self.tabPhoto.layer.cornerRadius = 20
+      
     }
     
     MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.value) { (snapshot) in

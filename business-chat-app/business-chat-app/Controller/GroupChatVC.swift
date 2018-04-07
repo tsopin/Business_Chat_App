@@ -121,7 +121,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   @IBAction func sendButton(_ sender: Any) {
     
     let date = Date()
-    let currentDate = date.timeIntervalSinceReferenceDate
+    let currentDate = date.timeIntervalSince1970
     let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
     if textField.text != "" {
       sendBtn.isEnabled = false

@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
       })
     }
+    
     NotificationServices.shared.authorize()
     
     // set colour for navigation bar buttons in entire app
@@ -47,9 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     Auth.auth().addStateDidChangeListener() { auth, user in
       if user != nil {
-        UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+        UserServices.instance.updateUserStatus(withStatus: "away", handler: { (online) in
           if online == true {
-            print("status set to Offile")
+            print("status set to Away")
           }
         })
       }
@@ -63,9 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     Auth.auth().addStateDidChangeListener() { auth, user in
       if user != nil {
-        UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (online) in
+        UserServices.instance.updateUserStatus(withStatus: "away", handler: { (online) in
           if online == true {
-            print("status set to offline")
+            print("status set to away")
           }
         })
       }
@@ -113,24 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("RegistrationFailed")
   }
-  
-  // Get connection status
-//  func myStatus()-> Bool {
-//
-//    var connection = Bool()
-//
-//    let connectedRef = Database.database().reference(withPath: ".info/connected")
-//    connectedRef.observe(.value, with: {  snapshot in
-//      if snapshot.value as? Bool ?? false {
-//        print("Connected")
-//        connection = true
-//      } else {
-//        print("Not connected")
-//        connection = false
-//      }
-//    })
-//    return connection
-//  }
   
 }
 

@@ -97,7 +97,7 @@ class UserServices {
   
   
   //Get Info for user ID
-  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String,String,String, String)) -> ()) {
+  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String, String, String, String, String)) -> ()) {
     
     REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
       
@@ -105,6 +105,7 @@ class UserServices {
       var returnedUsername = String()
       var returnedStatus = String()
       var returnedImageUrl = String()
+      var lastSeen = String()
       
       guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
       
@@ -113,6 +114,7 @@ class UserServices {
         guard let userEmail = user.childSnapshot(forPath: "email").value as? String else {return}
         guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
         guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
+        guard let lastOnline = user.childSnapshot(forPath: "lastOnline").value as? Double else {return}
         guard let isUserPicExist = user.childSnapshot(forPath: "avatar").value as? Bool else {return}
         
         if user.key == userId {
@@ -120,6 +122,9 @@ class UserServices {
           returnedEmail = userEmail
           returnedUsername = userName
           returnedStatus = status
+          lastSeen = String(lastOnline)
+        
+          
           
           if isUserPicExist == true {
             let userPicUrl = user.childSnapshot(forPath: "avatarURL").value as! String
@@ -128,7 +133,7 @@ class UserServices {
             returnedImageUrl = "NoImage"
           }
         }
-        handler((returnedEmail, returnedUsername, returnedStatus, returnedImageUrl))
+        handler((returnedEmail, returnedUsername, returnedStatus, returnedImageUrl, lastSeen))
       }
     })
   }

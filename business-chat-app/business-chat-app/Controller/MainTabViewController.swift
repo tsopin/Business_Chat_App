@@ -14,7 +14,7 @@ class MainTabViewController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    Services.instance.presenceSystem()
 //    print("connect \(connect)")
 //    if !connect {
       self.tabBar.tintColor = colours.colourMainBlue

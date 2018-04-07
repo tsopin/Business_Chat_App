@@ -87,6 +87,8 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
           statusImage = UIImage(named: "status_online")!
         case "dnd":
           statusImage = UIImage(named: "status_dnd")!
+        case "away":
+          statusImage = UIImage(named: "status_away")!
         default:
           statusImage = UIImage(named: "status_offline")!
         }
