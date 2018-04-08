@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class WelcomeScreenVC: UIViewController {
   
@@ -56,10 +57,11 @@ class WelcomeScreenVC: UIViewController {
   }
   
   func signIn() {
-    
+    SVProgressHUD.show(withStatus: "Signing In")
     Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
       if let error = error {
         self.alert(message: (error.localizedDescription))
+        SVProgressHUD.dismiss()
         return
       }
       
@@ -67,6 +69,7 @@ class WelcomeScreenVC: UIViewController {
         print("Log in Successfull!")
         UserServices.instance.saveTokens()
         let mainTabVC = self.storyboard?.instantiateViewController(withIdentifier: "MainTabVC") as! MainTabViewController
+        SVProgressHUD.dismiss()
         self.present(mainTabVC, animated: true, completion: nil)
         
       }

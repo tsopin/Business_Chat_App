@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import SVProgressHUD
 
 class MessageServices {
   
@@ -60,7 +61,7 @@ class MessageServices {
         if isMultimediaMessage == true {
           let mediaUrl = message.childSnapshot(forPath: "content").value as! String
           returnedMediaUrl = mediaUrl
-          print("GOT MEDIA URL \(returnedMediaUrl)")
+//          print("GOT MEDIA URL \(returnedMediaUrl)")
         } else {
           guard let content = message.childSnapshot(forPath: "content").value as? String else {return}
           returnedMediaUrl = "NoMediaUrl"

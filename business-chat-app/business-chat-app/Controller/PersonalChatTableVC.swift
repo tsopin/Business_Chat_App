@@ -8,10 +8,13 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
+
 
 class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   
+  @IBOutlet weak var contactNameLabel: UILabel!
   @IBOutlet weak var lastSeenTime: UILabel!
   @IBOutlet weak var lastSeenLabel: UILabel!
   @IBOutlet weak var tabPhoto: UIImageView!
@@ -50,22 +53,29 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       let status = userData.2
       
       switch status {
+        
       case "online":
+        self.lastSeenLabel.pushTransition(0.3)
         self.lastSeenLabel.text = "Online"
         self.lastSeenTime.isHidden = true
       case "away":
+        self.lastSeenLabel.pushTransition(0.3)
         self.lastSeenLabel.text = "Away"
         self.lastSeenTime.isHidden = true
       case "dnd":
+        self.lastSeenLabel.pushTransition(0.3)
         self.lastSeenLabel.text = "Do Not Disturb"
         self.lastSeenTime.isHidden = true
       default:
         let date = self.getDateFromInterval(timestamp: Double(lastSeen))
+        self.lastSeenLabel.pushTransition(0.3)
+        self.lastSeenTime.pushTransition(0.3)
         self.lastSeenLabel.text = "Last Seen:"
+        self.lastSeenTime.isHidden = false
         self.lastSeenTime.text = date
       }
 
-      self.title = tabName
+      self.contactNameLabel.text = tabName
       
       if tabImage == "NoImage" {
         self.tabPhoto.image = UIImage.makeLetterAvatar(withUsername: tabName)
@@ -77,23 +87,38 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.tabPhoto.layer.cornerRadius = 20
       
     }
-    
-    MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.value) { (snapshot) in
+    configureTableView()
+    getMessages()
+     self.heightConstraint.constant = 60
+
+  }
+  
+  func getMessages() {
+    MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.childAdded) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
-        self.chatMessages = returnedChatMessages
-        self.chatTableView.reloadData()
         
-        if self.chatMessages.count > 0 {
-          self.chatTableView.scrollToRow(at: IndexPath(row: self.chatMessages.count - 1, section: 0) , at: .none, animated: true)
-        }
+        self.chatMessages = returnedChatMessages
+        self.configureTableView()
+        self.chatTableView.reloadData()
+        self.scrollToBottom()
+        
       })
+    }
+  }
+  
+  func scrollToBottom() {
+    
+    if self.chatMessages.count - 1 <= 0 {
+      return
+    }
+    let indexPath = IndexPath(item: self.chatMessages.count - 1, section: 0)
+    DispatchQueue.main.async {
+      self.chatTableView?.scrollToRow(at: indexPath, at: .top, animated: true)
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureTableView()
-    
     
     NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector:#selector(PersonalChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -111,9 +136,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //    chatTableView.register(UINib(nibName: "WebCellOut", bundle: nil), forCellReuseIdentifier: "webOut")
     
-    self.hideKeyboardWhenTappedAround()
+//    self.hideKeyboardWhenTappedAround()
     chatTableView.separatorStyle = .none
-    
+    chatTableView.setContentOffset(chatTableView.contentOffset, animated: false)
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -183,6 +208,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
         
         cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        
         return cell
         
       }
@@ -213,7 +239,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   
-  @IBAction func sendButton(_ sender: Any) {
+  @IBAction func sendButton(_ sender: UIButton) {
     
     let date = Date()
     let currentDate = date.timeIntervalSinceReferenceDate
@@ -229,6 +255,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
       })
     }
+    dismissKeyboard()
   }
   
   @IBAction func photoMessageButton(_ sender: Any) {
@@ -248,14 +275,16 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
     
-    
     self.present(actionSheet, animated: true, completion: nil)
     
     print("Photo Message Uploaded")
-    
+
   }
   
   @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
+    
+    SVProgressHUD.show(withStatus: "Sending Image")
+    
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let date = Date()
     let currentDate = date.timeIntervalSinceReferenceDate
@@ -268,6 +297,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.sendBtn.isEnabled = true
         self.textField.text = ""
         print("Message saved \(currentDate)")
+        SVProgressHUD.dismiss()
       })
     })
     
@@ -291,10 +321,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   @objc func keyboardWillShow(notification : NSNotification) {
     
     let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
-    
+
     self.heightConstraint.constant = keyboardSize.height + 60
     UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
-      
+
     })
   }
   
@@ -312,6 +342,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         userProfileVC.chatName = chatName
       }
     }
+  }
+  @IBAction func infoButtonPressed(_ sender: UIButton) {
+    performSegue(withIdentifier: "showUserProfile", sender: self)
+    print("Info Button Pressed")
   }
   
   deinit{

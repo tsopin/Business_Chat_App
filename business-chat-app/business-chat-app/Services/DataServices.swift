@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import Alamofire
+
 
 let DATABASE = Database.database().reference()
 let STORAGE = Storage.storage().reference()
@@ -35,24 +37,34 @@ class Services {
     return _REF_STATUS
   }
   
-//  // Get connection status
-//  func myStatus()-> Bool {
-//    
-//    var connection = Bool()
-//    
-//    let connectedRef = Database.database().reference(withPath: ".info/connected")
-//    connectedRef.observe(.value, with: {  snapshot in
-//      if snapshot.value as? Bool ?? false {
-//        print("Connected")
-//        connection = true
-//      } else {
-//        print("Not connected")
-//        connection = false
-//      }
-//    })
-//    return connection
-//  }
-  
+  // Get connection status
+  func myStatus()-> Bool {
+    
+    let networkCheck = NetworkReachabilityManager()
+    networkCheck?.startListening()
+    
+    networkCheck?.listener = { status in
+      if networkCheck?.isReachable ?? false {
+        
+        switch status {
+          
+        case .reachable(.ethernetOrWiFi):
+          print("The network is reachable over the WiFi connection")
+          
+        case .reachable(.wwan):
+          print("The network is reachable over the WWAN connection")
+          
+        case .notReachable:
+          print("The network is not reachable")
+          
+        case .unknown :
+          print("It is unknown whether the network is reachable")
+          
+        }
+      }
+    }
+    return (networkCheck?.isReachable)!
+  }
   
   func presenceSystem() {
     // since I can connect from multiple devices, we store each connection instance separately
@@ -112,6 +124,7 @@ class Services {
         
         if error != nil {
           print("Failed to upload image:", error!)
+          
           return
         }
         

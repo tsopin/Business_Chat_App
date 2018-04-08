@@ -14,13 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   var tokensDict = [String:String]()
-//  var newCon = Bool()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     Database.database().isPersistenceEnabled = true
-    
-//    newCon = self.myStatus()
+//    Services.instance.myStatus()
     
     if Auth.auth().currentUser != nil {
       
@@ -66,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if user != nil {
         UserServices.instance.updateUserStatus(withStatus: "away", handler: { (online) in
           if online == true {
-            print("status set to away")
+            print("status set to Away")
           }
         })
       }

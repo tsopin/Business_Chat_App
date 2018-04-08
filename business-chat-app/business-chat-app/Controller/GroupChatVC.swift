@@ -36,22 +36,46 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     super.viewWillAppear(animated)
     
     
-    MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
-      MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
-        self.chatMessages = returnedChatMessages
-        self.chatTableView.reloadData()
-        
-        if self.chatMessages.count > 0 {
-          self.chatTableView.scrollToRow(at: IndexPath(row: self.chatMessages.count - 1, section: 0) , at: .none, animated: true)
-        }
-      })
-    }
+//    MessageServices.instance.REF_MESSAGES.observe(.value) { (snapshot) in
+//      MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
+//        self.chatMessages = returnedChatMessages
+//        self.chatTableView.reloadData()
+//
+//        if self.chatMessages.count > 0 {
+//          self.chatTableView.scrollToRow(at: IndexPath(row: self.chatMessages.count - 1, section: 0) , at: .none, animated: true)
+//        }
+//      })
+//    }
     
     // Check chat name and set title (in case it was changed)
     ChatServices.instance.REF_CHATS.child((chat?.key)!).observeSingleEvent(of: .value) { (snapshot) in
       let value = snapshot.value as? NSDictionary
       let chatName = value!["chatName"] as? String ?? ""
       self.title = chatName
+    }
+  }
+  
+  
+  func getMessages() {
+    MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.childAdded) { (snapshot) in
+      MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
+        self.chatMessages = returnedChatMessages
+        self.configureTableView()
+        self.chatTableView.reloadData()
+        
+        self.scrollToBottom()
+        
+      })
+    }
+  }
+  
+  func scrollToBottom() {
+    if self.chatMessages.count - 1 <= 0 {
+      return
+    }
+    let indexPath = IndexPath(item: self.chatMessages.count - 1, section: 0)
+    DispatchQueue.main.async {
+      self.chatTableView?.scrollToRow(at: indexPath, at: .top, animated: true)
     }
   }
   
@@ -70,6 +94,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     self.hideKeyboardWhenTappedAround()
     configureTableView()
+    getMessages()
     chatTableView.separatorStyle = .none
     
   }

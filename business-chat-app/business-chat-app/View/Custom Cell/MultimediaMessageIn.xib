@@ -19,52 +19,52 @@
                 <rect key="frame" x="0.0" y="0.0" width="410" height="269.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35R-Nv-AI5">
-                        <rect key="frame" x="30" y="0.0" width="78" height="14"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0v-Vt-dgv" userLabel="Body">
+                        <rect key="frame" x="20" y="20" width="270" height="230"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="SenderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dd-JE-1eO">
+                                <rect key="frame" x="10" y="3" width="71" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userPic" translatesAutoresizingMaskIntoConstraints="NO" id="DsO-kw-JUX">
+                                <rect key="frame" x="3" y="3" width="264" height="224"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5568627451" green="0.17254901959999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="6MY-e8-kVN"/>
+                            <constraint firstAttribute="width" constant="270" id="Z8I-XF-8Dd"/>
+                            <constraint firstAttribute="height" constant="230" id="hqf-E2-JqY"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tailIn" translatesAutoresizingMaskIntoConstraints="NO" id="B9w-oz-6fW">
+                        <rect key="frame" x="10" y="219" width="12" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="8uq-uw-2i2"/>
+                            <constraint firstAttribute="height" constant="16" id="d7Q-R1-hlh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35R-Nv-AI5">
+                        <rect key="frame" x="20" y="3" width="78" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="iGJ-ow-39U"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                         <color key="textColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0v-Vt-dgv" userLabel="Body">
-                        <rect key="frame" x="20" y="17" width="220" height="235"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="SenderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dd-JE-1eO">
-                                <rect key="frame" x="10" y="3" width="71" height="14"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="x9g-YI-dUC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPic" translatesAutoresizingMaskIntoConstraints="NO" id="DsO-kw-JUX">
-                                <rect key="frame" x="3" y="18" width="214" height="214"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="214" id="Xkd-d7-nrT"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.5568627451" green="0.17254901959999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DsO-kw-JUX" secondAttribute="bottom" constant="3" id="1Jz-cS-brf"/>
-                            <constraint firstItem="3dd-JE-1eO" firstAttribute="leading" secondItem="Q0v-Vt-dgv" secondAttribute="leading" constant="10" id="R1H-bP-zbO"/>
-                            <constraint firstAttribute="height" constant="235" id="cVf-la-GLT"/>
-                            <constraint firstItem="DsO-kw-JUX" firstAttribute="top" secondItem="3dd-JE-1eO" secondAttribute="bottom" constant="1" id="gra-tM-a2D"/>
-                            <constraint firstAttribute="width" constant="220" id="jbR-H7-0FG"/>
-                            <constraint firstItem="DsO-kw-JUX" firstAttribute="leading" secondItem="Q0v-Vt-dgv" secondAttribute="leading" constant="3" id="kTN-pv-SCe"/>
-                            <constraint firstItem="DsO-kw-JUX" firstAttribute="centerX" secondItem="Q0v-Vt-dgv" secondAttribute="centerX" id="mKZ-wR-Dn5"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="top" secondItem="35R-Nv-AI5" secondAttribute="bottom" constant="3" id="Vr5-f8-aVg"/>
-                    <constraint firstItem="35R-Nv-AI5" firstAttribute="leading" secondItem="hgh-yO-xCZ" secondAttribute="leading" constant="30" id="Y8V-c1-9bj"/>
-                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="leading" secondItem="hgh-yO-xCZ" secondAttribute="leading" constant="20" id="jDS-D7-jYD"/>
-                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="centerY" secondItem="hgh-yO-xCZ" secondAttribute="centerY" id="rwo-fp-91L"/>
-                    <constraint firstAttribute="bottom" secondItem="Q0v-Vt-dgv" secondAttribute="bottom" constant="17.5" id="zxx-Fa-xfJ"/>
+                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="leading" secondItem="B9w-oz-6fW" secondAttribute="trailing" constant="-2" id="8yq-Rh-w9v"/>
+                    <constraint firstAttribute="bottom" secondItem="B9w-oz-6fW" secondAttribute="bottom" constant="34.5" id="FD6-Ug-yza"/>
+                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="top" secondItem="35R-Nv-AI5" secondAttribute="bottom" constant="3" id="IRp-yt-bgN"/>
+                    <constraint firstAttribute="bottom" secondItem="Q0v-Vt-dgv" secondAttribute="bottom" constant="19.5" id="Lfv-0X-7rI"/>
+                    <constraint firstItem="35R-Nv-AI5" firstAttribute="leading" secondItem="hgh-yO-xCZ" secondAttribute="leading" constant="20" id="SKX-Yg-EKb"/>
+                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="leading" secondItem="hgh-yO-xCZ" secondAttribute="leading" constant="20" id="cZb-W0-jCE"/>
+                    <constraint firstItem="Q0v-Vt-dgv" firstAttribute="centerY" secondItem="hgh-yO-xCZ" secondAttribute="centerY" id="ykY-QP-kkI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Oju-OO-SUO"/>
@@ -78,6 +78,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="tailIn" width="402" height="510"/>
         <image name="userPic" width="1600" height="1600"/>
     </resources>
 </document>

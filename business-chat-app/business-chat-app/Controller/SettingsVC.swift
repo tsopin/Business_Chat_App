@@ -57,6 +57,7 @@ class SettingsVC: UITableViewController {
       
     } else {
       UIApplication.shared.registerForRemoteNotifications()
+      UserServices.instance.saveTokens()
     }
   }
   
@@ -84,6 +85,8 @@ class SettingsVC: UITableViewController {
               self.notificationsSwitchOutlet.isOn = false
               self.notificationsSwitchOutlet.isEnabled = true
               UIApplication.shared.registerForRemoteNotifications()
+              UserServices.instance.saveTokens()
+              
               print("status set to Online")
             }
           })
@@ -107,7 +110,6 @@ class SettingsVC: UITableViewController {
         let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeScreenVC") as! WelcomeScreenVC
         let appDelegate = UIApplication.shared.delegate
         appDelegate?.window??.rootViewController = welcomeVC
-        
         
         print("LogOut")
         self.dismiss(animated: true, completion: nil)

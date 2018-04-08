@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 
 class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -68,31 +69,45 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   
   @IBAction func chooseImage(_ sender: UIButton) {
     
-    let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+    let connectionStatus = Services.instance.myStatus()
     
-    actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
-      self.imagePickerContorller.sourceType = .camera
-      self.present(self.imagePickerContorller, animated: true, completion: nil)
-    }))
+    if connectionStatus {
+      let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+      
+      actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+        self.imagePickerContorller.sourceType = .camera
+        self.present(self.imagePickerContorller, animated: true, completion: nil)
+      }))
+      
+      actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+        self.imagePickerContorller.sourceType = .photoLibrary
+        self.present(self.imagePickerContorller, animated: true, completion: nil)
+      }))
+      
+      actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
+      self.present(actionSheet, animated: true, completion: nil)
+      
+      print("EST SET")
+      
+    } else {
+      profileImageView.isHighlighted = false
+      print("NET SETI")
+    }
     
-    actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
-      self.imagePickerContorller.sourceType = .photoLibrary
-      self.present(self.imagePickerContorller, animated: true, completion: nil)
-    }))
-    
-    actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
-    self.present(actionSheet, animated: true, completion: nil)
-    
-    print("CHOCHO")
+ 
     
   }
   
   @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    SVProgressHUD.show(withStatus: "Uploading Image")
     profileImageView.image = image
     
     Services.instance.uploadUserImage(withImage: image, completion: { (imageUrl) in
       UserServices.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true, "avatarURL" : imageUrl])
+      SVProgressHUD.showSuccess(withStatus: "Image Successfully Uploaded")
+      SVProgressHUD.dismiss()
+      
     })
     
     picker.dismiss(animated: true, completion: nil)

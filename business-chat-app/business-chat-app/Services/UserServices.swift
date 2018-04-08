@@ -124,8 +124,6 @@ class UserServices {
           returnedStatus = status
           lastSeen = String(lastOnline)
         
-          
-          
           if isUserPicExist == true {
             let userPicUrl = user.childSnapshot(forPath: "avatarURL").value as! String
             returnedImageUrl = userPicUrl

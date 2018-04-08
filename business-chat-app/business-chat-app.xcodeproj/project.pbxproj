@@ -18,6 +18,7 @@
 		7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7404B0E12052EA38001DF785 /* CustomContactCell.xib */; };
 		7404F605207543E50076C3D8 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F604207543E50076C3D8 /* NotificationServices.swift */; };
 		7404F60820754CFA0076C3D8 /* FirebaseMessagingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */; };
+		740621F820799F4400FDFE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 740621F720799F4300FDFE60 /* Assets.xcassets */; };
 		741052482078047B00E9A4E2 /* WebCellOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741052462078047B00E9A4E2 /* WebCellOut.swift */; };
 		741052492078047B00E9A4E2 /* WebCellOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741052472078047B00E9A4E2 /* WebCellOut.xib */; };
 		743D497F204DDB92004A57E8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D497E204DDB92004A57E8 /* SettingsVC.swift */; };
@@ -55,7 +56,6 @@
 		74F8524520583E7200FE86D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F8524420583E7200FE86D3 /* User.swift */; };
 		74F852472058487E00FE86D3 /* SearchUserForContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F852462058487E00FE86D3 /* SearchUserForContactCell.swift */; };
 		77AE6FEC20491C4F00918A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE6FEB20491C4F00918A93 /* AppDelegate.swift */; };
-		77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AE6FF220491C4F00918A93 /* Assets.xcassets */; };
 		77AE6FF620491C4F00918A93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77AE6FF420491C4F00918A93 /* LaunchScreen.storyboard */; };
 		C00B0170A0679E22BAB2A5E6 /* Pods_business_chat_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35CEF5F8C3CA3ACC35B27A5E /* Pods_business_chat_app.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +74,7 @@
 		7404F604207543E50076C3D8 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		7404F606207547000076C3D8 /* business-chat-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "business-chat-app.entitlements"; sourceTree = "<group>"; };
 		7404F60720754CFA0076C3D8 /* FirebaseMessagingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingServices.swift; sourceTree = "<group>"; };
+		740621F720799F4300FDFE60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741052462078047B00E9A4E2 /* WebCellOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCellOut.swift; sourceTree = "<group>"; };
 		741052472078047B00E9A4E2 /* WebCellOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebCellOut.xib; sourceTree = "<group>"; };
 		743D497E204DDB92004A57E8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -113,7 +114,6 @@
 		74FB458D2063132600A70834 /* EditProfileTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableVC.swift; sourceTree = "<group>"; };
 		77AE6FE820491C4F00918A93 /* business-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "business-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AE6FEB20491C4F00918A93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77AE6FF220491C4F00918A93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77AE6FF520491C4F00918A93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77AE6FF720491C4F00918A93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1F2C9B5BD2F35B4665BA1E8 /* Pods-business-chat-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-business-chat-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-business-chat-app/Pods-business-chat-app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +252,7 @@
 		77AE6FEA20491C4F00918A93 /* business-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				740621F720799F4300FDFE60 /* Assets.xcassets */,
 				7404F606207547000076C3D8 /* business-chat-app.entitlements */,
 				74470984205C88B5000D719F /* Supporting Files */,
 				74F8523D20583D2300FE86D3 /* Services */,
@@ -259,7 +260,6 @@
 				74CB91412049BC190098E047 /* View */,
 				74CB91402049BC020098E047 /* Controller */,
 				77AE6FEB20491C4F00918A93 /* AppDelegate.swift */,
-				77AE6FF220491C4F00918A93 /* Assets.xcassets */,
 				77AE6FF720491C4F00918A93 /* Info.plist */,
 				7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */,
 			);
@@ -356,9 +356,9 @@
 				77AE6FF620491C4F00918A93 /* LaunchScreen.storyboard in Resources */,
 				746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */,
 				7461CD492072FF6600DB4D88 /* MultimediaMessageOut.xib in Resources */,
-				77AE6FF320491C4F00918A93 /* Assets.xcassets in Resources */,
 				741052492078047B00E9A4E2 /* WebCellOut.xib in Resources */,
 				74CB914B2049C6C30098E047 /* MainStoryboard.storyboard in Resources */,
+				740621F820799F4400FDFE60 /* Assets.xcassets in Resources */,
 				7461CD4D2073027B00DB4D88 /* MultimediaMessageIn.xib in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
 				7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */,
@@ -392,6 +392,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-business-chat-app/Pods-business-chat-app-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -399,11 +400,13 @@
 				"${BUILT_PRODUCTS_DIR}/LetterAvatarKit/LetterAvatarKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -411,6 +414,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LetterAvatarKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

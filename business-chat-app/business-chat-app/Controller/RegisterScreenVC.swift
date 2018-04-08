@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class RegisterScreenVC: UIViewController {
   
@@ -33,17 +34,35 @@ class RegisterScreenVC: UIViewController {
   
   @IBAction func registerButtonPressed(_ sender: Any) {
     
-    
+    SVProgressHUD.show(withStatus: "Registration")
     let email = emailTextfield.text
     let userName = usernameTextfield.text
     let password = passwordTextfield.text
     let confirmPassword = passwordConfirmTextfield.text
     
+    
+    
     if  password == confirmPassword && userName != nil && email != nil  {
       
       userRegister(userCreationComplete: { (success, loginError) in
         if success {
-          self.presentStoryboard()
+          SVProgressHUD.dismiss()
+          
+          SVProgressHUD.show(withStatus: "Registration succeeded. \nSigning In.")
+          
+          Auth.auth().signIn(withEmail: email!, password: password!) { (user, error) in
+            if let error = error {
+              self.alert(message: (error.localizedDescription))
+              return
+            }
+            
+            if user != nil {
+              print("Log in Successfull for \(String(describing: user))!")
+              UserServices.instance.saveTokens()
+              SVProgressHUD.dismiss()
+              self.presentStoryboard()              
+            }
+          }
         } else {
           
           print(String(describing: loginError?.localizedDescription))
@@ -63,12 +82,12 @@ class RegisterScreenVC: UIViewController {
     
   }
   
-  
   func userRegister(userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
     let userName = usernameTextfield.text!
     let password = passwordTextfield.text!
     let email = emailTextfield.text!
     
+    let trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
     
     Auth.auth().createUser(withEmail: "\(email)", password: "\(password)") { (user, error) in
       if let error = error {
@@ -76,7 +95,7 @@ class RegisterScreenVC: UIViewController {
         
       } else {
         
-        let userData = ["username": userName, "email": email, "avatar": false] as [String : Any]
+        let userData = ["username": trimmedName, "email": email, "avatar": false] as [String : Any]
         UserServices.instance.createDBUser(uid: (user?.uid)!, userData: userData)
         userCreationComplete(true, nil)
         

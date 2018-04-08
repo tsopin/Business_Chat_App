@@ -31,6 +31,8 @@ class CustomMessageOut: UITableViewCell {
         self.messageTime.text = messageTime
         self.messageBody.text = messageBody
         self.messageBackground.backgroundColor = messageBackground
+        self.userPic.isHidden = true
+        self.senderName.isHidden = true 
     }
   override func prepareForReuse() {
     super.prepareForReuse()

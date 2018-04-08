@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
-            <string>Avenir-Medium</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,19 +21,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92C-rT-v0O">
-                        <rect key="frame" x="154" y="40" width="150" height="89"/>
+                        <rect key="frame" x="179.5" y="40" width="119.5" height="89"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsQ-JG-g2C">
-                                <rect key="frame" x="8" y="8" width="48" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="mPm-Ng-18t"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Message body" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcR-Uh-Srx">
-                                <rect key="frame" x="8" y="27" width="134" height="54"/>
+                                <rect key="frame" x="13" y="5" width="98.5" height="76"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,12 +33,10 @@
                         <color key="backgroundColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="bcR-Uh-Srx" secondAttribute="bottom" id="E9w-tA-HYI"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="IvJ-Eo-cWE"/>
-                            <constraint firstItem="xsQ-JG-g2C" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="topMargin" id="bXq-Tp-Jqr"/>
-                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="xsQ-JG-g2C" secondAttribute="bottom" constant="2" id="fEO-FH-bwy"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="IvJ-Eo-cWE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bcR-Uh-Srx" secondAttribute="trailing" id="jDd-jI-MIQ"/>
-                            <constraint firstItem="xsQ-JG-g2C" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leadingMargin" id="m0f-lA-QSj"/>
-                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leadingMargin" id="sfq-s7-kPt"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leadingMargin" constant="5" id="sfq-s7-kPt"/>
+                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="5" id="vDg-oM-wU6"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -63,16 +46,16 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZCn-rD-eoo" userLabel="Time and Pic">
-                        <rect key="frame" x="181" y="11" width="122.5" height="40"/>
+                        <rect key="frame" x="166.5" y="11" width="137" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Mar 6, 11:26AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-TN-eAU">
-                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="40"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                                <rect key="frame" x="0.0" y="0.0" width="87" height="40"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                 <color key="textColor" red="0.63137254901960782" green="0.77647058823529413" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="Drq-j8-Gzr">
-                                <rect key="frame" x="82.5" y="0.0" width="40" height="40"/>
+                                <rect key="frame" x="97" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7nK-7Z-A7B"/>
                                     <constraint firstAttribute="height" constant="40" id="rHB-6V-E2n"/>
@@ -80,12 +63,32 @@
                             </imageView>
                         </subviews>
                     </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tailOut" translatesAutoresizingMaskIntoConstraints="NO" id="RzK-Np-gia">
+                        <rect key="frame" x="297" y="104" width="12" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="5ex-dm-e7a"/>
+                            <constraint firstAttribute="height" constant="16" id="jmu-Oe-mK4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsQ-JG-g2C">
+                        <rect key="frame" x="64" y="22" width="90" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="mPm-Ng-18t"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
+                        <color key="textColor" red="0.6588235294117647" green="0.77647058823529413" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="xsQ-JG-g2C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="2Ow-wR-VsG"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="29" id="4Ge-z1-tOd"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="4uC-gu-FzX"/>
+                    <constraint firstAttribute="bottom" secondItem="RzK-Np-gia" secondAttribute="bottom" constant="19.5" id="Dco-5c-hjp"/>
                     <constraint firstItem="ZCn-rD-eoo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="HA9-Yc-VkZ"/>
-                    <constraint firstItem="92C-rT-v0O" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MUU-zj-kws"/>
+                    <constraint firstItem="xsQ-JG-g2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="48" id="LiF-px-aXx"/>
+                    <constraint firstItem="92C-rT-v0O" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-5" id="MUU-zj-kws"/>
+                    <constraint firstItem="RzK-Np-gia" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="trailing" constant="-2" id="OZk-cx-eC3"/>
                     <constraint firstItem="92C-rT-v0O" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="PU0-Xe-9gl"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ZCn-rD-eoo" secondAttribute="trailing" id="Wlc-pO-ZwE"/>
                 </constraints>
@@ -102,6 +105,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="tailOut" width="402" height="510"/>
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
 </document>
