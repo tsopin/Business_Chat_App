@@ -9,21 +9,27 @@
 import UIKit
 
 class MainTabViewController: UITabBarController {
-	
-	let colours = Colours()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		
-		// set gradient to tab bar using UIView extension and Colours class
-//		self.tabBar.setGradient(colours.colourMainBlue.cgColor, colours.colourMainPurple.cgColor)
-		self.tabBar.tintColor = colours.colourMainBlue
-		self.tabBar.unselectedItemTintColor = colours.colourLightBlue
+  
+  let colours = Colours()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    Services.instance.presenceSystem()
+    
+    let network = Services.instance.myStatus()
+    if network {
+      self.tabBar.tintColor = colours.colourMainBlue
+      self.tabBar.unselectedItemTintColor = colours.colourLightBlue
+    } else {
+      self.tabBar.tintColor = colours.colourMainPurple
+      self.tabBar.unselectedItemTintColor = colours.colourMainPurple
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
- 
+    
+    
+    
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+  }
 }

@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import Alamofire
+
 
 let DATABASE = Database.database().reference()
 let STORAGE = Storage.storage().reference()
@@ -36,21 +38,70 @@ class Services {
   }
   
   // Get connection status
-  func myStatus() {
+  func myStatus()-> Bool {
     
-    let connectedRef = Database.database().reference(withPath: ".info/connected")
-    connectedRef.observe(.value, with: {  snapshot in
-      if snapshot.value as? Bool ?? false {
-        print("Connected")
-      } else {
-        print("Not connected")
+    let networkCheck = NetworkReachabilityManager()
+    networkCheck?.startListening()
+    
+    networkCheck?.listener = { status in
+      if networkCheck?.isReachable ?? false {
+        
+        switch status {
+          
+        case .reachable(.ethernetOrWiFi):
+          print("The network is reachable over the WiFi connection")
+          
+        case .reachable(.wwan):
+          print("The network is reachable over the WWAN connection")
+          
+        case .notReachable:
+          print("The network is not reachable")
+          
+        case .unknown :
+          print("It is unknown whether the network is reachable")
+          
+        }
       }
+    }
+    return (networkCheck?.isReachable)!
+  }
+  
+  func presenceSystem() {
+    // since I can connect from multiple devices, we store each connection instance separately
+    // any time that connectionsRef's value is null (i.e. has no children) I am offline
+    let myConnectionsRef = Database.database().reference(withPath: "users/\(currentUserId!)/connections")
+    
+    // stores the timestamp of my last disconnect (the last time I was seen online)
+    let lastOnlineRef = Database.database().reference(withPath: "users/\(currentUserId!)/lastOnline")
+    let offlineAfterDisconnect = Database.database().reference(withPath: "users/\(currentUserId!)/status")
+    let connectedRef = Database.database().reference(withPath: ".info/connected")
+    
+    connectedRef.observe(.value, with: { snapshot in
+      // only handle connection established (or I've reconnected after a loss of connection)
+      guard let connected = snapshot.value as? Bool, connected else { return }
+      
+      // add this device to my connections list
+      let con = myConnectionsRef.childByAutoId()
+      
+      // when this device disconnects, remove it.
+      con.onDisconnectRemoveValue()
+      
+      // The onDisconnect() call is before the call to set() itself. This is to avoid a race condition
+      // where you set the user's presence to true and the client disconnects before the
+      // onDisconnect() operation takes effect, leaving a ghost user.
+      
+      // this value could contain info about the device or a timestamp instead of just true
+      con.setValue(true)
+      let date = Date()
+      let currentDate = date.timeIntervalSinceReferenceDate
+      // when I disconnect, update the last time I was seen online
+      lastOnlineRef.onDisconnectSetValue(currentDate)
+      offlineAfterDisconnect.onDisconnectSetValue("offline")
     })
   }
   
   //Get Info for user ID
   func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
-    
     
     REF_STORAGE_USER_IMAGES.child(userId).downloadURL { (url, error) in
       //using a guard statement to unwrap the url and check for error
@@ -73,6 +124,7 @@ class Services {
         
         if error != nil {
           print("Failed to upload image:", error!)
+          
           return
         }
         

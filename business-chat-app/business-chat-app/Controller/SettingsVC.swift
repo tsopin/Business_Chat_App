@@ -17,6 +17,7 @@ class SettingsVC: UITableViewController {
   @IBOutlet weak var userNameTextField: UILabel!
   @IBOutlet weak var emailTextField: UILabel!
   @IBOutlet weak var dndSwitchOutlet: UISwitch!
+  @IBOutlet weak var notificationsSwitchOutlet: UISwitch!
   
   let currentUserId = Auth.auth().currentUser?.uid
   let currentEmail = Auth.auth().currentUser?.email
@@ -25,10 +26,7 @@ class SettingsVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.hideKeyboardWhenTappedAround()
-    //        print(currentDate)
-    
   }
-  
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -53,6 +51,16 @@ class SettingsVC: UITableViewController {
     }
   }
   
+  @IBAction func notificationsSwitch(_ sender: Any) {
+    if notificationsSwitchOutlet.isOn {
+      UIApplication.shared.unregisterForRemoteNotifications()
+      
+    } else {
+      UIApplication.shared.registerForRemoteNotifications()
+      UserServices.instance.saveTokens()
+    }
+  }
+  
   @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
     
     if (dndSwitchOutlet.isOn) {
@@ -60,13 +68,13 @@ class SettingsVC: UITableViewController {
         if user != nil {
           UserServices.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
             if online == true {
+              self.notificationsSwitchOutlet.isOn = true
+              self.notificationsSwitchOutlet.isEnabled = false
+              UIApplication.shared.unregisterForRemoteNotifications()
               print("status set to DND")
             }
-            
           })
-          
         }
-        
       }
       
     } else {
@@ -74,15 +82,16 @@ class SettingsVC: UITableViewController {
         if user != nil {
           UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
             if online == true {
+              self.notificationsSwitchOutlet.isOn = false
+              self.notificationsSwitchOutlet.isEnabled = true
+              UIApplication.shared.registerForRemoteNotifications()
+              UserServices.instance.saveTokens()
+              
               print("status set to Online")
             }
-            
           })
-          
         }
-        
       }
-      
     }
   }
   
@@ -97,6 +106,11 @@ class SettingsVC: UITableViewController {
       
       do {
         try Auth.auth().signOut()
+        
+        let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeScreenVC") as! WelcomeScreenVC
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.rootViewController = welcomeVC
+        
         print("LogOut")
         self.dismiss(animated: true, completion: nil)
         UserServices.instance.updateUserStatus(withStatus: "offline", handler: { (isStatusUpdated) in
@@ -104,28 +118,20 @@ class SettingsVC: UITableViewController {
             print("status set to Offile")
           }
         })
-//        Auth.auth().addStateDidChangeListener() { auth, user in
-//          if user != nil {
-//
-//
-//          }
-      
-        }
-      
+      }
+        
       catch {
         print("Error")
       }
       
-    } )
+    })
     let cancel = UIAlertAction(title: "Cancel ", style: .cancel, handler: {
       (alert: UIAlertAction!) -> Void in
-      
-    } )
+    })
     
     actionSheets.addAction(action1)
     actionSheets.addAction(cancel)
     self.present(actionSheets, animated: true, completion: nil)
-    
   }
   
   override func didReceiveMemoryWarning() {
@@ -142,7 +148,7 @@ class SettingsVC: UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 2
+    return 3
   }
   deinit{
     

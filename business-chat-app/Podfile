@@ -17,6 +17,8 @@ target 'business-chat-app' do
 	pod 'Kingfisher'
 	pod 'LetterAvatarKit'
   	pod 'CryptoSwift'
+  	pod 'SVProgressHUD'
+    pod 'Alamofire'
 
 end
 
