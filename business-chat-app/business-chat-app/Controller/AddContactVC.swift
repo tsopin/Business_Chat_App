@@ -42,7 +42,7 @@ class AddContactVC: UIViewController {
       ChatServices.instance.createChat(forChatName: "default", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
         if chatCreated {
           
-          UserServices.instance.addChatToUser(isGroup: false)
+//          UserServices.instance.addChatToUser(isGroup: false)
           
         } else {
           print("Chat Creation Error")
