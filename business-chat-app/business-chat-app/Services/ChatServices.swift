@@ -41,11 +41,13 @@ class ChatServices {
         
         newMembers[member] = true
       }
+      let chatId = forChatName.md5()
       
-      REF_CHATS.childByAutoId().setValue(["isGroupChat" : isGroupChat,
-                                          "members" : newMembers,
-                                          "chatName" : "chatName"])
-      UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").updateChildValues([md5ChatId : true])
+      REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
+                                        "members" : newMembers,
+                                        "chatName" : forChatName])
+      
+      UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").updateChildValues([chatId : true])
       handler(true)
       
     case false:
@@ -77,21 +79,32 @@ class ChatServices {
   
   
   //  // GETTING PERSONAL CHATS ID FROM USES activePersonalChats
-  func getMyPersonalChatsIdsNew(handler: @escaping (_ uidArray: [String]) -> ()) {
+  func getMyChatsIds(isGroup: Bool, handler: @escaping (_ uidArray: [String]) -> ()) {
+    var chatIdsArray = [String]()
     
-    UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observeSingleEvent(of: .value) { (chatsSnapshot) in
-      var chatIdsArray = [String]()
-      guard let returnedPersonalChats = chatsSnapshot.value as? [String:Bool] else {return}
-      
-      for chat in returnedPersonalChats.keys {
-        chatIdsArray.append(chat)
+    
+    if isGroup {
+      UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").observeSingleEvent(of: .value) { (chatsSnapshot) in
+        guard let returnedPersonalChats = chatsSnapshot.value as? [String:Bool] else {return}
+        for chat in returnedPersonalChats.keys {
+          chatIdsArray.append(chat)
+        }
+        handler(chatIdsArray)
+        
       }
-      handler(chatIdsArray)
+    } else {
+      UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observeSingleEvent(of: .value) { (chatsSnapshot) in
+        guard let returnedPersonalChats = chatsSnapshot.value as? [String:Bool] else {return}
+        for chat in returnedPersonalChats.keys {
+          chatIdsArray.append(chat)
+        }
+        handler(chatIdsArray)
+      }
     }
   }
   
   // GETTING CHAT INFO BY ID
-  func getMyPersonalChatsNew(forIds: [String], handler: @escaping (_ contactsArray: [Chat]) -> ()) {
+  func getMyChats(forIds: [String], handler: @escaping (_ contactsArray: [Chat]) -> ()) {
     
     var chatsArray = [Chat]()
     
@@ -101,10 +114,8 @@ class ChatServices {
         
         var returnedChatName = String()
         var returnedMembers = [String:Bool]()
-        //        var returnedIsGroup = Bool()
         
-        guard let data = chatSnapshot.value as? NSDictionary else { return }
-        
+        guard let data = chatSnapshot.value as? NSDictionary else {return}
         guard let chatName = data["chatName"] as? String else {return}
         guard let members = data["members"] as? [String:Bool] else {return}
         
@@ -120,78 +131,17 @@ class ChatServices {
       })
     }
   }
-
-  
-  //    Get my group chats
-  func getMyGroups(handler: @escaping (_ groupsArray: [Chat]) -> ()) {
-    
-    var groupsArray = [Chat]()
-    REF_CHATS.observeSingleEvent(of: .value) { (groupSnapshot) in
-      guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
-      
-      for group in groupSnapshot {
-        guard let isGroupArray = group.childSnapshot(forPath: "isGroupChat").value as? Bool else {return}
-        guard let memberArray = group.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
-        
-        if  isGroupArray == true && memberArray.keys.contains(currentUserId!) {
-          
-          guard let groupName = group.childSnapshot(forPath: "chatName").value as? String else {return}
-          
-          let group = Chat(name: groupName, members: memberArray, chatKey: group.key, memberCount: "\(memberArray.count)")
-          
-          groupsArray.append(group)
-        }
-      }
-      handler(groupsArray)
-    }
-  }
-  
-  //Get personal chats ID's by members ID's
-  func getMyPersonalChatsIds(withMe myId: String, handler: @escaping (_ uidArray: [String:Bool]) -> ()) {
-    
-    REF_CHATS.observeSingleEvent(of: .value) { (userSnapshot) in
-      
-      var chatIdsArray = [String:Bool]()
-      guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-      
-      for chat in userSnapshot {
-        
-        guard let chatId = chat.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
-        if chatId.keys.contains(currentUserId!) {
-          chatIdsArray[chat.key] = true
-        }
-      }
-      handler(chatIdsArray)
-    }
-  }
-  
-  //Get group chats ID's by members ID's
-  func getMyGroupIds(withMe myId: String, handler: @escaping (_ uidArray: [String:Bool]) -> ()) {
-    
-    REF_CHATS.observeSingleEvent(of: .value) { (userSnapshot) in
-      
-      var chatIdsArray = [String:Bool]()
-      
-      guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-      
-      for chat in userSnapshot {
-        
-        guard let isGroup = chat.childSnapshot(forPath: "isGroupChat").value as? Bool else {return}
-        guard let chatId = chat.childSnapshot(forPath: "members").value as? [String:Bool] else {return}
-        if chatId.contains(where: { $0.value }) && isGroup == true {
-          chatIdsArray[chat.key] = true
-        }
-      }
-      handler(chatIdsArray)
-    }
-  }
-  
   
   func deleteChatFromUser(isGroup: Bool, chatId: String) {
     
     let killer = [chatId:nil] as [String : Any?]
     
-    UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues(killer as Any as! [AnyHashable : Any])
+    if isGroup {
+      UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").updateChildValues(killer as Any as! [AnyHashable : Any])
+      
+    } else {
+      UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues(killer as Any as! [AnyHashable : Any])
+    }
   }
   
 }

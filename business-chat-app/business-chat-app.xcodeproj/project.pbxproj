@@ -177,7 +177,6 @@
 		74CB91402049BC020098E047 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				137B603C20633BFD008FEC57 /* UserProfileVC.swift */,
 				74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */,
 				74CB913C2049BBF70098E047 /* RegisterScreenVC.swift */,
 				74B3B093204BB2F40056A026 /* MainTabViewController.swift */,
@@ -186,10 +185,11 @@
 				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 				137B603E20642155008FEC57 /* GroupInfoVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
-				74FB458D2063132600A70834 /* EditProfileTableVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
+				74FB458D2063132600A70834 /* EditProfileTableVC.swift */,
 				1363906320631CD500746F5A /* EditProfileTableVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsVC.swift */,
+				137B603C20633BFD008FEC57 /* UserProfileVC.swift */,
 				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
 			);
 			path = Controller;
