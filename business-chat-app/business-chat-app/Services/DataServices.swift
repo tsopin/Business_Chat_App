@@ -55,7 +55,7 @@ class Services {
           print("The network is reachable over the WWAN connection")
           
         case .notReachable:
-          print("The network is not reachable")
+       print("The network is not reachable")
           
         case .unknown :
           print("It is unknown whether the network is reachable")

@@ -39,7 +39,7 @@ class AddContactVC: UIViewController {
         }
       })
       
-      ChatServices.instance.createChat(forChatName: "defaultPersonalChat", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
+      ChatServices.instance.createChat(forChatName: "default", forMemberIds: userIds, forGroupChat: false, handler: { (chatCreated) in
         if chatCreated {
           
           UserServices.instance.addChatToUser(isGroup: false)

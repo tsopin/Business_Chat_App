@@ -24,7 +24,7 @@ class ListOfGroupsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        offlineMode()
 //        Services.instance.REF_CHATS.observe(.value) { (snapshot) in
             ChatServices.instance.getMyGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
@@ -80,7 +80,20 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
     //    method for chats deleting
   }
    
+  func offlineMode() {
+    let colors = Colours()
+    let network = Services.instance.myStatus()
+    let nav = self.navigationController?.navigationBar
     
+    if network == false {
+      nav?.barTintColor = colors.colourMainPurple
+      self.navigationItem.title = "Groups - Offline"
+    } else {
+      nav?.barTintColor = UIColor.white
+      self.navigationItem.title = "Groups"
+    }
+    
+  }
     
 }
 

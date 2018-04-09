@@ -30,7 +30,7 @@ class SettingsVC: UITableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    offlineMode()
     // make rounded profile image
     profileImageView.layer.masksToBounds = true
     profileImageView.layer.cornerRadius = 60
@@ -150,6 +150,22 @@ class SettingsVC: UITableViewController {
     // #warning Incomplete implementation, return the number of rows
     return 3
   }
+  
+  func offlineMode() {
+    let colors = Colours()
+    let network = Services.instance.myStatus()
+    let nav = self.navigationController?.navigationBar
+    
+    if network == false {
+      nav?.barTintColor = colors.colourMainPurple
+      self.navigationItem.title = "Settings - Offline"
+    } else {
+      nav?.barTintColor = UIColor.white
+      self.navigationItem.title = "Settings"
+    }
+    
+  }
+
   deinit{
     
   }

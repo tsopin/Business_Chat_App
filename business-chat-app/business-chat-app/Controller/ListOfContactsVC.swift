@@ -26,6 +26,8 @@ class ListOfContactsVC: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    offlineMode()
+    
     ChatServices.instance.REF_CHATS.observe(.value) { (snapshot) in
       ChatServices.instance.getMyPersonalChats { (returnedUsersArray) in
         self.contactsArray = returnedUsersArray
@@ -106,15 +108,15 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     }
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//    method for chats deleting
-//    contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+    //    method for chats deleting
+    //    contactsTableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
   // Show user profile from List of contacts
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let info = UIContextualAction(style: UIContextualAction.Style.normal, title: "User Info") { (action, view, _) in
       print("ShowUserInfo")
-    
+      
     }
     let delete = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete Chat") { (action, view, _) in
       print("Delete")
@@ -123,10 +125,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     config.performsFirstActionWithFullSwipe = false
     return config
   }
-  
-  
-  
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showPersonalChat" {
       let indexPath = contactsTableView.indexPathForSelectedRow
@@ -134,6 +133,22 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
       personalChatVC.initData(forChat: contactsArray[(indexPath?.row)!])
     }
   }
+  
+  func offlineMode() {
+    let colors = Colours()
+    let network = Services.instance.myStatus()
+    let nav = self.navigationController?.navigationBar
+    
+    if network == false {
+      nav?.barTintColor = colors.colourMainPurple
+      self.navigationItem.title = "Chats - Offline Mode"
+    } else {
+      nav?.barTintColor = UIColor.white
+      self.navigationItem.title = "Chats"
+    }
+    
+  }
+
 }
 
 
