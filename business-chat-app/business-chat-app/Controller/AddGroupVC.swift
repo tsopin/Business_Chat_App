@@ -59,7 +59,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
       ChatServices.instance.createChat(forChatName: groupName, forMemberIds: userIds, forGroupChat: true, handler: { (chatCreated) in
         if chatCreated {
           
-          UserServices.instance.addChatToUser(isGroup: true)
+//          UserServices.instance.addChatToUser(isGroup: true)
         }else {
           print("Chat Creation Error")
         }

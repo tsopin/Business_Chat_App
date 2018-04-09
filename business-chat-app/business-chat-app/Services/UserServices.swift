@@ -17,12 +17,12 @@ class UserServices {
   private var _REF_USERS = DATABASE.child("users")
   
   var REF_DATABASE: DatabaseReference {
-        _REF_DATABASE.keepSynced(true)
+    _REF_DATABASE.keepSynced(true)
     return _REF_DATABASE
   }
   
   var REF_USERS: DatabaseReference {
-        _REF_USERS.keepSynced(true)
+    _REF_USERS.keepSynced(true)
     return _REF_USERS
   }
   
@@ -51,23 +51,6 @@ class UserServices {
     }
     REF_USERS.child(currentUserId!).updateChildValues(["contactList" : newContacts])
     handler(true)
-  }
-  
-  //  Update user's active personal chats with choosen chats
-  func addChatToUser(isGroup: Bool)  {
-    
-    switch isGroup {
-      
-    case true:
-      ChatServices.instance.getMyGroupIds(withMe: currentUserId!, handler: { (groupIdsArray) in
-        self.REF_USERS.child(currentUserId!).updateChildValues(["activeGroupChats" : groupIdsArray])
-      })
-      
-    case false:
-      ChatServices.instance.getMyPersonalChatsIds(withMe: currentUserId!, handler: { (idsArray) in
-        self.REF_USERS.child(currentUserId!).updateChildValues(["activePersonalChats" : idsArray])
-      })
-    }
   }
   
   //    Get all registred users from database
@@ -123,7 +106,7 @@ class UserServices {
           returnedUsername = userName
           returnedStatus = status
           lastSeen = String(lastOnline)
-        
+          
           if isUserPicExist == true {
             let userPicUrl = user.childSnapshot(forPath: "avatarURL").value as! String
             returnedImageUrl = userPicUrl
@@ -185,6 +168,6 @@ class UserServices {
     
     REF_USERS.child(currentUserId!).updateChildValues(["tokens" : tokens])
     
-//    appDelegage.tokensDict.removeAll()
+    //    appDelegage.tokensDict.removeAll()
   }
 }
