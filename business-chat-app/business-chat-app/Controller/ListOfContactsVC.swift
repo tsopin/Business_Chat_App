@@ -14,6 +14,7 @@ class ListOfContactsVC: UIViewController {
   
   @IBOutlet weak var contactsTableView: UITableView!
   
+  var refreshControl: UIRefreshControl!
   var contactsArray = [Chat]()
   var choosenContactArray =  [String]()
   var chatMessages = [Message]()
@@ -23,43 +24,50 @@ class ListOfContactsVC: UIViewController {
     contactsTableView.delegate = self
     contactsTableView.dataSource = self
     navigationItem.leftBarButtonItem = editButtonItem
+    refreshControl = UIRefreshControl()
+    contactsTableView.refreshControl = refreshControl
+    refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControlEvents.valueChanged)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
+    downloadMessages()
+
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+  }
+  
+  @objc func refreshPull() {
+    DispatchQueue.main.async {
+      
+      self.refreshControl.endRefreshing()
+      self.downloadMessages()
+      self.contactsTableView.reloadData()
+    }
+  }
+  func downloadMessages(){
     
+    UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe( .childAdded) { (df) in
       ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-          self.contactsArray = returnedChats
+          self.contactsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
           DispatchQueue.main.async {
             self.contactsTableView.reloadData()
           }
         })
       }
-    
-//        UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childAdded) { (ppp) in
-//          ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
-//            ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-//              self.contactsArray = returnedChats
-//              DispatchQueue.main.async {
-//                self.contactsTableView.reloadData()
-//              }
-//            })
-//          }
-//
-//
-//    }
+    }
     
     UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childRemoved) { (snapshot) in
       DispatchQueue.main.async {
         self.contactsTableView.reloadData()
       }
     }
+    
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-  }
 }
 
 extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
@@ -77,26 +85,26 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "personalChatCell", for: indexPath) as? PersonalChatCell else {return UITableViewCell()}
     
     let contact = contactsArray[indexPath.row]
+    let lastMessage = contactsArray[indexPath.row].lastMessage
     
-    
-    MessageServices.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
-      
-      let amount = returnedMessage.count - 1
-      
+//    MessageServices.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
+//
+//      let amount = returnedMessage.count - 1
+//
       var date = String()
-      
-      var dateToGo = String()
-      
-      if returnedMessage.indices.contains(amount) {
-        
-        dateToGo = returnedMessage[amount].timeSent
-        date = self.getDateFromInterval(timestamp: Double(dateToGo))!
-        
-      } else {
-        
-        date = "No messages yet"
-      }
-      
+//
+//      var dateToGo = String()
+//
+//      if returnedMessage.indices.contains(amount) {
+//
+//        dateToGo = returnedMessage[amount].timeSent
+        date = self.getDateFromInterval(timestamp: Double(lastMessage))!
+//
+//      } else {
+//
+//        date = "No messages yet"
+//      }
+    
       UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
         
         var statusImage = UIImage()
@@ -117,7 +125,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configeureCell(contactName: contactName, contactEmail: contactEmail, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
       }
-    }
+//    }
     return cell
   }
   override func setEditing(_ editing: Bool, animated: Bool) {

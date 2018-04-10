@@ -117,7 +117,7 @@ class ChatServices {
     
     for id in forIds {
       
-      REF_CHATS.child(id).observe(DataEventType.value, with: { (chatSnapshot) in
+      REF_CHATS.child(id).observeSingleEvent(of: .value) { (chatSnapshot) in
         
         var returnedChatName = String()
         var returnedMembers = [String:Bool]()
@@ -137,7 +137,7 @@ class ChatServices {
         chatsArray.append(group)
         
         handler(chatsArray)
-      })
+      }
     }
   }
 
