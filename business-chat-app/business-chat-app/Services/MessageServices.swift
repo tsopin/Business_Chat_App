@@ -30,6 +30,7 @@ class MessageServices {
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent,
                                                            "isMultimedia" : isMultimedia])
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue("\(timeSent)")
     sendComplete(true)
   }
   
@@ -39,6 +40,8 @@ class MessageServices {
                                                            "content" : mediaUrl,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent])
+    
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue("\(timeSent)")
     sendComplete(true)
   }
   

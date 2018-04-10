@@ -27,14 +27,29 @@ class ListOfContactsVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
-    ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
-      ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-        self.contactsArray = returnedChats
-        DispatchQueue.main.async {
-          self.contactsTableView.reloadData()
-        }
-      })
-    }
+    
+      ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
+        ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
+          self.contactsArray = returnedChats
+          DispatchQueue.main.async {
+            self.contactsTableView.reloadData()
+          }
+        })
+      }
+    
+//        UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childAdded) { (ppp) in
+//          ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
+//            ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
+//              self.contactsArray = returnedChats
+//              DispatchQueue.main.async {
+//                self.contactsTableView.reloadData()
+//              }
+//            })
+//          }
+//
+//
+//    }
+    
     UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childRemoved) { (snapshot) in
       DispatchQueue.main.async {
         self.contactsTableView.reloadData()
@@ -62,6 +77,8 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "personalChatCell", for: indexPath) as? PersonalChatCell else {return UITableViewCell()}
     
     let contact = contactsArray[indexPath.row]
+    
+    
     MessageServices.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
       
       let amount = returnedMessage.count - 1
