@@ -14,8 +14,8 @@ class Chat {
     private var _memberCount: String
     private var _members: [String:Bool]
     private var _chatKey: String
-    private var _lastMessage: String
-    
+//    private var _lastMessage: String
+  
     var chatName: String {
         return _chatName
     }
@@ -29,16 +29,16 @@ class Chat {
     var key: String {
         return _chatKey
     }
-  var lastMessage: String {
-    return _lastMessage
-  }
-    
-  init(name: String, members: [String:Bool], chatKey: String, memberCount: String, lastMessage: String) {
+//  var lastMessage: String {
+//    return _lastMessage
+//  }
+  
+  init(name: String, members: [String:Bool], chatKey: String, memberCount: String) {
         self._chatName = name
         self._members = members
         self._chatKey = chatKey
         self._memberCount = memberCount
-        self._lastMessage = lastMessage
+//        self._lastMessage = lastMessage
     }
     
     

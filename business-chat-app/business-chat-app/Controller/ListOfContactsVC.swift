@@ -27,17 +27,14 @@ class ListOfContactsVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
-    
-    UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe(.childAdded) { (ppp) in
     ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
-        ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-          self.contactsArray = returnedChats.sorted(by: { $0.lastMessage > $1.lastMessage })
-          DispatchQueue.main.async {
-            self.contactsTableView.reloadData()
-          }
-        })
-      }
-       }
+      ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
+        self.contactsArray = returnedChats
+        DispatchQueue.main.async {
+          self.contactsTableView.reloadData()
+        }
+      })
+    }
     UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childRemoved) { (snapshot) in
       DispatchQueue.main.async {
         self.contactsTableView.reloadData()
@@ -117,30 +114,30 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     //    method for chats deleting
     
-        ChatServices.instance.deleteChatFromUser(isGroup: false, chatId: contactsArray[indexPath.row].key)
-        contactsArray.remove(at: indexPath.row)
-        contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+    ChatServices.instance.deleteChatFromUser(isGroup: false, chatId: contactsArray[indexPath.row].key)
+    contactsArray.remove(at: indexPath.row)
+    contactsTableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
   // TODO:  Extra actions on Trailing Swipe
   // Show user profile from List of contacts
-//  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-////    let info = UIContextualAction(style: UIContextualAction.Style.normal, title: "User Info") { (action, view, _) in
-////      print("ShowUserInfo")
-////
-////    }
-//    let delete = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete Chat") { (action, view, success) in
-//
-//      ChatServices.instance.deleteChatFromUser(isGroup: false, chatId: self.contactsArray[indexPath.row].key)
-//      self.contactsArray.remove(at: indexPath.row)
-//      self.contactsTableView.deleteRows(at: [indexPath], with: .fade )
-//      success(true)
-//      print("Delete")
-//    }
-//    let config = UISwipeActionsConfiguration(actions: [delete])
-//    config.performsFirstActionWithFullSwipe = true
-//    return config
-//  }
+  //  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+  ////    let info = UIContextualAction(style: UIContextualAction.Style.normal, title: "User Info") { (action, view, _) in
+  ////      print("ShowUserInfo")
+  ////
+  ////    }
+  //    let delete = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete Chat") { (action, view, success) in
+  //
+  //      ChatServices.instance.deleteChatFromUser(isGroup: false, chatId: self.contactsArray[indexPath.row].key)
+  //      self.contactsArray.remove(at: indexPath.row)
+  //      self.contactsTableView.deleteRows(at: [indexPath], with: .fade )
+  //      success(true)
+  //      print("Delete")
+  //    }
+  //    let config = UISwipeActionsConfiguration(actions: [delete])
+  //    config.performsFirstActionWithFullSwipe = true
+  //    return config
+  //  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showPersonalChat" {

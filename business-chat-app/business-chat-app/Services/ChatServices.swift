@@ -30,13 +30,8 @@ class ChatServices {
   // Create a new group chat
   func createChat(forChatName: String, forMemberIds memberIds: [String], forGroupChat isGroupChat: Bool, handler: @escaping (_ chatCreated: Bool) -> ()) {
     
-    let date = Date()
     var newMembers = [String:Bool]()
     var md5ChatId = String()
-    
-    let currentDate = date.timeIntervalSinceReferenceDate
-//    let timeSent = ("\(currentDate)").replacingOccurrences(of: ".", with: "")
-    
     
     switch isGroupChat{
       
@@ -46,26 +41,16 @@ class ChatServices {
         
         newMembers[member] = true
       }
-      
-//      Different variants of ChatId generating
-//      let date = Date()
-//      let currentDate = date.timeIntervalSinceReferenceDate
-//      let chatId = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "").md5()
-      
-      let chatId = UUID().uuidString
-      
+      let chatId = forChatName.md5()
       
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
                                         "members" : newMembers,
-                                        "chatName" : forChatName,
-                                        "lastMessage" : currentDate])
-      
+                                        "chatName" : forChatName])
       for member in memberIds {
         UserServices.instance.REF_USERS.child(member).child("activeGroupChats").updateChildValues([chatId : true])
       }
       UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").updateChildValues([chatId : true])
       handler(true)
-      
       
     case false:
       
@@ -79,8 +64,7 @@ class ChatServices {
         
         REF_CHATS.child(md5ChatId).setValue(["isGroupChat" : isGroupChat,
                                              "members" : [memberId:true, currentUserId! : true],
-                                             "chatName" : chatName,
-                                             "lastMessage" : currentDate])
+                                             "chatName" : chatName])
         
         UserServices.instance.REF_USERS.child(memberId).child("activePersonalChats").updateChildValues([md5ChatId : true])
         UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues([md5ChatId : true])
@@ -137,17 +121,15 @@ class ChatServices {
         guard let data = chatSnapshot.value as? NSDictionary else {return}
         guard let chatName = data["chatName"] as? String else {return}
         guard let members = data["members"] as? [String:Bool] else {return}
-        guard let lastMessage = data["lastMessage"] as? String else {return}
         
         let chatKey = id
         returnedMembers = members
         returnedChatName = chatName
         
         let newchatName = returnedChatName.replacingOccurrences(of: currentUserId!, with: "")
-        let group = Chat(name: newchatName, members: returnedMembers, chatKey: chatKey, memberCount: "\(returnedMembers.count)", lastMessage: lastMessage)
+        let group = Chat(name: newchatName, members: returnedMembers, chatKey: chatKey, memberCount: "\(returnedMembers.count)")
         
         chatsArray.append(group)
-        
         handler(chatsArray)
       })
     }
