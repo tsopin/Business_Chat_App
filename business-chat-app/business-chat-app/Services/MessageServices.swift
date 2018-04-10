@@ -26,10 +26,15 @@ class MessageServices {
   // Upload message to Database
   func sendMessage(withContent content: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, isMultimedia: Bool, sendComplete: @escaping (_ status: Bool) -> ()) {
     
+    
     REF_MESSAGES.child(chatId!).child(messageId).setValue(["content" : content,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent,
                                                            "isMultimedia" : isMultimedia])
+    
+//    let timeSentNoSpaces = ("\(timeSent)").replacingOccurrences(of: ".", with: "")
+
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue(timeSent)
     sendComplete(true)
   }
   
@@ -39,6 +44,8 @@ class MessageServices {
                                                            "content" : mediaUrl,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent])
+    
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue(timeSent)
     sendComplete(true)
   }
   

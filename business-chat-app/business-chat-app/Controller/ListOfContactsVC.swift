@@ -27,14 +27,17 @@ class ListOfContactsVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
+    
+    UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe(.childAdded) { (ppp) in
     ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-          self.contactsArray = returnedChats
+          self.contactsArray = returnedChats.sorted(by: { $0.lastMessage > $1.lastMessage })
           DispatchQueue.main.async {
             self.contactsTableView.reloadData()
           }
         })
       }
+       }
     UserServices.instance.REF_USERS.child(currentUserId!).child("activerPersonalChats").observe(.childRemoved) { (snapshot) in
       DispatchQueue.main.async {
         self.contactsTableView.reloadData()

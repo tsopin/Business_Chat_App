@@ -33,7 +33,8 @@
                         <color key="backgroundColor" red="0.5607843137254902" green="0.1764705882352941" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="bcR-Uh-Srx" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leadingMargin" id="NQC-qR-r5X"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="bmO-X5-44F"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Ol6-ol-1tB"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="bmO-X5-44F"/>
                             <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="5" id="gfV-i8-1f7"/>
                             <constraint firstAttribute="bottomMargin" secondItem="bcR-Uh-Srx" secondAttribute="bottom" id="ko3-R2-KOH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bcR-Uh-Srx" secondAttribute="trailing" id="u2l-9u-yH5"/>

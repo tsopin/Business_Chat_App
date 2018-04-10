@@ -210,7 +210,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
         
         return cell
-        
       }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
@@ -222,7 +221,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  
   func textFieldDidEndEditing(_ textField: UITextField) {
     
     UIView.animate(withDuration: 0.2) {
@@ -232,7 +230,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       
     }
   }
-  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return chatMessages.count
