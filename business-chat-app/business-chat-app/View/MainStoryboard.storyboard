@@ -663,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXs-CQ-dOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5212" y="-519"/>
+            <point key="canvasLocation" x="4057" y="-506"/>
         </scene>
         <!--Group chat-->
         <scene sceneID="3om-Vu-TrB">
@@ -779,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4W1-cS-Oqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4017" y="788"/>
+            <point key="canvasLocation" x="4057" y="173"/>
         </scene>
         <!--Group name-->
         <scene sceneID="ysj-vv-SWK">
@@ -906,7 +906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyn-xV-GSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5212" y="273"/>
+            <point key="canvasLocation" x="4807" y="173"/>
         </scene>
         <!--Personal Chat-->
         <scene sceneID="Ggr-gy-Des">
@@ -1205,6 +1205,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oS7-hl-K2z">
                                 <rect key="frame" x="0.0" y="140" width="375" height="638"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.63137254899999995" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="userCell" rowHeight="70" id="uf5-dW-tDw" customClass="SearchUserForContactCell" customModule="business_chat_app" customModuleProvider="target">
@@ -1291,7 +1292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kM-X1-FXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4441" y="-2144"/>
+            <point key="canvasLocation" x="4441" y="-1983"/>
         </scene>
         <!--Chats-->
         <scene sceneID="Itr-aP-PzW">
@@ -1495,7 +1496,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fus-R7-II5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6463" y="-1066"/>
+            <point key="canvasLocation" x="5602" y="-529"/>
         </scene>
     </scenes>
     <resources>
@@ -1512,7 +1513,7 @@
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i4g-76-5Ia"/>
+        <segue reference="XSQ-oC-MWz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

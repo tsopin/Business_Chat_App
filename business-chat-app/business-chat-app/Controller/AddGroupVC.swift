@@ -133,7 +133,6 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
   }
   
   func updateSearchResults(for searchController: UISearchController) {
-    // TODO
     searchBarDidBeginEditing()
   }
   
