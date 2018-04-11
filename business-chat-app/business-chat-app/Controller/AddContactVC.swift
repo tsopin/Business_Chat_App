@@ -63,7 +63,7 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
 			let userIds = idsArray
 			UserServices.instance.addContact(forUsersIds: userIds, handler: { (contactCreated) in
 				if contactCreated {
-					self.presentStoryboard()
+					// self.presentStoryboard()
 				}else {
 					print("Contact Adding Error")
 				}
@@ -77,7 +77,8 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
 				}
 			})
 		})
-		self.presentStoryboard()
+		//self.presentStoryboard()
+		self.navigationController?.popToRootViewController(animated: true)
 	}
   
   override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +99,7 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
 	// Set up the Search Controller
 	searchController.searchResultsUpdater = self
 	searchController.obscuresBackgroundDuringPresentation = false
-	searchController.searchBar.placeholder = "Find by email and select"
+	searchController.searchBar.placeholder = "Find contact and select"
 	navigationItem.searchController = searchController
 	navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
 	navigationItem.hidesSearchBarWhenScrolling = false
@@ -115,7 +116,7 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
 	// MARK: -- Search --
 	
 	func updateSearchResults(for searchController: UISearchController) {
-		filterContentForSearchText(searchController.searchBar.text!)
+		// filterContentForSearchText(searchController.searchBar.text!)
 	}
 	
 	// search in email or username
@@ -141,14 +142,10 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
-	
-	let user = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
-
-	cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
-    
-    return cell
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
+		let user = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
+		cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
+		return cell
   }
   
 

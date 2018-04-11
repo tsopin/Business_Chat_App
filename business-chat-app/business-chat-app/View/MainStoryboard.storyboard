@@ -634,6 +634,10 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="d8E-8s-fQ8" id="fpo-lJ-VTK"/>
+                                            <outlet property="delegate" destination="d8E-8s-fQ8" id="IUG-ic-tFZ"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
