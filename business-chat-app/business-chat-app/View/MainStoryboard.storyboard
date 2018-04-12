@@ -222,6 +222,7 @@
                                                         <constraint firstAttribute="height" constant="31" id="51k-Gu-Zdf"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.62745098040000002" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="onTintColor" red="0.93333333333333335" green="0.25882352941176467" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="doNotDisturbSwitch:" destination="nxO-zv-oiS" eventType="valueChanged" id="OJb-XX-6cq"/>
                                                     </connections>
@@ -259,6 +260,7 @@
                                                         <constraint firstAttribute="height" constant="31" id="xnD-Pk-Gdc"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.62745098040000002" green="0.77647058820000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="onTintColor" red="0.93333333330000001" green="0.25882352939999997" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="notificationsSwitch:" destination="nxO-zv-oiS" eventType="valueChanged" id="Bv5-Zg-yui"/>
                                                     </connections>
@@ -1373,7 +1375,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tx-Fh-6lY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2415" y="-276"/>
+            <point key="canvasLocation" x="2408" y="-350"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Wnr-Vz-bA8">
