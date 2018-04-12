@@ -74,21 +74,8 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
       let indexPath = groupsTableView.indexPathForSelectedRow
       guard let groupChatVC = segue.destination as? GroupChatVC else {return}
       groupChatVC.initData(forChat: groupsArray[(indexPath?.row)!])
+		groupChatVC.title = groupsArray[(indexPath?.row)!].chatName
     }
-	if segue.identifier == "showCreateGroup" {
-		
-		
-		UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
-			UserServices.instance.getAllUsers{ (returnedUsersArray) in
-				
-				self.allUsersArray = returnedUsersArray
-			}
-		}
-		
-		let addGroupVC = segue.destination as! AddGroupVC
-		addGroupVC.usersArray = allUsersArray
-		print(allUsersArray.count)
-	}
   }
   
   override func setEditing(_ editing: Bool, animated: Bool) {

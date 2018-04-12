@@ -94,17 +94,9 @@ extension GroupInfoVC: UITableViewDelegate, UITableViewDataSource {
       let cell = tableView.dequeueReusableCell(withIdentifier: "groupMemberCell") as! GroupMemberCell
       
       UserServices.instance.getUserData(byUserId: memberIds[indexPath.row], handler: { (userData) in
-        cell.usernameLabel.text = userData.1
-        cell.userEmailLabel.text = userData.0
+		cell.configureCell(username: userData.1, userEmail: userData.0, imageUrl: userData.3)
       })
-      
-      
-      //                Services.instance.getUserName(byUserId: memberIds[indexPath.row], handler: { (username) in
-      //                    cell.usernameLabel.text = username
-      //                })
-      //                Services.instance.getUserEmail(byUserId: memberIds[indexPath.row], handler: { (email) in
-      //                    cell.userEmailLabel.text = email
-      //                })
+		
       return cell
       
     }

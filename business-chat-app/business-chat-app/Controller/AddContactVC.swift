@@ -145,7 +145,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
 		let user = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
-		cell.cronfigureCell(email: user.email, userName: user.userName, isSelected: false)
+	cell.configureCell(email: user.email, userName: user.userName, imageUrl: user.avatarUrl!, isSelected: false)
 		return cell
   }
   
@@ -156,25 +156,6 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
 		createChat()
 	}
 	
-  
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserForContactCell else {return}
-//
-//    if !chosenUserArray.contains(cell.emailLabel.text!) {
-//      chosenUserArray.append(cell.emailLabel.text!)
-//      doneButton.isEnabled = true
-//		self.navigationController?.popViewController(animated: true)
-//    } else {
-//      chosenUserArray = chosenUserArray.filter({ $0 != cell.emailLabel.text! })
-//      if chosenUserArray.count >= 1 {
-//
-//      } else {
-//
-//        doneButton.isEnabled = false
-//      }
-//    }
-//  }
 	
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 	if isFiltering() {

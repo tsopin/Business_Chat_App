@@ -84,7 +84,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
       self.tabPhoto.layer.masksToBounds = true
-      self.tabPhoto.layer.cornerRadius = 20
+      self.tabPhoto.layer.cornerRadius = 15
       
     }
     configureTableView()

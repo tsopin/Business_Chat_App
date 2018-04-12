@@ -65,8 +65,17 @@ class UserServices {
         guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
         guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
         guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
+		
+		var avatarUrl = String()
+		
+		if let imageUrl = user.childSnapshot(forPath: "avatarURL").value as? String {
+			avatarUrl = imageUrl
+		} else {
+			avatarUrl = "NoImage"
+		}
+		
         
-        let user = User(userName: userName, email: email, status: status)
+		let user = User(userName: userName, email: email, avatarUrl: avatarUrl, status: status)
         
         if email != currentEmail{
           usersArray.append(user)
@@ -150,10 +159,20 @@ class UserServices {
         
         guard let email = user.childSnapshot(forPath: "email").value as? String else {return}
         guard let userName = user.childSnapshot(forPath: "username").value as? String else {return}
+		
+		var avatarUrl = String()
+		
+		if let imageUrl = user.childSnapshot(forPath: "avatarURL").value as? String {
+			avatarUrl = imageUrl
+		} else {
+			avatarUrl = "NoImage"
+		}
+			
+		
         guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
         
         if email.contains(query) == true && email != Auth.auth().currentUser?.email {
-          let user = User(userName: userName, email: email, status: status)
+			let user = User(userName: userName, email: email, avatarUrl: avatarUrl, status: status)
           userArray.append(user)
         }
       }

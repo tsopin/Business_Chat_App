@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import LetterAvatarKit
 
 class SearchUserForContactCell: UITableViewCell {
     
@@ -15,6 +17,8 @@ class SearchUserForContactCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     
     @IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var userPic: UIImageView!
+	
     
   var showing = false
     
@@ -35,7 +39,16 @@ class SearchUserForContactCell: UITableViewCell {
         }
     }
     
-    func cronfigureCell(email: String, userName: String, isSelected: Bool) {
+	func configureCell(email: String, userName: String, imageUrl: String, isSelected: Bool) {
+		
+		if imageUrl == "NoImage" {
+			userPic.image = UIImage.makeLetterAvatar(withUsername: userName)
+		} else {
+			userPic.kf.setImage(with: URL(string: imageUrl))
+		}
+		
+		userPic.layer.masksToBounds = true
+		userPic.layer.cornerRadius = 20
     
         self.emailLabel.text = email
         self.userName.text = userName

@@ -132,23 +132,23 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
 		if numberOfSections(in: tableView) > 1 {
 			if indexPath.section == 0 {
 				guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
-				cell.configureCell(email: selectedUsersArray[indexPath.row].email, userName: selectedUsersArray[indexPath.row].userName, isSelected: true)
+				cell.configureCell(email: selectedUsersArray[indexPath.row].email, userName: selectedUsersArray[indexPath.row].userName, imageUrl: selectedUsersArray[indexPath.row].avatarUrl!, isSelected: true)
 				return cell
 			} else {
 				guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
 				if isFiltering() {
-					cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, isSelected: false)
+					cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, imageUrl: filteredUsersArray[indexPath.row].avatarUrl!, isSelected: false)
 				} else {
-					cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, isSelected: false)
+					cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, imageUrl: usersArray[indexPath.row].avatarUrl!, isSelected: false)
 				}
 				return cell
 			}
 		} else {
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
 			if isFiltering() {
-				cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, isSelected: false)
+				cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, imageUrl: filteredUsersArray[indexPath.row].avatarUrl!, isSelected: false)
 			} else {
-				cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, isSelected: false)
+				cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, imageUrl: usersArray[indexPath.row].avatarUrl!, isSelected: false)
 			}
 			return cell
 		}
@@ -177,8 +177,6 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
 		}
 		tableView.reloadData()
 	}
-	
-	
 	
   
   // MARK: -- Search --
