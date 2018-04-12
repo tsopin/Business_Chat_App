@@ -518,7 +518,7 @@
                         <barButtonItem key="rightBarButtonItem" title="New" id="HyL-Kh-xnm">
                             <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="d8E-8s-fQ8" kind="show" id="fCB-wW-Eks"/>
+                                <segue destination="d8E-8s-fQ8" kind="show" identifier="showCreateGroup" id="fCB-wW-Eks"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

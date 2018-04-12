@@ -91,6 +91,7 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
       }
     }
+	print("total users: \(usersArray.count)")
   }
   
   override func viewDidLoad() {
