@@ -34,7 +34,7 @@ class SearchUserForGroupCell: UITableViewCell {
         }
     }
     
-    func cronfigureCell(email: String, userName: String, isSelected: Bool) {
+    func configureCell(email: String, userName: String, isSelected: Bool) {
         
         self.email.text = email
         self.userName.text = userName

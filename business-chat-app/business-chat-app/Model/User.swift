@@ -8,7 +8,14 @@
 
 import UIKit
 
-class User {
+class User: Equatable {
+	
+	// make User class equatable to be able to find them in arrays, etc.
+	static func == (lhs: User, rhs: User) -> Bool {
+		return lhs.email == rhs.email &&
+				lhs.userName == rhs.userName
+	}
+	
     
     private var _userName: String
     private var _email: String

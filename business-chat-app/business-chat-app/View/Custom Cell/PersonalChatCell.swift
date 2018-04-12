@@ -37,6 +37,7 @@ class PersonalChatCell: UITableViewCell {
     
     self.contactName.text = contactName
     self.contactEmail.text = contactEmail
+//    self.lastMessage.pushTransition(0.4)
     self.lastMessage.text = lastMessage
     self.statusImage.image = statusImage
   }

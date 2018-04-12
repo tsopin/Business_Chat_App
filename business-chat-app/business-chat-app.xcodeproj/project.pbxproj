@@ -182,6 +182,7 @@
 				74B3B093204BB2F40056A026 /* MainTabViewController.swift */,
 				748407FD205492D000CF244F /* AddContactVC.swift */,
 				74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */,
+				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
 				748BEF16205DFBB00032EE3C /* GroupChatVC.swift */,
 				137B603E20642155008FEC57 /* GroupInfoVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
@@ -190,7 +191,6 @@
 				1363906320631CD500746F5A /* EditProfileTableVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsVC.swift */,
 				137B603C20633BFD008FEC57 /* UserProfileVC.swift */,
-				74B8C3A6205AC15900951EEB /* AddGroupVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,10 +321,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -620,9 +620,8 @@
 			baseConfigurationReference = C1F2C9B5BD2F35B4665BA1E8 /* Pods-business-chat-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "business-chat-app/business-chat-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QEFHSRMQX;
+				DEVELOPMENT_TEAM = 2BULHRS882;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
@@ -637,9 +636,8 @@
 			baseConfigurationReference = F48D78BC5E0D745189ED9639 /* Pods-business-chat-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "business-chat-app/business-chat-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QEFHSRMQX;
+				DEVELOPMENT_TEAM = 2BULHRS882;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
