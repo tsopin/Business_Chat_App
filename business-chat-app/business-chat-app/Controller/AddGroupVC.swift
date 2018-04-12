@@ -18,25 +18,24 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
   let searchController = UISearchController(searchResultsController: nil)
   
   var usersArray = [User]()
-  var chosenUsersArray = [String]()
+  var selectedUsersArray = [User]()
   var filteredUsersArray = [User]()
-  // var Array = [String]()
+
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     doneBtn.isEnabled = false
 	
-		UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
+		 UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
 			UserServices.instance.getAllUsers{ (returnedUsersArray) in
 				self.usersArray = returnedUsersArray
 				self.tableView.reloadData()
 			}
-		}
+		 }
 	}
   
   override func viewDidLoad() {
     super.viewDidLoad()
-	
     
     // Set up the Search Controller
     searchController.searchResultsUpdater = self
@@ -46,10 +45,10 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
 	navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
 	navigationItem.hidesSearchBarWhenScrolling = false
     definesPresentationContext = false
-    
+	
+	tableView.delegate = self
+	tableView.dataSource = self
     self.hideKeyboardWhenTappedAround()
-    tableView.delegate = self
-    tableView.dataSource = self
 	
 	
   }
@@ -64,6 +63,11 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
     } else {
       groupName = "New group"
     }
+	
+	var chosenUsersArray = [String]()
+	for user in selectedUsersArray {
+		chosenUsersArray.append(user.email)
+	}
     
     UserServices.instance.getUsersIds(forUsernames: chosenUsersArray, handler: { (idsArray) in
       var userIds = idsArray
@@ -86,76 +90,93 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
 }
 
 
+// MARK: -- TableView setup --
+
 extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
   
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
+		return selectedUsersArray.count > 0 ? 2 : 1
 	  }
 	
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return isFiltering() ? filteredUsersArray.count : usersArray.count
+		
+		if numberOfSections(in: tableView) > 1 {
+			switch section {
+			case 0:
+				return selectedUsersArray.count
+			case 1:
+				return isFiltering() ? filteredUsersArray.count : usersArray.count
+			default:
+				return usersArray.count
+			}
+		} else {
+			return isFiltering() ? filteredUsersArray.count : usersArray.count
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if numberOfSections(in: tableView) > 1 {
+			return section == 0 ? "Selected contacts" : "All contacts"
+		} else {
+			return "All contacts"
+		}
+		
 	}
 	
 	
   	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
 		
-	let user = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
-    
-    if chosenUsersArray.contains(user.email) {
-      cell.configureCell(email: user.email, userName: user.userName , isSelected: true)
-    } else {
-      cell.configureCell(email: user.email, userName: user.userName, isSelected: false)
-	}
-
-	return cell
+		// check if there are more than one sections in tableview
+		if numberOfSections(in: tableView) > 1 {
+			if indexPath.section == 0 {
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
+				cell.configureCell(email: selectedUsersArray[indexPath.row].email, userName: selectedUsersArray[indexPath.row].userName, isSelected: true)
+				return cell
+			} else {
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
+				if isFiltering() {
+					cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, isSelected: false)
+				} else {
+					cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, isSelected: false)
+				}
+				return cell
+			}
+		} else {
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: "userForGroupCell") as? SearchUserForGroupCell else {return UITableViewCell() }
+			if isFiltering() {
+				cell.configureCell(email: filteredUsersArray[indexPath.row].email, userName: filteredUsersArray[indexPath.row].userName, isSelected: false)
+			} else {
+				cell.configureCell(email: usersArray[indexPath.row].email, userName: usersArray[indexPath.row].userName, isSelected: false)
+			}
+			return cell
+		}
+	
   }
-	
-	
-	
-	
-  
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserForGroupCell else {return}
-//
-//    if !chosenUsersArray.contains(cell.email.text!) {
-//      chosenUsersArray.append(cell.email.text!)
-//      // invitedUsers.text = chosenUserArray.joined(separator: ", ")
-//      doneBtn.isEnabled = true
-//    } else {
-//      chosenUsersArray = chosenUsersArray.filter({ $0 != cell.email.text! })
-//      if chosenUsersArray.count >= 1 {
-//        // invitedUsers.text = chosenUserArray.joined(separator: ", ")
-//      } else {
-//        // invitedUsers.text = "Add people to your Group"
-//        self.doneBtn.isEnabled = false
-//      }
-//    }
-//  }
 	
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserForGroupCell else {return}
-		let selectedUserEmail = cell.email.text
-
-		if chosenUsersArray.contains(selectedUserEmail!) {
-			chosenUsersArray = chosenUsersArray.filter({ $0 != cell.email.text! })
-			cell.setSelected(false, animated: true)
-			if chosenUsersArray.count < 1 {
-				doneBtn.isEnabled = false
-			}
-		} else {
-			chosenUsersArray.append(selectedUserEmail!)
-			cell.setSelected(true, animated: true)
+		
+		if numberOfSections(in: tableView) == 1 {
+			let selectedUser = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
+			selectedUsersArray.append(selectedUser)
 			doneBtn.isEnabled = true
+		} else {
+			if indexPath.section == 0 {
+				selectedUsersArray.remove(at: indexPath.row)
+				if selectedUsersArray.count == 0 {
+					doneBtn.isEnabled = false
+				}
+			} else {
+				let selectedUser = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
+				if !selectedUsersArray.contains(selectedUser) {
+					selectedUsersArray.append(selectedUser)
+				}
+			}
 		}
 		tableView.reloadData()
 	}
-	
 	
 	
 	

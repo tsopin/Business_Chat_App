@@ -14,6 +14,7 @@ class ListOfGroupsVC: UIViewController {
   @IBOutlet weak var groupsTableView: UITableView!
   
   var groupsArray = [Chat]()
+  var allUsersArray = [User]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,6 +75,20 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
       guard let groupChatVC = segue.destination as? GroupChatVC else {return}
       groupChatVC.initData(forChat: groupsArray[(indexPath?.row)!])
     }
+	if segue.identifier == "showCreateGroup" {
+		
+		
+		UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
+			UserServices.instance.getAllUsers{ (returnedUsersArray) in
+				
+				self.allUsersArray = returnedUsersArray
+			}
+		}
+		
+		let addGroupVC = segue.destination as! AddGroupVC
+		addGroupVC.usersArray = allUsersArray
+		print(allUsersArray.count)
+	}
   }
   
   override func setEditing(_ editing: Bool, animated: Bool) {
