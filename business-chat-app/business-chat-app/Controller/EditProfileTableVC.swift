@@ -16,13 +16,15 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   let imagePickerContorller = UIImagePickerController()
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameTextField: UITextField!
-  @IBOutlet weak var userEmailLabel: UILabel!
+  @IBOutlet weak var userEmailTextField: UITextField!
+	
   
   let colours = Colours()
   
   let currentEmail = Auth.auth().currentUser?.email
   let currentUserId = Auth.auth().currentUser?.uid
   var userName = String()
+  var userEmail = String()
   
   
   override func viewDidLoad() {
@@ -32,6 +34,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     profileImageView.layer.cornerRadius = 60
     
     usernameTextField.delegate = self
+	userEmailTextField.delegate = self
     imagePickerContorller.delegate = self
     self.hideKeyboardWhenTappedAround()
     
@@ -41,8 +44,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     super.viewWillAppear(animated)
     UserServices.instance.getUserData(byUserId: currentUserId!) { (userData) in
       self.usernameTextField.text = userData.1
-      self.userEmailLabel.text = userData.0
-      //      let placeHolder = UIImage(named: "userpic_placeholder_small")
+      self.userEmailTextField.text = userData.0
       
       if userData.3 == "NoImage" {
         self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
@@ -121,15 +123,71 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   
   @objc func saveDetails() {
     
-    if usernameTextField.text != "" {
-      print(usernameTextField.text!)
+    if usernameTextField.text != "" && userEmailTextField.text != "" {
+		
+	// Chage username
       userName = usernameTextField.text!
       UserServices.instance.createDBUser(uid: currentUserId!, userData: ["username" : userName])
-      navigationController?.popViewController(animated: true)
+		
+	// Change user email
+		userEmail = userEmailTextField.text!
+		changeEmail(userEmail)
+
     } else {
-      print("empty username!")
+      print("empty username or email!")
     }
   }
+	
+	func changeEmail(_ newEmail: String) {
+		Auth.auth().currentUser?.updateEmail(to: userEmail) { (error) in
+			if (error != nil) {
+				self.reLogIn()
+			} else {
+				UserServices.instance.REF_USERS.child("\(self.currentUserId!)/email").setValue(newEmail)
+				SVProgressHUD.showSuccess(withStatus: "Profile updated!")
+				self.navigationController?.popViewController(animated: true)
+				SVProgressHUD.dismiss(withDelay: 1)
+			}
+		}
+	}
+	
+	
+	
+	// User may need to reauthenticate in order to change email or password
+	func reLogIn() {
+		
+		var password = String()
+		
+		let alert = UIAlertController(title: "Confirmation required", message: "Please enter your password", preferredStyle: .alert)
+		alert.addTextField { (textField) in
+			textField.placeholder = "Password"
+			textField.textContentType = UITextContentType.password
+			textField.isSecureTextEntry = true
+		}
+		let loginAction = UIAlertAction(title: "Sign in", style: .default) { (action) in
+			let passwordField = alert.textFields![0]
+			password = passwordField.text!
+			
+			Auth.auth().signIn(withEmail: self.currentEmail!, password: password, completion: { (user, error) in
+				if let error = error {
+					print(error.localizedDescription)
+					self.alert(message: error.localizedDescription)
+				}
+				if user != nil {
+					self.changeEmail(self.userEmail)
+				}
+			})
+		}
+
+		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+		alert.addAction(loginAction)
+		alert.addAction(cancel)
+		
+		self.present(alert, animated: true, completion: nil)
+
+	}
+	
+	
   
   
   override func didReceiveMemoryWarning() {
