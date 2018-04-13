@@ -338,6 +338,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       if let chatName = chat?.chatName {
         userProfileVC.chatName = chatName
       }
+	 userProfileVC.title = self.contactNameLabel.text!
     }
   }
   @IBAction func infoButtonPressed(_ sender: UIButton) {

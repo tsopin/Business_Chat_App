@@ -17,9 +17,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var userEmailTextField: UITextField!
-	
-  
-  let colours = Colours()
   
   let currentEmail = Auth.auth().currentUser?.email
   let currentUserId = Auth.auth().currentUser?.uid
@@ -54,17 +51,19 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     }
   }
   
-  // Textfield methods
+	// MARK: -- Textfield methods --
   
   // Add "Save" button to navigation bar when editing begins
   func textFieldDidBeginEditing(_ textField: UITextField) {
     self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(saveDetails))
   }
-  
+	
+	
+	// MARK: -- Profile image --
+	
   @IBAction func deletePhotoButton(_ sender: Any) {
-    
+	
     let userData = ["avatar":false, "avatarURL":nil]
-    
     UserServices.instance.createDBUser(uid: self.currentUserId!, userData: userData as Any as! Dictionary<String, Any>)
   }
   
@@ -119,7 +118,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     picker.dismiss(animated: true, completion: nil)
   }
   
-  // Save user details
+	// MARK: -- Save user details --
   
   @objc func saveDetails() {
     
@@ -138,6 +137,8 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     }
   }
 	
+	// Try to change email
+	
 	func changeEmail(_ newEmail: String) {
 		Auth.auth().currentUser?.updateEmail(to: userEmail) { (error) in
 			if (error != nil) {
@@ -153,7 +154,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
 	
 	
 	
-	// User may need to reauthenticate in order to change email or password
+	// If User needs to re-authenticate in order to change email, this method is called and change email retried
 	func reLogIn() {
 		
 		var password = String()
@@ -188,12 +189,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
 	}
 	
 	
-  
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
+	
   
   // MARK: - Table view methods
   
@@ -206,14 +202,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     // #warning number of rows in sections should be updated if there are more user details added
     return section == 0 ? 1 : 2
   }
-  
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let headerView = UITableViewHeaderFooterView()
-    headerView.textLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
-    headerView.textLabel?.textColor = colours.colourMainBlue
-    return headerView
-  }
-  
+	
   deinit{
     
   }

@@ -1435,7 +1435,7 @@
             </objects>
             <point key="canvasLocation" x="1452" y="553"/>
         </scene>
-        <!--User ProfileVC-->
+        <!--Title-->
         <scene sceneID="bSn-Zy-eDN">
             <objects>
                 <tableViewController id="efe-t0-yS5" customClass="UserProfileVC" customModule="business_chat_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -1546,6 +1546,7 @@
                             <outlet property="delegate" destination="efe-t0-yS5" id="a1f-QI-X5p"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="FMh-91-xv3"/>
                     <connections>
                         <outlet property="profileImageView" destination="nwP-QE-4NQ" id="VJf-fd-do0"/>
                         <outlet property="userEmailLabel" destination="bOi-q9-55g" id="UbZ-Nb-gLk"/>
@@ -1572,7 +1573,7 @@
         <image name="userpic_placeholder_small" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XSQ-oC-MWz"/>
+        <segue reference="i4g-76-5Ia"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
