@@ -46,11 +46,15 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
   
   @IBAction func saveGroupInfo(_ sender: UIBarButtonItem) {
     self.view.endEditing(true)
-    //        let chatKey = chat?.key
-    //        ChatServices.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
-    ChatServices.instance.createChat(forChatName: groupName, forMemberIds: memberIds, forGroupChat: true) { (complete) in
-      
-    }
+	
+	// Only updating group name
+	let chatKey = chat?.key
+	ChatServices.instance.REF_CHATS.child("\(chatKey!)/chatName").setValue(groupName)
+	
+	// this method creates new group
+//    ChatServices.instance.createChat(forChatName: groupName, forMemberIds: memberIds, forGroupChat: true) { (complete) in
+//
+//    }
     navigationController?.popViewController(animated: true)
   }
   
@@ -59,9 +63,11 @@ class GroupInfoVC: UIViewController, UITextFieldDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showGroupMemberProfile" {
       let indexPath = groupInfoTableView.indexPathForSelectedRow
+	  let cell = groupInfoTableView.cellForRow(at: indexPath!) as! GroupMemberCell
       let userId = memberIds[(indexPath?.row)!]
       let userProfileVC = segue.destination as! UserProfileVC
-      userProfileVC.userId = userId
+      userProfileVC.chatName = userId
+	  userProfileVC.title = cell.usernameLabel.text!
     }
   }
 }
@@ -94,17 +100,9 @@ extension GroupInfoVC: UITableViewDelegate, UITableViewDataSource {
       let cell = tableView.dequeueReusableCell(withIdentifier: "groupMemberCell") as! GroupMemberCell
       
       UserServices.instance.getUserData(byUserId: memberIds[indexPath.row], handler: { (userData) in
-        cell.usernameLabel.text = userData.1
-        cell.userEmailLabel.text = userData.0
+		cell.configureCell(username: userData.1, userEmail: userData.0, imageUrl: userData.3)
       })
-      
-      
-      //                Services.instance.getUserName(byUserId: memberIds[indexPath.row], handler: { (username) in
-      //                    cell.usernameLabel.text = username
-      //                })
-      //                Services.instance.getUserEmail(byUserId: memberIds[indexPath.row], handler: { (email) in
-      //                    cell.userEmailLabel.text = email
-      //                })
+		
       return cell
       
     }

@@ -14,7 +14,8 @@ class ListOfGroupsVC: UIViewController {
   @IBOutlet weak var groupsTableView: UITableView!
   
   var groupsArray = [Chat]()
-  var refreshControl: UIRefreshControl!
+
+  var allUsersArray = [User]()
 
   
   override func viewDidLoad() {
@@ -94,6 +95,7 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
       let indexPath = groupsTableView.indexPathForSelectedRow
       guard let groupChatVC = segue.destination as? GroupChatVC else {return}
       groupChatVC.initData(forChat: groupsArray[(indexPath?.row)!])
+		groupChatVC.title = groupsArray[(indexPath?.row)!].chatName
     }
   }
   

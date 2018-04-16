@@ -84,7 +84,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
       self.tabPhoto.layer.masksToBounds = true
-      self.tabPhoto.layer.cornerRadius = 20
+      self.tabPhoto.layer.cornerRadius = 15
       
     }
     configureTableView()
@@ -338,6 +338,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       if let chatName = chat?.chatName {
         userProfileVC.chatName = chatName
       }
+	 userProfileVC.title = self.contactNameLabel.text!
     }
   }
   @IBAction func infoButtonPressed(_ sender: UIButton) {

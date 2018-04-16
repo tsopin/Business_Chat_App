@@ -12,7 +12,8 @@ class SearchUserForGroupCell: UITableViewCell {
     
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var userName: UILabel!
-
+	@IBOutlet weak var userPic: UIImageView!
+	
     @IBOutlet weak var isSelectedImage: UIImageView!
     var showing = false
     
@@ -34,8 +35,17 @@ class SearchUserForGroupCell: UITableViewCell {
         }
     }
     
-    func cronfigureCell(email: String, userName: String, isSelected: Bool) {
-        
+	func configureCell(email: String, userName: String, imageUrl: String, isSelected: Bool) {
+		
+		if imageUrl == "NoImage" {
+			userPic.image = UIImage.makeLetterAvatar(withUsername: userName)
+		} else {
+			userPic.kf.setImage(with: URL(string: imageUrl))
+		}
+		
+		userPic.layer.masksToBounds = true
+		userPic.layer.cornerRadius = 20
+		
         self.email.text = email
         self.userName.text = userName
         
