@@ -97,7 +97,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.childAdded) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         
-        self.chatMessages = returnedChatMessages
+        self.chatMessages = returnedChatMessages.reversed()
         self.configureTableView()
         self.chatTableView.reloadData()
         self.scrollToBottom()
@@ -239,7 +239,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBAction func sendButton(_ sender: UIButton) {
     
     let date = Date()
-    let currentDate = date.timeIntervalSinceReferenceDate
+    let currentDate = date.millisecondsSince1970
     let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
     if textField.text != "" {
       sendBtn.isEnabled = false

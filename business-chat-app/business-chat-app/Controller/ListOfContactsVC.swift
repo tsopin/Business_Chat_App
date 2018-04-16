@@ -32,7 +32,6 @@ class ListOfContactsVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
     downloadMessages()
-
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -44,18 +43,19 @@ class ListOfContactsVC: UIViewController {
       
       self.refreshControl.endRefreshing()
       self.downloadMessages()
-      self.contactsTableView.reloadData()
     }
   }
+  
   func downloadMessages(){
-    
+
     UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe( .childAdded) { (df) in
       ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-          self.contactsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
-          DispatchQueue.main.async {
+          self.contactsArray = returnedChats
+//            .sorted { $0.lastMessage > $1.lastMessage }
+//          DispatchQueue.main.async {
             self.contactsTableView.reloadData()
-          }
+//          }
         })
       }
     }
@@ -65,13 +65,10 @@ class ListOfContactsVC: UIViewController {
         self.contactsTableView.reloadData()
       }
     }
-    
   }
-  
 }
 
 extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
-  
   
   func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -86,46 +83,38 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     
     let contact = contactsArray[indexPath.row]
     let lastMessage = contactsArray[indexPath.row].lastMessage
+    var date = String()
+
+   
+
+
+    UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
+    ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessage").observe(.value) { (popo) in
+      
+      guard let last = popo.value as? String else {return}
+       date = self.getDateFromInterval(timestamp: Double(last))!
     
-//    MessageServices.instance.getAllMessagesFor(desiredChat: contactsArray[indexPath.row]) { (returnedMessage) in
-//
-//      let amount = returnedMessage.count - 1
-//
-      var date = String()
-//
-//      var dateToGo = String()
-//
-//      if returnedMessage.indices.contains(amount) {
-//
-//        dateToGo = returnedMessage[amount].timeSent
-        date = self.getDateFromInterval(timestamp: Double(lastMessage))!
-//
-//      } else {
-//
-//        date = "No messages yet"
-//      }
-    
-      UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
-        
-        var statusImage = UIImage()
-        let contactEmail = userData.0
-        let contactName = userData.1
-        let imageUrl = userData.3
-        let contactStatus = userData.2
-        
-        switch contactStatus {
-        case "online":
-          statusImage = UIImage(named: "status_online")!
-        case "dnd":
-          statusImage = UIImage(named: "status_dnd")!
-        case "away":
-          statusImage = UIImage(named: "status_away")!
-        default:
-          statusImage = UIImage(named: "status_offline")!
-        }
-        cell.configeureCell(contactName: contactName, contactEmail: contactEmail, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
+   
+      
+      var statusImage = UIImage()
+      let contactEmail = userData.0
+      let contactName = userData.1
+      let imageUrl = userData.3
+      let contactStatus = userData.2
+      
+      switch contactStatus {
+      case "online":
+        statusImage = UIImage(named: "status_online")!
+      case "dnd":
+        statusImage = UIImage(named: "status_dnd")!
+      case "away":
+        statusImage = UIImage(named: "status_away")!
+      default:
+        statusImage = UIImage(named: "status_offline")!
       }
-//    }
+      cell.configeureCell(contactName: contactName, contactEmail: contactEmail, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
+    }
+    }
     return cell
   }
   override func setEditing(_ editing: Bool, animated: Bool) {
