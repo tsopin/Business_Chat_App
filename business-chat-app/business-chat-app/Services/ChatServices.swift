@@ -43,7 +43,9 @@ class ChatServices {
         
         newMembers[member] = true
       }
-      let chatId = forChatName.md5()
+      let chatId = REF_CHATS.childByAutoId().key
+//        forChatName.md5()
+      
       
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
                                         "members" : newMembers,
