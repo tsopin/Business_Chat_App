@@ -12,12 +12,20 @@ class GroupMemberCell: UITableViewCell {
 	
 	@IBOutlet weak var usernameLabel: UILabel!
 	@IBOutlet weak var userEmailLabel: UILabel!
-	@IBOutlet weak var userImageView: UIImageView!
+	@IBOutlet weak var userPic: UIImageView!
 	
-	func configureCell(username: String, userEmail: String, userPic: UIImage) {
+	func configureCell(username: String, userEmail: String, imageUrl: String) {
 		self.usernameLabel.text = username
 		self.userEmailLabel.text = userEmail
-		self.userImageView.image = userPic
+		
+		if imageUrl == "NoImage" {
+			self.userPic.image = UIImage.makeLetterAvatar(withUsername: username)
+		} else {
+			self.userPic.kf.setImage(with: URL(string: imageUrl))
+		}
+		
+		userPic.layer.masksToBounds = true
+		userPic.layer.cornerRadius = 20
 	}
 	
 

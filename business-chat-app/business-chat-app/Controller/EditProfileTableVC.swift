@@ -16,13 +16,12 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
   let imagePickerContorller = UIImagePickerController()
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameTextField: UITextField!
-  @IBOutlet weak var userEmailLabel: UILabel!
-  
-  let colours = Colours()
+  @IBOutlet weak var userEmailTextField: UITextField!
   
   let currentEmail = Auth.auth().currentUser?.email
   let currentUserId = Auth.auth().currentUser?.uid
   var userName = String()
+  var userEmail = String()
   
   
   override func viewDidLoad() {
@@ -32,6 +31,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     profileImageView.layer.cornerRadius = 60
     
     usernameTextField.delegate = self
+	userEmailTextField.delegate = self
     imagePickerContorller.delegate = self
     self.hideKeyboardWhenTappedAround()
     
@@ -41,8 +41,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     super.viewWillAppear(animated)
     UserServices.instance.getUserData(byUserId: currentUserId!) { (userData) in
       self.usernameTextField.text = userData.1
-      self.userEmailLabel.text = userData.0
-      //      let placeHolder = UIImage(named: "userpic_placeholder_small")
+      self.userEmailTextField.text = userData.0
       
       if userData.3 == "NoImage" {
         self.profileImageView.image = UIImage.makeLetterAvatar(withUsername: userData.1)
@@ -52,17 +51,19 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     }
   }
   
-  // Textfield methods
+	// MARK: -- Textfield methods --
   
   // Add "Save" button to navigation bar when editing begins
   func textFieldDidBeginEditing(_ textField: UITextField) {
     self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(saveDetails))
   }
-  
+	
+	
+	// MARK: -- Profile image --
+	
   @IBAction func deletePhotoButton(_ sender: Any) {
-    
+	
     let userData = ["avatar":false, "avatarURL":nil]
-    
     UserServices.instance.createDBUser(uid: self.currentUserId!, userData: userData as Any as! Dictionary<String, Any>)
   }
   
@@ -117,25 +118,78 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     picker.dismiss(animated: true, completion: nil)
   }
   
-  // Save user details
+	// MARK: -- Save user details --
   
   @objc func saveDetails() {
     
-    if usernameTextField.text != "" {
-      print(usernameTextField.text!)
+    if usernameTextField.text != "" && userEmailTextField.text != "" {
+		
+	// Chage username
       userName = usernameTextField.text!
       UserServices.instance.createDBUser(uid: currentUserId!, userData: ["username" : userName])
-      navigationController?.popViewController(animated: true)
+		
+	// Change user email
+		userEmail = userEmailTextField.text!
+		changeEmail(userEmail)
+
     } else {
-      print("empty username!")
+      print("empty username or email!")
     }
   }
-  
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
+	
+	// Try to change email
+	
+	func changeEmail(_ newEmail: String) {
+		Auth.auth().currentUser?.updateEmail(to: userEmail) { (error) in
+			if (error != nil) {
+				self.reLogIn()
+			} else {
+				UserServices.instance.REF_USERS.child("\(self.currentUserId!)/email").setValue(newEmail)
+				SVProgressHUD.showSuccess(withStatus: "Profile updated!")
+				self.navigationController?.popViewController(animated: true)
+				SVProgressHUD.dismiss(withDelay: 1)
+			}
+		}
+	}
+	
+	
+	
+	// If User needs to re-authenticate in order to change email, this method is called and change email retried
+	func reLogIn() {
+		
+		var password = String()
+		
+		let alert = UIAlertController(title: "Confirmation required", message: "Please enter your password", preferredStyle: .alert)
+		alert.addTextField { (textField) in
+			textField.placeholder = "Password"
+			textField.textContentType = UITextContentType.password
+			textField.isSecureTextEntry = true
+		}
+		let loginAction = UIAlertAction(title: "Sign in", style: .default) { (action) in
+			let passwordField = alert.textFields![0]
+			password = passwordField.text!
+			
+			Auth.auth().signIn(withEmail: self.currentEmail!, password: password, completion: { (user, error) in
+				if let error = error {
+					print(error.localizedDescription)
+					self.alert(message: error.localizedDescription)
+				}
+				if user != nil {
+					self.changeEmail(self.userEmail)
+				}
+			})
+		}
+
+		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+		alert.addAction(loginAction)
+		alert.addAction(cancel)
+		
+		self.present(alert, animated: true, completion: nil)
+
+	}
+	
+	
+	
   
   // MARK: - Table view methods
   
@@ -148,14 +202,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     // #warning number of rows in sections should be updated if there are more user details added
     return section == 0 ? 1 : 2
   }
-  
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let headerView = UITableViewHeaderFooterView()
-    headerView.textLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
-    headerView.textLabel?.textColor = colours.colourMainBlue
-    return headerView
-  }
-  
+	
   deinit{
     
   }

@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Black</string>
-            <string>Avenir-Book</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="RegisterViewController" customClass="RegisterScreenVC" customModule="business_chat_app" customModuleProvider="target">
             <connections>
@@ -28,9 +22,12 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="UhP-dH-rUc">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-kx-6J9">
                     <rect key="frame" x="30" y="282.66666666666669" width="354" height="180"/>
                     <subviews>
@@ -64,7 +61,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8TC-4l-04u">
-                    <rect key="frame" x="30" y="489.66666666666674" width="354" height="82"/>
+                    <rect key="frame" x="30" y="492.66666666666674" width="354" height="82"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-uM-cbg">
                             <rect key="frame" x="0.0" y="0.0" width="354" height="44"/>
@@ -112,22 +109,27 @@
             </subviews>
             <color key="backgroundColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="UhP-dH-rUc" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="3sF-fH-sbD"/>
                 <constraint firstItem="Uhh-WB-Bgg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="7oJ-aU-Dnx"/>
-                <constraint firstItem="8TC-4l-04u" firstAttribute="top" secondItem="BUr-kx-6J9" secondAttribute="bottom" constant="27" id="7pJ-wS-8wX"/>
+                <constraint firstItem="8TC-4l-04u" firstAttribute="top" secondItem="BUr-kx-6J9" secondAttribute="bottom" constant="30" id="7pJ-wS-8wX"/>
                 <constraint firstItem="Uhh-WB-Bgg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jse-cn-YpE"/>
                 <constraint firstItem="8TC-4l-04u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="Xqt-Js-vVC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8TC-4l-04u" secondAttribute="trailing" constant="30" id="am4-aW-vSz"/>
                 <constraint firstItem="8Hx-BN-JP7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kKu-Q6-xhK"/>
                 <constraint firstItem="8Hx-BN-JP7" firstAttribute="top" secondItem="Uhh-WB-Bgg" secondAttribute="bottom" constant="30" id="lxF-4L-mdo"/>
                 <constraint firstItem="BUr-kx-6J9" firstAttribute="top" secondItem="8Hx-BN-JP7" secondAttribute="bottom" constant="30" id="nHf-hK-ZpT"/>
+                <constraint firstItem="UhP-dH-rUc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s17-NZ-F2p"/>
                 <constraint firstItem="BUr-kx-6J9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="tTA-pD-tml"/>
+                <constraint firstItem="UhP-dH-rUc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u9L-pD-NOu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BUr-kx-6J9" secondAttribute="trailing" constant="30" id="vyd-15-3K6"/>
+                <constraint firstAttribute="trailing" secondItem="UhP-dH-rUc" secondAttribute="trailing" id="xbt-jm-emc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="34" y="92"/>
         </view>
     </objects>
     <resources>
+        <image name="login_background" width="375" height="812"/>
         <image name="login_screen_icon" width="69" height="69"/>
     </resources>
 </document>
