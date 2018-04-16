@@ -92,13 +92,17 @@ class Services {
       
       // this value could contain info about the device or a timestamp instead of just true
       con.setValue(true)
-      let date = Date()
-      let currentDate = date.timeIntervalSinceReferenceDate
+      var date = Date()
+      
+      let currentDate = date.millisecondsSince1970
+       date = Date(milliseconds: Int(currentDate))
       // when I disconnect, update the last time I was seen online
       lastOnlineRef.onDisconnectSetValue(currentDate)
       offlineAfterDisconnect.onDisconnectSetValue("offline")
     })
   }
+  
+  
   
   //Get Info for user ID
   func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {

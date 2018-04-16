@@ -284,7 +284,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let date = Date()
-    let currentDate = date.timeIntervalSinceReferenceDate
+    let currentDate = date.millisecondsSince1970
     let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
     
     Services.instance.uploadPhotoMessage(withImage: image, withChatKey: (self.chat?.key)!, withMessageId: messageUID, completion: { (imageUrl) in

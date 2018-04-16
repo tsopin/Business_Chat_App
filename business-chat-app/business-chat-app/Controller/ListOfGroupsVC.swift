@@ -17,6 +17,7 @@ class ListOfGroupsVC: UIViewController {
 
   var allUsersArray = [User]()
 
+  var refreshControl: UIRefreshControl!
   
   override func viewDidLoad() {
     super.viewDidLoad()

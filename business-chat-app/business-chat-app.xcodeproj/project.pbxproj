@@ -295,7 +295,6 @@
 				77AE6FE520491C4F00918A93 /* Frameworks */,
 				77AE6FE620491C4F00918A93 /* Resources */,
 				294FE05098B1ACC3E714E382 /* [CP] Embed Pods Frameworks */,
-				22161E8667651CBA021E7CCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -370,21 +369,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22161E8667651CBA021E7CCC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-business-chat-app/Pods-business-chat-app-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		294FE05098B1ACC3E714E382 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -621,7 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BULHRS882;
+				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
@@ -637,7 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BULHRS882;
+				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
