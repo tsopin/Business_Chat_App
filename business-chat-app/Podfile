@@ -19,6 +19,7 @@ target 'business-chat-app' do
   	pod 'CryptoSwift'
   	pod 'SVProgressHUD'
     pod 'Alamofire'
+    pod 'SimpleImageViewer'
 
 end
 

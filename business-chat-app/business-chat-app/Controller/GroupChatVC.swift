@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import SimpleImageViewer
+import SVProgressHUD
 
-class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   @IBOutlet var mainView: UIView!
   @IBOutlet weak var textInputView: UIView!
@@ -20,6 +22,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   
   let customMessageIn = CustomMessageIn()
   let customMessageOut = CustomMessageOut()
+  let imagePickerContorller = UIImagePickerController()
   
   let colours = Colours()
   
@@ -40,15 +43,18 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       let value = snapshot.value as? NSDictionary
       let chatName = value!["chatName"] as? String ?? ""
       self.title = chatName
+      
     }
   }
-  
+
   
   func getMessages() {
     MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.childAdded) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         self.chatMessages = returnedChatMessages
+         DispatchQueue.main.async {
         self.configureTableView()
+        }
         self.chatTableView.reloadData()
         
         self.scrollToBottom()
@@ -69,18 +75,21 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector:#selector(GroupChatVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     
     chatTableView.delegate = self
     chatTableView.dataSource = self
     textField.delegate = self
+    imagePickerContorller.delegate = self
     
     chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
     chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
     
-    self.hideKeyboardWhenTappedAround()
+    chatTableView.register(UINib(nibName: "MultimediaMessageIn", bundle: nil), forCellReuseIdentifier: "multimediaMessageIn")
+    chatTableView.register(UINib(nibName: "MultimediaMessageOut", bundle: nil), forCellReuseIdentifier: "multimediaMessageOut")
+    
+//    self.hideKeyboardWhenTappedAround()
     configureTableView()
     getMessages()
     chatTableView.separatorStyle = .none
@@ -90,8 +99,21 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
     
     let sender = chatMessages[indexPath.row].senderId
+    let isMedia = chatMessages[indexPath.row].isMultimedia
+    let mediaUrl = chatMessages[indexPath.row].mediaUrl
+//    let content = chatMessages[indexPath.row].content
     
     if  sender == currentUserId {
+      
+      if isMedia == true {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
+        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+        
+        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        return cell
+        
+      }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       
@@ -102,6 +124,16 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       return cell
       
     } else {
+      
+      if isMedia == true {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageIn", for: indexPath) as! MultimediaMessageIn
+        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+        
+        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        
+        return cell
+      }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
       
@@ -125,11 +157,57 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    let currentCell = chatTableView.cellForRow(at: indexPath)
+    
+    if (currentCell?.isKind(of: MultimediaMessageIn.self))! {
+      print("MULIT IN")
+      let cell = chatTableView.cellForRow(at: indexPath) as! MultimediaMessageIn
+      
+      let configuration = ImageViewerConfiguration { config in
+        config.imageView = cell.messageBodyImage
+      }
+      present(ImageViewerController(configuration: configuration), animated: true)
+      
+    }else if (currentCell?.isKind(of: MultimediaMessageOut.self))! {
+      print("MULIT Out")
+      let cell = chatTableView.cellForRow(at: indexPath) as! MultimediaMessageOut
+      
+      let configuration = ImageViewerConfiguration { config in
+        config.imageView = cell.messageBodyImage
+      }
+      present(ImageViewerController(configuration: configuration), animated: true)
+    }
+    
+  }
+  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return chatMessages.count
   }
   
+  @IBAction func photoButton(_ sender: Any) {
+    
+    let actionSheet = UIAlertController(title: "Select source of Image", message: "", preferredStyle: .actionSheet)
+    
+    actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+      self.imagePickerContorller.sourceType = .camera
+      self.present(self.imagePickerContorller, animated: true, completion: nil)
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+      self.imagePickerContorller.sourceType = .photoLibrary
+      self.present(self.imagePickerContorller, animated: true, completion: nil)
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
+    
+    self.present(actionSheet, animated: true, completion: nil)
+    
+//    print("Photo Message Uploaded")
+  
+  }
   
   @IBAction func sendButton(_ sender: Any) {
     
@@ -147,7 +225,38 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
       })
     }
+    dismissKeyboard()
   }
+  
+  @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
+    
+    print("picked")
+    
+    SVProgressHUD.show(withStatus: "Sending Image")
+    
+    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    let date = Date()
+    let currentDate = date.millisecondsSince1970
+    let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
+    
+    Services.instance.uploadPhotoMessage(withImage: image, withChatKey: (self.chat?.key)!, withMessageId: messageUID, completion: { (imageUrl) in
+      
+      MessageServices.instance.sendPhotoMessage(isMulti: true, withMediaUrl: imageUrl, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId!, withChatId: self.chat?.key, sendComplete: { (complete) in
+        self.textField.isEnabled = true
+        self.sendBtn.isEnabled = true
+        self.textField.text = ""
+        print("Message saved \(currentDate)")
+        SVProgressHUD.dismiss()
+      })
+    })
+    
+    picker.dismiss(animated: true, completion: nil)
+  }
+  
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+  
   
   @objc func tableViewTapped() {
     chatTableView.endEditing(true)

@@ -30,6 +30,7 @@ class MultimediaMessageOut: UITableViewCell {
     bodyColor.layer.cornerRadius = 16
 //    bodyColor.layer.borderWidth = 1
   }
+  
   override func prepareForReuse() {
     super.prepareForReuse()
     self.messageTime.text = nil

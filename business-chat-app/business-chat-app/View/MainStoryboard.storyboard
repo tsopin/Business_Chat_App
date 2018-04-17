@@ -740,6 +740,9 @@
                                             <constraint firstAttribute="height" constant="44" id="Gne-pj-NP1"/>
                                         </constraints>
                                         <state key="normal" image="camera"/>
+                                        <connections>
+                                            <action selector="photoButton:" destination="seJ-0M-QqI" eventType="touchUpInside" id="t8J-A3-LRb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1029,7 +1032,6 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kOh-j6-V3N" firstAttribute="top" secondItem="lPR-ap-Ajk" secondAttribute="top" constant="8" id="25c-TK-EB6"/>
                                     <constraint firstItem="oTB-Om-yum" firstAttribute="top" secondItem="lPR-ap-Ajk" secondAttribute="top" constant="15" id="7fs-Zs-uUJ"/>
                                     <constraint firstItem="kOh-j6-V3N" firstAttribute="top" secondItem="lPR-ap-Ajk" secondAttribute="top" constant="8" id="CGt-4N-cFc"/>
                                     <constraint firstAttribute="trailing" secondItem="oTB-Om-yum" secondAttribute="trailing" constant="10" id="ISu-87-bbU"/>
@@ -1060,8 +1062,8 @@
                             <rect key="frame" x="187.66666666666666" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="W1I-7d-XYU">
-                                    <rect key="frame" x="-68" y="-15" width="136" height="30"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W1I-7d-XYU">
+                                    <rect key="frame" x="-74" y="-15" width="148" height="30"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="67e-Jn-KmE">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -1070,27 +1072,27 @@
                                                 <constraint firstAttribute="height" constant="30" id="w0v-im-zOO"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-6Q-0Ke">
-                                            <rect key="frame" x="37" y="0.0" width="99" height="30"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-6Q-0Ke">
+                                            <rect key="frame" x="38" y="0.0" width="110" height="30"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-w0-Lg6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="99" height="16.333333333333332"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-w0-Lg6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                     <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-pF-tJv">
-                                                    <rect key="frame" x="0.0" y="16.333333333333332" width="92" height="13.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="15" width="110" height="15"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Seen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-2y-5TL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="45.666666666666664" height="13.666666666666666"/>
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="15"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                                             <color key="textColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvV-aR-Cuh">
-                                                            <rect key="frame" x="50.666666666666671" y="0.0" width="41.333333333333329" height="13.666666666666666"/>
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvV-aR-Cuh">
+                                                            <rect key="frame" x="60.333333333333329" y="0.0" width="49.666666666666671" height="15"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                                             <color key="textColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1461,9 +1463,21 @@
                                                         <constraint firstAttribute="height" constant="210" id="z53-j5-mDZ"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQV-mP-Ebc" userLabel="ShowUserPhoto">
+                                                    <rect key="frame" x="16" y="5" width="210" height="210"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="210" id="AEC-im-Wjh"/>
+                                                        <constraint firstAttribute="width" constant="210" id="Chn-zk-q1F"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="showUserPhoto:" destination="efe-t0-yS5" eventType="touchUpInside" id="Vgh-ZL-yf1"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="mQV-mP-Ebc" firstAttribute="centerY" secondItem="fto-rK-kZ4" secondAttribute="centerY" id="5EH-3f-X9S"/>
                                                 <constraint firstItem="nwP-QE-4NQ" firstAttribute="leading" secondItem="fto-rK-kZ4" secondAttribute="leading" constant="16" id="arj-hV-KCi"/>
+                                                <constraint firstItem="mQV-mP-Ebc" firstAttribute="leading" secondItem="fto-rK-kZ4" secondAttribute="leading" constant="16" id="cDR-8N-7An"/>
                                                 <constraint firstItem="nwP-QE-4NQ" firstAttribute="centerY" secondItem="fto-rK-kZ4" secondAttribute="centerY" id="dRQ-4I-xY0"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1555,7 +1569,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fus-R7-II5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5602" y="-529"/>
+            <point key="canvasLocation" x="5600.8000000000002" y="-529.06403940886696"/>
         </scene>
     </scenes>
     <resources>

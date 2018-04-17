@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleImageViewer
 
 class UserProfileVC: UITableViewController {
   
@@ -30,6 +31,16 @@ class UserProfileVC: UITableViewController {
     }
   }
   
+  @IBAction func showUserPhoto(_ sender: Any) {
+    
+    let configuration = ImageViewerConfiguration { config in
+      config.imageView = profileImageView
+    }
+    
+    present(ImageViewerController(configuration: configuration), animated: true)
+    
+    
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     // make rounded profile image

@@ -50,9 +50,9 @@ class ListOfGroupsVC: UIViewController {
       ChatServices.instance.getMyChatsIds(isGroup: true) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
           self.groupsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
-          DispatchQueue.main.async {
+//          DispatchQueue.main.async {
             self.groupsTableView.reloadData()
-          }
+//          }
         })
       }
     }

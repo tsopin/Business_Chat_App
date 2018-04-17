@@ -70,6 +70,7 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - SimpleImageViewer (1.1.1)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Kingfisher
   - LetterAvatarKit
   - SDWebImage
+  - SimpleImageViewer
   - SVProgressHUD
 
 SPEC REPOS:
@@ -106,6 +108,7 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SDWebImage
+    - SimpleImageViewer
     - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -127,8 +130,9 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SimpleImageViewer: 34c3a2cde2d9ac022146772cefc27fca14b0c8b1
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: bf3af2f469d3f6084715678b11f9eb4b3c35d630
+PODFILE CHECKSUM: 285b697e3408d27c5dbe82d13979baa44e04fcb8
 
 COCOAPODS: 1.5.0
