@@ -163,46 +163,53 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="139.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zJ4-X0-XQW" userLabel="Profile stack">
-                                                    <rect key="frame" x="16" y="7" width="292" height="125"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pl_blue" translatesAutoresizingMaskIntoConstraints="NO" id="pg2-sl-iTN">
+                                                    <rect key="frame" x="16" y="9" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="In7-Md-EsC"/>
+                                                        <constraint firstAttribute="width" constant="120" id="wzT-Wi-2nQ"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-Rq-gN1">
+                                                    <rect key="frame" x="16" y="9" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="a2O-xg-l8A"/>
+                                                        <constraint firstAttribute="height" constant="120" id="mvh-Ad-UKH"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="showUserPhoto:" destination="nxO-zv-oiS" eventType="touchUpInside" id="bFl-HK-Yml"/>
+                                                    </connections>
+                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HOu-cD-aMB" userLabel="User details stack">
+                                                    <rect key="frame" x="154" y="46" width="91.333333333333314" height="48"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pl_blue" translatesAutoresizingMaskIntoConstraints="NO" id="pg2-sl-iTN">
-                                                            <rect key="frame" x="0.0" y="2.6666666666666643" width="120" height="120"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="120" id="In7-Md-EsC"/>
-                                                                <constraint firstAttribute="width" constant="120" id="wzT-Wi-2nQ"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HOu-cD-aMB" userLabel="User details stack">
-                                                            <rect key="frame" x="130" y="38.666666666666664" width="162" height="47.999999999999993"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-Pw-ZpI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="162" height="27.333333333333332"/>
-                                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                                    <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmh-Zm-QL4">
-                                                                    <rect key="frame" x="0.0" y="27.333333333333336" width="162" height="20.666666666666664"/>
-                                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                                    <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-Pw-ZpI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="91.333333333333329" height="27.333333333333332"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                            <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmh-Zm-QL4">
+                                                            <rect key="frame" x="0.0" y="27.333333333333329" width="91.333333333333329" height="20.666666666666671"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                            <color key="textColor" red="0.092103116210000002" green="0.2059205472" blue="0.39609909059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zJ4-X0-XQW" firstAttribute="top" secondItem="cBu-hM-zHo" secondAttribute="top" constant="7" id="DT0-lP-Cad"/>
-                                                <constraint firstAttribute="trailing" secondItem="zJ4-X0-XQW" secondAttribute="trailing" constant="33" id="Fgz-Gr-0xq"/>
-                                                <constraint firstAttribute="bottom" secondItem="zJ4-X0-XQW" secondAttribute="bottom" constant="8" id="LK0-cG-FLP"/>
-                                                <constraint firstItem="zJ4-X0-XQW" firstAttribute="leading" secondItem="cBu-hM-zHo" secondAttribute="leading" constant="16" id="mgN-sQ-ENK"/>
+                                                <constraint firstItem="d8b-Rq-gN1" firstAttribute="centerY" secondItem="cBu-hM-zHo" secondAttribute="centerY" id="BzD-uA-rdV"/>
+                                                <constraint firstItem="d8b-Rq-gN1" firstAttribute="leading" secondItem="cBu-hM-zHo" secondAttribute="leading" constant="16" id="NVz-21-f2Y"/>
+                                                <constraint firstItem="pg2-sl-iTN" firstAttribute="leading" secondItem="cBu-hM-zHo" secondAttribute="leading" constant="16" id="Vuj-yZ-GH3"/>
+                                                <constraint firstItem="pg2-sl-iTN" firstAttribute="centerY" secondItem="cBu-hM-zHo" secondAttribute="centerY" id="aBf-RZ-PYv"/>
+                                                <constraint firstItem="HOu-cD-aMB" firstAttribute="centerY" secondItem="cBu-hM-zHo" secondAttribute="centerY" id="bq7-r7-ooD"/>
+                                                <constraint firstItem="HOu-cD-aMB" firstAttribute="leading" secondItem="pg2-sl-iTN" secondAttribute="trailing" constant="18" id="fjJ-iQ-psA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1075,7 +1082,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-6Q-0Ke">
                                             <rect key="frame" x="38" y="0.0" width="110" height="30"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-w0-Lg6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-w0-Lg6">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="15"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                     <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

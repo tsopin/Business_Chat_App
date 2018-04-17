@@ -111,7 +111,6 @@
 		74F8524220583E6600FE86D3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		74F8524420583E7200FE86D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		74F852462058487E00FE86D3 /* SearchUserForContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserForContactCell.swift; sourceTree = "<group>"; };
-		74FB458D2063132600A70834 /* EditProfileTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableVC.swift; sourceTree = "<group>"; };
 		77AE6FE820491C4F00918A93 /* business-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "business-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AE6FEB20491C4F00918A93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AE6FF520491C4F00918A93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -187,7 +186,6 @@
 				137B603E20642155008FEC57 /* GroupInfoVC.swift */,
 				7404B0D52052DA24001DF785 /* ListOfContactsVC.swift */,
 				74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */,
-				74FB458D2063132600A70834 /* EditProfileTableVC.swift */,
 				1363906320631CD500746F5A /* EditProfileTableVC.swift */,
 				743D497E204DDB92004A57E8 /* SettingsVC.swift */,
 				137B603C20633BFD008FEC57 /* UserProfileVC.swift */,
