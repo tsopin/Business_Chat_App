@@ -116,7 +116,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     let indexPath = IndexPath(item: self.chatMessages.count - 1, section: 0)
     DispatchQueue.main.async {
-      self.chatTableView?.scrollToRow(at: indexPath, at: .top, animated: true)
+      self.chatTableView?.scrollToRow(at: indexPath, at: .top, animated: false)
     }
   }
   

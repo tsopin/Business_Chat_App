@@ -142,7 +142,7 @@ class Services {
   //    MARK: Upload to Storage
   func uploadPhotoMessage(withImage image: UIImage, withChatKey chatKey: String, withMessageId messageId: String, completion: @escaping (_ imageUrl: String) -> ()) {
     
-    if let uploadData = UIImageJPEGRepresentation(image, 0.3) {
+    if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
       REF_STORAGE_PHOTO_MESSAGES.child(chatKey).child(messageId).putData(uploadData, metadata: nil, completion: { (metadata, error) in
         
         if error != nil {
