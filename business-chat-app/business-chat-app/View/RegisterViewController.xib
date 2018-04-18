@@ -85,7 +85,6 @@
                             </state>
                             <connections>
                                 <action selector="cancelBtn:" destination="-1" eventType="touchUpInside" id="a68-pb-jhC"/>
-                                <action selector="registerButtonPressed:" destination="-1" eventType="touchUpInside" id="GTP-7P-i93"/>
                             </connections>
                         </button>
                     </subviews>

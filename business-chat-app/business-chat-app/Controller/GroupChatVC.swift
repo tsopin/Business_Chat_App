@@ -37,7 +37,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+    
     // Check chat name and set title (in case it was changed)
     ChatServices.instance.REF_CHATS.child((chat?.key)!).observeSingleEvent(of: .value) { (snapshot) in
       let value = snapshot.value as? NSDictionary
@@ -46,14 +46,14 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       
     }
   }
-
+  
   
   func getMessages() {
     MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).observe(.childAdded) { (snapshot) in
       MessageServices.instance.getAllMessagesFor(desiredChat: self.chat!, handler: { (returnedChatMessages) in
         self.chatMessages = returnedChatMessages
-         DispatchQueue.main.async {
-        self.configureTableView()
+        DispatchQueue.main.async {
+          self.configureTableView()
         }
         self.chatTableView.reloadData()
         
@@ -89,7 +89,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     chatTableView.register(UINib(nibName: "MultimediaMessageIn", bundle: nil), forCellReuseIdentifier: "multimediaMessageIn")
     chatTableView.register(UINib(nibName: "MultimediaMessageOut", bundle: nil), forCellReuseIdentifier: "multimediaMessageOut")
     
-//    self.hideKeyboardWhenTappedAround()
+    //    self.hideKeyboardWhenTappedAround()
     configureTableView()
     getMessages()
     chatTableView.separatorStyle = .none
@@ -101,16 +101,21 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     let sender = chatMessages[indexPath.row].senderId
     let isMedia = chatMessages[indexPath.row].isMultimedia
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
-//    let content = chatMessages[indexPath.row].content
+    //    let content = chatMessages[indexPath.row].content
+    
     
     if  sender == currentUserId {
       
       if isMedia == true {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
-        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
         
-        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
+       
+            
+            let date = self.getDateFromInterval(timestamp: Double(self.chatMessages[indexPath.row].timeSent))
+            
+            cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+       
         return cell
         
       }
@@ -119,8 +124,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       
       let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue)
-      //            cell.userPic.image = UIImage(named: "meIcon")
+      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue, isGroup: true)
       return cell
       
     } else {
@@ -137,9 +141,19 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
       
-      let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+      let date = self.getDateFromInterval(timestamp: Double(self.chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainPurple)
+//        UserServices.instance.getUserData(byUserId: sender) { (userData) in
+//
+//          image = userData.3
+//          name = userData.1
+//
+//          print("INSIDE \(image, name)")
+//
+//      }
+//      print("OUT \(image, name)")
+      cell.configeureCell(senderName: (chat?.key)!, messageTime: date!, messageBody: self.chatMessages[indexPath.row].content, messageBackground: self.colours.colourMainPurple, isGroup: true)
+//        }
       
       return cell
       
@@ -205,14 +219,14 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     self.present(actionSheet, animated: true, completion: nil)
     
-//    print("Photo Message Uploaded")
-  
+    //    print("Photo Message Uploaded")
+    
   }
   
   @IBAction func sendButton(_ sender: Any) {
     
     let date = Date()
-    let currentDate = date.timeIntervalSince1970
+    let currentDate = date.millisecondsSince1970
     let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
     if textField.text != "" {
       sendBtn.isEnabled = false
@@ -288,7 +302,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   deinit{
     
   }
-
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showGroupInfo" {
       let groupInfoVC = segue.destination as! GroupInfoVC

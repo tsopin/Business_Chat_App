@@ -107,6 +107,7 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     Services.instance.uploadUserImage(withImage: image, completion: { (imageUrl) in
       UserServices.instance.createDBUser(uid: self.currentUserId!, userData: ["avatar" : true, "avatarURL" : imageUrl])
       SVProgressHUD.showSuccess(withStatus: "Image Successfully Uploaded")
+      
       SVProgressHUD.dismiss()
       
     })

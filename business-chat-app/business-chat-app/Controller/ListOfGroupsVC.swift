@@ -32,7 +32,7 @@ class ListOfGroupsVC: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     offlineMode()
-    downloadMessages()
+    getChatList()
 
   }
   
@@ -40,11 +40,11 @@ class ListOfGroupsVC: UIViewController {
     DispatchQueue.main.async {
       
       self.refreshControl.endRefreshing()
-      self.downloadMessages()
+      self.getChatList()
     }
   }
   
-  func downloadMessages(){
+  func getChatList(){
     
     UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").observe( .childAdded) { (df) in
       ChatServices.instance.getMyChatsIds(isGroup: true) { (ids) in

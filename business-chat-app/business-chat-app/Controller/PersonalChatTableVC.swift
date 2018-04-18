@@ -200,7 +200,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!)
+      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!, isGroup: false)
       return cell
       
     } else {
@@ -218,7 +218,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
       let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor!)
+      cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor!, isGroup: false)
       return cell
       
     }
@@ -245,7 +245,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let currentCell = tableView.cellForRow(at: indexPath)
     
     if (currentCell?.isKind(of: MultimediaMessageIn.self))! {
-      print("MULIT IN")
+      print("PhotoMessage In Pressed")
       let cell = tableView.cellForRow(at: indexPath) as! MultimediaMessageIn
       
       let configuration = ImageViewerConfiguration { config in
@@ -254,7 +254,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       present(ImageViewerController(configuration: configuration), animated: true)
       
     }else if (currentCell?.isKind(of: MultimediaMessageOut.self))! {
-      print("MULIT Out")
+      print("PhotoMessage Out Pressed")
       let cell = tableView.cellForRow(at: indexPath) as! MultimediaMessageOut
       
       let configuration = ImageViewerConfiguration { config in

@@ -31,7 +31,7 @@ class ListOfContactsVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     offlineMode()
-    downloadMessages()
+    getChatList()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -42,11 +42,11 @@ class ListOfContactsVC: UIViewController {
     DispatchQueue.main.async {
       
       self.refreshControl.endRefreshing()
-      self.downloadMessages()
+      self.getChatList()
     }
   }
   
-  func downloadMessages(){
+  func getChatList(){
 
     UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe( .childAdded) { (df) in
       ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
@@ -82,19 +82,14 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "personalChatCell", for: indexPath) as? PersonalChatCell else {return UITableViewCell()}
     
     let contact = contactsArray[indexPath.row]
-    let lastMessage = contactsArray[indexPath.row].lastMessage
+//    let lastMessage = contactsArray[indexPath.row].lastMessage
     var date = String()
-
-   
-
 
     UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
     ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessage").observe(.value) { (popo) in
       
       guard let last = popo.value as? String else {return}
        date = self.getDateFromInterval(timestamp: Double(last))!
-    
-   
       
       var statusImage = UIImage()
       let contactEmail = userData.0

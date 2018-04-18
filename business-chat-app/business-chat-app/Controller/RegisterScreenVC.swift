@@ -20,8 +20,6 @@ class RegisterScreenVC: UIViewController {
   
   let colours = Colours()
   
-  
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.setGradient(colours.colourMainBlue.cgColor, colours.colourMainPurple.cgColor)
@@ -52,6 +50,7 @@ class RegisterScreenVC: UIViewController {
           
           Auth.auth().signIn(withEmail: email!, password: password!) { (user, error) in
             if let error = error {
+              SVProgressHUD.dismiss()
               self.alert(message: (error.localizedDescription))
               return
             }
@@ -64,7 +63,7 @@ class RegisterScreenVC: UIViewController {
             }
           }
         } else {
-          
+          SVProgressHUD.dismiss()
           print(String(describing: loginError?.localizedDescription))
         }})
       
@@ -77,7 +76,7 @@ class RegisterScreenVC: UIViewController {
   }
   
   @IBAction func cancelBtn(_ sender: Any) {
-    
+    SVProgressHUD.dismiss()
     self.dismiss(animated: true, completion: nil)
     
   }

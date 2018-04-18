@@ -33,7 +33,7 @@ class ChatServices {
     var newMembers = [String:Bool]()
     var md5ChatId = String()
     let date = Date()
-    let currentDate = date.timeIntervalSinceReferenceDate
+    let currentDate = date.millisecondsSince1970
     
     switch isGroupChat{
       
