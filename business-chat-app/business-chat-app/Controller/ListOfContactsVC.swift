@@ -86,9 +86,9 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     var date = String()
     
     UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
-      ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessage").observe(.value) { (popo) in
+      ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessageTimeStamp").observe(.value) { (popo) in
         
-        guard let last = popo.value as? Double else {return}
+        guard let last = popo.value as? Int64 else {return}
         date = self.getDateFromInterval(timestamp: last)!
         
         var statusImage = UIImage()

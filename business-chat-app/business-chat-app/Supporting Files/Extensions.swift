@@ -74,9 +74,9 @@ extension UIViewController {
     self.present(alertController, animated: true, completion: nil)
     
   }
-  func getDateFromInterval(timestamp: Double?) -> String? {
+  func getDateFromInterval(timestamp: Int64?) -> String? {
     if let timestamp = timestamp {
-      let date = Date(milliseconds: Int(timestamp))
+      let date = Date(milliseconds: Int64(timestamp))
       let dateFormatter = DateFormatter()
       let timeSinceDateInSeconds = Date().timeIntervalSince(date)
       let secondInDays: TimeInterval = 24*60*60
@@ -97,11 +97,11 @@ extension UIViewController {
 }
 
 extension Date {
-  var millisecondsSince1970:Int {
-    return Int((self.timeIntervalSince1970 * 1000.0).rounded())
+  var millisecondsSince1970:Int64 {
+    return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
   }
   
-  init(milliseconds:Int) {
+  init(milliseconds:Int64) {
     self = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
   }
 }

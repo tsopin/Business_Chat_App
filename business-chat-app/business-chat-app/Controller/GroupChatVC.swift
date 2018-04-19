@@ -115,7 +115,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
        
             
-            let date = self.getDateFromInterval(timestamp: Double(self.chatMessages[indexPath.row].timeSent))
+            let date = self.getDateFromInterval(timestamp: Int64(self.chatMessages[indexPath.row].timeSent))
             
             cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
        
@@ -125,7 +125,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       
-      let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+      let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
       
       cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue, isGroup: true)
       return cell
@@ -135,7 +135,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       if isMedia == true {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageIn", for: indexPath) as! MultimediaMessageIn
-        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+        let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
         
         cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
         
@@ -144,7 +144,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
       
-      let date = self.getDateFromInterval(timestamp: Double(self.chatMessages[indexPath.row].timeSent))
+      let date = self.getDateFromInterval(timestamp: Int64(self.chatMessages[indexPath.row].timeSent))
       
 //        UserServices.instance.getUserData(byUserId: sender) { (userData) in
 //
@@ -229,11 +229,11 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   @IBAction func sendButton(_ sender: Any) {
     
     let date = Date()
-    let currentDate = Double((date.millisecondsSince1970))
+    let currentDate = Int64((date.millisecondsSince1970))
     let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
     if textField.text != "" {
       sendBtn.isEnabled = false
-      MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
+      MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
         if complete {
           self.textField.isEnabled = true
           self.sendBtn.isEnabled = true
@@ -253,7 +253,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let date = Date()
-    let currentDate = Double(date.millisecondsSince1970)
+    let currentDate = Int64(date.millisecondsSince1970)
     let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
     
     Services.instance.uploadPhotoMessage(withImage: image, withChatKey: (self.chat?.key)!, withMessageId: messageUID, completion: { (imageUrl) in

@@ -33,7 +33,7 @@ class ChatServices {
     var newMembers = [String:Bool]()
     var md5ChatId = String()
     let date = Date()
-    let currentDate = Double((date.millisecondsSince1970))
+    let currentDate = Int64(date.millisecondsSince1970)
     
     switch isGroupChat{
       
@@ -127,7 +127,7 @@ class ChatServices {
         guard let data = chatSnapshot.value as? NSDictionary else {return}
         guard let chatName = data["chatName"] as? String else {return}
         guard let members = data["members"] as? [String:Bool] else {return}
-        guard let lastMessage = data["lastMessageTimeStamp"] as? Double else {return}
+        guard let lastMessage = data["lastMessageTimeStamp"] as? Int64 else {return}
         
         let chatKey = id
         returnedMembers = members

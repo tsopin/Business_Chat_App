@@ -713,7 +713,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-I8-Rd1">
-                                <rect key="frame" x="0.0" y="140" width="375" height="578"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="579"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="MDZ-Md-2Yc" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -735,7 +735,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crw-97-ojA">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="719" width="375" height="59"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-Kp-f8q">
                                         <rect key="frame" x="8" y="15" width="262" height="30"/>
@@ -770,7 +770,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="5gf-Wb-TAq"/>
+                                    <constraint firstAttribute="height" constant="59" id="5gf-Wb-TAq"/>
                                     <constraint firstItem="5hm-R2-pu4" firstAttribute="top" secondItem="Crw-97-ojA" secondAttribute="top" constant="8" id="87D-2P-DNZ"/>
                                     <constraint firstItem="QQo-Kp-f8q" firstAttribute="leading" secondItem="Crw-97-ojA" secondAttribute="leading" constant="8" id="CTg-Iv-ekA"/>
                                     <constraint firstItem="USk-v2-wLS" firstAttribute="top" secondItem="Crw-97-ojA" secondAttribute="top" constant="15" id="RU2-bx-z5J"/>
