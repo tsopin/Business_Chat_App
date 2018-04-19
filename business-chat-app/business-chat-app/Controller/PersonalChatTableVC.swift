@@ -340,8 +340,18 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.textField.isEnabled = true
         self.sendBtn.isEnabled = true
         self.textField.text = ""
-        print("Message saved \(currentDate)")
-        SVProgressHUD.dismiss()
+        
+        if complete {
+          print("Message saved \(currentDate)")
+          SVProgressHUD.showSuccess(withStatus: "Done!")
+          
+          SVProgressHUD.dismiss(withDelay: 0.5)
+        } else {
+          SVProgressHUD.showError(withStatus: "Uploading Error")
+          SVProgressHUD.dismiss(withDelay: 0.5)
+        }
+        
+        
       })
     })
     
