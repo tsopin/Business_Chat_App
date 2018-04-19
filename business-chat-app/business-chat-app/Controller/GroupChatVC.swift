@@ -94,6 +94,9 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     getMessages()
     chatTableView.separatorStyle = .none
     
+    textInputView.layer.borderWidth = 1
+    textInputView.layer.borderColor = colours.backgroundLigthBlue.cgColor
+    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {

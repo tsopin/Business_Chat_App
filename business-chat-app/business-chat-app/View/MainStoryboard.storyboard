@@ -617,7 +617,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EOX-em-Rhf">
                                                             <rect key="frame" x="15" y="19" width="345" height="40"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="sTY-5m-yg5">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="sTY-5m-yg5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="7By-5Y-GKJ"/>
@@ -737,14 +737,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crw-97-ojA">
                                 <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-Kp-f8q">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-Kp-f8q">
                                         <rect key="frame" x="8" y="15" width="262" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="262" id="iId-tg-F9R"/>
                                         </constraints>
                                         <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USk-v2-wLS">
                                         <rect key="frame" x="330" y="15" width="35" height="33"/>
@@ -768,6 +768,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.97254901960784312" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5gf-Wb-TAq"/>
                                     <constraint firstItem="5hm-R2-pu4" firstAttribute="top" secondItem="Crw-97-ojA" secondAttribute="top" constant="8" id="87D-2P-DNZ"/>
@@ -949,7 +950,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Rq-O03">
-                                <rect key="frame" x="0.0" y="88" width="375" height="625"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="630"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageIn" id="ZL3-Bl-QZv" customClass="CustomMessageIn" customModule="business_chat_app" customModuleProvider="target">
@@ -995,16 +996,16 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPR-ap-Ajk">
-                                <rect key="frame" x="0.0" y="713" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gj-kg-qjL">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gj-kg-qjL">
                                         <rect key="frame" x="8" y="15" width="262" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="262" id="qrl-Ft-gSj"/>
                                         </constraints>
                                         <color key="textColor" red="0.031372549020000001" green="0.28235294119999998" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTB-Om-yum">
                                         <rect key="frame" x="330" y="15" width="35" height="33"/>
@@ -1028,6 +1029,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" red="0.95686274509803926" green="0.97254901960784312" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="oTB-Om-yum" firstAttribute="top" secondItem="lPR-ap-Ajk" secondAttribute="top" constant="15" id="7fs-Zs-uUJ"/>
                                     <constraint firstItem="kOh-j6-V3N" firstAttribute="top" secondItem="lPR-ap-Ajk" secondAttribute="top" constant="8" id="CGt-4N-cFc"/>
@@ -1044,7 +1046,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="B6u-Rq-O03" firstAttribute="leading" secondItem="uCw-K8-SbU" secondAttribute="leading" id="4ov-hf-nvI"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="lPR-ap-Ajk" secondAttribute="bottom" constant="5" id="Bmm-oL-835"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="lPR-ap-Ajk" secondAttribute="bottom" id="Bmm-oL-835"/>
                             <constraint firstItem="B6u-Rq-O03" firstAttribute="trailing" secondItem="uCw-K8-SbU" secondAttribute="trailing" id="CV4-Px-uiY"/>
                             <constraint firstItem="lPR-ap-Ajk" firstAttribute="trailing" secondItem="uCw-K8-SbU" secondAttribute="trailing" id="c8O-CS-X6D"/>
                             <constraint firstItem="B6u-Rq-O03" firstAttribute="top" secondItem="uCw-K8-SbU" secondAttribute="top" id="ldJ-0d-7yE"/>
@@ -1273,7 +1275,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WcK-0M-0VI">
                                                     <rect key="frame" x="15" y="15" width="345" height="44"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="pro-mq-KUF">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="245" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" image="userpic_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="pro-mq-KUF">
                                                             <rect key="frame" x="0.0" y="2" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="3nx-tJ-mzG"/>

@@ -142,6 +142,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     //    self.hideKeyboardWhenTappedAround()
     chatTableView.separatorStyle = .none
     chatTableView.setContentOffset(chatTableView.contentOffset, animated: false)
+    textInputView.layer.borderWidth = 1
+    textInputView.layer.borderColor = colours.backgroundLigthBlue.cgColor
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -265,8 +267,15 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
   }
   
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    sendMessage()
+    
+    textField.resignFirstResponder()  //if desired
+    
+    return true
+  }
   
-  @IBAction func sendButton(_ sender: UIButton) {
+  func sendMessage(){
     
     let date = Date()
     let currentDate = date.millisecondsSince1970
@@ -283,6 +292,14 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       })
     }
     dismissKeyboard()
+  }
+  
+  
+  
+  @IBAction func sendButton(_ sender: UIButton) {
+    
+    sendMessage()
+
   }
   
   @IBAction func photoMessageButton(_ sender: Any) {
@@ -349,7 +366,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
     
-    self.heightConstraint.constant = keyboardSize.height + 60
+    self.heightConstraint.constant = keyboardSize.height + 55
     UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
       
     })
