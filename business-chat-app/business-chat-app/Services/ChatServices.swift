@@ -33,7 +33,7 @@ class ChatServices {
     var newMembers = [String:Bool]()
     var md5ChatId = String()
     let date = Date()
-    let currentDate = date.millisecondsSince1970
+    let currentDate = Double((date.millisecondsSince1970))
     
     switch isGroupChat{
       
@@ -50,7 +50,7 @@ class ChatServices {
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
                                         "members" : newMembers,
                                         "chatName" : forChatName,
-                                        "lastMessage" : "\(currentDate)"])
+                                        "lastMessageTimeStamp" : currentDate])
       for member in memberIds {
         UserServices.instance.REF_USERS.child(member).child("activeGroupChats").updateChildValues([chatId : true])
       }
@@ -70,7 +70,7 @@ class ChatServices {
         REF_CHATS.child(md5ChatId).setValue(["isGroupChat" : isGroupChat,
                                              "members" : [memberId:true, currentUserId! : true],
                                              "chatName" : chatName,
-                                             "lastMessage" : "\(currentDate)"])
+                                             "lastMessageTimeStamp" : currentDate])
         
         UserServices.instance.REF_USERS.child(memberId).child("activePersonalChats").updateChildValues([md5ChatId : true])
         UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues([md5ChatId : true])
@@ -127,7 +127,7 @@ class ChatServices {
         guard let data = chatSnapshot.value as? NSDictionary else {return}
         guard let chatName = data["chatName"] as? String else {return}
         guard let members = data["members"] as? [String:Bool] else {return}
-        guard let lastMessage = data["lastMessage"] as? String else {return}
+        guard let lastMessage = data["lastMessageTimeStamp"] as? Double else {return}
         
         let chatKey = id
         returnedMembers = members

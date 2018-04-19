@@ -30,18 +30,18 @@ class MessageServices {
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent,
                                                            "isMultimedia" : isMultimedia])
-    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue("\(timeSent)")
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessageTimeStamp").setValue(timeSent)
     sendComplete(true)
   }
   
-  func sendPhotoMessage(isMulti: Bool, withMediaUrl mediaUrl: String, withTimeSent timeSent: String, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
+  func sendPhotoMessage(isMulti: Bool, withMediaUrl mediaUrl: String, withTimeSent timeSent: Double, withMessageId messageId: String, forSender senderId: String, withChatId chatId: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
     
     REF_MESSAGES.child(chatId!).child(messageId).setValue(["isMultimedia" : isMulti,
                                                            "content" : mediaUrl,
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent])
     
-    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessage").setValue("\(timeSent)")
+    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessageTimeStamp").setValue(timeSent)
     sendComplete(true)
   }
   
@@ -58,7 +58,7 @@ class MessageServices {
       for message in messageSnapshot {
         
         guard let senderId = message.childSnapshot(forPath: "senderId").value as? String else {return}
-        guard let timeSent = message.childSnapshot(forPath: "timeSent").value as? String else {return}
+        guard let timeSent = message.childSnapshot(forPath: "timeSent").value as? Double else {return}
         guard let isMultimediaMessage = message.childSnapshot(forPath: "isMultimedia").value as? Bool else {return}
         
         if isMultimediaMessage == true {

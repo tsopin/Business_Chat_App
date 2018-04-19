@@ -229,8 +229,8 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   @IBAction func sendButton(_ sender: Any) {
     
     let date = Date()
-    let currentDate = date.millisecondsSince1970
-    let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
+    let currentDate = Double((date.millisecondsSince1970))
+    let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
     if textField.text != "" {
       sendBtn.isEnabled = false
       MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
@@ -253,12 +253,12 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let date = Date()
-    let currentDate = date.millisecondsSince1970
-    let messageUID = ("\(currentDate)" + currentUserId!).replacingOccurrences(of: ".", with: "")
+    let currentDate = Double(date.millisecondsSince1970)
+    let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
     
     Services.instance.uploadPhotoMessage(withImage: image, withChatKey: (self.chat?.key)!, withMessageId: messageUID, completion: { (imageUrl) in
       
-      MessageServices.instance.sendPhotoMessage(isMulti: true, withMediaUrl: imageUrl, withTimeSent: "\(currentDate)", withMessageId: messageUID, forSender: currentUserId!, withChatId: self.chat?.key, sendComplete: { (complete) in
+      MessageServices.instance.sendPhotoMessage(isMulti: true, withMediaUrl: imageUrl, withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId!, withChatId: self.chat?.key, sendComplete: { (complete) in
         self.textField.isEnabled = true
         self.sendBtn.isEnabled = true
         self.textField.text = ""

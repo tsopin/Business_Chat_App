@@ -94,7 +94,7 @@ class Services {
       con.setValue(true)
       var date = Date()
       
-      let currentDate = date.millisecondsSince1970
+      let currentDate = Double((date.millisecondsSince1970))
        date = Date(milliseconds: Int(currentDate))
       // when I disconnect, update the last time I was seen online
       lastOnlineRef.onDisconnectSetValue(currentDate)

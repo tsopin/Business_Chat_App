@@ -11,7 +11,7 @@ import UIKit
 class Message {
     
     private var _content: String
-    private var _timeSent: String
+    private var _timeSent: Double
     private var _senderId: String
     private var _isMultimedia: Bool
     private var _mediaUrl: String
@@ -19,7 +19,7 @@ class Message {
     var content : String {
         return _content
     }
-    var timeSent : String {
+    var timeSent : Double {
         return _timeSent
     }
     var senderId : String {
@@ -34,7 +34,7 @@ class Message {
 
 
     
-  init(content: String, timeSent: String, senderId: String, isMultimedia: Bool, mediaUrl: String ) {
+  init(content: String, timeSent: Double, senderId: String, isMultimedia: Bool, mediaUrl: String ) {
         self._content = content
         self._timeSent = timeSent
         self._senderId = senderId
