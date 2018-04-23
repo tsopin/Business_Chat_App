@@ -91,9 +91,7 @@ extension UIViewController {
     } else {
       return nil
     }
-    
   }
-  
 }
 
 extension Date {

@@ -31,6 +31,7 @@ class ListOfGroupsVC: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    self.navigationController?.popToRootViewController(animated: true)
     offlineMode()
     getChatList()
 

@@ -34,6 +34,11 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
 		 }
 	}
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    searchController.isActive = false
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -83,6 +88,8 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
       })
     })
     navigationController?.popViewController(animated: true)
+    navigationController?.dismiss(animated: true, completion: nil)
+    self.navigationController?.popToRootViewController(animated: true)
   }
   deinit{
     

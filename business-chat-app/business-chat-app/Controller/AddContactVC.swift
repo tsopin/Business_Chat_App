@@ -144,6 +144,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? SearchUserForContactCell else {return UITableViewCell() }
+    
 		let user = isFiltering() ? filteredUsersArray[indexPath.row] : usersArray[indexPath.row]
 	cell.configureCell(email: user.email, userName: user.userName, imageUrl: user.avatarUrl!, isSelected: false)
 		return cell
