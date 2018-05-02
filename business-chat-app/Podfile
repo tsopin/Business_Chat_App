@@ -16,10 +16,10 @@ target 'business-chat-app' do
 	pod 'SDWebImage'
 	pod 'Kingfisher'
 	pod 'LetterAvatarKit'
-  	pod 'CryptoSwift'
-  	pod 'SVProgressHUD'
-    pod 'Alamofire'
-    pod 'SimpleImageViewer'
+  pod 'CryptoSwift'
+  pod 'SVProgressHUD'
+  pod 'Alamofire'
+  pod 'SimpleImageViewer'
 
 end
 

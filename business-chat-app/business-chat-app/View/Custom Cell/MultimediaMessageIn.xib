@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,13 +33,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.5568627451" green="0.17254901959999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.11372549019607843" green="0.75686274509803919" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="270" id="Z8I-XF-8Dd"/>
                             <constraint firstAttribute="height" constant="230" id="hqf-E2-JqY"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tailIn" translatesAutoresizingMaskIntoConstraints="NO" id="B9w-oz-6fW">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tailInNew" translatesAutoresizingMaskIntoConstraints="NO" id="B9w-oz-6fW">
                         <rect key="frame" x="10" y="219" width="12" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="8uq-uw-2i2"/>
@@ -78,7 +77,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="tailIn" width="402" height="510"/>
+        <image name="tailInNew" width="401" height="509"/>
         <image name="userPic" width="1600" height="1600"/>
     </resources>
 </document>

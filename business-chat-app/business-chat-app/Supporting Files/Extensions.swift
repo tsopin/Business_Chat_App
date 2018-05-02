@@ -72,8 +72,8 @@ extension UIViewController {
     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
     alertController.addAction(okAction)
     self.present(alertController, animated: true, completion: nil)
-    
   }
+  
   func getDateFromInterval(timestamp: Int64?) -> String? {
     if let timestamp = timestamp {
       let date = Date(milliseconds: Int64(timestamp))

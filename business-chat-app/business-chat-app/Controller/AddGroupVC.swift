@@ -20,6 +20,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
   var usersArray = [User]()
   var selectedUsersArray = [User]()
   var filteredUsersArray = [User]()
+  let colors = Colours()
 
   
   override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +50,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
     navigationItem.searchController = searchController
 	navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
 	navigationItem.hidesSearchBarWhenScrolling = false
+    navigationItem.backBarButtonItem?.tintColor = colors.colourMainBlue
     definesPresentationContext = false
 	
 	tableView.delegate = self
@@ -205,9 +207,6 @@ extension AddGroupVC: UITableViewDelegate, UITableViewDataSource, UITextFieldDel
 	func isFiltering() -> Bool {
 		return searchController.isActive && !(searchController.searchBar.text?.isEmpty)!
 	}
-  
-  
-  
 }
 
 

@@ -16,6 +16,7 @@ class ListOfGroupsVC: UIViewController {
   var groupsArray = [Chat]()
 
   var allUsersArray = [User]()
+  let colors = Colours()
 
   var refreshControl: UIRefreshControl!
   
@@ -27,6 +28,9 @@ class ListOfGroupsVC: UIViewController {
     groupsTableView.refreshControl = refreshControl
     refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControlEvents.valueChanged)
     navigationItem.leftBarButtonItem = editButtonItem
+    self.navigationController?.navigationBar.tintColor = colors.colourMainBlue
+
+    navigationItem.leftBarButtonItem?.tintColor = colors.colourMainBlue
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -42,6 +46,7 @@ class ListOfGroupsVC: UIViewController {
       
       self.refreshControl.endRefreshing()
       self.getChatList()
+      
     }
   }
   
@@ -122,7 +127,7 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
     let nav = self.navigationController?.navigationBar
     
     if network == false {
-      nav?.barTintColor = colors.colourMainPurple
+      nav?.barTintColor = colors.colourMainGreen
       self.navigationItem.title = "Groups - Offline"
     } else {
       nav?.barTintColor = UIColor.white

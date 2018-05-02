@@ -18,12 +18,15 @@ class ListOfContactsVC: UIViewController {
   var contactsArray = [Chat]()
   var choosenContactArray =  [String]()
   var chatMessages = [Message]()
+  let colors = Colours()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     contactsTableView.delegate = self
     contactsTableView.dataSource = self
     navigationItem.leftBarButtonItem = editButtonItem
+    navigationItem.leftBarButtonItem?.tintColor = colors.colourMainBlue
+
     refreshControl = UIRefreshControl()
     contactsTableView.refreshControl = refreshControl
     refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControlEvents.valueChanged)
@@ -51,11 +54,10 @@ class ListOfContactsVC: UIViewController {
     UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observe( .childAdded) { (df) in
       ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
-          self.contactsArray = returnedChats
-          //            .sorted { $0.lastMessage > $1.lastMessage }
-          //          DispatchQueue.main.async {
+          self.contactsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
+//                    DispatchQueue.main.async {
           self.contactsTableView.reloadData()
-          //          }
+//                    }
         })
       }
     }
@@ -162,8 +164,8 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     let nav = self.navigationController?.navigationBar
     
     if network == false {
-      nav?.barTintColor = colors.colourMainPurple
-      self.navigationItem.title = "Chats - Offline Mode"
+      nav?.barTintColor = colors.colourMainGreen
+      self.navigationItem.title = "Chats - Offline"
     } else {
       nav?.barTintColor = UIColor.white
       self.navigationItem.title = "Chats"

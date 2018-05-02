@@ -83,7 +83,6 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    doneButton.isEnabled = false
     
     UserServices.instance.REF_USERS.observe(.value) { (snapshot) in
       UserServices.instance.getAllUsers{ (returnedUsersArray) in
@@ -98,13 +97,13 @@ class AddContactVC: UIViewController, UISearchResultsUpdating {
     super.viewDidLoad()
 	
 	// Set up the Search Controller
-	searchController.searchResultsUpdater = self
-	searchController.obscuresBackgroundDuringPresentation = false
-	searchController.searchBar.placeholder = "Find contact and select"
-	navigationItem.searchController = searchController
-	navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
-	navigationItem.hidesSearchBarWhenScrolling = false
-	definesPresentationContext = true
+//  searchController.searchResultsUpdater = self
+//  searchController.obscuresBackgroundDuringPresentation = false
+//  searchController.searchBar.placeholder = "Find contact and select"
+//  navigationItem.searchController = searchController
+//  navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
+//  navigationItem.hidesSearchBarWhenScrolling = false
+//  definesPresentationContext = true
 	
     tableView.delegate = self
     tableView.dataSource = self

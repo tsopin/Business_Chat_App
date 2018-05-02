@@ -155,7 +155,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 //
 //      }
 //      print("OUT \(image, name)")
-      cell.configeureCell(senderName: (chat?.key)!, messageTime: date!, messageBody: self.chatMessages[indexPath.row].content, messageBackground: self.colours.colourMainPurple, isGroup: true)
+      cell.configeureCell(senderName: (chat?.key)!, messageTime: date!, messageBody: self.chatMessages[indexPath.row].content, messageBackground: self.colours.colourMainGreen, isGroup: true)
 //        }
       
       return cell

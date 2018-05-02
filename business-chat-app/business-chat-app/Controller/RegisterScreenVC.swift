@@ -22,7 +22,7 @@ class RegisterScreenVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.setGradient(colours.colourMainBlue.cgColor, colours.colourMainPurple.cgColor)
+    self.view.setGradient(colours.colourMainBlue.cgColor, colours.colourMainGreen.cgColor)
     regButton.layer.cornerRadius = 5 
     self.hideKeyboardWhenTappedAround() 
     

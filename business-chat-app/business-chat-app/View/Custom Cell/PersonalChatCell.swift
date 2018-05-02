@@ -31,9 +31,10 @@ class PersonalChatCell: UITableViewCell {
     } else {
       userpicImage.kf.setImage(with: URL(string: imageUrl))
     }
+    self.contactEmail.isHidden = true
     
     userpicImage.layer.masksToBounds = true
-    userpicImage.layer.cornerRadius = 20
+    userpicImage.layer.cornerRadius = 30
     
     self.contactName.text = contactName
     self.contactEmail.text = contactEmail

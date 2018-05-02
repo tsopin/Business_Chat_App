@@ -130,6 +130,11 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     chatTableView.dataSource = self
     textField.delegate = self
     imagePickerContorller.delegate = self
+    contactNameLabel.textColor = colours.colourMainBlue
+    lastSeenTime.textColor = UIColor.lightGray
+    lastSeenLabel.textColor = UIColor.lightGray
+    self.navigationController?.navigationBar.tintColor = colours.colourMainBlue
+
     
     chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
     chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
@@ -159,7 +164,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
     
     let outColor = colours.colourMainBlue
-    let inColor = colours.colourMainPurple
+    let inColor = colours.colourMainGreen
     let sender = chatMessages[indexPath.row].senderId
     let isMedia = chatMessages[indexPath.row].isMultimedia
     let mediaUrl = chatMessages[indexPath.row].mediaUrl

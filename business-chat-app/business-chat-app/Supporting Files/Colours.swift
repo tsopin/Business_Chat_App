@@ -12,15 +12,15 @@ import Foundation
  class Colours {
 	
 	let colourMainBlue: UIColor!
-	let colourMainPurple: UIColor!
+	let colourMainGreen: UIColor!
 	let colourLightBlue: UIColor!
 	let colourLightestBlue: UIColor!
   let backgroundLigthBlue: UIColor!
 
 	
 	init() {
-		self.colourMainBlue = UIColor(rgb: 0x084887)
-		self.colourMainPurple = UIColor(rgb: 0x8F2D56)
+		self.colourMainBlue = UIColor(rgb: 0x1F6AF5)
+		self.colourMainGreen = UIColor(rgb: 0x1DC198)
 		self.colourLightBlue = UIColor(rgb: 0x507DBC)
 		self.colourLightestBlue = UIColor(rgb: 0xA1C6EA)
     self.backgroundLigthBlue = UIColor(rgb: 0xEBEBEB)

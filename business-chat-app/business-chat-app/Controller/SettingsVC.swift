@@ -23,10 +23,13 @@ class SettingsVC: UITableViewController {
   let currentUserId = Auth.auth().currentUser?.uid
   let currentEmail = Auth.auth().currentUser?.email
   var currentUserName = String()
+  let colors = Colours()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.hideKeyboardWhenTappedAround()
+    self.navigationController?.navigationBar.tintColor = colors.colourMainBlue
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -167,7 +170,7 @@ class SettingsVC: UITableViewController {
     let nav = self.navigationController?.navigationBar
     
     if network == false {
-      nav?.barTintColor = colors.colourMainPurple
+      nav?.barTintColor = colors.colourMainGreen
       self.navigationItem.title = "Settings - Offline"
     } else {
       nav?.barTintColor = UIColor.white

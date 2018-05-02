@@ -16,17 +16,8 @@ class MainTabViewController: UITabBarController {
     super.viewDidAppear(animated)
     Services.instance.presenceSystem()
     
-//    let network = Services.instance.myStatus()
-//    if network {
-//      self.tabBar.tintColor = colours.colourMainBlue
-//      self.tabBar.unselectedItemTintColor = colours.colourLightBlue
-//    } else {
-//      self.tabBar.tintColor = colours.colourMainPurple
-//      self.tabBar.unselectedItemTintColor = colours.colourMainPurple
-//    }
-    
     self.tabBar.tintColor = colours.colourMainBlue
-    self.tabBar.unselectedItemTintColor = colours.colourLightBlue
+    self.tabBar.unselectedItemTintColor = UIColor.lightGray
     
   }
   override func viewDidLoad() {

@@ -17,6 +17,7 @@ class UserProfileVC: UITableViewController {
   
   var chatName = ""
   var userId = ""
+  let colors = Colours()
   
   override func viewWillAppear(_ animated: Bool) {
     
@@ -44,6 +45,7 @@ class UserProfileVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // make rounded profile image
+    navigationItem.backBarButtonItem?.tintColor = colors.colourMainBlue
     profileImageView.layer.masksToBounds = true
     profileImageView.layer.cornerRadius = 105
   }
