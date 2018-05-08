@@ -1,6 +1,8 @@
-# Brogrammers-Business_Chat_App
+# Business Chat App
+Capstone project
 
-iOS Client for Capstone project
+
+iOS Client for Cross-platform (iOS, Android, Web) business messenger application with Firebase back end.
 
 Specifically for businesses looking for a custom communication solution - standalone messenger,
  independent from third-party platforms.
