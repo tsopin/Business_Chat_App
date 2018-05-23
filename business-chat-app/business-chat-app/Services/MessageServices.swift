@@ -73,7 +73,6 @@ class MessageServices {
         
         let message = Message(content: returnedContent, timeSent: timeSent, senderId: senderId, isMultimedia: isMultimediaMessage, mediaUrl: returnedMediaUrl)
         messageArray.append(message)
-        
       }
       handler(messageArray)
     })

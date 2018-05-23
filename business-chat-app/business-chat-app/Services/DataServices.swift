@@ -102,8 +102,6 @@ class Services {
     })
   }
   
-  
-  
   //Get Info for user ID
   func getUserImage(byUserId userId: String, handler: @escaping (_ userImageUrl: URL) -> ()) {
     

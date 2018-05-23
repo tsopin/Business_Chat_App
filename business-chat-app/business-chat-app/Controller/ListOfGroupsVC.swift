@@ -29,7 +29,6 @@ class ListOfGroupsVC: UIViewController {
     refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControlEvents.valueChanged)
     navigationItem.leftBarButtonItem = editButtonItem
     self.navigationController?.navigationBar.tintColor = colors.colourMainBlue
-
     navigationItem.leftBarButtonItem?.tintColor = colors.colourMainBlue
   }
   

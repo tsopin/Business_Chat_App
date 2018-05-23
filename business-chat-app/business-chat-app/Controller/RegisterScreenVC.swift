@@ -28,8 +28,6 @@ class RegisterScreenVC: UIViewController {
     
   }
   
-  
-  
   @IBAction func registerButtonPressed(_ sender: Any) {
     
     SVProgressHUD.show(withStatus: "Registration")

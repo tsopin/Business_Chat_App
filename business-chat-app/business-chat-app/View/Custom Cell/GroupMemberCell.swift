@@ -9,31 +9,26 @@
 import UIKit
 
 class GroupMemberCell: UITableViewCell {
-	
-	@IBOutlet weak var usernameLabel: UILabel!
-	@IBOutlet weak var userEmailLabel: UILabel!
-	@IBOutlet weak var userPic: UIImageView!
-	
-	func configureCell(username: String, userEmail: String, imageUrl: String) {
-		self.usernameLabel.text = username
-		self.userEmailLabel.text = userEmail
-		
-		if imageUrl == "NoImage" {
-			self.userPic.image = UIImage.makeLetterAvatar(withUsername: username)
-		} else {
-			self.userPic.kf.setImage(with: URL(string: imageUrl))
-		}
-		
-		userPic.layer.masksToBounds = true
-		userPic.layer.cornerRadius = 20
-	}
-	
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+  
+  @IBOutlet weak var usernameLabel: UILabel!
+  @IBOutlet weak var userEmailLabel: UILabel!
+  @IBOutlet weak var userPic: UIImageView!
+  
+  func configureCell(username: String, userEmail: String, imageUrl: String) {
+    self.usernameLabel.text = username
+    self.userEmailLabel.text = userEmail
+    
+    if imageUrl == "NoImage" {
+      self.userPic.image = UIImage.makeLetterAvatar(withUsername: username)
+    } else {
+      self.userPic.kf.setImage(with: URL(string: imageUrl))
     }
-
-
-
+    
+    userPic.layer.masksToBounds = true
+    userPic.layer.cornerRadius = 20
+  }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
 }

@@ -9,37 +9,35 @@
 import UIKit
 
 class Chat {
-    
-    private var _chatName: String
-    private var _memberCount: String
-    private var _members: [String:Bool]
-    private var _chatKey: String
-    private var _lastMessage: Int64
-    
-    var chatName: String {
-        return _chatName
-    }
-    
-    var memberCount: String {
-        return _memberCount
-    }
-    var members: [String:Bool] {
-        return _members
-    }
-    var key: String {
-        return _chatKey
-    }
+  
+  private var _chatName: String
+  private var _memberCount: String
+  private var _members: [String:Bool]
+  private var _chatKey: String
+  private var _lastMessage: Int64
+  
+  var chatName: String {
+    return _chatName
+  }
+  
+  var memberCount: String {
+    return _memberCount
+  }
+  var members: [String:Bool] {
+    return _members
+  }
+  var key: String {
+    return _chatKey
+  }
   var lastMessage: Int64 {
     return _lastMessage
   }
-    
+  
   init(name: String, members: [String:Bool], chatKey: String, memberCount: String, lastMessage: Int64) {
-        self._chatName = name
-        self._members = members
-        self._chatKey = chatKey
-        self._memberCount = memberCount
-        self._lastMessage = lastMessage
-    }
-    
-    
+    self._chatName = name
+    self._members = members
+    self._chatKey = chatKey
+    self._memberCount = memberCount
+    self._lastMessage = lastMessage
+  }
 }

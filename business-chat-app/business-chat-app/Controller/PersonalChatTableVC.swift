@@ -11,9 +11,7 @@ import Firebase
 import SVProgressHUD
 import SimpleImageViewer
 
-
 class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  
   
   @IBOutlet weak var contactNameLabel: UILabel!
   @IBOutlet weak var lastSeenTime: UILabel!
@@ -26,6 +24,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var sendBtn: UIButton!
   @IBOutlet weak var heightConstraint: NSLayoutConstraint!
   //    @IBOutlet weak var contactNameLabel: UILabel!
+  
   let imagePickerContorller = UIImagePickerController()
   let colours = Colours()
   
@@ -42,7 +41,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
   }
   
-  //
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -104,7 +102,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
           self.chatTableView.reloadData()
         }
         self.scrollToBottom()
-        
       })
     }
   }
@@ -153,12 +150,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
     
-    
-    //        UIView.animate(withDuration: 0.1) {
-    //
-    //            self.heightConstraint.constant = 325
-    //            self.view.layoutIfNeeded()
-    //        }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
@@ -313,22 +304,16 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
       }
       dismissKeyboard()
-      
-      
-      
     }
   }
   
   
   
   @IBAction func sendButton(_ sender: UIButton) {
-    
     sendMessage()
-    
   }
   
   @IBAction func photoMessageButton(_ sender: Any) {
-    
     
     let actionSheet = UIAlertController(title: "Select source of Image", message: "", preferredStyle: .actionSheet)
     
@@ -395,7 +380,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     chatTableView.rowHeight = UITableViewAutomaticDimension
     chatTableView.estimatedRowHeight = 263.0
   }
-  //
   
   @objc func keyboardWillShow(notification : NSNotification) {
     

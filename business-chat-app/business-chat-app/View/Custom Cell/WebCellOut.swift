@@ -16,8 +16,6 @@ class WebCellOut: UITableViewCell {
   @IBOutlet weak var bodyColor: UIView!
   @IBOutlet weak var webView: WKWebView!
   
-  
-  
   func configeureCell(mediaUrl: String, messageTime: String, senderName: String) {
     self.messageTime.text = messageTime
     self.senderName.text = senderName
@@ -27,20 +25,16 @@ class WebCellOut: UITableViewCell {
     if trimmedUrl.lowercased().range(of:"http") != nil {
       
     }
-    
-    
-    
     let url = URL(string: "http://\(trimmedUrl)")
     let request = URLRequest(url: url!)
     
     self.webView.load(request)
-
     bodyColor.layer.cornerRadius = 16
   }
   override func prepareForReuse() {
     super.prepareForReuse()
     self.messageTime.text = nil
     self.senderName.text = nil
-//    self.webView.c = nil
+    //    self.webView.c = nil
   }
 }

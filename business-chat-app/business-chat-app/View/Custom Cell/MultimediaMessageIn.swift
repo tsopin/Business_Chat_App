@@ -27,7 +27,7 @@ class MultimediaMessageIn: UITableViewCell {
     messageBodyImage.layer.borderColor = UIColor.white.cgColor
     bodyColor.layer.cornerRadius = 16
     
-//    bodyColor.layer.borderWidth = 1
+    //    bodyColor.layer.borderWidth = 1
   }
   override func prepareForReuse() {
     super.prepareForReuse()
