@@ -18,3 +18,7 @@ Features:
 - Open images fullscreen
 - Change username\email in app
 - Offline mode
+
+![List of Chats](https://github.com/tsopin/Business_Chat_App/blob/master/List%20Of%20Chats%20View.png)
+![Personal Chat](https://github.com/tsopin/Business_Chat_App/blob/master/Personal%20Chat%20View.png)
+![Settings](https://github.com/tsopin/Business_Chat_App/blob/master/Settings%20Screen.png)
