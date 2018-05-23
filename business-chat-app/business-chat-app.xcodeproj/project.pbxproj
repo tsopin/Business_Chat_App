@@ -36,9 +36,9 @@
 		746E207A204F5F0D00D8B858 /* CustomMessageOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */; };
 		747E62F1205F042F004DD81B /* PersonalChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E62F0205F042F004DD81B /* PersonalChatCell.swift */; };
 		748407FE205492D000CF244F /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748407FD205492D000CF244F /* AddContactVC.swift */; };
-		7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */; };
 		748BEF17205DFBB00032EE3C /* GroupChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748BEF16205DFBB00032EE3C /* GroupChatVC.swift */; };
 		749F057520589CF00022D977 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F057420589CF00022D977 /* Chat.swift */; };
+		749F9E8B20B4F4900032DB95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 749F9E8A20B4F4900032DB95 /* GoogleService-Info.plist */; };
 		74B3B094204BB2F40056A026 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3B093204BB2F40056A026 /* MainTabViewController.swift */; };
 		74B8C3A5205AC0F000951EEB /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3A4205AC0F000951EEB /* GroupCell.swift */; };
 		74B8C3A7205AC15900951EEB /* AddGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8C3A6205AC15900951EEB /* AddGroupVC.swift */; };
@@ -92,9 +92,9 @@
 		746E2078204F5F0D00D8B858 /* CustomMessageOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageOut.xib; sourceTree = "<group>"; };
 		747E62F0205F042F004DD81B /* PersonalChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalChatCell.swift; sourceTree = "<group>"; };
 		748407FD205492D000CF244F /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
-		7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		748BEF16205DFBB00032EE3C /* GroupChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatVC.swift; sourceTree = "<group>"; };
 		749F057420589CF00022D977 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		749F9E8A20B4F4900032DB95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		74B3B093204BB2F40056A026 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		74B8C3A4205AC0F000951EEB /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		74B8C3A6205AC15900951EEB /* AddGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupVC.swift; sourceTree = "<group>"; };
@@ -250,6 +250,7 @@
 		77AE6FEA20491C4F00918A93 /* business-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				749F9E8A20B4F4900032DB95 /* GoogleService-Info.plist */,
 				740621F720799F4300FDFE60 /* Assets.xcassets */,
 				7404F606207547000076C3D8 /* business-chat-app.entitlements */,
 				74470984205C88B5000D719F /* Supporting Files */,
@@ -259,7 +260,6 @@
 				74CB91402049BC020098E047 /* Controller */,
 				77AE6FEB20491C4F00918A93 /* AppDelegate.swift */,
 				77AE6FF720491C4F00918A93 /* Info.plist */,
-				7488BDD7204F7183003AC7EF /* GoogleService-Info.plist */,
 			);
 			path = "business-chat-app";
 			sourceTree = "<group>";
@@ -358,9 +358,9 @@
 				740621F820799F4400FDFE60 /* Assets.xcassets in Resources */,
 				7461CD4D2073027B00DB4D88 /* MultimediaMessageIn.xib in Resources */,
 				74CB913F2049BBF70098E047 /* RegisterViewController.xib in Resources */,
+				749F9E8B20B4F4900032DB95 /* GoogleService-Info.plist in Resources */,
 				7404B0E32052EA38001DF785 /* CustomContactCell.xib in Resources */,
 				743D4985204E16DA004A57E8 /* CustomMessageIn.xib in Resources */,
-				7488BDD8204F7183003AC7EF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +609,7 @@
 				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timsop.business-chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -626,7 +626,7 @@
 				DEVELOPMENT_TEAM = 6QEFHSRMQX;
 				INFOPLIST_FILE = "business-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.centennialcollege.business-chat-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timsop.business-chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -100,8 +100,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.chatMessages = returnedChatMessages
         self.configureTableView()
-         DispatchQueue.main.async {
-        self.chatTableView.reloadData()
+        DispatchQueue.main.async {
+          self.chatTableView.reloadData()
         }
         self.scrollToBottom()
         
@@ -134,7 +134,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     lastSeenTime.textColor = UIColor.lightGray
     lastSeenLabel.textColor = UIColor.lightGray
     self.navigationController?.navigationBar.tintColor = colours.colourMainBlue
-
+    
     
     chatTableView.register(UINib(nibName: "CustomMessageIn", bundle: nil), forCellReuseIdentifier: "messageIn")
     chatTableView.register(UINib(nibName: "CustomMessageOut", bundle: nil), forCellReuseIdentifier: "messageOut")
@@ -171,17 +171,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let content = chatMessages[indexPath.row].content
     
     
-    // Get URL from String
-    //    var url: String? = ""
-    //
-    //    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-    //    let matches = detector.matches(in: content, options: [], range: NSRange(location: 0, length: content.utf16.count))
-    //
-    //    for match in matches {
-    //      guard let range = Range(match.range, in: content) else { continue }
-    //      url = String(content[range])
-    ////      print(url)
-    //    }
+    
     
     if  sender == currentUserId {
       
@@ -282,12 +272,20 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func sendMessage(){
     
+    
+    
+    //    // Get URL from String
+    var url = String()
+    var content = textField.text!
+    
+    //
+    
     let date = Date()
     let currentDate = Int64(date.millisecondsSince1970)
     let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
-    if textField.text != "" {
-      sendBtn.isEnabled = false
-      MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
+    
+    func isGif(isGif: Bool, withContent sendContent: String){
+      MessageServices.instance.sendMessage(withContent: sendContent , withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: isGif, sendComplete: { (complete) in
         if complete {
           self.textField.isEnabled = true
           self.sendBtn.isEnabled = true
@@ -295,8 +293,33 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
           print("Message saved \(currentDate)")
         }
       })
+      
     }
-    dismissKeyboard()
+    
+    if content != "" {
+      sendBtn.isEnabled = false
+      isGif(isGif: false, withContent: content)
+      
+      if content.contains("http") && content.contains("gif")  {
+        
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: content, options: [], range: NSRange(location: 0, length: content.utf16.count))
+        
+        for match in matches {
+          guard let range = Range(match.range, in: content) else { continue }
+          url = String(content[range])
+          print("GIF URL \(url)")
+        }
+        
+        sendBtn.isEnabled = false
+        isGif(isGif: true, withContent: url)
+        
+      }
+      dismissKeyboard()
+      
+      
+      
+    }
   }
   
   
@@ -304,7 +327,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBAction func sendButton(_ sender: UIButton) {
     
     sendMessage()
-
+    
   }
   
   @IBAction func photoMessageButton(_ sender: Any) {
