@@ -44,7 +44,7 @@ class ChatServices {
         newMembers[member] = true
       }
       let chatId = REF_CHATS.childByAutoId().key
-//        forChatName.md5()
+      //        forChatName.md5()
       
       
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
@@ -142,7 +142,7 @@ class ChatServices {
       }
     }
   }
-
+  
   
   func deleteChatFromUser(isGroup: Bool, chatId: String) {
     

@@ -29,7 +29,7 @@ class WelcomeScreenVC: UIViewController {
     }
     self.hideKeyboardWhenTappedAround()
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -46,8 +46,7 @@ class WelcomeScreenVC: UIViewController {
     signIn()
     
   }
-  
-  
+
   func register() {
     
     let registerView = RegisterScreenVC(nibName: "RegisterViewController", bundle: nil)
@@ -74,9 +73,7 @@ class WelcomeScreenVC: UIViewController {
         
       }
     }
-    
   }
-  
   
   deinit{
     

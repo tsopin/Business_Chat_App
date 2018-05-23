@@ -170,9 +170,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
       nav?.barTintColor = UIColor.white
       self.navigationItem.title = "Chats"
     }
-    
   }
-  
 }
 
 

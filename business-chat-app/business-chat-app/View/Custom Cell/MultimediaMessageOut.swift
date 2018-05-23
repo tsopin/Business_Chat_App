@@ -16,8 +16,6 @@ class MultimediaMessageOut: UITableViewCell {
   @IBOutlet weak var messageBodyImage: UIImageView!
   @IBOutlet weak var bodyColor: UIView!
   
-  
-  
   func configeureCell(messageImage: String, messageTime: String, senderName: String) {
     self.messageTime.text = messageTime
     self.senderName.text = senderName

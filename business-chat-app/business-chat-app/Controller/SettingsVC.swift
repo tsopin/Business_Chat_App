@@ -29,7 +29,6 @@ class SettingsVC: UITableViewController {
     super.viewDidLoad()
     self.hideKeyboardWhenTappedAround()
     self.navigationController?.navigationBar.tintColor = colors.colourMainBlue
-
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +118,6 @@ class SettingsVC: UITableViewController {
       
       do {
         try Auth.auth().signOut()
-        
         let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeScreenVC") as! WelcomeScreenVC
         let appDelegate = UIApplication.shared.delegate
         appDelegate?.window??.rootViewController = welcomeVC
@@ -161,7 +159,7 @@ class SettingsVC: UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-	return section == 0 ? 1 : 2
+    return section == 0 ? 1 : 2
   }
   
   func offlineMode() {
@@ -176,12 +174,10 @@ class SettingsVC: UITableViewController {
       nav?.barTintColor = UIColor.white
       self.navigationItem.title = "Settings"
     }
-    
   }
-
+  
   deinit{
     
   }
-  
 }
 

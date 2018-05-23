@@ -9,17 +9,12 @@
 import UIKit
 
 class GroupCell: UITableViewCell {
-    
-    @IBOutlet weak var groupName: UILabel!
-    
-    @IBOutlet weak var numberOfMembers: UILabel!
-    
-    
-    
-    func configeureCell(groupName: String, numberOfMembers: String) {
-        self.groupName.text = groupName
-        self.numberOfMembers.text = "\(numberOfMembers) participants"
-    }
-    
-    
+  
+  @IBOutlet weak var groupName: UILabel!
+  @IBOutlet weak var numberOfMembers: UILabel!
+  
+  func configeureCell(groupName: String, numberOfMembers: String) {
+    self.groupName.text = groupName
+    self.numberOfMembers.text = "\(numberOfMembers) participants"
+  }
 }

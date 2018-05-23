@@ -13,21 +13,16 @@ class CustomMessageIn: UITableViewCell {
   
   @IBOutlet weak var senderName: UILabel!
   @IBOutlet weak var userPic: UIImageView!
-  
   @IBOutlet weak var messageTime: UILabel!
-  
   @IBOutlet weak var messageBody: UITextView!
-  
-  
   @IBOutlet weak var messageBackground: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
   }
   
   func configeureCell(senderName: String, messageTime: String, messageBody: String, messageBackground: UIColor, isGroup: Bool ) {
- 
+    
     self.senderName.text = senderName
     self.messageTime.text = messageTime
     self.messageBody.text = messageBody
@@ -38,6 +33,7 @@ class CustomMessageIn: UITableViewCell {
     self.userPic.layer.borderWidth = 1
     self.userPic.layer.borderColor = UIColor.white.cgColor
     self.senderName.isHidden = !isGroup
+    
   }
   
   override func prepareForReuse() {
@@ -46,5 +42,4 @@ class CustomMessageIn: UITableViewCell {
     self.messageTime.text = nil
     self.messageBody.text = nil
   }
-  
 }
