@@ -20,23 +20,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92C-rT-v0O">
-                        <rect key="frame" x="16" y="40" width="115" height="89"/>
+                        <rect key="frame" x="16" y="40" width="258" height="89"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Message Body" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcR-Uh-Srx">
-                                <rect key="frame" x="8" y="5" width="99" height="76"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIT-hR-VnS">
+                                <rect key="frame" x="5" y="5" width="248" height="84"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.5607843137254902" green="0.1764705882352941" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.75686274509999996" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leadingMargin" id="NQC-qR-r5X"/>
+                            <constraint firstItem="ZIT-hR-VnS" firstAttribute="leading" secondItem="92C-rT-v0O" secondAttribute="leading" constant="5" id="8Yq-83-yUk"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Ol6-ol-1tB"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="bmO-X5-44F"/>
-                            <constraint firstItem="bcR-Uh-Srx" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="5" id="gfV-i8-1f7"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="bcR-Uh-Srx" secondAttribute="bottom" id="ko3-R2-KOH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bcR-Uh-Srx" secondAttribute="trailing" id="u2l-9u-yH5"/>
+                            <constraint firstAttribute="trailing" secondItem="ZIT-hR-VnS" secondAttribute="trailing" constant="5" id="h3d-2W-OOn"/>
+                            <constraint firstItem="ZIT-hR-VnS" firstAttribute="top" secondItem="92C-rT-v0O" secondAttribute="top" constant="5" id="hVn-4W-lrb"/>
+                            <constraint firstAttribute="bottom" secondItem="ZIT-hR-VnS" secondAttribute="bottom" id="pIO-DJ-5Wq"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -102,7 +105,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="messageBackground" destination="92C-rT-v0O" id="ZyL-n2-qbL"/>
-                <outlet property="messageBody" destination="bcR-Uh-Srx" id="pFE-rs-Zmj"/>
+                <outlet property="messageBody" destination="ZIT-hR-VnS" id="Jm3-X0-UDY"/>
                 <outlet property="messageTime" destination="h0L-TN-eAU" id="jec-0e-6Rd"/>
                 <outlet property="senderName" destination="xsQ-JG-g2C" id="ncZ-LQ-HAt"/>
                 <outlet property="userPic" destination="Drq-j8-Gzr" id="d2Z-lO-GU6"/>

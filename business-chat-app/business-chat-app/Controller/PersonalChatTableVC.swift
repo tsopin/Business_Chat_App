@@ -170,12 +170,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
     let content = chatMessages[indexPath.row].content
     
-    
-    
-    
     if  sender == currentUserId {
       
-      if isMedia == true {
+      if isMedia == true || content.contains(".gif") || content.contains(".jpg") {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
         let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
@@ -202,7 +199,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       
     } else {
       
-      if isMedia == true {
+      if isMedia == true || content.contains(".gif") || content.contains(".jpg") {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageIn", for: indexPath) as! MultimediaMessageIn
         let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))

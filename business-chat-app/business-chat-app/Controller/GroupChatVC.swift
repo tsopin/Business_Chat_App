@@ -101,38 +101,43 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell  {
     
+    let outColor = colours.colourMainBlue
+    let inColor = colours.colourMainGreen
     let sender = chatMessages[indexPath.row].senderId
     let isMedia = chatMessages[indexPath.row].isMultimedia
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
-    //    let content = chatMessages[indexPath.row].content
-    
+    let content = chatMessages[indexPath.row].content
     
     if  sender == currentUserId {
       
-      if isMedia == true {
-        
+      if isMedia == true || content.contains(".gif") || content.contains(".jpg") {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
-       
-            
-            let date = self.getDateFromInterval(timestamp: Int64(self.chatMessages[indexPath.row].timeSent))
-            
-            cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
-       
+        let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
+        
+        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
         return cell
         
       }
       
-      let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
+      // WebView CEll
+      //        else if url != nil {
+      //        let cell = tableView.dequeueReusableCell(withIdentifier: "webOut", for: indexPath) as! WebCellOut
+      //        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
+      //
+      //        cell.configeureCell(mediaUrl: content, messageTime: date!, senderName: sender)
+      //        return cell
+      //      }
       
+      let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: colours.colourMainBlue, isGroup: true)
+      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!, isGroup: false)
       return cell
       
     } else {
       
-      if isMedia == true {
+      if isMedia == true || content.contains(".gif") || content.contains(".jpg") {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageIn", for: indexPath) as! MultimediaMessageIn
         let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
@@ -143,21 +148,9 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
       }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
+      let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
       
-      let date = self.getDateFromInterval(timestamp: Int64(self.chatMessages[indexPath.row].timeSent))
-      
-//        UserServices.instance.getUserData(byUserId: sender) { (userData) in
-//
-//          image = userData.3
-//          name = userData.1
-//
-//          print("INSIDE \(image, name)")
-//
-//      }
-//      print("OUT \(image, name)")
-      cell.configeureCell(senderName: (chat?.key)!, messageTime: date!, messageBody: self.chatMessages[indexPath.row].content, messageBackground: self.colours.colourMainGreen, isGroup: true)
-//        }
-      
+      cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor!, isGroup: false)
       return cell
       
     }
@@ -226,23 +219,62 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
   }
   
-  @IBAction func sendButton(_ sender: Any) {
+  func sendMessage(){
+    
+    
+    
+    //    // Get URL from String
+    var url = String()
+    var content = textField.text!
+    
+    //
     
     let date = Date()
-    let currentDate = Int64((date.millisecondsSince1970))
+    let currentDate = Int64(date.millisecondsSince1970)
     let messageUID = MessageServices.instance.REF_MESSAGES.child((self.chat?.key)!).childByAutoId().key
-    if textField.text != "" {
-      sendBtn.isEnabled = false
-      MessageServices.instance.sendMessage(withContent: textField.text!, withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: false, sendComplete: { (complete) in
+    
+    func isGif(isGif: Bool, withContent sendContent: String){
+      MessageServices.instance.sendMessage(withContent: sendContent , withTimeSent: currentDate, withMessageId: messageUID, forSender: currentUserId! , withChatId: chat?.key, isMultimedia: isGif, sendComplete: { (complete) in
         if complete {
           self.textField.isEnabled = true
           self.sendBtn.isEnabled = true
           self.textField.text = ""
-          print("Group Message saved")
+          print("Message saved \(currentDate)")
         }
       })
+      
     }
-    dismissKeyboard()
+    
+    if content != "" {
+      sendBtn.isEnabled = false
+      isGif(isGif: false, withContent: content)
+      
+      if content.contains("http") && content.contains("gif")  {
+        
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: content, options: [], range: NSRange(location: 0, length: content.utf16.count))
+        
+        for match in matches {
+          guard let range = Range(match.range, in: content) else { continue }
+          url = String(content[range])
+          print("GIF URL \(url)")
+        }
+        
+        sendBtn.isEnabled = false
+        isGif(isGif: true, withContent: url)
+        
+      }
+      dismissKeyboard()
+      
+      
+      
+    }
+  }
+  
+  
+  @IBAction func sendButton(_ sender: Any) {
+    
+    sendMessage()
   }
   
   @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {

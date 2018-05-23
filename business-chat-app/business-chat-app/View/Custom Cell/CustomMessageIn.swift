@@ -16,7 +16,8 @@ class CustomMessageIn: UITableViewCell {
   
   @IBOutlet weak var messageTime: UILabel!
   
-  @IBOutlet weak var messageBody: UILabel!
+  @IBOutlet weak var messageBody: UITextView!
+  
   
   @IBOutlet weak var messageBackground: UIView!
   
