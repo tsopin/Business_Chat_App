@@ -26,7 +26,7 @@ class ListOfContactsVC: UIViewController {
     contactsTableView.dataSource = self
     navigationItem.leftBarButtonItem = editButtonItem
     navigationItem.leftBarButtonItem?.tintColor = colors.colourMainBlue
-
+    
     refreshControl = UIRefreshControl()
     contactsTableView.refreshControl = refreshControl
     refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControlEvents.valueChanged)
@@ -55,9 +55,9 @@ class ListOfContactsVC: UIViewController {
       ChatServices.instance.getMyChatsIds(isGroup: false) { (ids) in
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
           self.contactsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
-//                    DispatchQueue.main.async {
+          //                    DispatchQueue.main.async {
           self.contactsTableView.reloadData()
-//                    }
+          //                    }
         })
       }
     }
@@ -88,30 +88,40 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
     var date = String()
     
     UserServices.instance.getUserData(byUserId: contact.chatName) { (userData) in
-      ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessageTimeStamp").observe(.value) { (popo) in
-        
-        guard let last = popo.value as? Int64 else {return}
-        date = self.getDateFromInterval(timestamp: last)!
-        
-        var statusImage = UIImage()
-        let contactEmail = userData.0
-        let contactName = userData.1
-        let imageUrl = userData.3
-        let contactStatus = userData.2
-        
-        switch contactStatus {
-        case "online":
-          statusImage = UIImage(named: "status_online")!
-        case "dnd":
-          statusImage = UIImage(named: "status_dnd")!
-        case "away":
-          statusImage = UIImage(named: "status_away")!
-        default:
-          statusImage = UIImage(named: "status_offline")!
-        }
-        cell.configeureCell(contactName: contactName, contactEmail: contactEmail, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
-      }
+      //      ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessageTimeStamp").observe(.value) { (lastTime) in
+      //       ChatServices.instance.REF_CHATS.child(contact.key).child("lastMessageBody").observe(.value) { (lastBody) in
+      
+      //      chats.append(contact.key)
+//      MessageServices.instance.REF_MESSAGES.child(contact.key).observe( .childAdded) { (df) in
+      ChatServices.instance.getChatInfo(forId: contact.key, handler: { (returnedChatInfo) in
+          
+          let returnedChats = returnedChatInfo[0]
+          
+          let last = returnedChats.lastMessage
+          date = self.getDateFromInterval(timestamp: last)!
+          
+          var statusImage = UIImage()
+          //        let contactEmail = userData.0
+          let contactName = userData.1
+          let imageUrl = userData.3
+          let contactStatus = userData.2
+          let lastMessageBody = returnedChats.lastMessageBody
+          
+          switch contactStatus {
+          case "online":
+            statusImage = UIImage(named: "status_online")!
+          case "dnd":
+            statusImage = UIImage(named: "status_dnd")!
+          case "away":
+            statusImage = UIImage(named: "status_away")!
+          default:
+            statusImage = UIImage(named: "status_offline")!
+          }
+          cell.configeureCell(contactName: contactName, lastMessageBody: lastMessageBody, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
+        })
+//      }
     }
+    //    }
     return cell
   }
   override func setEditing(_ editing: Bool, animated: Bool) {

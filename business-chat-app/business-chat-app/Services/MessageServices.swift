@@ -30,8 +30,11 @@ class MessageServices {
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent,
                                                            "isMultimedia" : isMultimedia])
-    
-    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessageTimeStamp").setValue(timeSent)
+
+    let lastMessageInfo = ["lastMessageTimeStamp": timeSent,
+                           "lastMessageBody": content] as [String : Any]
+
+    ChatServices.instance.REF_CHATS.child(chatId!).updateChildValues(lastMessageInfo)
     sendComplete(true)
   }
   
@@ -42,7 +45,10 @@ class MessageServices {
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent])
     
-    ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessageTimeStamp").setValue(timeSent)
+    let lastMessageInfo = ["lastMessageTimeStamp": timeSent,
+                           "lastMessageBody": "📷 Photo Message"] as [String : Any]
+    
+    ChatServices.instance.REF_CHATS.child(chatId!).updateChildValues(lastMessageInfo)
     sendComplete(true)
   }
   

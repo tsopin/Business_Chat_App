@@ -83,7 +83,7 @@ extension UIViewController {
       } else if timeSinceDateInSeconds > secondInDays {
         dateFormatter.dateFormat = "EEEE"
       } else {
-        dateFormatter.dateFormat = "h:mm a, EEEE"
+        dateFormatter.dateFormat = "h:mm a"
       }
       return dateFormatter.string(from: date)
     } else {

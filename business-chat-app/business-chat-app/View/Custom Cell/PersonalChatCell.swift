@@ -13,12 +13,12 @@ import LetterAvatarKit
 class PersonalChatCell: UITableViewCell {
   
   @IBOutlet weak var contactName: UILabel!
-  @IBOutlet weak var contactEmail: UILabel!
+  @IBOutlet weak var lastMessageBody: UILabel!
   @IBOutlet weak var lastMessage: UILabel!
   @IBOutlet weak var statusImage: UIImageView!
   @IBOutlet weak var userpicImage: UIImageView!
   
-  func configeureCell(contactName: String, contactEmail: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
+  func configeureCell(contactName: String, lastMessageBody: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
     
     if imageUrl == "NoImage" {
       userpicImage.image = UIImage.makeLetterAvatar(withUsername: contactName)
@@ -26,12 +26,12 @@ class PersonalChatCell: UITableViewCell {
       userpicImage.kf.setImage(with: URL(string: imageUrl))
     }
     
-    self.contactEmail.isHidden = true
+//    self.lastMessageBody.isHidden = true
     userpicImage.layer.masksToBounds = true
     userpicImage.layer.cornerRadius = 30
     
     self.contactName.text = contactName
-    self.contactEmail.text = contactEmail
+    self.lastMessageBody.text = lastMessageBody
     self.lastMessage.text = lastMessage
     self.statusImage.image = statusImage
   }
