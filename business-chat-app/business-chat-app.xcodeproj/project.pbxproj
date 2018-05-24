@@ -49,7 +49,7 @@
 		74CB914D2049C6F60098E047 /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */; };
 		74CB91542049DB7D0098E047 /* ListOfGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */; };
 		74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */; };
-		74F178D02062FCFC00397873 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F178CF2062FCFC00397873 /* Colours.swift */; };
+		74F178D02062FCFC00397873 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F178CF2062FCFC00397873 /* Colors.swift */; };
 		74F8523F20583D3A00FE86D3 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F8523E20583D3A00FE86D3 /* AuthService.swift */; };
 		74F8524120583D7D00FE86D3 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F8524020583D7D00FE86D3 /* DataServices.swift */; };
 		74F8524320583E6600FE86D3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F8524220583E6600FE86D3 /* Message.swift */; };
@@ -105,7 +105,7 @@
 		74CB914C2049C6F60098E047 /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
 		74CB91522049DB7D0098E047 /* ListOfGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfGroupsVC.swift; sourceTree = "<group>"; };
 		74CB91562049DBBA0098E047 /* PersonalChatTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalChatTableVC.swift; sourceTree = "<group>"; };
-		74F178CF2062FCFC00397873 /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		74F178CF2062FCFC00397873 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		74F8523E20583D3A00FE86D3 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		74F8524020583D7D00FE86D3 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		74F8524220583E6600FE86D3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				74470985205C88E2000D719F /* Extensions.swift */,
-				74F178CF2062FCFC00397873 /* Colours.swift */,
+				74F178CF2062FCFC00397873 /* Colors.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -465,7 +465,7 @@
 				137B603F20642155008FEC57 /* GroupInfoVC.swift in Sources */,
 				74F8524320583E6600FE86D3 /* Message.swift in Sources */,
 				137B603D20633BFD008FEC57 /* UserProfileVC.swift in Sources */,
-				74F178D02062FCFC00397873 /* Colours.swift in Sources */,
+				74F178D02062FCFC00397873 /* Colors.swift in Sources */,
 				74CB91582049DBBA0098E047 /* PersonalChatTableVC.swift in Sources */,
 				74F8523F20583D3A00FE86D3 /* AuthService.swift in Sources */,
 				137B604320642F6C008FEC57 /* GroupNameCell.swift in Sources */,

@@ -18,7 +18,7 @@ class ListOfContactsVC: UIViewController {
   var contactsArray = [Chat]()
   var choosenContactArray =  [String]()
   var chatMessages = [Message]()
-  let colors = Colours()
+  let colors = Colors()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -159,7 +159,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func offlineMode() {
-    let colors = Colours()
+    let colors = Colors()
     let network = Services.instance.myStatus()
     let nav = self.navigationController?.navigationBar
     

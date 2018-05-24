@@ -67,7 +67,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
     UserServices.instance.createDBUser(uid: self.currentUserId!, userData: userData as Any as! Dictionary<String, Any>)
   }
   
-  
   @IBAction func chooseImage(_ sender: UIButton) {
     
     let connectionStatus = Services.instance.myStatus()
@@ -94,9 +93,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
       profileImageView.isHighlighted = false
       print("NET SETI")
     }
-    
-    
-    
   }
   
   @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
@@ -152,8 +148,6 @@ class EditProfileTableVC: UITableViewController, UITextFieldDelegate, UIImagePic
       }
     }
   }
-  
-  
   
   // If User needs to re-authenticate in order to change email, this method is called and change email retried
   func reLogIn() {

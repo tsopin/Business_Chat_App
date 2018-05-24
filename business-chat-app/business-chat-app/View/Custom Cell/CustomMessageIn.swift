@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomMessageIn: UITableViewCell {
-  let colours = Colours()
+  let colours = Colors()
   
   @IBOutlet weak var senderName: UILabel!
   @IBOutlet weak var userPic: UIImageView!

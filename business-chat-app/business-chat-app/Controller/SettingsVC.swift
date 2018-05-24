@@ -23,7 +23,7 @@ class SettingsVC: UITableViewController {
   let currentUserId = Auth.auth().currentUser?.uid
   let currentEmail = Auth.auth().currentUser?.email
   var currentUserName = String()
-  let colors = Colours()
+  let colors = Colors()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -67,34 +67,19 @@ class SettingsVC: UITableViewController {
   @IBAction func doNotDisturbSwitch(_ sender: UISwitch) {
     
     if (dndSwitchOutlet.isOn) {
-      Auth.auth().addStateDidChangeListener() { auth, user in
-        if user != nil {
-          UserServices.instance.updateUserStatus(withStatus: "dnd", handler: { (online) in
-            if online == true {
-              self.notificationsSwitchOutlet.isOn = true
-              self.notificationsSwitchOutlet.isEnabled = false
-              UIApplication.shared.unregisterForRemoteNotifications()
-              print("status set to DND")
-            }
-          })
-        }
-      }
+      
+      UserServices.instance.setStatusAppDelegate(withStatus: "dnd")
+      self.notificationsSwitchOutlet.isOn = true
+      self.notificationsSwitchOutlet.isEnabled = false
+      UIApplication.shared.unregisterForRemoteNotifications()
       
     } else {
-      Auth.auth().addStateDidChangeListener() { auth, user in
-        if user != nil {
-          UserServices.instance.updateUserStatus(withStatus: "online", handler: { (online) in
-            if online == true {
-              self.notificationsSwitchOutlet.isOn = false
-              self.notificationsSwitchOutlet.isEnabled = true
-              UIApplication.shared.registerForRemoteNotifications()
-              UserServices.instance.saveTokens()
-              
-              print("status set to Online")
-            }
-          })
-        }
-      }
+      UserServices.instance.setStatusAppDelegate(withStatus: "online")
+      self.notificationsSwitchOutlet.isOn = false
+      self.notificationsSwitchOutlet.isEnabled = true
+      UIApplication.shared.registerForRemoteNotifications()
+      UserServices.instance.saveTokens()
+      
     }
   }
   @IBAction func showUserPhoto(_ sender: Any) {
@@ -163,7 +148,7 @@ class SettingsVC: UITableViewController {
   }
   
   func offlineMode() {
-    let colors = Colours()
+    let colors = Colors()
     let network = Services.instance.myStatus()
     let nav = self.navigationController?.navigationBar
     

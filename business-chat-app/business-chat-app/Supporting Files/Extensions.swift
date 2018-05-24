@@ -25,7 +25,6 @@ extension UIView {
     UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIViewKeyframeAnimationOptions(rawValue: curve), animations: {
       self.frame.origin.y += deltaY
     }, completion: nil)
-    
   }
   
   func pushTransition(_ duration:CFTimeInterval) {
@@ -44,7 +43,6 @@ extension UIView {
     gradientLayer.colors = [topColour, bottomColour]
     self.layer.insertSublayer(gradientLayer, at: 0)
   }
-  
 }
 
 

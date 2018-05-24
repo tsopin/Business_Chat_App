@@ -20,7 +20,7 @@ class AddGroupVC: UIViewController, UISearchResultsUpdating {
   var usersArray = [User]()
   var selectedUsersArray = [User]()
   var filteredUsersArray = [User]()
-  let colors = Colours()
+  let colors = Colors()
   
   
   override func viewWillAppear(_ animated: Bool) {

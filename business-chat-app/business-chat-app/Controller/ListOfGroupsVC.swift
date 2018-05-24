@@ -16,7 +16,7 @@ class ListOfGroupsVC: UIViewController {
   var groupsArray = [Chat]()
 
   var allUsersArray = [User]()
-  let colors = Colours()
+  let colors = Colors()
 
   var refreshControl: UIRefreshControl!
   
@@ -121,7 +121,7 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func offlineMode() {
-    let colors = Colours()
+    let colors = Colors()
     let network = Services.instance.myStatus()
     let nav = self.navigationController?.navigationBar
     

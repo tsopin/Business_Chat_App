@@ -30,7 +30,7 @@ class NotificationServices: NSObject {
     
     let application = UIApplication.shared
     application.registerForRemoteNotifications()
- 
+    
   }
 }
 
@@ -43,7 +43,6 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     if let day = notification.request.content.userInfo["day"] {
       print("day: \(day)")
     }
-    
     
     let dict = notification.request.content.userInfo["aps"] as! NSDictionary
     
@@ -58,7 +57,7 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     } else {
       messageBody = dict["alert"] as? String
     }
-
+    
     let options: UNNotificationPresentationOptions = [.alert, .sound, .badge]
     completionHandler(options)
   }
@@ -70,7 +69,6 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     updateBadgeCount()
     completionHandler()
   }
-
   
   func updateBadgeCount() {
     var badgeCount = UIApplication.shared.applicationIconBadgeNumber
@@ -79,5 +77,4 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     }
     UIApplication.shared.applicationIconBadgeNumber = badgeCount
   }
-  
 }

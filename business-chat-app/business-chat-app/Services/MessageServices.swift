@@ -30,6 +30,7 @@ class MessageServices {
                                                            "senderId" : senderId,
                                                            "timeSent": timeSent,
                                                            "isMultimedia" : isMultimedia])
+    
     ChatServices.instance.REF_CHATS.child(chatId!).child("lastMessageTimeStamp").setValue(timeSent)
     sendComplete(true)
   }

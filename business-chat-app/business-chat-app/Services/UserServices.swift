@@ -34,6 +34,19 @@ class UserServices {
     handler(true)
   }
   
+  func setStatusAppDelegate(withStatus status: String) {
+    
+    Auth.auth().addStateDidChangeListener() { auth, user in
+      if user != nil {
+        UserServices.instance.updateUserStatus(withStatus: status, handler: { (online) in
+          if online == true {
+            print("status set to \(status)")
+          }
+        })
+      }
+    }
+  }
+  
   //Create new user in database
   func createDBUser(uid: String, userData: Dictionary<String, Any>) {
     REF_USERS.child(uid).updateChildValues(userData)
@@ -73,7 +86,6 @@ class UserServices {
         } else {
           avatarUrl = "NoImage"
         }
-        
         
         let user = User(userName: userName, email: email, avatarUrl: avatarUrl, status: status)
         

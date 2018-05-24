@@ -17,7 +17,7 @@ class UserProfileVC: UITableViewController {
   
   var chatName = ""
   var userId = ""
-  let colors = Colours()
+  let colors = Colors()
   
   override func viewWillAppear(_ animated: Bool) {
     

@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
- class Colours {
+ class Colors {
 	
 	let colourMainBlue: UIColor!
 	let colourMainGreen: UIColor!
