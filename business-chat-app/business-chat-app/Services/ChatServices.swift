@@ -47,7 +47,8 @@ class ChatServices {
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
                                         "members" : newMembers,
                                         "chatName" : forChatName,
-                                        "lastMessageTimeStamp" : currentDate])
+                                        "lastMessageTimeStamp" : currentDate,
+                                        "lastMessageBody": "No messages yet"])
       for member in memberIds {
         UserServices.instance.REF_USERS.child(member).child("activeGroupChats").updateChildValues([chatId : true])
       }
@@ -68,7 +69,8 @@ class ChatServices {
         REF_CHATS.child(md5ChatId).setValue(["isGroupChat" : isGroupChat,
                                              "members" : [memberId:true, currentUserId! : true],
                                              "chatName" : chatName,
-                                             "lastMessageTimeStamp" : currentDate])
+                                             "lastMessageTimeStamp" : currentDate,
+                                             "lastMessageBody": "No messages yet"])
         
         UserServices.instance.REF_USERS.child(memberId).child("activePersonalChats").updateChildValues([md5ChatId : true])
         UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues([md5ChatId : true])
@@ -118,6 +120,39 @@ class ChatServices {
     for id in forIds {
       
       REF_CHATS.child(id).observeSingleEvent(of: .value) { (chatSnapshot) in
+//      REF_CHATS.child(id).observe(.value) { (chatSnapshot) in
+      
+        var returnedChatName = String()
+        var returnedMembers = [String:Bool]()
+        
+        guard let data = chatSnapshot.value as? NSDictionary else {return}
+        guard let chatName = data["chatName"] as? String else {return}
+        guard let members = data["members"] as? [String:Bool] else {return}
+        guard let lastMessageTimeStamp = data["lastMessageTimeStamp"] as? Int64 else {return}
+        guard let lastMessageBody = data["lastMessageBody"] as? String else {return}
+        
+        let chatKey = id
+        returnedMembers = members
+        returnedChatName = chatName
+        
+        let newchatName = returnedChatName.replacingOccurrences(of: currentUserId!, with: "")
+        let group = Chat(name: newchatName, members: returnedMembers, chatKey: chatKey, memberCount: "\(returnedMembers.count)", lastMessage: lastMessageTimeStamp, lastMessageBody: lastMessageBody)
+        
+        chatsArray.append(group)
+        
+        handler(chatsArray)
+      }
+    }
+  }
+  
+  func getChatInfo(forId: String, handler: @escaping (_ contactsArray: [Chat]) -> ()) {
+    
+    var chatsArray = [Chat]()
+    
+   
+//         MessageServices.instance.REF_MESSAGES.child(forId).observe( .value) { (df) in
+          self.REF_CHATS.child(forId).observeSingleEvent(of: .value) { (chatSnapshot) in
+//              REF_CHATS.child(forId).observe(.value) { (chatSnapshot) in
         
         var returnedChatName = String()
         var returnedMembers = [String:Bool]()
@@ -125,19 +160,20 @@ class ChatServices {
         guard let data = chatSnapshot.value as? NSDictionary else {return}
         guard let chatName = data["chatName"] as? String else {return}
         guard let members = data["members"] as? [String:Bool] else {return}
-        guard let lastMessage = data["lastMessageTimeStamp"] as? Int64 else {return}
+        guard let lastMessageTimeStamp = data["lastMessageTimeStamp"] as? Int64 else {return}
+        guard let lastMessageBody = data["lastMessageBody"] as? String else {return}
         
-        let chatKey = id
+        let chatKey = forId
         returnedMembers = members
         returnedChatName = chatName
         
         let newchatName = returnedChatName.replacingOccurrences(of: currentUserId!, with: "")
-        let group = Chat(name: newchatName, members: returnedMembers, chatKey: chatKey, memberCount: "\(returnedMembers.count)", lastMessage: lastMessage)
+        let group = Chat(name: newchatName, members: returnedMembers, chatKey: chatKey, memberCount: "\(returnedMembers.count)", lastMessage: lastMessageTimeStamp, lastMessageBody: lastMessageBody)
         
         chatsArray.append(group)
         
         handler(chatsArray)
-      }
+//      }
     }
   }
   
