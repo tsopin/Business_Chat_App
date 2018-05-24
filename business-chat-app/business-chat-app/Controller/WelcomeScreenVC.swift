@@ -20,7 +20,6 @@ class WelcomeScreenVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     signInBtn.layer.cornerRadius = 5
-    //        Services.instance.lastSeen()
     
     Auth.auth().addStateDidChangeListener() { auth, user in
       if user != nil {
@@ -30,23 +29,15 @@ class WelcomeScreenVC: UIViewController {
     self.hideKeyboardWhenTappedAround()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
   
   @IBAction func registerButtonPressed(_ sender: Any) {
-    
     register()
-    
   }
   
   @IBAction func signInBtn(_ sender: Any) {
-    
     signIn()
-    
   }
-
+  
   func register() {
     
     let registerView = RegisterScreenVC(nibName: "RegisterViewController", bundle: nil)

@@ -55,7 +55,7 @@ class Services {
           print("The network is reachable over the WWAN connection")
           
         case .notReachable:
-       print("The network is not reachable")
+          print("The network is not reachable")
           
         case .unknown :
           print("It is unknown whether the network is reachable")
@@ -95,7 +95,7 @@ class Services {
       var date = Date()
       
       let currentDate = Int64((date.millisecondsSince1970))
-       date = Date(milliseconds: Int64(currentDate))
+      date = Date(milliseconds: Int64(currentDate))
       // when I disconnect, update the last time I was seen online
       lastOnlineRef.onDisconnectSetValue(currentDate)
       offlineAfterDisconnect.onDisconnectSetValue("offline")

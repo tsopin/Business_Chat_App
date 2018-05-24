@@ -26,7 +26,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   //    @IBOutlet weak var contactNameLabel: UILabel!
   
   let imagePickerContorller = UIImagePickerController()
-  let colours = Colours()
+  let colours = Colors()
   
   let customMessageIn = CustomMessageIn()
   let customMessageOut = CustomMessageOut()
@@ -223,8 +223,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     return chatMessages.count
   }
   
-  
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     let currentCell = tableView.cellForRow(at: indexPath)
@@ -262,11 +260,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    //    // Get URL from String
+
     var url = String()
     var content = textField.text!
     
-    //
     
     let date = Date()
     let currentDate = Int64(date.millisecondsSince1970)
@@ -288,6 +285,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       sendBtn.isEnabled = false
       isGif(isGif: false, withContent: content)
       
+  // Get URL from String
       if content.contains("http") && content.contains("gif")  {
         
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -360,8 +358,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
           SVProgressHUD.showError(withStatus: "Uploading Error")
           SVProgressHUD.dismiss(withDelay: 0.5)
         }
-        
-        
       })
     })
     

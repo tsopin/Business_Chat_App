@@ -34,18 +34,15 @@ class ChatServices {
     var md5ChatId = String()
     let date = Date()
     let currentDate = Int64(date.millisecondsSince1970)
+    let chatId = REF_CHATS.childByAutoId().key
     
     switch isGroupChat{
       
     case true:
       
       for member in memberIds {
-        
         newMembers[member] = true
       }
-      let chatId = REF_CHATS.childByAutoId().key
-      //        forChatName.md5()
-      
       
       REF_CHATS.child(chatId).setValue(["isGroupChat" : isGroupChat,
                                         "members" : newMembers,
@@ -54,6 +51,7 @@ class ChatServices {
       for member in memberIds {
         UserServices.instance.REF_USERS.child(member).child("activeGroupChats").updateChildValues([chatId : true])
       }
+      
       UserServices.instance.REF_USERS.child(currentUserId!).child("activeGroupChats").updateChildValues([chatId : true])
       handler(true)
       
@@ -87,7 +85,7 @@ class ChatServices {
   
   
   
-  //  // GETTING PERSONAL CHATS ID FROM USES activePersonalChats
+  // GETTING PERSONAL CHATS ID FROM USES activePersonalChats
   func getMyChatsIds(isGroup: Bool, handler: @escaping (_ uidArray: [String]) -> ()) {
     var chatIdsArray = [String]()
     
@@ -99,8 +97,8 @@ class ChatServices {
           chatIdsArray.append(chat)
         }
         handler(chatIdsArray)
-        
       }
+      
     } else {
       UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").observeSingleEvent(of: .value) { (chatsSnapshot) in
         guard let returnedPersonalChats = chatsSnapshot.value as? [String:Bool] else {return}
@@ -143,7 +141,6 @@ class ChatServices {
     }
   }
   
-  
   func deleteChatFromUser(isGroup: Bool, chatId: String) {
     
     let killer = [chatId:nil] as [String : Any?]
@@ -155,5 +152,4 @@ class ChatServices {
       UserServices.instance.REF_USERS.child(currentUserId!).child("activePersonalChats").updateChildValues(killer as Any as! [AnyHashable : Any])
     }
   }
-  
 }

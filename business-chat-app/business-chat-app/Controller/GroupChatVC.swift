@@ -24,7 +24,7 @@ class GroupChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
   let customMessageOut = CustomMessageOut()
   let imagePickerContorller = UIImagePickerController()
   
-  let colours = Colours()
+  let colours = Colors()
   
   let dateFormatter = DateFormatter()
   let now = NSDate()

@@ -18,16 +18,14 @@ class RegisterScreenVC: UIViewController {
   @IBOutlet weak var passwordTextfield: UITextField!
   @IBOutlet weak var passwordConfirmTextfield: UITextField!
   
-  let colours = Colours()
+  let colors = Colors()
   let date = Date()
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.setGradient(colours.colourMainBlue.cgColor, colours.colourMainGreen.cgColor)
+    self.view.setGradient(colors.colourMainBlue.cgColor, colors.colourMainGreen.cgColor)
     regButton.layer.cornerRadius = 5 
-    self.hideKeyboardWhenTappedAround() 
-    
+    self.hideKeyboardWhenTappedAround()
   }
   
   @IBAction func registerButtonPressed(_ sender: Any) {
@@ -42,8 +40,8 @@ class RegisterScreenVC: UIViewController {
       
       userRegister(userCreationComplete: { (success, loginError) in
         if success {
-          SVProgressHUD.dismiss()
           
+          SVProgressHUD.dismiss()
           SVProgressHUD.show(withStatus: "Registration succeeded. \nSigning In.")
           
           Auth.auth().signIn(withEmail: email!, password: password!) { (user, error) in
@@ -63,7 +61,8 @@ class RegisterScreenVC: UIViewController {
         } else {
           SVProgressHUD.dismiss()
           print(String(describing: loginError?.localizedDescription))
-        }})
+        }
+      })
     }
     
     emailTextfield.resignFirstResponder()
