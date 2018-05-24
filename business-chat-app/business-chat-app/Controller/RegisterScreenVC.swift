@@ -19,6 +19,8 @@ class RegisterScreenVC: UIViewController {
   @IBOutlet weak var passwordConfirmTextfield: UITextField!
   
   let colours = Colours()
+  let date = Date()
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,8 +38,6 @@ class RegisterScreenVC: UIViewController {
     let password = passwordTextfield.text
     let confirmPassword = passwordConfirmTextfield.text
     
-    
-    
     if  password == confirmPassword && userName != nil && email != nil  {
       
       userRegister(userCreationComplete: { (success, loginError) in
@@ -54,22 +54,20 @@ class RegisterScreenVC: UIViewController {
             }
             
             if user != nil {
-              print("Log in Successfull for \(String(describing: user))!")
+              print("Log in Successfull for \(String(describing: user?.uid))!")
               UserServices.instance.saveTokens()
               SVProgressHUD.dismiss()
-              self.presentStoryboard()              
+              self.presentStoryboard()
             }
           }
         } else {
           SVProgressHUD.dismiss()
           print(String(describing: loginError?.localizedDescription))
         }})
-      
     }
     
     emailTextfield.resignFirstResponder()
     passwordTextfield.resignFirstResponder()
-    
     
   }
   
@@ -91,13 +89,13 @@ class RegisterScreenVC: UIViewController {
         self.alert(message: (error.localizedDescription))
         
       } else {
+        let currentDate = Int64(self.date.millisecondsSince1970)
         
-        let userData = ["username": trimmedName, "email": email, "avatar": false] as [String : Any]
+        let userData = ["username": trimmedName, "email": email, "avatar": false, "status": "offline", "lastOnline": currentDate ] as [String : Any]
         UserServices.instance.createDBUser(uid: (user?.uid)!, userData: userData)
         userCreationComplete(true, nil)
         
       }
-      
     }
   }
 }
