@@ -168,7 +168,6 @@ class UserServices {
           avatarUrl = "NoImage"
         }
         
-        
         guard let status = user.childSnapshot(forPath: "status").value as? String else {return}
         
         if email.contains(query) == true && email != Auth.auth().currentUser?.email {
