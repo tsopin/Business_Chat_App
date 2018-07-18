@@ -17,7 +17,7 @@ class MultimediaMessageIn: UITableViewCell {
   @IBOutlet weak var senderName: UILabel!
   @IBOutlet weak var bodyColor: UIView!
   
-  func configeureCell(messageImage: String, messageTime: String, senderName: String) {
+  func configureCell(messageImage: String, messageTime: String, senderName: String) {
     self.messageTime.text = messageTime
     self.senderName.text = senderName
     self.senderName.isHidden = true

@@ -18,7 +18,7 @@ class PersonalChatCell: UITableViewCell {
   @IBOutlet weak var statusImage: UIImageView!
   @IBOutlet weak var userpicImage: UIImageView!
   
-  func configeureCell(contactName: String, lastMessageBody: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
+  func configureCell(contactName: String, lastMessageBody: String, lastMessage: String, statusImage: UIImage, imageUrl: String) {
     
     if imageUrl == "NoImage" {
       userpicImage.image = UIImage.makeLetterAvatar(withUsername: contactName)
