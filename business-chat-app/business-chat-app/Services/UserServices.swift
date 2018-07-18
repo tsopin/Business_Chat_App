@@ -101,7 +101,7 @@ class UserServices {
   
   
   //Get Info for user ID
-  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (String, String, String, String, Int64)) -> ()) {
+  func getUserData(byUserId userId: String, handler: @escaping (_ userData: (email: String, userName: String, status: String, imageUrl: String, lastSeen: Int64)) -> ()) {
     
     REF_USERS.observe(DataEventType.value, with: { (userSnapshot) in
       

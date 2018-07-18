@@ -102,9 +102,9 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
           
           var statusImage = UIImage()
           //        let contactEmail = userData.0
-          let contactName = userData.1
-          let imageUrl = userData.3
-          let contactStatus = userData.2
+          let contactName = userData.userName
+          let imageUrl = userData.imageUrl
+          let contactStatus = userData.status
           let lastMessageBody = returnedChats.lastMessageBody
           
           switch contactStatus {
@@ -117,7 +117,7 @@ extension ListOfContactsVC: UITableViewDelegate, UITableViewDataSource {
           default:
             statusImage = UIImage(named: "status_offline")!
           }
-          cell.configeureCell(contactName: contactName, lastMessageBody: lastMessageBody, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
+          cell.configureCell(contactName: contactName, lastMessageBody: lastMessageBody, lastMessage: date, statusImage: statusImage, imageUrl: imageUrl)
         })
 //      }
     }

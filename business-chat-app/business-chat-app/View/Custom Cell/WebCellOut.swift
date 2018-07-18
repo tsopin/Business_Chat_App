@@ -16,7 +16,7 @@ class WebCellOut: UITableViewCell {
   @IBOutlet weak var bodyColor: UIView!
   @IBOutlet weak var webView: WKWebView!
   
-  func configeureCell(mediaUrl: String, messageTime: String, senderName: String) {
+  func configureCell(mediaUrl: String, messageTime: String, senderName: String) {
     self.messageTime.text = messageTime
     self.senderName.text = senderName
     

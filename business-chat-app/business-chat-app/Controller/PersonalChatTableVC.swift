@@ -161,6 +161,8 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let mediaUrl = chatMessages[indexPath.row].mediaUrl
     let content = chatMessages[indexPath.row].content
     
+
+    
     if  sender == currentUserId {
       
       if isMedia == true || content.contains(".gif") || content.contains(".jpg") {
@@ -168,7 +170,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageOut", for: indexPath) as! MultimediaMessageOut
         let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
         
-        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        cell.configureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
         return cell
         
       }
@@ -178,14 +180,14 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       //        let cell = tableView.dequeueReusableCell(withIdentifier: "webOut", for: indexPath) as! WebCellOut
       //        let date = getDateFromInterval(timestamp: Double(chatMessages[indexPath.row].timeSent))
       //
-      //        cell.configeureCell(mediaUrl: content, messageTime: date!, senderName: sender)
+      //        cell.configureCell(mediaUrl: content, messageTime: date!, senderName: sender)
       //        return cell
       //      }
       
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageOut", for: indexPath) as! CustomMessageOut
       let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!, isGroup: false)
+      cell.configureCell(senderName: currentEmail!, messageTime: date!, messageBody: content, messageBackground: outColor!, isGroup: false)
       return cell
       
     } else {
@@ -195,7 +197,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "multimediaMessageIn", for: indexPath) as! MultimediaMessageIn
         let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
         
-        cell.configeureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
+        cell.configureCell(messageImage: mediaUrl, messageTime: date!, senderName: sender)
         
         return cell
       }
@@ -203,7 +205,7 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       let cell = tableView.dequeueReusableCell(withIdentifier: "messageIn", for: indexPath) as! CustomMessageIn
       let date = getDateFromInterval(timestamp: Int64(chatMessages[indexPath.row].timeSent))
       
-      cell.configeureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor!, isGroup: false)
+      cell.configureCell(senderName: chatMessages[indexPath.row].senderId, messageTime: date!, messageBody: chatMessages[indexPath.row].content, messageBackground: inColor!, isGroup: false)
       return cell
       
     }

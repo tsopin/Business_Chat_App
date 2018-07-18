@@ -91,7 +91,7 @@ extension ListOfGroupsVC: UITableViewDelegate, UITableViewDataSource {
     
     let group = groupsArray[indexPath.row]
     
-    cell.configeureCell(groupName: group.chatName, numberOfMembers: group.memberCount )
+    cell.configureCell(groupName: group.chatName, numberOfMembers: group.memberCount )
     
     return cell
   }

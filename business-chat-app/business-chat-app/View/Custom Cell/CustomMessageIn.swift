@@ -21,7 +21,7 @@ class CustomMessageIn: UITableViewCell {
     super.awakeFromNib()
   }
   
-  func configeureCell(senderName: String, messageTime: String, messageBody: String, messageBackground: UIColor, isGroup: Bool ) {
+  func configureCell(senderName: String, messageTime: String, messageBody: String, messageBackground: UIColor, isGroup: Bool ) {
     
     self.senderName.text = senderName
     self.messageTime.text = messageTime
