@@ -56,9 +56,9 @@ class ListOfContactsVC: UIViewController {
         self.contactsArray.removeAll()
         ChatServices.instance.getMyChats(forIds: ids, handler: { (returnedChats) in
           self.contactsArray = returnedChats.sorted { $0.lastMessage > $1.lastMessage }
-          DispatchQueue.main.async {
+//          DispatchQueue.main.async {
             self.contactsTableView.reloadData()
-          }
+//          }
         })
       }
     }
