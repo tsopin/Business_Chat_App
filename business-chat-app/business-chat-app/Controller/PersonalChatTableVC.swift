@@ -259,13 +259,9 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func sendMessage(){
-    
-    
-    
 
     var url = String()
     var content = textField.text!
-    
     
     let date = Date()
     let currentDate = Int64(date.millisecondsSince1970)
@@ -280,7 +276,6 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
           print("Message saved \(currentDate)")
         }
       })
-      
     }
     
     if content != "" {
