@@ -46,7 +46,7 @@ class MessageServices {
                                                            "timeSent": timeSent])
     
     let lastMessageInfo = ["lastMessageTimeStamp": timeSent,
-                           "lastMessageBody": "📷 Photo Message"] as [String : Any]
+                           "lastMessageBody": "📷 Photo"] as [String : Any]
     
     ChatServices.instance.REF_CHATS.child(chatId!).updateChildValues(lastMessageInfo)
     sendComplete(true)
