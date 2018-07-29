@@ -46,10 +46,10 @@ class PersonalChatVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     UserServices.instance.getUserData(byUserId: (chat?.chatName)!) { (userData) in
       
-      let tabImage = userData.3
-      let tabName = userData.1
-      let lastSeen = userData.4
-      let status = userData.2
+      let tabImage = userData.imageUrl
+      let tabName = userData.userName
+      let lastSeen = userData.lastSeen
+      let status = userData.status
       
       switch status {
         
